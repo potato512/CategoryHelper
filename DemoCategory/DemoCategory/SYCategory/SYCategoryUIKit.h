@@ -6,6 +6,9 @@
 //  Copyright © 2016年 zhangshaoyu. All rights reserved.
 //
 
+#import "UIView+SYCategory.h"
+#import "UILabel+SYCategory.h"
+
 #ifndef SYCategoryUIKit_h
 #define SYCategoryUIKit_h
 

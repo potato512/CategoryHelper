@@ -8,9 +8,31 @@
 
 #import <Foundation/Foundation.h>
 
-// 获取时间间隔
+/// 获取时间间隔
 #define TICK   CFAbsoluteTime start = CFAbsoluteTimeGetCurrent();
 #define TOCK   NSLog(@"Time: %f", CFAbsoluteTimeGetCurrent() - start)
+
+/// 时间字符格式
+typedef NS_ENUM(NSInteger, SYTimeShowMode)
+{
+    /// 自适应，即0的不再显示（含秒）
+    SYTimeShowModeDefault = 0,
+    
+    /// 自适应，即0的不再显示（不含秒）
+    SYTimeShowModeDefaultWithSecond,
+    
+    /// 天时分秒
+    SYTimeShowModeDayHourMinuteSecond,
+    
+    /// 天时分
+    SYTimeShowModeDayHourMinute,
+    
+    /// 时分秒
+    SYTimeShowModeHourMinuteSecond,
+    
+    /// 时分
+    SYTimeShowModeHourMinute,
+};
 
 @interface NSDate (SYCategory)
 

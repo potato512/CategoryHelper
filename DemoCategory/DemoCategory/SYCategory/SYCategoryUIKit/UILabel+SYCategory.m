@@ -43,4 +43,22 @@
     self.attributedText = attributed;
 }
 
+/// 设置自适应标签宽高
+- (void)labelAutoSize:(SYLabelAutoSizeType)type
+{
+    self.numberOfLines = 0;
+    self.lineBreakMode = NSLineBreakByWordWrapping;
+    
+    CGSize size = CGSizeMake(self.frame.size.width, CGFLOAT_MAX);
+    CGSize labelsize = [self.text sizeWithFont:self.font constrainedToSize:size lineBreakMode:self.lineBreakMode];
+    if (SYLabelAutoSizeTypeHorizontal == type)
+    {
+        self.frame = CGRectMake(self.frame.origin.x, self.frame.origin.y, labelsize.width, self.frame.size.height);
+    }
+    else if (SYLabelAutoSizeTypeAll == type)
+    {
+        self.frame = CGRectMake(self.frame.origin.x, self.frame.origin.y, labelsize.width, labelsize.height);
+    }
+}
+
 @end

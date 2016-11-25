@@ -9,7 +9,7 @@
 
 #import "SYCategoryFoundation.h"
 #import "SYCategoryUIKit.h"
-
+#import "Common_define.h"
 
 #ifndef SYCategory_h
 #define SYCategory_h
