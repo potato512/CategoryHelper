@@ -15,6 +15,13 @@
 
 + (NSString *)UUID;
 
+/**
+ *  获取设备 ip 地址
+ *
+ *  @return ip 地址字符串
+ */
++ (NSString *)IPAddress;
+
 #pragma mark - 数值转字符串
 
 /// number转字string

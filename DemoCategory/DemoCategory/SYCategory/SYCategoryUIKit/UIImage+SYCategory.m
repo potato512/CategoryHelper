@@ -44,7 +44,7 @@ static CGContextRef _newBitmapContext(CGSize size)
     return context;
 }
 
-/// 生成指定颜色的图片
+/// 生成指定颜色和大小的图片
 + (UIImage *)imageWithColor:(UIColor *)color size:(CGSize)size
 {
     CGContextRef context = _newBitmapContext(size);
@@ -60,18 +60,19 @@ static CGContextRef _newBitmapContext(CGSize size)
     return img;
 }
 
-/// 获取图片，根据图片url
+/// 获取图片，根据图片url（如：url = http://.../xxx.jpg）
 + (UIImage *)imageWithUrl:(NSString *)url
 {
     return [[UIImage alloc] initWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:url]]];
 }
 
-/// 读取本地图片
+/// 读取本地图片（如：name = xxx.png）
 + (UIImage *)imageWithBundleName:(NSString *)name
 {
     return [UIImage imageWithContentsOfFile:[[NSBundle mainBundle] pathForResource:name ofType:nil]];
 }
 
+/// 读取本地图片（如：xxx.png，name = xxx，type = png）
 + (UIImage *)imageWithBundleName:(NSString *)name type:(NSString *)type
 {
     return [UIImage imageWithContentsOfFile:[[NSBundle mainBundle] pathForResource:name ofType:type]];
@@ -107,7 +108,7 @@ static CGContextRef _newBitmapContext(CGSize size)
     {
         temSize = self.size;
     }
-    else if (self.size.width - self.size.height > 0)
+    else if (self.size.width - self.size.height > 0.0)
     {
         temSize = CGSizeMake(self.size.width * size / self.size.height, size);
     }
@@ -117,21 +118,66 @@ static CGContextRef _newBitmapContext(CGSize size)
     }
     
     UIGraphicsBeginImageContext(temSize);
-    [self drawInRect:CGRectMake(0, 0, temSize.width, temSize.height)];
+    [self drawInRect:CGRectMake(0.0, 0.0, temSize.width, temSize.height)];
     UIImage *resultImage = UIGraphicsGetImageFromCurrentImageContext();
     UIGraphicsEndImageContext();
     
     return resultImage;
 }
 
+/**
+ *  图片调整尺寸大小
+ *
+ *  @param size 调整后尺寸大小
+ *
+ *  @return 调整后 image 对象
+ */
+- (UIImage *)scaleImageWithSizeDimension:(CGSize)size
+{
+    UIGraphicsBeginImageContext(size);
+    [self drawInRect:CGRectMake(0.0, 0.0, size.width, size.height)];
+    UIGraphicsEndImageContext();
+    return self;
+}
+
+/**
+ *  图片调整文件大小
+ *
+ *  @param fileSize 调整后文件大小
+ *c
+ *  @return 调整后 image 对象
+ */
+- (UIImage *)compressionImageWithSize:(CGFloat)fileSize
+{
+    NSData *data = UIImageJPEGRepresentation(self, 1.0);
+    CGFloat dataKBytes = data.length / 1000.0;
+    CGFloat maxQuqlity = 0.9;
+    CGFloat lastData = dataKBytes;
+    while (dataKBytes > fileSize && maxQuqlity > 0.01)
+    {
+        maxQuqlity = maxQuqlity - 0.01;
+        data = UIImageJPEGRepresentation(self, maxQuqlity);
+        dataKBytes = data.length / 1000.0;
+        if (lastData == dataKBytes)
+        {
+            break;
+        }
+        else
+        {
+            lastData = dataKBytes;
+        }
+    }
+    
+    UIImage *image = [UIImage imageWithData:data];
+    return image;
+}
 
 #pragma mark - 图片裁剪
 
 // 将图片裁剪成圆角的，并没有改变图片的质量
 static void AddRoundedRectToPath(CGContextRef context, CGRect rect, float ovalWidth, float ovalHeight)
 {
-    float fw, fh;
-    if (ovalWidth == 0 || ovalHeight == 0)
+    if (ovalWidth == 0.0 || ovalHeight == 0.0)
     {
         CGContextAddRect(context, rect);
         return;
@@ -140,40 +186,40 @@ static void AddRoundedRectToPath(CGContextRef context, CGRect rect, float ovalWi
     CGContextSaveGState(context);
     CGContextTranslateCTM(context, CGRectGetMinX(rect), CGRectGetMinY(rect));
     CGContextScaleCTM(context, ovalWidth, ovalHeight);
-    fw = CGRectGetWidth(rect) / ovalWidth;
-    fh = CGRectGetHeight(rect) / ovalHeight;
+    float fileWidth = CGRectGetWidth(rect) / ovalWidth;
+    float fileHeight = CGRectGetHeight(rect) / ovalHeight;
     
-    CGContextMoveToPoint(context, fw, fh/2);  // Start at lower right corner
-    CGContextAddArcToPoint(context, fw, fh, fw/2, fh, 1);  // Top right corner
-    CGContextAddArcToPoint(context, 0, fh, 0, fh/2, 1); // Top left corner
-    CGContextAddArcToPoint(context, 0, 0, fw/2, 0, 1); // Lower left corner
-    CGContextAddArcToPoint(context, fw, 0, fw, fh/2, 1); // Back to lower right
+    CGContextMoveToPoint(context, fileWidth, fileHeight / 2);  // Start at lower right corner
+    CGContextAddArcToPoint(context, fileWidth, fileHeight, fileWidth / 2, fileHeight, 1);  // Top right corner
+    CGContextAddArcToPoint(context, 0, fileHeight, 0, fileHeight / 2, 1); // Top left corner
+    CGContextAddArcToPoint(context, 0, 0, fileWidth / 2, 0, 1); // Lower left corner
+    CGContextAddArcToPoint(context, fileWidth, 0, fileWidth, fileHeight / 2, 1); // Back to lower right
     
     CGContextClosePath(context);
     CGContextRestoreGState(context);
 }
 
-/// 生成圆角图片
-- (UIImage *)GetRoundedRectImage:(UIImage *)image roundRadius:(CGFloat)radius
+/// 生成圆角图片（默认圆角大小为8.0）
+- (UIImage *)roundedImage:(UIImage *)image roundRadius:(CGFloat)radius
 {
-    if (!radius)
+    if (0.0 == radius)
     {
-        radius = 8;
+        radius = 8.0;
     }
     // the size of CGContextRef
-    int w = image.size.width;
-    int h = image.size.height;
+    int width = image.size.width;
+    int height = image.size.height;
     
     UIImage *img = image;
     CGColorSpaceRef colorSpace = CGColorSpaceCreateDeviceRGB();
-    CGContextRef context = CGBitmapContextCreate(NULL, w, h, 8, 4 * w, colorSpace, (CGBitmapInfo)kCGImageAlphaPremultipliedFirst);
-    CGRect rect = CGRectMake(0, 0, w, h);
+    CGContextRef context = CGBitmapContextCreate(NULL, width, height, 8, 4 * width, colorSpace, (CGBitmapInfo)kCGImageAlphaPremultipliedFirst);
+    CGRect rect = CGRectMake(0.0, 0.0, width, height);
     
     CGContextBeginPath(context);
     AddRoundedRectToPath(context, rect, radius, radius);
     CGContextClosePath(context);
     CGContextClip(context);
-    CGContextDrawImage(context, CGRectMake(0, 0, w, h), img.CGImage);
+    CGContextDrawImage(context, CGRectMake(0.0, 0.0, width, height), img.CGImage);
     CGImageRef imageMasked = CGBitmapContextCreateImage(context);
     CGContextRelease(context);
     CGColorSpaceRelease(colorSpace);
@@ -181,7 +227,7 @@ static void AddRoundedRectToPath(CGContextRef context, CGRect rect, float ovalWi
 }
 
 /// 方形图片
-- (UIImage *)GetSquareImageWithImage:(UIImage *)image scaledToSize:(CGSize)newSize
+- (UIImage *)squareImage:(UIImage *)image size:(CGSize)newSize
 {
     double ratio;
     double delta;
@@ -193,13 +239,13 @@ static void AddRoundedRectToPath(CGContextRef context, CGRect rect, float ovalWi
     {
         ratio = newSize.width / image.size.width;
         delta = (ratio*image.size.width - ratio*image.size.height);
-        offset = CGPointMake(delta / 2, 0);
+        offset = CGPointMake(delta / 2, 0.0);
     }
     else
     {
         ratio = newSize.width / image.size.height;
         delta = (ratio*image.size.height - ratio*image.size.width);
-        offset = CGPointMake(0, delta / 2);
+        offset = CGPointMake(0.0, delta / 2);
     }
     
     CGRect clipRect = CGRectMake(-offset.x, -offset.y, (ratio * image.size.width) + delta, (ratio * image.size.height) + delta);
@@ -220,19 +266,8 @@ static void AddRoundedRectToPath(CGContextRef context, CGRect rect, float ovalWi
     return newImage;
 }
 
-/// 屏幕截图（指定视图范围）
-+ (UIImage *)getScreenImageFromView:(UIView *)view
-{
-    UIGraphicsBeginImageContextWithOptions(view.bounds.size, NO, 0.0);
-    [view.layer renderInContext:UIGraphicsGetCurrentContext()];
-    UIImage *resultImage = UIGraphicsGetImageFromCurrentImageContext();
-    UIGraphicsEndImageContext();
-    
-    return resultImage;
-}
-
 /// 从图片中按指定的位置大小截取图片的一部分
-+ (UIImage *)screenImage:(UIImage *)image screenSize:(CGRect)rect
++ (UIImage *)screenImageWithImage:(UIImage *)image size:(CGRect)rect
 {
     CGImageRef sourceImageRef = [image CGImage];
     CGImageRef newImageRef = CGImageCreateWithImageInRect(sourceImageRef, rect);
@@ -241,11 +276,33 @@ static void AddRoundedRectToPath(CGContextRef context, CGRect rect, float ovalWi
     return newImage;
 }
 
-/// 从视图中按指定的位置大小截取图片的一部分
-+ (UIImage *)screenImage:(UIView *)view inRect:(CGRect)frame
+/**
+ *  全屏截图
+ *
+ *  @return 截图后 image 对象
+ */
++ (UIImage *)mainScreenImage
 {
-    CGRect rect = frame;
+    UIWindow *window = [UIApplication sharedApplication].keyWindow;
+    UIImage *image = [self screenImageWithView:window];
+    return image;
+}
+
+/// 屏幕截图（指定视图）
++ (UIImage *)screenImageWithView:(UIView *)view
+{
+//    UIGraphicsBeginImageContext(view.bounds.size);
+    UIGraphicsBeginImageContextWithOptions(view.bounds.size, NO, 0.0);
+    [view.layer renderInContext:UIGraphicsGetCurrentContext()];
+    UIImage *resultImage = UIGraphicsGetImageFromCurrentImageContext();
+    UIGraphicsEndImageContext();
     
+    return resultImage;
+}
+
+/// 从视图中按指定的位置大小截取图片的一部分
++ (UIImage *)screenImageWithView:(UIView *)view size:(CGRect)rect
+{
     // 开始取图，参数：截图图片大小
     UIGraphicsBeginImageContext(rect.size);
     // 截图层放入上下文中
@@ -256,15 +313,29 @@ static void AddRoundedRectToPath(CGContextRef context, CGRect rect, float ovalWi
     UIGraphicsEndImageContext();
     
     return image;
+    
+    
+//    UIImage *image = [self screenImageWithView:view];
+//    CGImageRef imageRef = CGImageCreateWithImageInRect(image.CGImage, rect);
+//    UIGraphicsBeginImageContext(rect.size);
+//    CGContextRef context = UIGraphicsGetCurrentContext();
+//    CGContextTranslateCTM(context, 0, rect.size.height); // 下移
+//    CGContextScaleCTM(context, 1.0, -1.0); // 上翻
+//    CGContextDrawImage(context, rect, imageRef);
+//    UIImage *result = UIGraphicsGetImageFromCurrentImageContext();
+//    UIGraphicsEndImageContext();
+//    CGImageRelease(imageRef);
+//    CGContextRelease(context);
+//    return result;
 }
 
 #pragma mark - 图片滤镜
 
 /// UIImage转为灰度图 CGColorSpaceCreateDeviceGray会创建一个设备相关的灰度颜色空间的引用。
-- (UIImage *)GetGrayImage:(UIImage *)sourceImage
+- (UIImage *)grayImage
 {
-    int width = sourceImage.size.width;
-    int height = sourceImage.size.height;
+    int width = self.size.width;
+    int height = self.size.height;
     CGColorSpaceRef colorSpace = CGColorSpaceCreateDeviceGray();
     CGContextRef context = CGBitmapContextCreate (nil, width, height, 8, 0, colorSpace, kCGImageAlphaNone);
     CGColorSpaceRelease(colorSpace);
@@ -272,7 +343,7 @@ static void AddRoundedRectToPath(CGContextRef context, CGRect rect, float ovalWi
     {
         return nil;
     }
-    CGContextDrawImage(context,CGRectMake(0, 0, width, height), sourceImage.CGImage);
+    CGContextDrawImage(context,CGRectMake(0, 0, width, height), self.CGImage);
     UIImage *grayImage = [UIImage imageWithCGImage:CGBitmapContextCreateImage(context)];
     CGContextRelease(context);
     return grayImage;
@@ -375,110 +446,10 @@ static void AddRoundedRectToPath(CGContextRef context, CGRect rect, float ovalWi
     return image;
 }
 
-/**
- *  全屏截图
- *
- *  @return 截图后 image 对象
- */
-+ (UIImage *)printscreenMainScreen
-{
-    UIWindow *window = [UIApplication sharedApplication].keyWindow;
-    UIImage *image = [self pringscreenWithView:window];
-    return image;
-}
-
-/**
- *  指定view截图
- *
- *  @param view 指定view
- *
- *  @return 截图后 image 对象
- */
-+ (UIImage *)pringscreenWithView:(UIView *)view
-{
-    UIGraphicsBeginImageContext(view.bounds.size);
-    [view.layer renderInContext:UIGraphicsGetCurrentContext()];
-    UIImage *image = UIGraphicsGetImageFromCurrentImageContext();
-    UIGraphicsEndImageContext();
-    return image;
-}
-
-/**
- *  指定view中指定区域截图
- *
- *  @param view  指定view
- *  @param scope 指定区域
- *
- *  @return 截图后 image 对象
- */
-+ (UIImage *)pringscreenWithView:(UIView *)view scope:(CGRect)scope
-{
-    UIImage *image = [self pringscreenWithView:view];
-    CGImageRef imageRef = CGImageCreateWithImageInRect(image.CGImage, scope);
-    UIGraphicsBeginImageContext(scope.size);
-    CGContextRef context = UIGraphicsGetCurrentContext();
-    CGRect rect = CGRectMake(0.0, 0.0, scope.size.width, scope.size.height);
-    CGContextTranslateCTM(context, 0, rect.size.height); // 下移
-    CGContextScaleCTM(context, 1.0, -1.0); // 上翻
-    CGContextDrawImage(context, rect, imageRef);
-    UIImage *result = UIGraphicsGetImageFromCurrentImageContext();
-    UIGraphicsEndImageContext();
-    CGImageRelease(imageRef);
-    CGContextRelease(context);
-    return result;
-}
-
-/**
- *  图片调整尺寸大小
- *
- *  @param size 调整后尺寸大小
- *
- *  @return 调整后 image 对象
- */
-- (UIImage *)adjustImageWithSizeDimension:(CGSize)size
-{
-    UIGraphicsBeginImageContext(size);
-    [self drawInRect:CGRectMake(0.0, 0.0, size.width, size.height)];
-    UIGraphicsEndImageContext();
-    return self;
-}
-
-/**
- *  图片调整文件大小
- *
- *  @param size 调整后文件大小
- *
- *  @return 调整后 image 对象
- */
-- (UIImage *)adjustImageWithSizeFile:(CGFloat)size
-{
-    NSData *data = UIImageJPEGRepresentation(self, 1.0);
-    CGFloat dataKBytes = data.length / 1000.0;
-    CGFloat maxQuqlity = 0.9;
-    CGFloat lastData = dataKBytes;
-    while (dataKBytes > size && maxQuqlity > 0.01)
-    {
-        maxQuqlity = maxQuqlity - 0.01;
-        data = UIImageJPEGRepresentation(self, maxQuqlity);
-        dataKBytes = data.length / 1000.0;
-        if (lastData == dataKBytes)
-        {
-            break;
-        }
-        else
-        {
-            lastData = dataKBytes;
-        }
-    }
-    
-    UIImage *image = [UIImage imageWithData:data];
-    return image;
-}
-
 #pragma mark - 图片保存
 
 /// 保存图片到指定路径，是否成功回调
-- (void)saveImageWithPath:(NSString *)path complete:(void (^)(BOOL isSuccess))complete
+- (void)saveImageWithPath:(NSString *)filePath complete:(void (^)(BOOL isSuccess))complete
 {
     /*
      NSData *imageData = UIImageJPEGRepresentation(tempImage, 1.0);
@@ -488,7 +459,7 @@ static void AddRoundedRectToPath(CGContextRef context, CGRect rect, float ovalWi
      */
     
     NSData *imageData = UIImageJPEGRepresentation(self, 0.5);
-    BOOL isResult = [imageData writeToFile:path atomically:NO];
+    BOOL isResult = [imageData writeToFile:filePath atomically:NO];
     if (complete)
     {
         complete(isResult);
@@ -511,11 +482,10 @@ static void AddRoundedRectToPath(CGContextRef context, CGRect rect, float ovalWi
     }
 }
 
-
 #pragma mark - 获取相册图片
 
-/// 获取n张相片（0时为全部），最新的或最早的
-- (void)GetImagesFromAssetsLibraryWithNum:(NSInteger)count latest:(BOOL)latest start:(void(^)(void))start success:(void(^)(NSArray *images))success error:(void(^)(void))error
+/// 获取n张相片（0时为全部），最近的n张图片或最早的n张图片
+- (void)imagesFromAssetsLibraryWithNum:(NSInteger)count latest:(BOOL)latest start:(void(^)(void))start success:(void(^)(NSArray *images))success error:(void(^)(void))error
 {
     [self removeImage];
     
@@ -700,7 +670,7 @@ static void AddRoundedRectToPath(CGContextRef context, CGRect rect, float ovalWi
  *
  *  @return 返回二进制流字符串
  */
-- (NSString *)imageBytesStringWithImageCompressionQuality:(CGFloat)quality
+- (NSString *)imageBytesStringWithQuality:(CGFloat)quality
 {
     NSData *imageData = UIImageJPEGRepresentation(self, quality);
     NSStringEncoding imageEncoding = CFStringConvertEncodingToNSStringEncoding(kCFStringEncodingISOLatin1);
@@ -710,13 +680,28 @@ static void AddRoundedRectToPath(CGContextRef context, CGRect rect, float ovalWi
 }
 
 /**
+ *  二进制流字符串转图片
+ *
+ *  @param string 二进制流字符串
+ *
+ *  @return image
+ */
++ (UIImage *)imageWithImageBytes:(NSString *)string
+{
+    NSStringEncoding imageEncoding = CFStringConvertEncodingToNSStringEncoding(kCFStringEncodingISOLatin1);
+    NSData *data = [string dataUsingEncoding:imageEncoding];
+    UIImage *image = [[UIImage alloc] initWithData:data];
+    return image;
+}
+
+/**
  *  图片转二进制流
  *
  *  @param quality 压缩精度（0.0 ~ 1.0）
  *
  *  @return 返回二进制流
  */
-- (NSData *)imageDataWithImageCompressionQuality:(CGFloat)quality
+- (NSData *)imageDataWithQuality:(CGFloat)quality
 {
     NSData *imageData = UIImageJPEGRepresentation(self, quality);
     
@@ -730,7 +715,7 @@ static void AddRoundedRectToPath(CGContextRef context, CGRect rect, float ovalWi
  *
  *  @return 返回二进制流base64字符串
  */
-- (NSString *)imageBase64StringWithImageCompressionQuality:(CGFloat)quality
+- (NSString *)imageBase64StringWithQuality:(CGFloat)quality
 {
     NSData *imageData = UIImageJPEGRepresentation(self, quality);
     NSString *imageBase64 = [imageData base64EncodedStringWithOptions:NSDataBase64Encoding64CharacterLineLength];
@@ -738,5 +723,12 @@ static void AddRoundedRectToPath(CGContextRef context, CGRect rect, float ovalWi
     return imageBase64;
 }
 
+// base64字符串转图片
++ (UIImage *)imageWithImageBase64:(NSString *)string
+{
+    NSData *data = [[NSData alloc] initWithBase64EncodedString:string options:NSDataBase64DecodingIgnoreUnknownCharacters];
+    UIImage *image = [UIImage imageWithData:data];
+    return image;
+}
 
 @end

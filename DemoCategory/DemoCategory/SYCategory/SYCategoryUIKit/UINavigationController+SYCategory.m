@@ -7,11 +7,13 @@
 //
 
 #import "UINavigationController+SYCategory.h"
+#import "UIImage+SYCategory.h"
+#import "UIColor+SYCategory.h"
 
 // 高度设置 20 44 64
-static CGFloat const heightStatusbar = 20.0;
-static CGFloat const heightNavigationbar = 44.0;
-static CGFloat const heightStatusAndNavbar = 64.0;
+//static CGFloat const heightStatusbar = 20.0;
+//static CGFloat const heightNavigationbar = 44.0;
+//static CGFloat const heightStatusAndNavbar = 64.0;
 #define widthScreen  [UIScreen mainScreen].applicationFrame.size.width
 #define heightScreen [UIScreen mainScreen].applicationFrame.size.height
 
@@ -39,7 +41,7 @@ static CGFloat const heightStatusAndNavbar = 64.0;
         self.navigationBar.titleTextAttributes = @{NSFontAttributeName:textFont, NSForegroundColorAttributeName:textColor};
         
         // 导航底部1px的阴影颜色-修改
-//        [self.navigationBar setShadowImage:kImageWithColor(kColorSeparatorline)];
+        [self.navigationBar setShadowImage:[UIImage imageWithColor:[UIColor colorWithHexString:@"0xd6d7dc"] size:CGSizeMake(1.0, 1.0)]];
         
         // 导航底部1px的阴影-遮住
         /*

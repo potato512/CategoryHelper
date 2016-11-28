@@ -28,7 +28,7 @@ typedef NS_ENUM(NSInteger, SYLabelAutoSizeType)
  *  @param string         要修改的文字
  *  @param color          要修改的文字颜色
  */
-- (void)adjustLabel:(CGFloat)characterSpace rowSpace:(CGFloat)rowSpace text:(NSString *)string color:(UIColor *)color;
+- (void)labelAdjust:(CGFloat)characterSpace rowSpace:(CGFloat)rowSpace text:(NSString *)string color:(UIColor *)color;
 
 /// 设置自适应标签宽高
 - (void)labelAutoSize:(SYLabelAutoSizeType)type;

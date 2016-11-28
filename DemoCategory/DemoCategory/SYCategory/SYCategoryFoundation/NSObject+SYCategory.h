@@ -30,12 +30,6 @@ typedef NS_ENUM(NSInteger, SYImageType)
 
 @interface NSObject (SYCategory)
 
-/**
- *  获取设备 ip 地址
- *
- *  @return ip 地址字符串
- */
-+ (NSString *)getIPAddress;
 
 /// 计算字符高度（根据字符，字体，及指定宽度）
 - (CGFloat)heightWithText:(NSString *)string font:(UIFont *)font constrainedToWidth:(CGFloat)width;
