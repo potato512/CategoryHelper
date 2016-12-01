@@ -43,6 +43,19 @@
 /// 右侧，即x坐标
 @property CGFloat right;
 
+
+/// 标题（默认无）
+@property (nonatomic, strong) NSString *viewText;
+/// 标题字体颜色（默认黑色）
+@property (nonatomic, strong) UIColor *viewTextColor;
+/// 标题字体大小（默认12.0）
+@property (nonatomic, strong) UIFont *viewTextFont;
+/// 标题显示位置（默认居中）
+@property (nonatomic, assign) CGRect viewTextRect;
+/// 标题显示对齐方式（默认居中）
+@property (nonatomic, assign) NSTextAlignment viewTextAlignment;
+
+
 /**
  *  毛玻璃效果（注意使用前必须先添加到父视图）
  *

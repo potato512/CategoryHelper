@@ -8,6 +8,18 @@
 
 #import "UIView+SYCategory.h"
 #import "UIGestureRecognizer+SYCategory.h"
+#import <objc/runtime.h>
+
+static NSString *const keyViewText = @"viewText";
+static NSString *const keyViewTextColor = @"viewTextColor";
+static NSString *const keyViewTextFont = @"viewTextFont";
+static NSString *const keyViewTextLabel = @"viewTextLabel";
+
+@interface UIView ()
+
+@property (nonatomic, strong) UILabel *viewTextLabel;
+
+@end
 
 @implementation UIView (SYCategory)
 
@@ -128,6 +140,98 @@
 - (CGFloat)right
 {
     return (self.frame.origin.x + self.frame.size.width);
+}
+
+#pragma mark - 添加标题设置
+
+- (void)setViewText:(NSString *)viewText
+{
+    if (0 < viewText.length)
+    {
+        objc_setAssociatedObject(self, &keyViewText, viewText, OBJC_ASSOCIATION_RETAIN);
+        
+        [self refreshLabel];
+        self.viewTextLabel.text = self.viewText;
+    }
+}
+
+- (NSString *)viewText
+{
+    NSString *viewText = objc_getAssociatedObject(self, &keyViewText);
+    return viewText;
+}
+
+- (void)setViewTextColor:(UIColor *)viewTextColor
+{
+    objc_setAssociatedObject(self, &keyViewTextColor, viewTextColor, OBJC_ASSOCIATION_RETAIN);
+    
+    [self refreshLabel];
+    self.viewTextLabel.textColor = self.viewTextColor;
+}
+
+- (UIColor *)viewTextColor
+{
+    UIColor *color = objc_getAssociatedObject(self, &keyViewTextColor);
+    return color;
+}
+
+- (void)setViewTextFont:(UIFont *)viewTextFont
+{
+    objc_setAssociatedObject(self, &keyViewTextFont, viewTextFont, OBJC_ASSOCIATION_RETAIN);
+    
+    [self refreshLabel];
+    self.viewTextLabel.font = self.viewTextFont;
+}
+
+- (UIFont *)viewTextFont
+{
+    UIFont *font = objc_getAssociatedObject(self, &keyViewTextFont);
+    return font;
+}
+
+- (void)setViewTextLabel:(UILabel *)viewTextLabel
+{
+    objc_setAssociatedObject(self, &keyViewTextLabel, viewTextLabel, OBJC_ASSOCIATION_RETAIN);
+}
+
+- (UILabel *)viewTextLabel
+{
+    UILabel *label = objc_getAssociatedObject(self, &keyViewTextLabel);
+    return label;
+}
+
+- (void)refreshLabel
+{
+    if (self.viewTextLabel == nil)
+    {
+        self.viewTextLabel = [[UILabel alloc] initWithFrame:self.bounds];
+        [self addSubview:self.viewTextLabel];
+        self.viewTextLabel.backgroundColor = [UIColor clearColor];
+        self.viewTextLabel.numberOfLines = 0;
+        self.viewTextLabel.textColor = [UIColor blackColor];
+        self.viewTextLabel.font = [UIFont systemFontOfSize:12.0];
+        self.viewTextLabel.textAlignment = NSTextAlignmentCenter;
+    }
+}
+
+- (void)setViewTextRect:(CGRect)viewTextRect
+{
+    self.viewTextLabel.frame = viewTextRect;
+}
+
+- (CGRect)viewTextRect
+{
+    return self.viewTextLabel.frame;
+}
+
+- (void)setViewTextAlignment:(NSTextAlignment)viewTextAlignment
+{
+    self.viewTextLabel.textAlignment = viewTextAlignment;
+}
+
+- (NSTextAlignment)viewTextAlignment
+{
+    return self.viewTextLabel.textAlignment;
 }
 
 #pragma mark -

@@ -27,11 +27,16 @@ typedef NS_ENUM(NSInteger, SYButtonStyle)
     SYButtonStyleImageDownTextUpVerticalCenter = 4,
 };
 
+typedef void (^ButtonClick)(UIButton *button);
+
 @interface UIButton (SYCategory)
 
 /// 图片与标题显示样式（offset大于0时拉开距离，offset小于0时缩小距离）
 - (void)buttonStyle:(SYButtonStyle)style offSet:(CGFloat)offset;
 
 // 倒计时按钮
+
+/// 回调方法
+@property (nonatomic, copy) ButtonClick buttonClick;
 
 @end

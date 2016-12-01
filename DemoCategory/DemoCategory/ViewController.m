@@ -107,7 +107,7 @@
         {
             case 0: nextVC = [[LabelViewController alloc] init]; break;
             case 1: nextVC = [[ButtonViewController alloc] init]; break;
-            case 2: nextVC = [[ImagePickerViewController alloc] init]; break;
+            case 2: nextVC = [[ImageViewController alloc] init]; break;
             case 3: nextVC = [[ColorViewController alloc] init]; break;
             case 4: nextVC = [[GestureViewController alloc] init]; break;
             case 5: nextVC = [[AlertSheetViewController alloc] init]; break;

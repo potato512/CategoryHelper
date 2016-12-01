@@ -7,8 +7,13 @@
 //
 
 #import "UIButton+SYCategory.h"
+#import <objc/runtime.h>
+
+static NSString *const keyButtonClick = @"buttonClick";
 
 @implementation UIButton (SYCategory)
+
+#pragma mark - 按钮图标与标题样式
 
 /// 图片与标题显示样式
 - (void)buttonStyle:(SYButtonStyle)style offSet:(CGFloat)offset
@@ -77,5 +82,32 @@
             break;
     }
 }
+
+
+#pragma mark - 回调方法
+
+- (void)setButtonClick:(ButtonClick)buttonClick
+{
+    if (buttonClick)
+    {
+        [self addTarget:self action:@selector(actionClick:) forControlEvents:UIControlEventTouchUpInside];
+        objc_setAssociatedObject(self, &keyButtonClick, buttonClick, OBJC_ASSOCIATION_COPY);
+    }
+}
+
+- (ButtonClick)buttonClick
+{
+    ButtonClick buttonClick = objc_getAssociatedObject(self, &keyButtonClick);
+    return buttonClick;
+}
+
+- (void)actionClick:(UIButton *)button
+{
+    if (self.buttonClick)
+    {
+        self.buttonClick(button);
+    }
+}
+
 
 @end

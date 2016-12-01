@@ -200,17 +200,17 @@ static void AddRoundedRectToPath(CGContextRef context, CGRect rect, float ovalWi
 }
 
 /// 生成圆角图片（默认圆角大小为8.0）
-- (UIImage *)roundedImage:(UIImage *)image roundRadius:(CGFloat)radius
+- (UIImage *)roundedImageWithRadius:(CGFloat)radius
 {
     if (0.0 == radius)
     {
         radius = 8.0;
     }
     // the size of CGContextRef
-    int width = image.size.width;
-    int height = image.size.height;
+    int width = self.size.width;
+    int height = self.size.height;
     
-    UIImage *img = image;
+    UIImage *img = self;
     CGColorSpaceRef colorSpace = CGColorSpaceCreateDeviceRGB();
     CGContextRef context = CGBitmapContextCreate(NULL, width, height, 8, 4 * width, colorSpace, (CGBitmapInfo)kCGImageAlphaPremultipliedFirst);
     CGRect rect = CGRectMake(0.0, 0.0, width, height);
@@ -227,7 +227,7 @@ static void AddRoundedRectToPath(CGContextRef context, CGRect rect, float ovalWi
 }
 
 /// 方形图片
-- (UIImage *)squareImage:(UIImage *)image size:(CGSize)newSize
+- (UIImage *)squareImageWithSize:(CGSize)newSize
 {
     double ratio;
     double delta;
@@ -235,20 +235,20 @@ static void AddRoundedRectToPath(CGContextRef context, CGRect rect, float ovalWi
     
     CGSize sz = CGSizeMake(newSize.width, newSize.width);
     
-    if (image.size.width > image.size.height)
+    if (self.size.width > self.size.height)
     {
-        ratio = newSize.width / image.size.width;
-        delta = (ratio*image.size.width - ratio*image.size.height);
+        ratio = newSize.width / self.size.width;
+        delta = (ratio * self.size.width - ratio * self.size.height);
         offset = CGPointMake(delta / 2, 0.0);
     }
     else
     {
-        ratio = newSize.width / image.size.height;
-        delta = (ratio*image.size.height - ratio*image.size.width);
+        ratio = newSize.width / self.size.height;
+        delta = (ratio * self.size.height - ratio * self.size.width);
         offset = CGPointMake(0.0, delta / 2);
     }
     
-    CGRect clipRect = CGRectMake(-offset.x, -offset.y, (ratio * image.size.width) + delta, (ratio * image.size.height) + delta);
+    CGRect clipRect = CGRectMake(-offset.x, -offset.y, (ratio * self.size.width) + delta, (ratio * self.size.height) + delta);
     
     if ([[UIScreen mainScreen] respondsToSelector:@selector(scale)])
     {
@@ -259,7 +259,7 @@ static void AddRoundedRectToPath(CGContextRef context, CGRect rect, float ovalWi
         UIGraphicsBeginImageContext(sz);
     }
     UIRectClip(clipRect);
-    [image drawInRect:clipRect];
+    [self drawInRect:clipRect];
     UIImage *newImage = UIGraphicsGetImageFromCurrentImageContext();
     UIGraphicsEndImageContext();
     

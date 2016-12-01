@@ -61,10 +61,10 @@
 #pragma mark - 图片裁剪
 
 /// 生成圆角图片（默认圆角大小为8.0）
-- (UIImage *)roundedImage:(UIImage *)image roundRadius:(CGFloat)radius;
+- (UIImage *)roundedImageWithRadius:(CGFloat)radius;
 
 /// 方形图片
-- (UIImage *)squareImage:(UIImage *)image size:(CGSize)newSize;
+- (UIImage *)squareImageWithSize:(CGSize)newSize;
 
 /// 从图片中按指定的位置大小截取图片的一部分
 + (UIImage *)screenImageWithImage:(UIImage *)image size:(CGRect)rect;
