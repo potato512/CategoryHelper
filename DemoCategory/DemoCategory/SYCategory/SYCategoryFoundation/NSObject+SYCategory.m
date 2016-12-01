@@ -53,7 +53,7 @@
 }
 
 /// 结束编辑
-- (void)finishEditing
+- (void)editingDone
 {
     [[[UIApplication sharedApplication] keyWindow] endEditing:YES];
 }

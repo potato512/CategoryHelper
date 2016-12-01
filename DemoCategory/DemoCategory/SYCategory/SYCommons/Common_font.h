@@ -11,6 +11,10 @@
 
 /*********************** Font ***************************/
 
+/// 设置字体
+#define kFontWithSize(size) [UIFont systemFontOfSize:size]
+#define kFontBoldWithSize(size) [UIFont boldSystemFontOfSize:size]
+
 #pragma mark - 大小-细体
  
 /// 9号字体

@@ -10,10 +10,10 @@
 #import <objc/runtime.h>
 
 static NSString *const keyMaxLength = @"limitMaxLength";
+static NSString *const keyLimitText = @"limitText";
 
 @implementation UITextField (SYCategory)
 
-#pragma mark - 输入限制
 
 /// 设置TextField空白间隙，左侧或右侧（默认10个间距）
 - (void)viewModeType:(TextFieldViewModeType)type
@@ -32,7 +32,18 @@ static NSString *const keyMaxLength = @"limitMaxLength";
     }
 }
 
-/// 手机号输入限制
+#pragma mark - 输入限制
+
+/**
+ *  手机号输入限制（异常：中文联想字能被输入）
+ *
+ *  回调方法“- (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string”中使用
+ *
+ *  @param range  当前输入区间
+ *  @param string 当前输入字符
+ *
+ *  @return BOOL
+ */
 - (BOOL)limitMoblieShouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string
 {
     if ([self isFirstResponder])
@@ -42,7 +53,7 @@ static NSString *const keyMaxLength = @"limitMaxLength";
         NSCharacterSet *lastSet = [NSCharacterSet characterSetWithCharactersInString:@"0123456789"];
         
         NSString *tempStr = [self.text stringByReplacingCharactersInRange:range withString:string];
-        NSLog(@"text(length = %ld) %@", tempStr.length, tempStr);
+//        NSLog(@"text(length = %ld) %@", tempStr.length, tempStr);
         
         // 手机号输入限制
         if (1 < tempStr.length)
@@ -98,8 +109,20 @@ static NSString *const keyMaxLength = @"limitMaxLength";
     return YES;
 }
 
-
-/// 数字输入限制（integerLength整数位数0时无限制；greater整数首位是否大于0；decimal是否带小数，decimalLength小数位数）
+/**
+ *  数字输入限制（异常：中文联想字能被输入）
+ *
+ *  回调方法“- (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string”中使用
+ *
+ *  @param range         当前输入区间
+ *  @param string        当前输入字符
+ *  @param integerLength 整数位数，0时无限制
+ *  @param greater       整数首位是否大于0
+ *  @param decimal       是否带小数
+ *  @param decimalLength 小数位数
+ *
+ *  @return BOOL
+ */
 - (BOOL)limitNumberShouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string integer:(NSInteger)integerLength greaterThanZero:(BOOL)greater decimalPoint:(BOOL)decimal decimalDigits:(NSInteger)decimalLength
 {
     if ([self isFirstResponder])
@@ -111,7 +134,7 @@ static NSString *const keyMaxLength = @"limitMaxLength";
         NSString *zeroString = @"0";
         
         NSString *tempStr = [self.text stringByReplacingCharactersInRange:range withString:string];
-        NSLog(@"text(integerLength=%ld length = %ld) %@", (long)integerLength, tempStr.length, tempStr);
+//        NSLog(@"text(integerLength=%ld length = %ld) %@", (long)integerLength, tempStr.length, tempStr);
         
         if (1 < tempStr.length)
         {
@@ -227,7 +250,18 @@ static NSString *const keyMaxLength = @"limitMaxLength";
     return YES;
 }
 
-/// 第N位限制不能输入指定字符（limits限制不能输入的字符；index限制的第N位）
+/**
+ *  第N位限制不能输入指定字符（异常：中文联想字能被输入）
+ *
+ *  回调方法“- (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string”中使用
+ *
+ *  @param range  当前输入区间
+ *  @param string 当前输入字符
+ *  @param limits 限制不能输入的字符
+ *  @param index  限制的第N位
+ *
+ *  @return BOOL
+ */
 - (BOOL)limitCharacterShouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string limitCharacters:(NSString *)limits limitIndex:(NSInteger)index
 {
     if ([self isFirstResponder])
@@ -235,46 +269,40 @@ static NSString *const keyMaxLength = @"limitMaxLength";
         NSCharacterSet *limitSet = [NSCharacterSet characterSetWithCharactersInString:limits];
         
         NSString *tempStr = [self.text stringByReplacingCharactersInRange:range withString:string];
-        NSLog(@"text(index=%ld length = %ld) %@", (long)index, tempStr.length, tempStr);
         
-        NSInteger beginIndex = index - 1;
-        NSInteger startIndex = index;
-        
-        if (1 < tempStr.length)
+        if (tempStr.length >= index)
         {
-            NSString *firstString = [tempStr substringWithRange:NSMakeRange(beginIndex, 1)];
-            NSRange range = [firstString rangeOfCharacterFromSet:limitSet];
+            NSInteger beginIndex = index - 1;
+            
+            NSString *limitChar = [tempStr substringWithRange:NSMakeRange(beginIndex, 1)];
+            NSRange range = [limitChar rangeOfCharacterFromSet:limitSet];
             if (range.location != NSNotFound)
             {
-                self.text = [tempStr substringFromIndex:startIndex];
                 return NO;
-            }
-        }
-        else if (1 == tempStr.length)
-        {
-            if (beginIndex == 0)
-            {
-                NSString *firstString = tempStr;
-                NSRange range = [firstString rangeOfCharacterFromSet:limitSet];
-                if (range.location != NSNotFound)
-                {
-                    self.text = [tempStr substringFromIndex:1];
-                    return NO;
-                }
             }
         }
     }
     return YES;
 }
 
-/// 限制输入长度
+/**
+ *  限制输入长度（异常：中文联想字能被输入）
+ *
+ *  回调方法“- (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string”中使用
+ *
+ *  @param maxLength 限制最大输入长度
+ *  @param range     当前输入区间
+ *  @param string    当前输入字符
+ *
+ *  @return BOOL
+ */
 - (BOOL)limitLength:(int)maxLength shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string
 {
     // 输入限制
     if ([self isFirstResponder] && self.text.length != 0)
     {
         NSString *tempStr = [self.text stringByReplacingCharactersInRange:range withString:string];
-        NSLog(@"text(max=%d length = %ld) %@", maxLength, tempStr.length, tempStr);
+//        NSLog(@"text(max=%d length = %ld) %@", maxLength, tempStr.length, tempStr);
         
         // 限制最多输入位数
         if (tempStr.length > maxLength)
@@ -287,25 +315,43 @@ static NSString *const keyMaxLength = @"limitMaxLength";
     return YES;
 }
 
-/// 限制textField输入的文字，能输入或不能输入
-- (BOOL)limitTextFieldText:(NSString *)string limitStr:(NSString *)limitStr edit:(BOOL)canEdit
+/**
+ *  限制输入的字符（异常：中文联想字能被输入）
+ *
+ *  回调方法“- (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string”中使用
+ *
+ *  @param string   当前正在输入的字符
+ *  @param limitStr 限制输入指定的字符串
+ *  @param canEdit  YES只能输入指定字符，NO只能输入指定字符外的其他字符
+ *
+ *  @return BOOL
+ */
+- (BOOL)limitTextField:(NSString *)string limitStr:(NSString *)limitStr edit:(BOOL)canEdit
 {
-    NSCharacterSet *cs = [[NSCharacterSet characterSetWithCharactersInString:limitStr] invertedSet];
-    NSString *filtered = [[string componentsSeparatedByCharactersInSet:cs] componentsJoinedByString:@""];
-    BOOL result = [string isEqualToString:filtered];
-    result = (canEdit ? result : !result);
-    return result;
-}
-
-/// 限制输入的字符（string当前正在输入的字符；limitStr限制不能输入的字符串。"- (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string"中使用）
-- (BOOL)limitTextField:(NSString *)string limitStr:(NSString *)limitStr
-{
+    BOOL isResult = NO;
+    
+    NSCharacterSet *limitSet = [NSCharacterSet characterSetWithCharactersInString:limitStr];
     if (![string isEqualToString:@""])
     {
-        NSRange range = [limitStr rangeOfString:string];
-        if (range.location == NSNotFound)
+        NSRange range = [string rangeOfCharacterFromSet:limitSet];
+        if (canEdit)
         {
-            return  NO;
+            if (range.location != NSNotFound)
+            {
+                isResult = YES;
+            }
+        }
+        else
+        {
+            if (range.location == NSNotFound)
+            {
+                isResult = YES;
+            }
+        }
+        
+        if (!isResult)
+        {
+            return NO;
         }
     }
     
@@ -313,15 +359,35 @@ static NSString *const keyMaxLength = @"limitMaxLength";
     NSInteger length = text.length;
     for (int i = 0; i < length; i++)
     {
-        NSString *subText = [text substringWithRange:NSMakeRange(i, 1)];
-        NSRange range = [limitStr rangeOfString:subText];
-        if (range.location == NSNotFound)
+        NSString *limitChar = [text substringWithRange:NSMakeRange(i, 1)];
+        NSRange range = [limitChar rangeOfCharacterFromSet:limitSet];
+        if (canEdit)
         {
-            break;
-            return  NO;
+            if (range.location != NSNotFound)
+            {
+                isResult = YES;
+            }
+            else
+            {
+                isResult = NO;
+                break;
+            }
+        }
+        else
+        {
+            if (range.location == NSNotFound)
+            {
+                isResult = YES;
+            }
+            else
+            {
+                isResult = NO;
+                break;
+            }
         }
     }
-    return YES;
+
+    return isResult;
 }
 
 #pragma mark - 输入限制长度（通知方法中使用）
@@ -340,12 +406,24 @@ static NSString *const keyMaxLength = @"limitMaxLength";
 /// 限制UITextField输入的长度（区分中英文字符）
 - (void)limitTextFieldCNLength:(NSUInteger)maxLength
 {
+    NSInteger lengthTotal = 0;
+    NSInteger lengthText = 0;
+    
     NSString *text = self.text;
-    NSInteger length = [self textLength:text CNText:YES];
-    if (length > maxLength)
+    for (NSUInteger i = 0; i < text.length; i++)
     {
-        self.text = [text substringToIndex:maxLength];
+        unichar textChar = [text characterAtIndex:i];
+        NSInteger lengthChar = (isascii(textChar) ? 1 : 2);
+
+        lengthTotal++;
+        lengthText += lengthChar;
+        if (lengthText > maxLength)
+        {
+            lengthTotal -= (lengthChar == 2 ? 2 : 1);
+            break;
+        }
     }
+    self.text = [text substringToIndex:lengthTotal];
 }
 
 /// 判断输入的字符长度 一个汉字算2个字符，是否区分中英文
@@ -361,6 +439,26 @@ static NSString *const keyMaxLength = @"limitMaxLength";
     return asciiLength;
 }
 
+/**
+ *  是否是中文字符
+ *
+ *  @return BOOL
+ */
+- (BOOL)isCNText
+{
+    BOOL isCN = YES;
+    for (NSUInteger i = 0; i < self.text.length; i++)
+    {
+        unichar charText = [self.text characterAtIndex:i];
+        isCN = isascii(charText);
+        if (!isCN)
+        {
+            // 如果有一个字符不是则不全是中文
+            break;
+        }
+    }
+    return isCN;
+}
 #pragma mark - 属性
 
 - (void)setLimitMaxLength:(NSNumber *)limitMaxLength
@@ -369,7 +467,7 @@ static NSString *const keyMaxLength = @"limitMaxLength";
     {
         objc_setAssociatedObject(self, &keyMaxLength, limitMaxLength, OBJC_ASSOCIATION_RETAIN);
         
-        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(textFiledEditChanged:) name:UITextFieldTextDidChangeNotification object:nil];
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(textLengthEditChanged:) name:UITextFieldTextDidChangeNotification object:nil];
     }
 }
 
@@ -379,6 +477,21 @@ static NSString *const keyMaxLength = @"limitMaxLength";
     return limitMaxLength;
 }
 
+- (void)setLimitText:(NSString *)limitText
+{
+    if (0 < limitText.length)
+    {
+        objc_setAssociatedObject(self, &keyLimitText, limitText, OBJC_ASSOCIATION_RETAIN);
+        
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(textEditChanged:) name:UITextFieldTextDidChangeNotification object:nil];
+    }
+}
+
+- (NSString *)limitText
+{
+    NSString *limitText = objc_getAssociatedObject(self, &keyLimitText);
+    return limitText;
+}
 
 #pragma mark - 通知方法
 
@@ -387,12 +500,68 @@ static NSString *const keyMaxLength = @"limitMaxLength";
     [[NSNotificationCenter defaultCenter] removeObserver:self name:UITextFieldTextDidChangeNotification object:nil];
 }
 
-- (void)textFiledEditChanged:(NSNotification *)notification
+- (void)textLengthEditChanged:(NSNotification *)notification
 {
     if ([self isFirstResponder])
     {
         NSInteger maxLength = self.limitMaxLength.integerValue;
         [self limitTextFieldLength:maxLength];
+    }
+}
+
+- (void)textEditChanged:(NSNotification *)notification
+{
+    if ([self isFirstResponder])
+    {
+        [self limitTextField:self.limitText complete:^(NSInteger index) {
+            if (0 == index)
+            {
+                // 第一位且没有输入时
+                if (0 == self.text.length)
+                {
+                    // 还没有输入时
+                    self.text = @"";
+                }
+                else
+                {
+                    // 已经有输入时
+                    self.text = [self.text substringFromIndex:1];
+                }
+            }
+            else
+            {
+                if (index < self.text.length)
+                {
+                    // 中间插入限制字符时
+                    NSString *textPart1 = [self.text substringToIndex:index];
+                    NSString *textPart2 = [self.text substringFromIndex:(index + 1)];
+                    self.text = [NSString stringWithFormat:@"%@%@", textPart1, textPart2];
+                }
+            }
+        }];
+    }
+}
+
+// 输入
+- (void)limitTextField:(NSString *)limitStr complete:(void (^)(NSInteger index))complete
+{
+    NSCharacterSet *limitSet = [NSCharacterSet characterSetWithCharactersInString:limitStr];
+    
+    NSString *text = self.text;
+    NSInteger length = text.length;
+    for (int i = 0; i < length; i++)
+    {
+        NSString *limitChar = [text substringWithRange:NSMakeRange(i, 1)];
+        NSRange range = [limitChar rangeOfCharacterFromSet:limitSet];
+        if (range.location == NSNotFound)
+        {
+            if (complete)
+            {
+                complete(i);
+            }
+            
+            break;
+        }
     }
 }
 

@@ -133,18 +133,20 @@
 #pragma mark -
 
 /**
- *  行玻璃效果（即实时模糊效果）
+ *  毛玻璃效果（注意使用前必须先添加到父视图）
  *
- *  @param frame 坐标大小
- *
- *  @return UIVisualEffectView
+ *  @param alpha 透明度
  */
-+ (UIVisualEffectView *)effectViewWithFrame:(CGRect)frame
+- (void)effectViewWithAlpha:(CGFloat)alpha
 {
     UIBlurEffect *effect = [UIBlurEffect effectWithStyle:UIBlurEffectStyleLight];
     UIVisualEffectView *effectView = [[UIVisualEffectView alloc] initWithEffect:effect];
-    effectView.frame = frame;
-    return effectView;
+    effectView.frame = self.frame;
+    effectView.alpha = alpha;
+    if (self.superview)
+    {
+        [self.superview addSubview:effectView];
+    }
 }
 
 /// 设置UI视图的边框属性

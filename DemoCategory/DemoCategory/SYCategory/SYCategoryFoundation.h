@@ -20,7 +20,7 @@
 #import "NSURLConnection+SYCategory.h"
 #import "NSDate+SYCategory.h"
 #import "NSNotificationCenter+SYCategory.h"
-#import "NSUserDefault+SYCategory.h"
+#import "NSUserDefaults+SYCategory.h"
 
 
 #ifndef SYCategoryFoundation_h

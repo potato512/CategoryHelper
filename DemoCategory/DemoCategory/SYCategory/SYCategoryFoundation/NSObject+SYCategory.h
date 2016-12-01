@@ -38,7 +38,7 @@ typedef NS_ENUM(NSInteger, SYImageType)
 - (CGFloat)widthWithText:(NSString *)string font:(UIFont *)font;
 
 /// 结束编辑
-- (void)finishEditing;
+- (void)editingDone;
 
 /**
  *  判断图片类型（图片名称，或图片url地址，或图片image）

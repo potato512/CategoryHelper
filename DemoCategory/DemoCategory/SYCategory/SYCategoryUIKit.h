@@ -11,6 +11,7 @@
 #import "UIButton+SYCategory.h"
 #import "UIColor+SYCategory.h"
 #import "UIImage+SYCategory.h"
+#import "UIImageView+SYCategory.h"
 #import "UIGestureRecognizer+SYCategory.h"
 #import "UIViewController+SYCategory.h"
 #import "UINavigationController+SYCategory.h"
@@ -23,6 +24,7 @@
 #import "UICollectionView+SYCategory.h"
 #import "UITextField+SYCategory.h"
 #import "UITextView+SYCategory.h"
+#import "UIImagePickerController+SYCategory.h"
 
 #ifndef SYCategoryUIKit_h
 #define SYCategoryUIKit_h

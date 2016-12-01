@@ -39,6 +39,7 @@ static RotationRecognizer rotationRecognizer;
     recognizer.numberOfTapsRequired = (0 >= number ? 1 : number);
     if (view)
     {
+        view.userInteractionEnabled = YES;
         [view addGestureRecognizer:recognizer];
     }
 }
@@ -62,6 +63,7 @@ static RotationRecognizer rotationRecognizer;
     recognizer.minimumPressDuration = (0 >= time ? 0.5 : time);
     if (view)
     {
+        view.userInteractionEnabled = YES;
         [view addGestureRecognizer:recognizer];
     }
 }
@@ -83,6 +85,7 @@ static RotationRecognizer rotationRecognizer;
     UIPanGestureRecognizer *recognizer = [[UIPanGestureRecognizer alloc] initWithTarget:self action:@selector(panClick:)];
     if (view)
     {
+        view.userInteractionEnabled = YES;
         [view addGestureRecognizer:recognizer];
     }
 }
@@ -104,6 +107,7 @@ static RotationRecognizer rotationRecognizer;
     UIPinchGestureRecognizer *recognizer = [[UIPinchGestureRecognizer alloc] initWithTarget:self action:@selector(pinchClick:)];
     if (view)
     {
+        view.userInteractionEnabled = YES;
         [view addGestureRecognizer:recognizer];
     }
 }
@@ -126,6 +130,7 @@ static RotationRecognizer rotationRecognizer;
     recognizer.direction = direction;
     if (view)
     {
+        view.userInteractionEnabled = YES;
         [view addGestureRecognizer:recognizer];
     }
 }
@@ -147,6 +152,7 @@ static RotationRecognizer rotationRecognizer;
     UIRotationGestureRecognizer *recognizer = [[UIRotationGestureRecognizer alloc] initWithTarget:self action:@selector(rotationClick:)];
     if (view)
     {
+        view.userInteractionEnabled = YES;
         [view addGestureRecognizer:recognizer];
     }
 }

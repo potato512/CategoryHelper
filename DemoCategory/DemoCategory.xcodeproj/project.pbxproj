@@ -19,6 +19,16 @@
 		A78601A71DEBD7FC00FBD482 /* UITextField+SYCategory.m in Sources */ = {isa = PBXBuildFile; fileRef = A78601A61DEBD7FC00FBD482 /* UITextField+SYCategory.m */; };
 		A78601AA1DEBD86A00FBD482 /* UITextView+SYCategory.m in Sources */ = {isa = PBXBuildFile; fileRef = A78601A91DEBD86A00FBD482 /* UITextView+SYCategory.m */; };
 		A78601AD1DEBDCD200FBD482 /* NSAttributedString+SYCategory.m in Sources */ = {isa = PBXBuildFile; fileRef = A78601AC1DEBDCD200FBD482 /* NSAttributedString+SYCategory.m */; };
+		A78C0E1F1DED14D800DB84A0 /* UIImagePickerController+SYCategory.m in Sources */ = {isa = PBXBuildFile; fileRef = A78C0E1E1DED14D800DB84A0 /* UIImagePickerController+SYCategory.m */; };
+		A78C0E231DED513000DB84A0 /* LabelViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A78C0E221DED513000DB84A0 /* LabelViewController.m */; };
+		A78C0E261DED513C00DB84A0 /* ButtonViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A78C0E251DED513C00DB84A0 /* ButtonViewController.m */; };
+		A78C0E291DED514900DB84A0 /* ImageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A78C0E281DED514900DB84A0 /* ImageViewController.m */; };
+		A78C0E2C1DED51A500DB84A0 /* ColorViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A78C0E2B1DED51A500DB84A0 /* ColorViewController.m */; };
+		A78C0E311DED51D800DB84A0 /* GestureViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A78C0E301DED51D800DB84A0 /* GestureViewController.m */; };
+		A78C0E341DED51FD00DB84A0 /* AlertSheetViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A78C0E331DED51FD00DB84A0 /* AlertSheetViewController.m */; };
+		A78C0E371DED520F00DB84A0 /* ImagePickerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A78C0E361DED520F00DB84A0 /* ImagePickerViewController.m */; };
+		A78C0E3A1DED522400DB84A0 /* TextFieldViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A78C0E391DED522400DB84A0 /* TextFieldViewController.m */; };
+		A78C0E3D1DED843800DB84A0 /* UIImageView+SYCategory.m in Sources */ = {isa = PBXBuildFile; fileRef = A78C0E3C1DED843800DB84A0 /* UIImageView+SYCategory.m */; };
 		A7B05AE81DE80E69005007DA /* UIView+SYCategory.m in Sources */ = {isa = PBXBuildFile; fileRef = A7B05AE71DE80E69005007DA /* UIView+SYCategory.m */; };
 		A7B05AEB1DE8101D005007DA /* NSDictionary+SYCategory.m in Sources */ = {isa = PBXBuildFile; fileRef = A7B05AEA1DE8101D005007DA /* NSDictionary+SYCategory.m */; };
 		A7B05AEE1DE8108E005007DA /* NSObject+SYCategory.m in Sources */ = {isa = PBXBuildFile; fileRef = A7B05AED1DE8108E005007DA /* NSObject+SYCategory.m */; };
@@ -103,6 +113,27 @@
 		A78601A91DEBD86A00FBD482 /* UITextView+SYCategory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UITextView+SYCategory.m"; sourceTree = "<group>"; };
 		A78601AB1DEBDCD200FBD482 /* NSAttributedString+SYCategory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSAttributedString+SYCategory.h"; sourceTree = "<group>"; };
 		A78601AC1DEBDCD200FBD482 /* NSAttributedString+SYCategory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSAttributedString+SYCategory.m"; sourceTree = "<group>"; };
+		A78C0E1D1DED14D800DB84A0 /* UIImagePickerController+SYCategory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImagePickerController+SYCategory.h"; sourceTree = "<group>"; };
+		A78C0E1E1DED14D800DB84A0 /* UIImagePickerController+SYCategory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImagePickerController+SYCategory.m"; sourceTree = "<group>"; };
+		A78C0E201DED2D6600DB84A0 /* PrefixHeader.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PrefixHeader.pch; sourceTree = "<group>"; };
+		A78C0E211DED513000DB84A0 /* LabelViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LabelViewController.h; sourceTree = "<group>"; };
+		A78C0E221DED513000DB84A0 /* LabelViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LabelViewController.m; sourceTree = "<group>"; };
+		A78C0E241DED513C00DB84A0 /* ButtonViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ButtonViewController.h; sourceTree = "<group>"; };
+		A78C0E251DED513C00DB84A0 /* ButtonViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ButtonViewController.m; sourceTree = "<group>"; };
+		A78C0E271DED514900DB84A0 /* ImageViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ImageViewController.h; sourceTree = "<group>"; };
+		A78C0E281DED514900DB84A0 /* ImageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ImageViewController.m; sourceTree = "<group>"; };
+		A78C0E2A1DED51A500DB84A0 /* ColorViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ColorViewController.h; sourceTree = "<group>"; };
+		A78C0E2B1DED51A500DB84A0 /* ColorViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ColorViewController.m; sourceTree = "<group>"; };
+		A78C0E2F1DED51D800DB84A0 /* GestureViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GestureViewController.h; sourceTree = "<group>"; };
+		A78C0E301DED51D800DB84A0 /* GestureViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GestureViewController.m; sourceTree = "<group>"; };
+		A78C0E321DED51FD00DB84A0 /* AlertSheetViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AlertSheetViewController.h; sourceTree = "<group>"; };
+		A78C0E331DED51FD00DB84A0 /* AlertSheetViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AlertSheetViewController.m; sourceTree = "<group>"; };
+		A78C0E351DED520F00DB84A0 /* ImagePickerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ImagePickerViewController.h; sourceTree = "<group>"; };
+		A78C0E361DED520F00DB84A0 /* ImagePickerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ImagePickerViewController.m; sourceTree = "<group>"; };
+		A78C0E381DED522400DB84A0 /* TextFieldViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TextFieldViewController.h; sourceTree = "<group>"; };
+		A78C0E391DED522400DB84A0 /* TextFieldViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TextFieldViewController.m; sourceTree = "<group>"; };
+		A78C0E3B1DED843800DB84A0 /* UIImageView+SYCategory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImageView+SYCategory.h"; sourceTree = "<group>"; };
+		A78C0E3C1DED843800DB84A0 /* UIImageView+SYCategory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImageView+SYCategory.m"; sourceTree = "<group>"; };
 		A7B05AE61DE80E69005007DA /* UIView+SYCategory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+SYCategory.h"; sourceTree = "<group>"; };
 		A7B05AE71DE80E69005007DA /* UIView+SYCategory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+SYCategory.m"; sourceTree = "<group>"; };
 		A7B05AE91DE8101D005007DA /* NSDictionary+SYCategory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDictionary+SYCategory.h"; sourceTree = "<group>"; };
@@ -209,6 +240,36 @@
 			path = SYCommons;
 			sourceTree = "<group>";
 		};
+		A78C0E2D1DED51AA00DB84A0 /* Kit */ = {
+			isa = PBXGroup;
+			children = (
+				A78C0E211DED513000DB84A0 /* LabelViewController.h */,
+				A78C0E221DED513000DB84A0 /* LabelViewController.m */,
+				A78C0E241DED513C00DB84A0 /* ButtonViewController.h */,
+				A78C0E251DED513C00DB84A0 /* ButtonViewController.m */,
+				A78C0E271DED514900DB84A0 /* ImageViewController.h */,
+				A78C0E281DED514900DB84A0 /* ImageViewController.m */,
+				A78C0E2A1DED51A500DB84A0 /* ColorViewController.h */,
+				A78C0E2B1DED51A500DB84A0 /* ColorViewController.m */,
+				A78C0E2F1DED51D800DB84A0 /* GestureViewController.h */,
+				A78C0E301DED51D800DB84A0 /* GestureViewController.m */,
+				A78C0E321DED51FD00DB84A0 /* AlertSheetViewController.h */,
+				A78C0E331DED51FD00DB84A0 /* AlertSheetViewController.m */,
+				A78C0E351DED520F00DB84A0 /* ImagePickerViewController.h */,
+				A78C0E361DED520F00DB84A0 /* ImagePickerViewController.m */,
+				A78C0E381DED522400DB84A0 /* TextFieldViewController.h */,
+				A78C0E391DED522400DB84A0 /* TextFieldViewController.m */,
+			);
+			name = Kit;
+			sourceTree = "<group>";
+		};
+		A78C0E2E1DED51BA00DB84A0 /* Foundation */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Foundation;
+			sourceTree = "<group>";
+		};
 		A7D824E11DEC3211006B5633 /* SYResources */ = {
 			isa = PBXGroup;
 			children = (
@@ -247,11 +308,14 @@
 				DFA204EF1D1E131C00929257 /* ViewController.h */,
 				DFA204F01D1E131C00929257 /* ViewController.m */,
 				A75B285E1DE7E00A0002E8A6 /* image.png */,
+				A78C0E2E1DED51BA00DB84A0 /* Foundation */,
+				A78C0E2D1DED51AA00DB84A0 /* Kit */,
 				DFA2051C1D1E371B00929257 /* SYCategory */,
 				DFA204F21D1E131C00929257 /* Main.storyboard */,
 				DFA204F51D1E131C00929257 /* Assets.xcassets */,
 				DFA204F71D1E131C00929257 /* LaunchScreen.storyboard */,
 				DFA204FA1D1E131C00929257 /* Info.plist */,
+				A78C0E201DED2D6600DB84A0 /* PrefixHeader.pch */,
 				DFA204E91D1E131C00929257 /* Supporting Files */,
 			);
 			path = DemoCategory;
@@ -310,6 +374,8 @@
 				A7B05AF91DE8175B005007DA /* UIColor+SYCategory.m */,
 				A7B05AFA1DE8175B005007DA /* UIImage+SYCategory.h */,
 				A7B05AFB1DE8175B005007DA /* UIImage+SYCategory.m */,
+				A78C0E3B1DED843800DB84A0 /* UIImageView+SYCategory.h */,
+				A78C0E3C1DED843800DB84A0 /* UIImageView+SYCategory.m */,
 				A7B05B041DE82A2B005007DA /* UIGestureRecognizer+SYCategory.h */,
 				A7B05B051DE82A2B005007DA /* UIGestureRecognizer+SYCategory.m */,
 				A7B05B0A1DE84A93005007DA /* UIViewController+SYCategory.h */,
@@ -334,6 +400,8 @@
 				A78601A61DEBD7FC00FBD482 /* UITextField+SYCategory.m */,
 				A78601A81DEBD86A00FBD482 /* UITextView+SYCategory.h */,
 				A78601A91DEBD86A00FBD482 /* UITextView+SYCategory.m */,
+				A78C0E1D1DED14D800DB84A0 /* UIImagePickerController+SYCategory.h */,
+				A78C0E1E1DED14D800DB84A0 /* UIImagePickerController+SYCategory.m */,
 			);
 			path = SYCategoryUIKit;
 			sourceTree = "<group>";
@@ -510,14 +578,18 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A78C0E3D1DED843800DB84A0 /* UIImageView+SYCategory.m in Sources */,
 				A7B05B0F1DE84B84005007DA /* UINavigationController+SYCategory.m in Sources */,
 				DFA205301D1E543900929257 /* NSString+SYRegular.m in Sources */,
+				A78C0E3A1DED522400DB84A0 /* TextFieldViewController.m in Sources */,
 				A7B05AFD1DE8175B005007DA /* UIImage+SYCategory.m in Sources */,
 				A7B05B001DE81A23005007DA /* NSNotificationCenter+SYCategory.m in Sources */,
 				A7B05AEB1DE8101D005007DA /* NSDictionary+SYCategory.m in Sources */,
 				A78601981DEBC97E00FBD482 /* UIScrollView+SYCategory.m in Sources */,
 				A78601951DEBC82500FBD482 /* UIAlertController+SYCategory.m in Sources */,
 				A7B05B091DE8468E005007DA /* NSNumber+SYCategory.m in Sources */,
+				A78C0E291DED514900DB84A0 /* ImageViewController.m in Sources */,
+				A78C0E1F1DED14D800DB84A0 /* UIImagePickerController+SYCategory.m in Sources */,
 				DFA2052D1D1E47FE00929257 /* NSDate+SYCategory.m in Sources */,
 				A78601921DEBC7C200FBD482 /* UIActionSheet+SYCategory.m in Sources */,
 				A7B05AE81DE80E69005007DA /* UIView+SYCategory.m in Sources */,
@@ -526,10 +598,13 @@
 				DFA205271D1E3E4E00929257 /* NSArray+SYCategory.m in Sources */,
 				A78601A11DEBD72500FBD482 /* UITableViewCell+SYCategory.m in Sources */,
 				A78601A71DEBD7FC00FBD482 /* UITextField+SYCategory.m in Sources */,
+				A78C0E261DED513C00DB84A0 /* ButtonViewController.m in Sources */,
 				A786019E1DEBD6FB00FBD482 /* UICollectionView+SYCategory.m in Sources */,
 				A786018F1DEBC77C00FBD482 /* UIButton+SYCategory.m in Sources */,
 				A7B05AF41DE815FF005007DA /* NSTimer+SYCategory.m in Sources */,
 				DFA205241D1E3CE300929257 /* NSString+SYCategory.m in Sources */,
+				A78C0E2C1DED51A500DB84A0 /* ColorViewController.m in Sources */,
+				A78C0E311DED51D800DB84A0 /* GestureViewController.m in Sources */,
 				DFA204F11D1E131C00929257 /* ViewController.m in Sources */,
 				A786019B1DEBD6CB00FBD482 /* UITableView+SYCategory.m in Sources */,
 				A78601AA1DEBD86A00FBD482 /* UITextView+SYCategory.m in Sources */,
@@ -542,8 +617,11 @@
 				DFA205211D1E37C500929257 /* NSFileManager+SYCategory.m in Sources */,
 				DFA204EB1D1E131C00929257 /* main.m in Sources */,
 				DFA205421D1E71ED00929257 /* UILabel+SYCategory.m in Sources */,
+				A78C0E341DED51FD00DB84A0 /* AlertSheetViewController.m in Sources */,
 				A7B05AFC1DE8175B005007DA /* UIColor+SYCategory.m in Sources */,
 				A7B05B031DE82431005007DA /* NSUserDefaults+SYCategory.m in Sources */,
+				A78C0E371DED520F00DB84A0 /* ImagePickerViewController.m in Sources */,
+				A78C0E231DED513000DB84A0 /* LabelViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -682,6 +760,9 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "$(PROJECT_DIR)/DemoCategory/PrefixHeader.pch";
 				INFOPLIST_FILE = DemoCategory/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -694,6 +775,9 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "$(PROJECT_DIR)/DemoCategory/PrefixHeader.pch";
 				INFOPLIST_FILE = DemoCategory/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";

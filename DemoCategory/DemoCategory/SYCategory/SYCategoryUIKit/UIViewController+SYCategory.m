@@ -317,7 +317,7 @@ static CGFloat const sizeButton = 20.0;
                                       target:(id)target
                                       action:(SEL)action
 {
-    UIBarButtonItem *item = [self rightBarButtonWithName:title nameSel:titleSel color:nil colorSel:nil colorHighlight:nil image:nil imageSel:nil bgroundImage:imageNormal bgroundImageHighlight:imageHighlight bgroundImageSel:imageSel style:SYButtonStyleDefault target:target action:action];
+    UIBarButtonItem *item = [self rightBarButtonWithTitle:title titleSel:titleSel color:[UIColor blackColor] colorSel:nil colorHighlight:nil image:nil imageSel:nil bgroundImage:imageNormal bgroundImageHighlight:imageHighlight bgroundImageSel:imageSel style:SYButtonStyleDefault target:target action:action];
     return item;
 }
 
@@ -338,7 +338,8 @@ static CGFloat const sizeButton = 20.0;
                                       target:(id)target
                                       action:(SEL)action
 {
-    UIBarButtonItem *item = [self rightBarButtonWithName:title nameSel:nil color:nil colorSel:nil colorHighlight:colorHighlight image:image imageSel:nil bgroundImage:nil bgroundImageHighlight:nil bgroundImageSel:nil style:SYButtonStyleDefault target:target action:action];
+    UIBarButtonItem *item = [self rightBarButtonWithTitle:title titleSel:nil color:[UIColor blackColor] colorSel:nil colorHighlight:colorHighlight image:image imageSel:nil bgroundImage:nil bgroundImageHighlight:nil bgroundImageSel:nil style:SYButtonStyleDefault target:target action:action];
+    
     return item;
 }
 
@@ -357,7 +358,7 @@ static CGFloat const sizeButton = 20.0;
                                       target:(id)target
                                       action:(SEL)action
 {
-    UIBarButtonItem *item = [self rightBarButtonWithName:title nameSel:nil color:[UIColor blackColor] colorSel:nil colorHighlight:nil image:image imageSel:nil bgroundImage:nil bgroundImageHighlight:nil bgroundImageSel:nil style:SYButtonStyleDefault target:target action:action];
+    UIBarButtonItem *item = [self rightBarButtonWithTitle:title titleSel:nil color:[UIColor blackColor] colorSel:nil colorHighlight:nil image:image imageSel:nil bgroundImage:nil bgroundImageHighlight:nil bgroundImageSel:nil style:SYButtonStyleDefault target:target action:action];
     return item;
 }
 

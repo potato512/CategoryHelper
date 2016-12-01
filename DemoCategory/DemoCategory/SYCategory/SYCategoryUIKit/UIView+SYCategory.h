@@ -44,13 +44,11 @@
 @property CGFloat right;
 
 /**
- *  行玻璃效果（即实时模糊效果）
+ *  毛玻璃效果（注意使用前必须先添加到父视图）
  *
- *  @param frame 坐标大小
- *
- *  @return UIVisualEffectView
+ *  @param alpha 透明度
  */
-+ (UIVisualEffectView *)effectViewWithFrame:(CGRect)frame;
+- (void)effectViewWithAlpha:(CGFloat)alpha;
 
 /// 设置UI视图的边框属性
 - (void)layerWithRadius:(CGFloat)radius borderColor:(UIColor *)color borderWidth:(CGFloat)width;

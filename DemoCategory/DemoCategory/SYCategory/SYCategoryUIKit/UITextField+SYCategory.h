@@ -25,36 +25,89 @@ typedef NS_ENUM(NSInteger, TextFieldViewModeType)
 
 #pragma mark - 输入限制（回调方法中使用“- (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string”）
 
-/// 手机号输入限制
+/**
+ *  手机号输入限制（异常：中文联想字能被输入）
+ *
+ *  回调方法“- (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string”中使用
+ *
+ *  @param range  当前输入区间
+ *  @param string 当前输入字符
+ *
+ *  @return BOOL
+ */
 - (BOOL)limitMoblieShouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string;
 
-/// 数字输入限制（integerLength整数位数；greater整数首位是否大于0；decimal是否带小数，decimalLength小数位数）
+/**
+ *  数字输入限制（异常：中文联想字能被输入）
+ *
+ *  回调方法“- (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string”中使用
+ *
+ *  @param range         当前输入区间
+ *  @param string        当前输入字符
+ *  @param integerLength 整数位数，0时无限制
+ *  @param greater       整数首位是否大于0
+ *  @param decimal       是否带小数
+ *  @param decimalLength 小数位数
+ *
+ *  @return BOOL
+ */
 - (BOOL)limitNumberShouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string integer:(NSInteger)integerLength greaterThanZero:(BOOL)greater decimalPoint:(BOOL)decimal decimalDigits:(NSInteger)decimalLength;
 
-/// 第N位限制不能输入指定字符（limits限制不能输入的字符；index限制的第N位）
+/**
+ *  第N位限制不能输入指定字符（异常：中文联想字能被输入）
+ *
+ *  回调方法“- (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string”中使用
+ *
+ *  @param range  当前输入区间
+ *  @param string 当前输入字符
+ *  @param limits 限制不能输入的字符
+ *  @param index  限制的第N位
+ *
+ *  @return BOOL
+ */
 - (BOOL)limitCharacterShouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string limitCharacters:(NSString *)limits limitIndex:(NSInteger)index;
 
-/// 限制输入长度
+/**
+ *  限制输入长度（异常：中文联想字能被输入）
+ *
+ *  回调方法“- (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string”中使用
+ *
+ *  @param maxLength 限制最大输入长度
+ *  @param range     当前输入区间
+ *  @param string    当前输入字符
+ *
+ *  @return BOOL
+ */
 - (BOOL)limitLength:(int)maxLength shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string;
 
-/// 限制textField输入的文字，能输入或不能输入
-- (BOOL)limitTextFieldText:(NSString *)string limitStr:(NSString *)limitStr edit:(BOOL)canEdit;
+/**
+ *  限制输入的字符（异常：中文联想字能被输入）
+ *
+ *  回调方法“- (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string”中使用
+ *
+ *  @param string   当前正在输入的字符
+ *  @param limitStr 限制输入指定的字符串
+ *  @param canEdit  YES只能输入指定字符，NO只能输入指定字符外的其他字符
+ *
+ *  @return BOOL
+ */
+- (BOOL)limitTextField:(NSString *)string limitStr:(NSString *)limitStr edit:(BOOL)canEdit;
 
-/// 限制输入的字符（string当前正在输入的字符；limitStr限制不能输入的字符串。"- (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string"中使用）
-- (BOOL)limitTextField:(NSString *)string limitStr:(NSString *)limitStr;
+#pragma mark - 输入限制长度（需要结合通知方法中使用）
 
-#pragma mark - 输入限制长度（通知方法中使用）
-
-/// 限制UITextField输入的长度（不区分中英文字符）
+/// 限制UITextField输入的长度（不区分中英文字符，通知方法名UITextFieldTextDidChangeNotification）
 - (void)limitTextFieldLength:(NSUInteger)maxLength;
 
-/// 限制UITextField输入的长度（区分中英文字符）
+/// 限制UITextField输入的长度（区分中英文字符，通知方法名UITextFieldTextDidChangeNotification）
 - (void)limitTextFieldCNLength:(NSUInteger)maxLength;
 
 #pragma mark - 属性
 
-/// 字符输入字数限制
+/// 字符输入字数限制（不需要结合通知使用）
 @property (nonatomic, strong) NSNumber *limitMaxLength;
+
+/// 字符输入限制（不需要结合通知使用）
+@property (nonatomic, strong) NSString *limitText;
 
 @end
 
