@@ -20,8 +20,19 @@
 
 #pragma mark - 属性
 
+/// 占位符提示语（默认无。如有字符输入限制则先设置限制字符）
+@property (nonatomic, strong) NSString *placeHolderText;
+/// 占位符提示语字体大小（默认与textview的系统字体大小一致）
+@property (nonatomic, strong) UIFont *placeHolderTextFont;
+/// 占位符提示语字体颜色（默认灰色）
+@property (nonatomic, strong) UIColor *placeHolderTextColor;
+
 /// 字符输入字数限制
 @property (nonatomic, strong) NSNumber *limitMaxLength;
+
+/// 字符输入限制
+@property (nonatomic, strong) NSString *limitText;
+
 
 @end
 
