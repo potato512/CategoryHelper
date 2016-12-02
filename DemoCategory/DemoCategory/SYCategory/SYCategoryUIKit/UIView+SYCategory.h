@@ -8,6 +8,16 @@
 
 #import <UIKit/UIKit.h>
 
+/// 翻转视图类型（水平-默认，或垂直）
+typedef NS_ENUM(NSInteger, ViewFlipType)
+{
+    /// 翻转视图类型-水平（默认）
+    ViewFlipTypeHorizontal = 0,
+    
+    /// 翻转视图类型-垂直
+    ViewFlipTypeVertical
+};
+
 @interface UIView (SYCategory)
 
 #pragma mark - 原点尺寸
@@ -72,10 +82,14 @@
 /// 设置UI视图的边框属性
 - (void)layerWithRadius:(CGFloat)radius borderColor:(UIColor *)color borderWidth:(CGFloat)width;
 
-// 旋转
+/// 旋转
+- (void)viewTransformWithRotation:(CGFloat)rotation;
 
-// 缩放
+/// 缩放
+- (void)viewScaleWithSizeX:(CGFloat)x sizeY:(CGFloat)y;
 
+/// 水平，或垂直翻转
+- (void)viewFlipType:(ViewFlipType)type;
 
 #pragma mark - 解摸手势
 

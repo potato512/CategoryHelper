@@ -23,7 +23,7 @@ static NSString *const keyViewTextLabel = @"viewTextLabel";
 
 @implementation UIView (SYCategory)
 
-#pragma mark - setter/getter
+#pragma mark - 原点尺寸
 
 - (void)setOrigin:(CGPoint)origin
 {
@@ -142,7 +142,7 @@ static NSString *const keyViewTextLabel = @"viewTextLabel";
     return (self.frame.origin.x + self.frame.size.width);
 }
 
-#pragma mark - 添加标题设置
+#pragma mark - 标题属性
 
 - (void)setViewText:(NSString *)viewText
 {
@@ -231,7 +231,7 @@ static NSString *const keyViewTextLabel = @"viewTextLabel";
     return self.viewTextLabel.textAlignment;
 }
 
-#pragma mark -
+#pragma mark - 视图属性设置
 
 /**
  *  毛玻璃效果（注意使用前必须先添加到父视图）
@@ -265,6 +265,33 @@ static NSString *const keyViewTextLabel = @"viewTextLabel";
         self.layer.borderWidth = width;
     }
 }
+
+// 旋转
+- (void)viewTransformWithRotation:(CGFloat)rotation
+{
+    // 旋转180度 M_PI
+    self.transform = CGAffineTransformMakeRotation(rotation);
+}
+
+// 缩放
+- (void)viewScaleWithSizeX:(CGFloat)x sizeY:(CGFloat)y
+{
+    self.transform = CGAffineTransformScale(self.transform, x, y);
+}
+
+// 水平，或垂直翻转
+- (void)viewFlipType:(ViewFlipType)type
+{
+    if (ViewFlipTypeHorizontal == type)
+    {
+        self.transform = CGAffineTransformScale(self.transform, 1.0, -1.0);
+    }
+    else if (ViewFlipTypeVertical == type)
+    {
+        self.transform = CGAffineTransformScale(self.transform, -1.0, 1.0);
+    }
+}
+
 
 #pragma mark - 解摸手势
 

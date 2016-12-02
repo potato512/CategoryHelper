@@ -59,11 +59,37 @@
     imageview.image = [UIImage imageNamed:@"image"];
     [imageview effectViewWithAlpha:0.3];
     
-    
     UIView *currentView = imageview;
     
+    UISlider *sliderT = [[UISlider alloc] initWithFrame:CGRectMake((currentView.right + originXY), currentView.top, (scrollview.width - currentView.right - originXY * 2), 20.0)];
+    [scrollview addSubview:sliderT];
+    sliderT.minimumValue = 0.0;
+    sliderT.maximumValue = 100.0;
+    sliderT.viewText = @"旋转";
+    sliderT.viewTextFont = [UIFont systemFontOfSize:8.0];
+    sliderT.sliderClick = ^(UISlider *slider){
+        [imageview viewTransformWithRotation:slider.value];
+    };
+    
+    UISlider *sliderS = [[UISlider alloc] initWithFrame:CGRectMake(sliderT.left, (sliderT.bottom + originXY), sliderT.width, 20.0)];
+    [scrollview addSubview:sliderS];
+    sliderS.minimumValue = 1.0;
+    sliderS.maximumValue = 2.0;
+    sliderS.viewText = @"缩放";
+    sliderS.viewTextFont = [UIFont systemFontOfSize:8.0];
+    sliderS.sliderClick = ^(UISlider *slider){
+        [imageview viewScaleWithSizeX:slider.value sizeY:slider.value];
+    };
+    
+    UISwitch *switchView = [[UISwitch alloc] initWithFrame:CGRectMake(sliderS.left, (sliderS.bottom + originXY), 0.0, 0.0)];
+    [scrollview addSubview:switchView];
+    switchView.switchClick = ^(UISwitch *sender){
+        [imageview viewFlipType:ViewFlipTypeVertical];
+    };
+    
+    
     // 本地图片
-    UIImageView *imageview2 = [[UIImageView alloc] initWithFrame:CGRectMake((currentView.right + originXY), currentView.top, currentView.width, currentView.height)];
+    UIImageView *imageview2 = [[UIImageView alloc] initWithFrame:CGRectMake(originXY, (currentView.bottom + originXY), currentView.width, currentView.height)];
     [scrollview addSubview:imageview2];
     imageview2.viewText = @"本地图片";
     imageview2.viewTextRect = CGRectMake(originXY, (imageview2.height - 30.0), (imageview2.width - originXY * 2), 30.0);
@@ -368,8 +394,6 @@
             imageview106.image = image;
         }];
     };
-    
-    
     
     // 相册图片
     UIScrollView *photoScrollview = [[UIScrollView alloc] initWithFrame:CGRectMake(0.0, (currentView.bottom + originXY), scrollview.width, (sizeImage + originXY * 2))];
