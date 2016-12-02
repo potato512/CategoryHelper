@@ -43,4 +43,8 @@ typedef NS_ENUM(NSInteger, SYLabelAutoSizeType)
 /// 设置自适应标签宽高
 - (void)labelAutoSize:(SYLabelAutoSizeType)type;
 
+// 字体发光
+
+// 字体阴影
+
 @end

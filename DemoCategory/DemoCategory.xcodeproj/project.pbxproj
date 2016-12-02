@@ -50,6 +50,8 @@
 		A7D824E51DEC3211006B5633 /* SYNavigationBackImage.png in Resources */ = {isa = PBXBuildFile; fileRef = A7D824E21DEC3211006B5633 /* SYNavigationBackImage.png */; };
 		A7D824E61DEC3211006B5633 /* SYNavigationBackImage@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A7D824E31DEC3211006B5633 /* SYNavigationBackImage@2x.png */; };
 		A7D824E71DEC3211006B5633 /* SYNavigationBackImage@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = A7D824E41DEC3211006B5633 /* SYNavigationBackImage@3x.png */; };
+		A7EB794F1DF1695E00205153 /* UISlider+SYCategory.m in Sources */ = {isa = PBXBuildFile; fileRef = A7EB794E1DF1695E00205153 /* UISlider+SYCategory.m */; };
+		A7EB79521DF1698D00205153 /* UISwitch+SYCategory.m in Sources */ = {isa = PBXBuildFile; fileRef = A7EB79511DF1698D00205153 /* UISwitch+SYCategory.m */; };
 		DFA204EB1D1E131C00929257 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = DFA204EA1D1E131C00929257 /* main.m */; };
 		DFA204EE1D1E131C00929257 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = DFA204ED1D1E131C00929257 /* AppDelegate.m */; };
 		DFA204F11D1E131C00929257 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DFA204F01D1E131C00929257 /* ViewController.m */; };
@@ -173,6 +175,10 @@
 		A7D824E21DEC3211006B5633 /* SYNavigationBackImage.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = SYNavigationBackImage.png; sourceTree = "<group>"; };
 		A7D824E31DEC3211006B5633 /* SYNavigationBackImage@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "SYNavigationBackImage@2x.png"; sourceTree = "<group>"; };
 		A7D824E41DEC3211006B5633 /* SYNavigationBackImage@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "SYNavigationBackImage@3x.png"; sourceTree = "<group>"; };
+		A7EB794D1DF1695E00205153 /* UISlider+SYCategory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UISlider+SYCategory.h"; sourceTree = "<group>"; };
+		A7EB794E1DF1695E00205153 /* UISlider+SYCategory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UISlider+SYCategory.m"; sourceTree = "<group>"; };
+		A7EB79501DF1698D00205153 /* UISwitch+SYCategory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UISwitch+SYCategory.h"; sourceTree = "<group>"; };
+		A7EB79511DF1698D00205153 /* UISwitch+SYCategory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UISwitch+SYCategory.m"; sourceTree = "<group>"; };
 		DFA204E61D1E131C00929257 /* DemoCategory.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DemoCategory.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		DFA204EA1D1E131C00929257 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		DFA204EC1D1E131C00929257 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -382,6 +388,10 @@
 				A7B05AE71DE80E69005007DA /* UIView+SYCategory.m */,
 				A786018D1DEBC77C00FBD482 /* UIButton+SYCategory.h */,
 				A786018E1DEBC77C00FBD482 /* UIButton+SYCategory.m */,
+				A7EB794D1DF1695E00205153 /* UISlider+SYCategory.h */,
+				A7EB794E1DF1695E00205153 /* UISlider+SYCategory.m */,
+				A7EB79501DF1698D00205153 /* UISwitch+SYCategory.h */,
+				A7EB79511DF1698D00205153 /* UISwitch+SYCategory.m */,
 				A7B05AF81DE8175B005007DA /* UIColor+SYCategory.h */,
 				A7B05AF91DE8175B005007DA /* UIColor+SYCategory.m */,
 				A7B05AFA1DE8175B005007DA /* UIImage+SYCategory.h */,
@@ -628,12 +638,14 @@
 				A7B05B0C1DE84A93005007DA /* UIViewController+SYCategory.m in Sources */,
 				A78601AD1DEBDCD200FBD482 /* NSAttributedString+SYCategory.m in Sources */,
 				A7B05AF11DE815CF005007DA /* NSString+SYJSON.m in Sources */,
+				A7EB794F1DF1695E00205153 /* UISlider+SYCategory.m in Sources */,
 				A786018C1DEBC73800FBD482 /* UIAlertView+SYCategory.m in Sources */,
 				A7B05AEE1DE8108E005007DA /* NSObject+SYCategory.m in Sources */,
 				DFA205211D1E37C500929257 /* NSFileManager+SYCategory.m in Sources */,
 				DFA204EB1D1E131C00929257 /* main.m in Sources */,
 				DFA205421D1E71ED00929257 /* UILabel+SYCategory.m in Sources */,
 				A78C0E341DED51FD00DB84A0 /* AlertSheetViewController.m in Sources */,
+				A7EB79521DF1698D00205153 /* UISwitch+SYCategory.m in Sources */,
 				A7B05AFC1DE8175B005007DA /* UIColor+SYCategory.m in Sources */,
 				A7B05B031DE82431005007DA /* NSUserDefaults+SYCategory.m in Sources */,
 				A78C0E371DED520F00DB84A0 /* ImagePickerViewController.m in Sources */,

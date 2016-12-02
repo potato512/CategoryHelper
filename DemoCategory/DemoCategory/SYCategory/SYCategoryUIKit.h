@@ -9,6 +9,8 @@
 #import "UIView+SYCategory.h"
 #import "UILabel+SYCategory.h"
 #import "UIButton+SYCategory.h"
+#import "UISlider+SYCategory.h"
+#import "UISWitch+SYCategory.h"
 #import "UIColor+SYCategory.h"
 #import "UIImage+SYCategory.h"
 #import "UIImageView+SYCategory.h"

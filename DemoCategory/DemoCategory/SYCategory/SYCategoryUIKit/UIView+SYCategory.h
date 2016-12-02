@@ -10,6 +10,8 @@
 
 @interface UIView (SYCategory)
 
+#pragma mark - 原点尺寸
+
 /// 坐标
 @property CGPoint origin;
 
@@ -44,6 +46,8 @@
 @property CGFloat right;
 
 
+#pragma mark - 标题属性
+
 /// 标题（默认无）
 @property (nonatomic, strong) NSString *viewText;
 /// 标题字体颜色（默认黑色）
@@ -56,6 +60,8 @@
 @property (nonatomic, assign) NSTextAlignment viewTextAlignment;
 
 
+#pragma mark - 视图属性设置
+
 /**
  *  毛玻璃效果（注意使用前必须先添加到父视图）
  *
@@ -65,6 +71,11 @@
 
 /// 设置UI视图的边框属性
 - (void)layerWithRadius:(CGFloat)radius borderColor:(UIColor *)color borderWidth:(CGFloat)width;
+
+// 旋转
+
+// 缩放
+
 
 #pragma mark - 解摸手势
 

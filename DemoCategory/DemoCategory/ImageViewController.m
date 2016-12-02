@@ -9,6 +9,9 @@
 #import "ImageViewController.h"
 
 @interface ImageViewController ()
+{
+    CGFloat imageSaturation, imageBrightness, imageContrast;
+}
 
 @end
 
@@ -132,7 +135,7 @@
     UIScrollView *filterScrollView = [[UIScrollView alloc] initWithFrame:CGRectMake(0.0, (currentView.bottom + originXY), scrollview.width, (sizeImage + originXY * 2))];
     [scrollview addSubview:filterScrollView];
     filterScrollView.backgroundColor = [UIColor colorRandom];
-    for (int i = 0; i < 14; i++)
+    for (int i = 0; i < 8; i++)
     {
         UIImageView *subImageview = [[UIImageView alloc] initWithFrame:CGRectMake(originXY + (i * (sizeImage + originXY)), originXY, sizeImage, sizeImage)];
         [filterScrollView addSubview:subImageview];
@@ -212,60 +215,6 @@
                 subImageview.viewText = @"铬黄";
             }
                 break;
-            case 8:
-            {
-//                subImageview.image = [image imageBlurWithBlurName:@"CIGaussianBlur" radius:10];
-                [image imageBlurWithBlurName:@"CIGaussianBlur" radius:10 image:^(UIImage *image) {
-                    subImageview.image = image;
-                }];
-                subImageview.viewText = @"高期的模糊";
-            }
-                break;
-            case 9:
-            {
-//                subImageview.image = [image imageBlurWithBlurName:@"CIBoxBlur" radius:10];
-                [image imageBlurWithBlurName:@"CIBoxBlur" radius:10 image:^(UIImage *image) {
-                    subImageview.image = image;
-                }];
-                subImageview.viewText = @"均值模糊";
-            }
-                break;
-            case 10:
-            {
-//                subImageview.image = [image imageBlurWithBlurName:@"CIDiscBlur" radius:10];
-                [image imageBlurWithBlurName:@"CIDiscBlur" radius:10 image:^(UIImage *image) {
-                    subImageview.image = image;
-                }];
-                subImageview.viewText = @"环形卷积模糊";
-            }
-                break;
-            case 11:
-            {
-//                subImageview.image = [image imageBlurWithBlurName:@"CIMedianFilter" radius:10];
-                [image imageBlurWithBlurName:@"CIMedianFilter" radius:10 image:^(UIImage *image) {
-                    subImageview.image = image;
-                }];
-                subImageview.viewText = @"中值模糊";
-            }
-                break;
-            case 12:
-            {
-//                subImageview.image = [image imageBlurWithBlurName:@"CIMotionBlur" radius:10];
-                [image imageBlurWithBlurName:@"CIMotionBlur" radius:10 image:^(UIImage *image) {
-                    subImageview.image = image;
-                }];
-                subImageview.viewText = @"运动模糊";
-            }
-                break;
-            case 13:
-            {
-//                subImageview.image = [image imageAdjustWithSaturation:80.0 brightness:60.0 contrast:50.0];
-                [image imageAdjustWithSaturation:80.0 brightness:60.0 contrast:50.0 image:^(UIImage *image) {
-                    subImageview.image = image;
-                }];
-                subImageview.viewText = @"饱和度、亮度、对比度";
-            }
-                break;
                 
             default:
                 break;
@@ -275,7 +224,152 @@
     
     currentView = filterScrollView;
     
-    // 可调节
+    // 可调节的模糊处理
+    UIImage *image100 = [UIImage imageNamed:@"girl"];
+    
+    UIImageView *imageview101 = [[UIImageView alloc] initWithFrame:CGRectMake(originXY, (currentView.bottom + originXY), sizeImage, sizeImage)];
+    [scrollview addSubview:imageview101];
+    imageview101.viewText = @"高期的模糊";
+    imageview101.image = image100;
+    
+    currentView = imageview101;
+    
+    UISlider *slider101 = [[UISlider alloc] initWithFrame:CGRectMake((currentView.right + originXY), currentView.top, (scrollview.width - currentView.right - originXY * 2), 20.0)];
+    [scrollview addSubview:slider101];
+    slider101.minimumValue = 0;
+    slider101.maximumValue = 100;
+    slider101.sliderClick = ^(UISlider *slider){
+        NSInteger radius = slider.value;
+        // imageview101.image = [image100 imageBlurWithBlurName:@"CIGaussianBlur" radius:radius];
+        [image100 imageBlurWithBlurName:@"CIGaussianBlur" radius:radius image:^(UIImage *image) {
+            imageview101.image = image;
+        }];
+    };
+    
+    UIImageView *imageview102 = [[UIImageView alloc] initWithFrame:CGRectMake(originXY, (currentView.bottom + originXY), sizeImage, sizeImage)];
+    [scrollview addSubview:imageview102];
+    imageview102.viewText = @"均值模糊";
+    imageview102.image = image100;
+    
+    currentView = imageview102;
+    
+    UISlider *slider102 = [[UISlider alloc] initWithFrame:CGRectMake((currentView.right + originXY), currentView.top, (scrollview.width - currentView.right - originXY * 2), 20.0)];
+    [scrollview addSubview:slider102];
+    slider102.minimumValue = 0;
+    slider102.maximumValue = 100;
+    slider102.sliderClick = ^(UISlider *slider){
+        NSInteger radius = slider.value;
+        // imageview102.image = [image100 imageBlurWithBlurName:@"CIBoxBlur" radius:radius];
+        [image100 imageBlurWithBlurName:@"CIBoxBlur" radius:radius image:^(UIImage *image) {
+            imageview102.image = image;
+        }];
+    };
+
+    UIImageView *imageview103 = [[UIImageView alloc] initWithFrame:CGRectMake(originXY, (currentView.bottom + originXY), sizeImage, sizeImage)];
+    [scrollview addSubview:imageview103];
+    imageview103.viewText = @"环形卷积模糊";
+    imageview103.image = image100;
+    
+    currentView = imageview103;
+    
+    UISlider *slider103 = [[UISlider alloc] initWithFrame:CGRectMake((currentView.right + originXY), currentView.top, (scrollview.width - currentView.right - originXY * 2), 20.0)];
+    [scrollview addSubview:slider103];
+    slider103.minimumValue = 0;
+    slider103.maximumValue = 100;
+    slider103.sliderClick = ^(UISlider *slider){
+        NSInteger radius = slider.value;
+        // imageview103.image = [image100 imageBlurWithBlurName:@"CIDiscBlur" radius:radius];
+        [image100 imageBlurWithBlurName:@"CIDiscBlur" radius:radius image:^(UIImage *image) {
+            imageview103.image = image;
+        }];
+    };
+    
+    UIImageView *imageview104 = [[UIImageView alloc] initWithFrame:CGRectMake(originXY, (currentView.bottom + originXY), sizeImage, sizeImage)];
+    [scrollview addSubview:imageview104];
+    imageview104.viewText = @"中值模糊";
+    imageview104.image = image100;
+    
+    currentView = imageview104;
+    
+    UISlider *slider104 = [[UISlider alloc] initWithFrame:CGRectMake((currentView.right + originXY), currentView.top, (scrollview.width - currentView.right - originXY * 2), 20.0)];
+    [scrollview addSubview:slider104];
+    slider104.minimumValue = 0;
+    slider104.maximumValue = 100;
+    slider104.sliderClick = ^(UISlider *slider){
+        NSInteger radius = slider.value;
+        // imageview104.image = [image100 imageBlurWithBlurName:@"CIMedianFilter" radius:radius];
+        [image100 imageBlurWithBlurName:@"CIMedianFilter" radius:radius image:^(UIImage *image) {
+            imageview104.image = image;
+        }];
+    };
+    
+    UIImageView *imageview105 = [[UIImageView alloc] initWithFrame:CGRectMake(originXY, (currentView.bottom + originXY), sizeImage, sizeImage)];
+    [scrollview addSubview:imageview105];
+    imageview105.viewText = @"运动模糊";
+    imageview105.image = image100;
+    
+    currentView = imageview105;
+    
+    UISlider *slider105 = [[UISlider alloc] initWithFrame:CGRectMake((currentView.right + originXY), currentView.top, (scrollview.width - currentView.right - originXY * 2), 20.0)];
+    [scrollview addSubview:slider105];
+    slider105.minimumValue = 0;
+    slider105.maximumValue = 100;
+    slider105.sliderClick = ^(UISlider *slider){
+        NSInteger radius = slider.value;
+        // imageview105.image = [image100 imageBlurWithBlurName:@"CIMotionBlur" radius:radius];
+        [image100 imageBlurWithBlurName:@"CIMotionBlur" radius:radius image:^(UIImage *image) {
+            imageview105.image = image;
+        }];
+    };
+    
+    // 饱和度、亮度、对比度
+    imageSaturation = 100.0;
+    imageBrightness = 100.0;
+    imageContrast = 100.0;
+    UIImageView *imageview106 = [[UIImageView alloc] initWithFrame:CGRectMake(originXY, (currentView.bottom + originXY), sizeImage, sizeImage)];
+    [scrollview addSubview:imageview106];
+    imageview106.viewText = @"饱和度、亮度、对比度";
+    imageview106.image = image100;
+    
+    currentView = imageview106;
+    
+    UISlider *slider106 = [[UISlider alloc] initWithFrame:CGRectMake((currentView.right + originXY), currentView.top, (scrollview.width - currentView.right - originXY * 2), 20.0)];
+    [scrollview addSubview:slider106];
+    slider106.minimumValue = 0.0;
+    slider106.maximumValue = 100.0;
+    slider106.sliderClick = ^(UISlider *slider){
+        imageSaturation = slider.value;
+        // imageview106.image = [image imageAdjustWithSaturation:imageSaturation brightness:imageBrightness contrast:imageContrast];
+        [image imageAdjustWithSaturation:imageSaturation brightness:imageBrightness contrast:imageContrast image:^(UIImage *image) {
+            imageview106.image = image;
+        }];
+    };
+    
+    UISlider *slider1062 = [[UISlider alloc] initWithFrame:CGRectMake(slider106.left, (slider106.bottom + originXY), slider106.width, 20.0)];
+    [scrollview addSubview:slider1062];
+    slider1062.minimumValue = 0.0;
+    slider1062.maximumValue = 100.0;
+    slider1062.sliderClick = ^(UISlider *slider){
+        imageBrightness = slider.value;
+        // imageview106.image = [image imageAdjustWithSaturation:imageSaturation brightness:imageBrightness contrast:imageContrast];
+        [image imageAdjustWithSaturation:imageSaturation brightness:imageBrightness contrast:imageContrast image:^(UIImage *image) {
+            imageview106.image = image;
+        }];
+    };
+    
+    UISlider *slider1063 = [[UISlider alloc] initWithFrame:CGRectMake(slider1062.left, (slider1062.bottom + originXY), slider1062.width, 20.0)];
+    [scrollview addSubview:slider1063];
+    slider1063.minimumValue = 0.0;
+    slider1063.maximumValue = 100.0;
+    slider1063.sliderClick = ^(UISlider *slider){
+        imageContrast = slider.value;
+        // imageview106.image = [image imageAdjustWithSaturation:imageSaturation brightness:imageBrightness contrast:imageContrast];
+        [image imageAdjustWithSaturation:imageSaturation brightness:imageBrightness contrast:imageContrast image:^(UIImage *image) {
+            imageview106.image = image;
+        }];
+    };
+    
+    
     
     // 相册图片
     UIScrollView *photoScrollview = [[UIScrollView alloc] initWithFrame:CGRectMake(0.0, (currentView.bottom + originXY), scrollview.width, (sizeImage + originXY * 2))];
