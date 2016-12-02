@@ -146,13 +146,10 @@ static NSString *const keyViewTextLabel = @"viewTextLabel";
 
 - (void)setViewText:(NSString *)viewText
 {
-    if (0 < viewText.length)
-    {
-        objc_setAssociatedObject(self, &keyViewText, viewText, OBJC_ASSOCIATION_RETAIN);
+    objc_setAssociatedObject(self, &keyViewText, viewText, OBJC_ASSOCIATION_RETAIN);
         
-        [self refreshLabel];
-        self.viewTextLabel.text = self.viewText;
-    }
+    [self refreshLabel];
+    self.viewTextLabel.text = self.viewText;
 }
 
 - (NSString *)viewText

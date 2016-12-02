@@ -103,7 +103,8 @@
  *
  *  @return 处理后 image 对象
  */
-- (UIImage *)filterImageWithFilterName:(NSString *)filterName;
+- (UIImage *)imageFilterWithFilterName:(NSString *)filterName;
+- (void)imageFilterWithFilterName:(NSString *)filterName image:(void (^)(UIImage *image))complete;
 
 /**
  *  图片模糊处理
@@ -120,7 +121,8 @@
  *
  *  @return 处理后 image 对象
  */
-- (UIImage *)blurImageWithBlurName:(NSString *)blurName radius:(NSInteger)radius;
+- (UIImage *)imageBlurWithBlurName:(NSString *)blurName radius:(NSInteger)radius;
+- (void)imageBlurWithBlurName:(NSString *)blurName radius:(NSInteger)radius image:(void (^)(UIImage *image))complete;
 
 /**
  *  图片调整（饱和度、亮度、对比度）
@@ -131,8 +133,8 @@
  *
  *  @return 处理后 image 对象
  */
-
-- (UIImage *)adjustImageWithSaturation:(CGFloat)saturation brightness:(CGFloat)brightness contrast:(CGFloat)contrast;
+- (UIImage *)imageAdjustWithSaturation:(CGFloat)saturation brightness:(CGFloat)brightness contrast:(CGFloat)contrast;
+- (void)imageAdjustWithSaturation:(CGFloat)saturation brightness:(CGFloat)brightness contrast:(CGFloat)contrast image:(void (^)(UIImage *image))complete;
 
 #pragma mark - 图片保存
 
@@ -147,7 +149,7 @@
 #pragma mark - 获取相册图片
 
 /// 获取n张相片（0时为全部），最近的n张图片或最早的n张图片
-- (void)imagesFromAssetsLibraryWithNum:(NSInteger)count latest:(BOOL)latest start:(void(^)(void))start success:(void(^)(NSArray *images))success error:(void(^)(void))error;
++ (void)imagesFromAssetsLibraryWithNum:(NSInteger)count latest:(BOOL)latest start:(void(^)(void))start success:(void(^)(NSArray *images))success error:(void(^)(void))error;
 
 #pragma mark - 图片转二进制流字符串
 

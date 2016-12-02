@@ -8,6 +8,10 @@
 
 /* Begin PBXBuildFile section */
 		A75B285F1DE7E00A0002E8A6 /* image.png in Resources */ = {isa = PBXBuildFile; fileRef = A75B285E1DE7E00A0002E8A6 /* image.png */; };
+		A769595D1DF03CB30077F572 /* image2.png in Resources */ = {isa = PBXBuildFile; fileRef = A76959591DF03CB30077F572 /* image2.png */; };
+		A769595E1DF03CB30077F572 /* header_boy.png in Resources */ = {isa = PBXBuildFile; fileRef = A769595A1DF03CB30077F572 /* header_boy.png */; };
+		A769595F1DF03CB30077F572 /* girl.png in Resources */ = {isa = PBXBuildFile; fileRef = A769595B1DF03CB30077F572 /* girl.png */; };
+		A76959601DF03CB30077F572 /* header_girl.png in Resources */ = {isa = PBXBuildFile; fileRef = A769595C1DF03CB30077F572 /* header_girl.png */; };
 		A786018C1DEBC73800FBD482 /* UIAlertView+SYCategory.m in Sources */ = {isa = PBXBuildFile; fileRef = A786018B1DEBC73800FBD482 /* UIAlertView+SYCategory.m */; };
 		A786018F1DEBC77C00FBD482 /* UIButton+SYCategory.m in Sources */ = {isa = PBXBuildFile; fileRef = A786018E1DEBC77C00FBD482 /* UIButton+SYCategory.m */; };
 		A78601921DEBC7C200FBD482 /* UIActionSheet+SYCategory.m in Sources */ = {isa = PBXBuildFile; fileRef = A78601911DEBC7C200FBD482 /* UIActionSheet+SYCategory.m */; };
@@ -91,6 +95,10 @@
 		A75B28681DE7E0540002E8A6 /* Common_Markwords.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Common_Markwords.h; sourceTree = "<group>"; };
 		A75B28691DE7E0540002E8A6 /* Common_Symbol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Common_Symbol.h; sourceTree = "<group>"; };
 		A75B286A1DE7E0540002E8A6 /* Common_time.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Common_time.h; sourceTree = "<group>"; };
+		A76959591DF03CB30077F572 /* image2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = image2.png; sourceTree = "<group>"; };
+		A769595A1DF03CB30077F572 /* header_boy.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = header_boy.png; sourceTree = "<group>"; };
+		A769595B1DF03CB30077F572 /* girl.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = girl.png; sourceTree = "<group>"; };
+		A769595C1DF03CB30077F572 /* header_girl.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = header_girl.png; sourceTree = "<group>"; };
 		A786018A1DEBC73800FBD482 /* UIAlertView+SYCategory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIAlertView+SYCategory.h"; sourceTree = "<group>"; };
 		A786018B1DEBC73800FBD482 /* UIAlertView+SYCategory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIAlertView+SYCategory.m"; sourceTree = "<group>"; };
 		A786018D1DEBC77C00FBD482 /* UIButton+SYCategory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIButton+SYCategory.h"; sourceTree = "<group>"; };
@@ -307,6 +315,10 @@
 				DFA204ED1D1E131C00929257 /* AppDelegate.m */,
 				DFA204EF1D1E131C00929257 /* ViewController.h */,
 				DFA204F01D1E131C00929257 /* ViewController.m */,
+				A76959591DF03CB30077F572 /* image2.png */,
+				A769595A1DF03CB30077F572 /* header_boy.png */,
+				A769595B1DF03CB30077F572 /* girl.png */,
+				A769595C1DF03CB30077F572 /* header_girl.png */,
 				A75B285E1DE7E00A0002E8A6 /* image.png */,
 				A78C0E2E1DED51BA00DB84A0 /* Foundation */,
 				A78C0E2D1DED51AA00DB84A0 /* Kit */,
@@ -547,10 +559,14 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A769595D1DF03CB30077F572 /* image2.png in Resources */,
 				A7D824E71DEC3211006B5633 /* SYNavigationBackImage@3x.png in Resources */,
 				DFA204F91D1E131C00929257 /* LaunchScreen.storyboard in Resources */,
 				DFA204F61D1E131C00929257 /* Assets.xcassets in Resources */,
+				A76959601DF03CB30077F572 /* header_girl.png in Resources */,
 				DFA204F41D1E131C00929257 /* Main.storyboard in Resources */,
+				A769595E1DF03CB30077F572 /* header_boy.png in Resources */,
+				A769595F1DF03CB30077F572 /* girl.png in Resources */,
 				A75B285F1DE7E00A0002E8A6 /* image.png in Resources */,
 				A7D824E51DEC3211006B5633 /* SYNavigationBackImage.png in Resources */,
 				A7D824E61DEC3211006B5633 /* SYNavigationBackImage@2x.png in Resources */,

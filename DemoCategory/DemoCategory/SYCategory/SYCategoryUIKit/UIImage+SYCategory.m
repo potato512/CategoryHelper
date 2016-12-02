@@ -366,7 +366,7 @@ static void AddRoundedRectToPath(CGContextRef context, CGRect rect, float ovalWi
  *
  *  @return 处理后 image 对象
  */
-- (UIImage *)filterImageWithFilterName:(NSString *)filterName
+- (UIImage *)imageFilterWithFilterName:(NSString *)filterName
 {
     CIContext *context = [CIContext contextWithOptions:nil];
     CIImage *inputImage = [[CIImage alloc] initWithImage:self];
@@ -377,6 +377,19 @@ static void AddRoundedRectToPath(CGContextRef context, CGRect rect, float ovalWi
     UIImage *image = [UIImage imageWithCGImage:cgImage];
     CGImageRelease(cgImage);
     return image;
+}
+
+- (void)imageFilterWithFilterName:(NSString *)filterName image:(void (^)(UIImage *image))complete
+{
+    dispatch_async(dispatch_get_global_queue(0, 0), ^{
+        UIImage *image = [self imageFilterWithFilterName:filterName];
+        dispatch_async(dispatch_get_main_queue(), ^{
+            if (complete)
+            {
+                complete(image);
+            }
+        });
+    });
 }
 
 /**
@@ -394,7 +407,7 @@ static void AddRoundedRectToPath(CGContextRef context, CGRect rect, float ovalWi
  *
  *  @return 处理后 image 对象
  */
-- (UIImage *)blurImageWithBlurName:(NSString *)blurName radius:(NSInteger)radius
+- (UIImage *)imageBlurWithBlurName:(NSString *)blurName radius:(NSInteger)radius
 {
     CIContext *context = [CIContext contextWithOptions:nil];
     CIImage *inputImage = [[CIImage alloc] initWithImage:self];
@@ -403,7 +416,7 @@ static void AddRoundedRectToPath(CGContextRef context, CGRect rect, float ovalWi
     {
         CIFilter *filter = [CIFilter filterWithName:blurName];
         [filter setValue:inputImage forKey:kCIInputImageKey];
-        if ([blurName isEqualToString:@"CIMedianFilter"])
+        if (![blurName isEqualToString:@"CIMedianFilter"])
         {
             [filter setValue:@(radius) forKey:@"inputRadius"];
         }
@@ -418,6 +431,19 @@ static void AddRoundedRectToPath(CGContextRef context, CGRect rect, float ovalWi
     return nil;
 }
 
+- (void)imageBlurWithBlurName:(NSString *)blurName radius:(NSInteger)radius image:(void (^)(UIImage *image))complete
+{
+    dispatch_async(dispatch_get_global_queue(0, 0), ^{
+        UIImage *image = [self imageBlurWithBlurName:blurName radius:radius];
+        dispatch_async(dispatch_get_main_queue(), ^{
+            if (complete)
+            {
+                complete(image);
+            }
+        });
+    });
+}
+
 /**
  *  图片调整（饱和度、亮度、对比度）
  *
@@ -428,7 +454,7 @@ static void AddRoundedRectToPath(CGContextRef context, CGRect rect, float ovalWi
  *  @return 处理后 image 对象
  */
 
-- (UIImage *)adjustImageWithSaturation:(CGFloat)saturation brightness:(CGFloat)brightness contrast:(CGFloat)contrast
+- (UIImage *)imageAdjustWithSaturation:(CGFloat)saturation brightness:(CGFloat)brightness contrast:(CGFloat)contrast
 {
     CIContext *context = [CIContext contextWithOptions:nil];
     CIImage *inputImage = [[CIImage alloc] initWithImage:self];
@@ -444,6 +470,19 @@ static void AddRoundedRectToPath(CGContextRef context, CGRect rect, float ovalWi
     UIImage *image = [UIImage imageWithCGImage:cgImage];
     CGImageRelease(cgImage);
     return image;
+}
+
+- (void)imageAdjustWithSaturation:(CGFloat)saturation brightness:(CGFloat)brightness contrast:(CGFloat)contrast image:(void (^)(UIImage *image))complete
+{
+    dispatch_async(dispatch_get_global_queue(0, 0), ^{
+        UIImage *image = [self imageAdjustWithSaturation:saturation brightness:brightness contrast:contrast];
+        dispatch_async(dispatch_get_main_queue(), ^{
+            if (complete)
+            {
+                complete(image);
+            }
+        });
+    });
 }
 
 #pragma mark - 图片保存
@@ -485,9 +524,9 @@ static void AddRoundedRectToPath(CGContextRef context, CGRect rect, float ovalWi
 #pragma mark - 获取相册图片
 
 /// 获取n张相片（0时为全部），最近的n张图片或最早的n张图片
-- (void)imagesFromAssetsLibraryWithNum:(NSInteger)count latest:(BOOL)latest start:(void(^)(void))start success:(void(^)(NSArray *images))success error:(void(^)(void))error
++ (void)imagesFromAssetsLibraryWithNum:(NSInteger)count latest:(BOOL)latest start:(void(^)(void))start success:(void(^)(NSArray *images))success error:(void(^)(void))error
 {
-    [self removeImage];
+    [[self class] removeImage];
     
     NSInteger imageCount = count;
     BOOL islatest = latest;
@@ -541,11 +580,11 @@ static void AddRoundedRectToPath(CGContextRef context, CGRect rect, float ovalWi
                  {
                      if (0 == imageCount)
                      {
-                         [weakSelf GetImageAll:assets];
+                         [[weakSelf class] GetImageAll:assets];
                      }
                      else
                      {
-                         [weakSelf GetImagelastest:islatest num:imageCount images:assets];
+                         [[weakSelf class] GetImagelastest:islatest num:imageCount images:assets];
                      }
                  }
              }];
@@ -571,7 +610,7 @@ static void AddRoundedRectToPath(CGContextRef context, CGRect rect, float ovalWi
 }
 
 // 清空原有图片
-- (void)removeImage
++ (void)removeImage
 {
     if (imageResults && 0 != imageResults.count)
     {
@@ -580,7 +619,7 @@ static void AddRoundedRectToPath(CGContextRef context, CGRect rect, float ovalWi
 }
 
 // 获取所有相片
-- (void)GetImageAll:(NSArray *)array
++ (void)GetImageAll:(NSArray *)array
 {
     for (ALAsset *assetResult in array)
     {
@@ -603,7 +642,7 @@ static void AddRoundedRectToPath(CGContextRef context, CGRect rect, float ovalWi
 }
 
 // 获取最新的，或最早的
-- (void)GetImagelastest:(BOOL)latest num:(NSInteger)count images:(NSArray *)array
++ (void)GetImagelastest:(BOOL)latest num:(NSInteger)count images:(NSArray *)array
 {
     if (!array || 0 == array.count)
     {
