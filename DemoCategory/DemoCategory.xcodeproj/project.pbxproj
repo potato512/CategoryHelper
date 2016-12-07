@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		A73F85B91DF806B7006DBA3B /* UIImage+SYFilter.m in Sources */ = {isa = PBXBuildFile; fileRef = A73F85B81DF806B7006DBA3B /* UIImage+SYFilter.m */; };
+		A73F85BC1DF806D6006DBA3B /* UIImage+SYBytes.m in Sources */ = {isa = PBXBuildFile; fileRef = A73F85BB1DF806D6006DBA3B /* UIImage+SYBytes.m */; };
+		A73F85BF1DF807C1006DBA3B /* UIImage+SYAssetsLibrary.m in Sources */ = {isa = PBXBuildFile; fileRef = A73F85BE1DF807C1006DBA3B /* UIImage+SYAssetsLibrary.m */; };
 		A75B285F1DE7E00A0002E8A6 /* image.png in Resources */ = {isa = PBXBuildFile; fileRef = A75B285E1DE7E00A0002E8A6 /* image.png */; };
 		A769595D1DF03CB30077F572 /* image2.png in Resources */ = {isa = PBXBuildFile; fileRef = A76959591DF03CB30077F572 /* image2.png */; };
 		A769595E1DF03CB30077F572 /* header_boy.png in Resources */ = {isa = PBXBuildFile; fileRef = A769595A1DF03CB30077F572 /* header_boy.png */; };
@@ -86,6 +89,12 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		A73F85B71DF806B7006DBA3B /* UIImage+SYFilter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+SYFilter.h"; sourceTree = "<group>"; };
+		A73F85B81DF806B7006DBA3B /* UIImage+SYFilter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+SYFilter.m"; sourceTree = "<group>"; };
+		A73F85BA1DF806D6006DBA3B /* UIImage+SYBytes.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+SYBytes.h"; sourceTree = "<group>"; };
+		A73F85BB1DF806D6006DBA3B /* UIImage+SYBytes.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+SYBytes.m"; sourceTree = "<group>"; };
+		A73F85BD1DF807C1006DBA3B /* UIImage+SYAssetsLibrary.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+SYAssetsLibrary.h"; sourceTree = "<group>"; };
+		A73F85BE1DF807C1006DBA3B /* UIImage+SYAssetsLibrary.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+SYAssetsLibrary.m"; sourceTree = "<group>"; };
 		A75B285E1DE7E00A0002E8A6 /* image.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = image.png; sourceTree = "<group>"; };
 		A75B28611DE7E0540002E8A6 /* Common_color.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Common_color.h; sourceTree = "<group>"; };
 		A75B28621DE7E0540002E8A6 /* Common_define.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Common_define.h; sourceTree = "<group>"; };
@@ -396,6 +405,12 @@
 				A7B05AF91DE8175B005007DA /* UIColor+SYCategory.m */,
 				A7B05AFA1DE8175B005007DA /* UIImage+SYCategory.h */,
 				A7B05AFB1DE8175B005007DA /* UIImage+SYCategory.m */,
+				A73F85B71DF806B7006DBA3B /* UIImage+SYFilter.h */,
+				A73F85B81DF806B7006DBA3B /* UIImage+SYFilter.m */,
+				A73F85BA1DF806D6006DBA3B /* UIImage+SYBytes.h */,
+				A73F85BB1DF806D6006DBA3B /* UIImage+SYBytes.m */,
+				A73F85BD1DF807C1006DBA3B /* UIImage+SYAssetsLibrary.h */,
+				A73F85BE1DF807C1006DBA3B /* UIImage+SYAssetsLibrary.m */,
 				A78C0E3B1DED843800DB84A0 /* UIImageView+SYCategory.h */,
 				A78C0E3C1DED843800DB84A0 /* UIImageView+SYCategory.m */,
 				A7B05B041DE82A2B005007DA /* UIGestureRecognizer+SYCategory.h */,
@@ -605,6 +620,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				A78C0E3D1DED843800DB84A0 /* UIImageView+SYCategory.m in Sources */,
+				A73F85BF1DF807C1006DBA3B /* UIImage+SYAssetsLibrary.m in Sources */,
 				A7B05B0F1DE84B84005007DA /* UINavigationController+SYCategory.m in Sources */,
 				DFA205301D1E543900929257 /* NSString+SYRegular.m in Sources */,
 				A78C0E3A1DED522400DB84A0 /* TextFieldViewController.m in Sources */,
@@ -631,12 +647,14 @@
 				DFA205241D1E3CE300929257 /* NSString+SYCategory.m in Sources */,
 				A78C0E2C1DED51A500DB84A0 /* ColorViewController.m in Sources */,
 				A78C0E311DED51D800DB84A0 /* GestureViewController.m in Sources */,
+				A73F85BC1DF806D6006DBA3B /* UIImage+SYBytes.m in Sources */,
 				DFA204F11D1E131C00929257 /* ViewController.m in Sources */,
 				A786019B1DEBD6CB00FBD482 /* UITableView+SYCategory.m in Sources */,
 				A78601AA1DEBD86A00FBD482 /* UITextView+SYCategory.m in Sources */,
 				DFA204EE1D1E131C00929257 /* AppDelegate.m in Sources */,
 				A7B05B0C1DE84A93005007DA /* UIViewController+SYCategory.m in Sources */,
 				A78601AD1DEBDCD200FBD482 /* NSAttributedString+SYCategory.m in Sources */,
+				A73F85B91DF806B7006DBA3B /* UIImage+SYFilter.m in Sources */,
 				A7B05AF11DE815CF005007DA /* NSString+SYJSON.m in Sources */,
 				A7EB794F1DF1695E00205153 /* UISlider+SYCategory.m in Sources */,
 				A786018C1DEBC73800FBD482 /* UIAlertView+SYCategory.m in Sources */,

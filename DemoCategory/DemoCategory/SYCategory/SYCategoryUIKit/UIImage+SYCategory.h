@@ -81,61 +81,6 @@
 /// 从视图中按指定的位置大小截取图片的一部分
 + (UIImage *)screenImageWithView:(UIView *)view size:(CGRect)rect;
 
-#pragma mark - 图片滤镜
-
-/// UIImage转为灰度图 CGColorSpaceCreateDeviceGray会创建一个设备相关的灰度颜色空间的引用。
-- (UIImage *)grayImage;
-
-
-/**
- *  图片滤镜处理
- *
- *  @param filterName 滤镜名称
- *
- *  怀旧 CIPhotoEffectInstant
- *  黑白 CIPhotoEffectNoir
- *  色调 CIPhotoEffectTonal
- *  岁月 CIPhotoEffectTransfer
- *  单色 CIPhotoEffectMono
- *  褪色 CIPhotoEffectFade
- *  冲印 CIPhotoEffectProcess
- *  铬黄 CIPhotoEffectChrome
- *
- *  @return 处理后 image 对象
- */
-- (UIImage *)imageFilterWithFilterName:(NSString *)filterName;
-- (void)imageFilterWithFilterName:(NSString *)filterName image:(void (^)(UIImage *image))complete;
-
-/**
- *  图片模糊处理
- *
- *  @param blurName 滤镜名称
- *  @param radius   滤镜半径
- *
- *  高斯模糊                                CIGaussianBlur
- *  均值模糊                                CIBoxBlur
- *  环形卷积模糊                             CIDiscBlur
- *  中值模糊，用于消除图像噪点（无需设置radius） CIMedianFilter
- *  运动模糊，用于模拟相机移动拍摄时的扫尾效果    CIMotionBlur
- *
- *
- *  @return 处理后 image 对象
- */
-- (UIImage *)imageBlurWithBlurName:(NSString *)blurName radius:(NSInteger)radius;
-- (void)imageBlurWithBlurName:(NSString *)blurName radius:(NSInteger)radius image:(void (^)(UIImage *image))complete;
-
-/**
- *  图片调整（饱和度、亮度、对比度）
- *
- *  @param saturation 饱和度
- *  @param brightness 亮度
- *  @param contrast   对比度
- *
- *  @return 处理后 image 对象
- */
-- (UIImage *)imageAdjustWithSaturation:(CGFloat)saturation brightness:(CGFloat)brightness contrast:(CGFloat)contrast;
-- (void)imageAdjustWithSaturation:(CGFloat)saturation brightness:(CGFloat)brightness contrast:(CGFloat)contrast image:(void (^)(UIImage *image))complete;
-
 #pragma mark - 图片保存
 
 /// 保存图片到指定路径，是否成功回调
@@ -146,50 +91,7 @@
 
 - (void)image:(UIImage *)image didFinishSavingWithError:(NSError *)error contextInfo:(void *)contextInfo;
 
-#pragma mark - 获取相册图片
 
-/// 获取n张相片（0时为全部），最近的n张图片或最早的n张图片
-+ (void)imagesFromAssetsLibraryWithNum:(NSInteger)count latest:(BOOL)latest start:(void(^)(void))start success:(void(^)(NSArray *images))success error:(void(^)(void))error;
 
-#pragma mark - 图片转二进制流字符串
-
-/**
- *  图片转二进制流字符串
- *
- *  @param quality 压缩精度（0.0 ~ 1.0）
- *
- *  @return 返回二进制流字符串
- */
-- (NSString *)imageBytesStringWithQuality:(CGFloat)quality;
-
-/**
- *  二进制流字符串转图片
- *
- *  @param string 二进制流字符串
- *
- *  @return image
- */
-+ (UIImage *)imageWithImageBytes:(NSString *)string;
-
-/**
- *  图片转二进制流
- *
- *  @param quality 压缩精度（0.0 ~ 1.0）
- *
- *  @return 返回二进制流
- */
-- (NSData *)imageDataWithQuality:(CGFloat)quality;
-
-/**
- *  图片转二进制流base64字符串
- *
- *  @param quality 压缩精度（0.0 ~ 1.0）
- *
- *  @return 返回二进制流base64字符串
- */
-- (NSString *)imageBase64StringWithQuality:(CGFloat)quality;
-
-// base64字符串转图片
-+ (UIImage *)imageWithImageBase64:(NSString *)string;
 
 @end
