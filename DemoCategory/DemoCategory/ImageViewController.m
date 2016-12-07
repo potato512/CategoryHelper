@@ -73,16 +73,19 @@
     
     UISlider *sliderS = [[UISlider alloc] initWithFrame:CGRectMake(sliderT.left, (sliderT.bottom + originXY), sliderT.width, 20.0)];
     [scrollview addSubview:sliderS];
-    sliderS.minimumValue = 1.0;
-    sliderS.maximumValue = 2.0;
+    sliderS.value = 1.0;
+    sliderS.minimumValue = 0.5;
+    sliderS.maximumValue = 1.5;
     sliderS.viewText = @"缩放";
     sliderS.viewTextFont = [UIFont systemFontOfSize:8.0];
     sliderS.sliderClick = ^(UISlider *slider){
-        [imageview viewScaleWithSizeX:slider.value sizeY:slider.value];
+        NSLog(@"scale size = %@", @(slider.value));
+        [imageview viewScaleWithSize:slider.value];
     };
     
     UISwitch *switchView = [[UISwitch alloc] initWithFrame:CGRectMake(sliderS.left, (sliderS.bottom + originXY), 0.0, 0.0)];
     [scrollview addSubview:switchView];
+    switchView.viewText = @"翻转";
     switchView.switchClick = ^(UISwitch *sender){
         [imageview viewFlipType:ViewFlipTypeVertical];
     };
@@ -365,8 +368,8 @@
     slider106.maximumValue = 100.0;
     slider106.sliderClick = ^(UISlider *slider){
         imageSaturation = slider.value;
-        // imageview106.image = [image imageAdjustWithSaturation:imageSaturation brightness:imageBrightness contrast:imageContrast];
-        [image imageAdjustWithSaturation:imageSaturation brightness:imageBrightness contrast:imageContrast image:^(UIImage *image) {
+        // imageview106.image = [image100 imageAdjustWithSaturation:imageSaturation brightness:imageBrightness contrast:imageContrast];
+        [image100 imageAdjustWithSaturation:imageSaturation brightness:imageBrightness contrast:imageContrast image:^(UIImage *image) {
             imageview106.image = image;
         }];
     };
@@ -377,8 +380,8 @@
     slider1062.maximumValue = 100.0;
     slider1062.sliderClick = ^(UISlider *slider){
         imageBrightness = slider.value;
-        // imageview106.image = [image imageAdjustWithSaturation:imageSaturation brightness:imageBrightness contrast:imageContrast];
-        [image imageAdjustWithSaturation:imageSaturation brightness:imageBrightness contrast:imageContrast image:^(UIImage *image) {
+        // imageview106.image = [image100 imageAdjustWithSaturation:imageSaturation brightness:imageBrightness contrast:imageContrast];
+        [image100 imageAdjustWithSaturation:imageSaturation brightness:imageBrightness contrast:imageContrast image:^(UIImage *image) {
             imageview106.image = image;
         }];
     };
@@ -389,8 +392,8 @@
     slider1063.maximumValue = 100.0;
     slider1063.sliderClick = ^(UISlider *slider){
         imageContrast = slider.value;
-        // imageview106.image = [image imageAdjustWithSaturation:imageSaturation brightness:imageBrightness contrast:imageContrast];
-        [image imageAdjustWithSaturation:imageSaturation brightness:imageBrightness contrast:imageContrast image:^(UIImage *image) {
+        // imageview106.image = [image100 imageAdjustWithSaturation:imageSaturation brightness:imageBrightness contrast:imageContrast];
+        [image100 imageAdjustWithSaturation:imageSaturation brightness:imageBrightness contrast:imageContrast image:^(UIImage *image) {
             imageview106.image = image;
         }];
     };

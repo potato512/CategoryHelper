@@ -274,9 +274,9 @@ static NSString *const keyViewTextLabel = @"viewTextLabel";
 }
 
 // 缩放
-- (void)viewScaleWithSizeX:(CGFloat)x sizeY:(CGFloat)y
+- (void)viewScaleWithSize:(CGFloat)size
 {
-    self.transform = CGAffineTransformScale(self.transform, x, y);
+    self.transform = CGAffineTransformScale(self.transform, size, size);
 }
 
 // 水平，或垂直翻转
@@ -284,11 +284,11 @@ static NSString *const keyViewTextLabel = @"viewTextLabel";
 {
     if (ViewFlipTypeHorizontal == type)
     {
-        self.transform = CGAffineTransformScale(self.transform, 1.0, -1.0);
+        self.transform = CGAffineTransformScale(self.transform, -1.0, 1.0);
     }
     else if (ViewFlipTypeVertical == type)
     {
-        self.transform = CGAffineTransformScale(self.transform, -1.0, 1.0);
+        self.transform = CGAffineTransformScale(self.transform, 1.0, -1.0);
     }
 }
 

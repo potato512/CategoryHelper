@@ -40,29 +40,31 @@
 
 - (void)setUI
 {
-    CGFloat originY = 10.0;
+    UIScrollView *scrollview = [[UIScrollView alloc] initWithFrame:self.view.bounds];
+    [self.view addSubview:scrollview];
+    scrollview.autoresizingMask = UIViewAutoresizingFlexibleHeight;
     
-    UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(10.0, originY, 100.0, 100.0)];
-    [self.view addSubview:label];
+    UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(10.0, 10.0, 100.0, 100.0)];
+    [scrollview addSubview:label];
     label.backgroundColor = [UIColor greenColor];
     label.text = @"圆角边框";
     [label layerWithRadius:10.0 borderColor:[UIColor redColor] borderWidth:5.0];
     
     
-    originY += (label.height + 10.0);
+    UIView *currentView = label;
     
-    UILabel *label2 = [[UILabel alloc] initWithFrame:CGRectMake(10.0, originY, (self.view.width - 10.0 * 2), 100.0)];
-    [self.view addSubview:label2];
+    UILabel *label2 = [[UILabel alloc] initWithFrame:CGRectMake(10.0, (currentView.bottom + 10.0), (scrollview.width - 10.0 * 2), 100.0)];
+    [scrollview addSubview:label2];
     label2.backgroundColor = [UIColor yellowColor];
     label2.font = kFontWithSize(12.0);
     label2.text = @"多行显示：\nUILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(10.0, 10.0, 100.0, 100.0)];\n[self.view addSubview:label];\nlabel.backgroundColor = [UIColor greenColor];\nlabel.text = ...;\n[label2 labelAutoSize:SYLabelAutoSizeTypeAll];";
     [label2 labelAutoSize:SYLabelAutoSizeTypeAll];
     
     
-    originY += (label2.height + 10.0);
+    currentView = label2;
     
-    UILabel *label3 = [[UILabel alloc] initWithFrame:CGRectMake(10.0, originY, (self.view.width - 10.0 * 2), 30.0)];
-    [self.view addSubview:label3];
+    UILabel *label3 = [[UILabel alloc] initWithFrame:CGRectMake(10.0, (currentView.bottom + 10.0), (scrollview.width - 10.0 * 2), 30.0)];
+    [scrollview addSubview:label3];
     label3.backgroundColor = [UIColor purpleColor];
     label3.font = kFontWithSize(12.0);
     label3.text = @"修改标签栏信息：devZhang";
@@ -70,10 +72,10 @@
     [label3 labelAttributedText:@"devZhang" color:[UIColor redColor] font:kFontWithSize(20.0) space:1.0 rowSpace:0.0];
     
     
-    originY += (label3.height + 10.0);
+    currentView = label3;
     
-    UILabel *label4 = [[UILabel alloc] initWithFrame:CGRectMake(10.0, originY, 80.0, 40.0)];
-    [self.view addSubview:label4];
+    UILabel *label4 = [[UILabel alloc] initWithFrame:CGRectMake(10.0, (currentView.bottom + 10.0), 80.0, 40.0)];
+    [scrollview addSubview:label4];
     label4.backgroundColor = [UIColor brownColor];
     label4.text = @"双击响应";
     [label4 tapRecognizer:2 action:^(UITapGestureRecognizer *recognizer) {
@@ -87,8 +89,10 @@
         }];
     }];
     
-    UILabel *label5 = [[UILabel alloc] initWithFrame:CGRectMake((label4.right + 10.0), label4.top, 80.0, 40.0)];
-    [self.view addSubview:label5];
+    currentView = label4;
+    
+    UILabel *label5 = [[UILabel alloc] initWithFrame:CGRectMake((label4.right + 10.0), currentView.top, 80.0, 40.0)];
+    [scrollview addSubview:label5];
     label5.backgroundColor = [UIColor brownColor];
     label5.text = @"长按响应";
     [label5 longPressRecognizer:2.0 action:^(UILongPressGestureRecognizer *recognizer) {
@@ -103,16 +107,15 @@
     }];
     
     
-    originY += (label5.height + 10.0);
-    
-    UILabel *label6 = [[UILabel alloc] initWithFrame:CGRectMake(10.0, originY, 100.0, 100.0)];
-    [self.view addSubview:label6];
+    UILabel *label6 = [[UILabel alloc] initWithFrame:CGRectMake(10.0, (currentView.bottom + 10.0), 100.0, 100.0)];
+    [scrollview addSubview:label6];
     label6.backgroundColor = [UIColor orangeColor];
     label6.text = @"毛玻璃效果";
     [label6 effectViewWithAlpha:0.4];
 
+    currentView = label6;
     
-
+    scrollview.contentSize = CGSizeMake(scrollview.width, (currentView.bottom + 10.0));
 }
 
 @end

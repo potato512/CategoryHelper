@@ -86,7 +86,7 @@ typedef NS_ENUM(NSInteger, ViewFlipType)
 - (void)viewTransformWithRotation:(CGFloat)rotation;
 
 /// 缩放
-- (void)viewScaleWithSizeX:(CGFloat)x sizeY:(CGFloat)y;
+- (void)viewScaleWithSize:(CGFloat)size;
 
 /// 水平，或垂直翻转
 - (void)viewFlipType:(ViewFlipType)type;
