@@ -13,7 +13,7 @@
 /**
  *  将十六进制颜色转换为 UIColor 对象
  *
- *  @param color 十六进制颜色，如@"#ffffff"，或@"0Xffffff"
+ *  @param color 十六进制颜色（如@"#ffffff"，或@"0Xffffff"/@"0xffffff"/@"OXffffff"/@"Oxffffff"/@"oXffffff"/@"oxffffff"）
  *
  *  @return UIColor 对象
  */

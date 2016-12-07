@@ -13,7 +13,7 @@
 /**
  *  将十六进制颜色转换为 UIColor 对象
  *
- *  @param color 十六进制颜色，如@"#ffffff"，或@"0Xffffff"
+ *  @param color 十六进制颜色（如@"#ffffff"，或@"0Xffffff"/@"0xffffff"/@"OXffffff"/@"Oxffffff"/@"oXffffff"/@"oxffffff"）
  *
  *  @return UIColor 对象
  */
@@ -26,7 +26,7 @@
         return [UIColor clearColor];
     }
     
-    if ([colorString hasPrefix:@"OX"])
+    if ([colorString hasPrefix:@"0X"] | [colorString hasPrefix:@"0x"] | [colorString hasPrefix:@"OX"] | [colorString hasPrefix:@"Ox"] | [colorString hasPrefix:@"oX"] | [colorString hasPrefix:@"ox"])
     {
         colorString = [colorString substringFromIndex:2];
     }
