@@ -6,8 +6,8 @@
 //  Copyright © 2016年 zhangshaoyu. All rights reserved.
 //
 
-#import <UIKit/UIKit.h>
+#import "SYViewController.h"
 
-@interface GestureViewController : UIViewController
+@interface GestureViewController : SYViewController
 
 @end

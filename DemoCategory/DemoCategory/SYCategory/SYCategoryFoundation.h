@@ -11,6 +11,8 @@
 #import "NSString+SYCategory.h"
 #import "NSString+SYRegular.h"
 #import "NSString+SYJSON.h"
+#import "NSString+SYMD5.h"
+#import "NSString+SYBase64.h"
 #import "NSAttributedString+SYCategory.h"
 #import "NSNumber+SYCategory.h"
 #import "NSObject+SYCategory.h"

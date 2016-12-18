@@ -32,16 +32,6 @@
     // Dispose of any resources that can be recreated.
 }
 
-- (void)loadView
-{
-    [super loadView];
-    self.view.backgroundColor = [UIColor whiteColor];
-    if ([self respondsToSelector:@selector(setEdgesForExtendedLayout:)])
-    {
-        [self setEdgesForExtendedLayout:UIRectEdgeNone];
-    }
-}
-
 - (void)setUI
 {
     UIImageView *imageview = [[UIImageView alloc] initWithFrame:CGRectMake(10.0, 10.0, self.view.width - 10.0 * 2, self.view.height - 10.0 * 2)];
@@ -53,10 +43,11 @@
 
 - (void)cameraClick:(UIBarButtonItem *)item
 {
+    kSelfWeak;
     [UIImagePickerController pickerImageWithType:UIImagePickerControllerSourceTypeCamera target:self complete:^(UIImage *image) {
         if (image)
         {
-            UIImageView *imageview = (UIImageView *)[self.view viewWithTag:1000];
+            UIImageView *imageview = (UIImageView *)[weakSelf.view viewWithTag:1000];
             imageview.image = image;
         }
         else
@@ -72,10 +63,11 @@
 
 - (void)photoClick:(UIBarButtonItem *)item
 {
+    kSelfWeak;
     [UIImagePickerController pickerImageWithType:UIImagePickerControllerSourceTypePhotoLibrary target:self complete:^(UIImage *image) {
         if (image)
         {
-            UIImageView *imageview = (UIImageView *)[self.view viewWithTag:1000];
+            UIImageView *imageview = (UIImageView *)[weakSelf.view viewWithTag:1000];
             imageview.image = image;
         }
         else

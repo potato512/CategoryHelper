@@ -28,16 +28,6 @@
     // Dispose of any resources that can be recreated.
 }
 
-- (void)loadView
-{
-    [super loadView];
-    self.view.backgroundColor = [UIColor whiteColor];
-    if ([self respondsToSelector:@selector(setEdgesForExtendedLayout:)])
-    {
-        [self setEdgesForExtendedLayout:UIRectEdgeNone];
-    }
-}
-
 - (void)setUI
 {
     UIScrollView *scrollview = [[UIScrollView alloc] initWithFrame:self.view.bounds];
@@ -78,8 +68,9 @@
     [scrollview addSubview:label4];
     label4.backgroundColor = [UIColor brownColor];
     label4.text = @"双击响应";
+    kSelfWeak;
     [label4 tapRecognizer:2 action:^(UITapGestureRecognizer *recognizer) {
-        [UIAlertView alertWithTitle:@"label双击事件" message:@"labe被双击了~" cancelButtonTitle:nil otherButtonTitles:@[@"知道了"] controller:self onDismiss:^(int buttonIndex, NSString *buttonTitle) {
+        [UIAlertView alertWithTitle:@"label双击事件" message:@"labe被双击了~" cancelButtonTitle:nil otherButtonTitles:@[@"知道了"] controller:weakSelf onDismiss:^(int buttonIndex, NSString *buttonTitle) {
             if ([buttonTitle isEqualToString:@"知道了"])
             {
                 
@@ -96,7 +87,7 @@
     label5.backgroundColor = [UIColor brownColor];
     label5.text = @"长按响应";
     [label5 longPressRecognizer:2.0 action:^(UILongPressGestureRecognizer *recognizer) {
-        [UIAlertView alertWithTitle:@"label长按事件" message:@"labe被长按了2秒~" cancelButtonTitle:nil otherButtonTitles:@[@"知道了"] controller:self onDismiss:^(int buttonIndex, NSString *buttonTitle) {
+        [UIAlertView alertWithTitle:@"label长按事件" message:@"labe被长按了2秒~" cancelButtonTitle:nil otherButtonTitles:@[@"知道了"] controller:weakSelf onDismiss:^(int buttonIndex, NSString *buttonTitle) {
             if ([buttonTitle isEqualToString:@"知道了"])
             {
                 

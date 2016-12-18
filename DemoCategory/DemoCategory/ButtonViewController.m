@@ -28,16 +28,6 @@
     // Dispose of any resources that can be recreated.
 }
 
-- (void)loadView
-{
-    [super loadView];
-    self.view.backgroundColor = [UIColor whiteColor];
-    if ([self respondsToSelector:@selector(setEdgesForExtendedLayout:)])
-    {
-        [self setEdgesForExtendedLayout:UIRectEdgeNone];
-    }
-}
-
 - (void)viewWillDisappear:(BOOL)animated
 {
     [super viewWillDisappear:animated];
@@ -60,11 +50,13 @@
     button.backgroundColor = [UIColor colorRandom];
     [button setTitle:@"edit" forState:UIControlStateNormal];
     [button setTitle:@"done" forState:UIControlStateSelected];
+    
+    kSelfWeak;
     button.buttonClick = ^(UIButton *button){
         button.selected = !button.selected;
         if (button.selected)
         {
-            [UIAlertView alertWithTitle:@"温馨提示" message:@"开始编辑" cancelButtonTitle:@"取消" otherButtonTitles:@[@"确认"] controller:self onDismiss:^(int buttonIndex, NSString *buttonTitle) {
+            [UIAlertView alertWithTitle:@"温馨提示" message:@"开始编辑" cancelButtonTitle:@"取消" otherButtonTitles:@[@"确认"] controller:weakSelf onDismiss:^(int buttonIndex, NSString *buttonTitle) {
                 if ([buttonTitle isEqualToString:@"确认"])
                 {
                     NSLog(@"点击了确认");

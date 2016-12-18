@@ -18,7 +18,7 @@ static SaveBlock saveBlock;
 
 static UIImagePickerControllerSourceType sourceTypePicker;
 static BOOL isSavePhoto;
-static UIViewController *targetController;
+static UIViewController __weak *targetController;
 
 @implementation UIImagePickerController (SYCategory)
 

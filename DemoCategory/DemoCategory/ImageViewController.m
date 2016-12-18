@@ -31,16 +31,6 @@
     // Dispose of any resources that can be recreated.
 }
 
-- (void)loadView
-{
-    [super loadView];
-    self.view.backgroundColor = [UIColor whiteColor];
-    if ([self respondsToSelector:@selector(setEdgesForExtendedLayout:)])
-    {
-        [self setEdgesForExtendedLayout:UIRectEdgeNone];
-    }
-}
-
 - (void)setUI
 {
     UIScrollView *scrollview = [[UIScrollView alloc] initWithFrame:self.view.bounds];
@@ -51,7 +41,7 @@
     CGFloat sizeImage = 90.0;
     
     // 本地图片-模糊处理
-    UIImageView *imageview = [[UIImageView alloc] initWithFrame:CGRectMake(originXY, originXY, sizeImage, sizeImage)];
+    __block UIImageView *imageview = [[UIImageView alloc] initWithFrame:CGRectMake(originXY, originXY, sizeImage, sizeImage)];
     [scrollview addSubview:imageview];
     imageview.viewText = @"本地图片-模糊";
     imageview.viewTextColor = [UIColor redColor];
@@ -166,7 +156,7 @@
     filterScrollView.backgroundColor = [UIColor colorRandom];
     for (int i = 0; i < 8; i++)
     {
-        UIImageView *subImageview = [[UIImageView alloc] initWithFrame:CGRectMake(originXY + (i * (sizeImage + originXY)), originXY, sizeImage, sizeImage)];
+        __block UIImageView *subImageview = [[UIImageView alloc] initWithFrame:CGRectMake(originXY + (i * (sizeImage + originXY)), originXY, sizeImage, sizeImage)];
         [filterScrollView addSubview:subImageview];
         [subImageview layerWithRadius:5.0 borderColor:[UIColor colorRandom] borderWidth:1.0];
         UIImage *image = [UIImage imageNamed:@"header_girl"];
@@ -254,9 +244,9 @@
     currentView = filterScrollView;
     
     // 可调节的模糊处理
-    UIImage *image100 = [UIImage imageNamed:@"girl"];
+    __block UIImage *image100 = [UIImage imageNamed:@"girl"];
     
-    UIImageView *imageview101 = [[UIImageView alloc] initWithFrame:CGRectMake(originXY, (currentView.bottom + originXY), sizeImage, sizeImage)];
+    __block UIImageView *imageview101 = [[UIImageView alloc] initWithFrame:CGRectMake(originXY, (currentView.bottom + originXY), sizeImage, sizeImage)];
     [scrollview addSubview:imageview101];
     imageview101.viewText = @"高期的模糊";
     imageview101.image = image100;
@@ -275,7 +265,7 @@
         }];
     };
     
-    UIImageView *imageview102 = [[UIImageView alloc] initWithFrame:CGRectMake(originXY, (currentView.bottom + originXY), sizeImage, sizeImage)];
+    __block UIImageView *imageview102 = [[UIImageView alloc] initWithFrame:CGRectMake(originXY, (currentView.bottom + originXY), sizeImage, sizeImage)];
     [scrollview addSubview:imageview102];
     imageview102.viewText = @"均值模糊";
     imageview102.image = image100;
@@ -294,7 +284,7 @@
         }];
     };
 
-    UIImageView *imageview103 = [[UIImageView alloc] initWithFrame:CGRectMake(originXY, (currentView.bottom + originXY), sizeImage, sizeImage)];
+    __block UIImageView *imageview103 = [[UIImageView alloc] initWithFrame:CGRectMake(originXY, (currentView.bottom + originXY), sizeImage, sizeImage)];
     [scrollview addSubview:imageview103];
     imageview103.viewText = @"环形卷积模糊";
     imageview103.image = image100;
@@ -313,7 +303,7 @@
         }];
     };
     
-    UIImageView *imageview104 = [[UIImageView alloc] initWithFrame:CGRectMake(originXY, (currentView.bottom + originXY), sizeImage, sizeImage)];
+    __block UIImageView *imageview104 = [[UIImageView alloc] initWithFrame:CGRectMake(originXY, (currentView.bottom + originXY), sizeImage, sizeImage)];
     [scrollview addSubview:imageview104];
     imageview104.viewText = @"中值模糊";
     imageview104.image = image100;
@@ -332,7 +322,7 @@
         }];
     };
     
-    UIImageView *imageview105 = [[UIImageView alloc] initWithFrame:CGRectMake(originXY, (currentView.bottom + originXY), sizeImage, sizeImage)];
+    __block UIImageView *imageview105 = [[UIImageView alloc] initWithFrame:CGRectMake(originXY, (currentView.bottom + originXY), sizeImage, sizeImage)];
     [scrollview addSubview:imageview105];
     imageview105.viewText = @"运动模糊";
     imageview105.image = image100;
@@ -355,7 +345,7 @@
     imageSaturation = 100.0;
     imageBrightness = 100.0;
     imageContrast = 100.0;
-    UIImageView *imageview106 = [[UIImageView alloc] initWithFrame:CGRectMake(originXY, (currentView.bottom + originXY), sizeImage, sizeImage)];
+    __block UIImageView *imageview106 = [[UIImageView alloc] initWithFrame:CGRectMake(originXY, (currentView.bottom + originXY), sizeImage, sizeImage)];
     [scrollview addSubview:imageview106];
     imageview106.viewText = @"饱和度、亮度、对比度";
     imageview106.image = image100;
@@ -399,7 +389,7 @@
     };
     
     // 相册图片
-    UIScrollView *photoScrollview = [[UIScrollView alloc] initWithFrame:CGRectMake(0.0, (currentView.bottom + originXY), scrollview.width, (sizeImage + originXY * 2))];
+    __block UIScrollView *photoScrollview = [[UIScrollView alloc] initWithFrame:CGRectMake(0.0, (currentView.bottom + originXY), scrollview.width, (sizeImage + originXY * 2))];
     [scrollview addSubview:photoScrollview];
     photoScrollview.backgroundColor = [UIColor colorRandom];
     __block UIView *photoView = [[UIView alloc] initWithFrame:CGRectMake(0.0, 0.0, photoScrollview.width, photoScrollview.height)];

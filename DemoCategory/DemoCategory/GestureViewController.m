@@ -28,16 +28,6 @@
     // Dispose of any resources that can be recreated.
 }
 
-- (void)loadView
-{
-    [super loadView];
-    self.view.backgroundColor = [UIColor whiteColor];
-    if ([self respondsToSelector:@selector(setEdgesForExtendedLayout:)])
-    {
-        [self setEdgesForExtendedLayout:UIRectEdgeNone];
-    }
-}
-
 - (void)setUI
 {
     UIScrollView *scrollerview = [[UIScrollView alloc] initWithFrame:self.view.bounds];
@@ -49,8 +39,10 @@
     [scrollerview addSubview:view01];
     view01.backgroundColor = [UIColor colorRandom];
     view01.viewText = @"单击手势";
+    
+    kSelfWeak;
     [view01 tapRecognizer:1 action:^(UITapGestureRecognizer *recognizer) {
-        [UIAlertView alertWithTitle:nil message:@"单击手势" cancelButtonTitle:@"知道了" otherButtonTitles:nil controller:self onDismiss:^(int buttonIndex, NSString *buttonTitle) {
+        [UIAlertView alertWithTitle:nil message:@"单击手势" cancelButtonTitle:@"知道了" otherButtonTitles:nil controller:weakSelf onDismiss:^(int buttonIndex, NSString *buttonTitle) {
             
         } onCancel:^{
             
@@ -64,7 +56,7 @@
     view02.backgroundColor = [UIColor colorRandom];
     view02.viewText = @"双击手势";
     [view02 tapRecognizer:2 action:^(UITapGestureRecognizer *recognizer) {
-        [UIAlertView alertWithTitle:nil message:@"双击手势" cancelButtonTitle:@"知道了" otherButtonTitles:nil controller:self onDismiss:^(int buttonIndex, NSString *buttonTitle) {
+        [UIAlertView alertWithTitle:nil message:@"双击手势" cancelButtonTitle:@"知道了" otherButtonTitles:nil controller:weakSelf onDismiss:^(int buttonIndex, NSString *buttonTitle) {
             
         } onCancel:^{
             
@@ -78,7 +70,7 @@
     view03.backgroundColor = [UIColor colorRandom];
     view03.viewText = @"长按手势-2秒";
     [view03 longPressRecognizer:2.0 action:^(UILongPressGestureRecognizer *recognizer) {
-        [UIAlertView alertWithTitle:nil message:@"长按手势-2秒" cancelButtonTitle:@"知道了" otherButtonTitles:nil controller:self onDismiss:^(int buttonIndex, NSString *buttonTitle) {
+        [UIAlertView alertWithTitle:nil message:@"长按手势-2秒" cancelButtonTitle:@"知道了" otherButtonTitles:nil controller:weakSelf onDismiss:^(int buttonIndex, NSString *buttonTitle) {
             
         } onCancel:^{
             
@@ -92,7 +84,7 @@
     view04.backgroundColor = [UIColor colorRandom];
     view04.viewText = @"拖动手势";
     [view04 panRecognizer:^(UIPanGestureRecognizer *recognizer) {
-        [UIAlertView alertWithTitle:nil message:@"拖动手势" cancelButtonTitle:@"知道了" otherButtonTitles:nil controller:self onDismiss:^(int buttonIndex, NSString *buttonTitle) {
+        [UIAlertView alertWithTitle:nil message:@"拖动手势" cancelButtonTitle:@"知道了" otherButtonTitles:nil controller:weakSelf onDismiss:^(int buttonIndex, NSString *buttonTitle) {
             
         } onCancel:^{
             
@@ -106,7 +98,7 @@
     view05.backgroundColor = [UIColor colorRandom];
     view05.viewText = @"滑动手势-向右";
     [view05 swipeRecognizer:UISwipeGestureRecognizerDirectionRight action:^(UISwipeGestureRecognizer *recognizer) {
-        [UIAlertView alertWithTitle:nil message:@"滑动手势-向右" cancelButtonTitle:@"知道了" otherButtonTitles:nil controller:self onDismiss:^(int buttonIndex, NSString *buttonTitle) {
+        [UIAlertView alertWithTitle:nil message:@"滑动手势-向右" cancelButtonTitle:@"知道了" otherButtonTitles:nil controller:weakSelf onDismiss:^(int buttonIndex, NSString *buttonTitle) {
             
         } onCancel:^{
             
@@ -120,7 +112,7 @@
     view06.backgroundColor = [UIColor colorRandom];
     view06.viewText = @"拿捏手势";
     [view06 pinchRecognizer:^(UIPinchGestureRecognizer *recognizer) {
-        [UIAlertView alertWithTitle:nil message:@"拿捏手势" cancelButtonTitle:@"知道了" otherButtonTitles:nil controller:self onDismiss:^(int buttonIndex, NSString *buttonTitle) {
+        [UIAlertView alertWithTitle:nil message:@"拿捏手势" cancelButtonTitle:@"知道了" otherButtonTitles:nil controller:weakSelf onDismiss:^(int buttonIndex, NSString *buttonTitle) {
             
         } onCancel:^{
             
@@ -134,7 +126,7 @@
     view07.backgroundColor = [UIColor colorRandom];
     view07.viewText = @"旋转手势";
     [view07 rotationRecognizer:^(UIRotationGestureRecognizer *recognizer) {
-        [UIAlertView alertWithTitle:nil message:@"旋转手势" cancelButtonTitle:@"知道了" otherButtonTitles:nil controller:self onDismiss:^(int buttonIndex, NSString *buttonTitle) {
+        [UIAlertView alertWithTitle:nil message:@"旋转手势" cancelButtonTitle:@"知道了" otherButtonTitles:nil controller:weakSelf onDismiss:^(int buttonIndex, NSString *buttonTitle) {
             
         } onCancel:^{
             

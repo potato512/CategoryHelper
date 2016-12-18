@@ -21,16 +21,12 @@
         if (aColor)
         {
             // 颜色
-            [attString addAttribute:NSForegroundColorAttributeName
-                              value:aColor
-                              range:range];
+            [attString addAttribute:NSForegroundColorAttributeName value:aColor range:range];
         }
         if (aFont)
         {
             // 字体
-            [attString addAttribute:NSFontAttributeName
-                              value:aFont
-                              range:range];
+            [attString addAttribute:NSFontAttributeName value:aFont range:range];
         }
     }
 }

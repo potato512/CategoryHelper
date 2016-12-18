@@ -28,16 +28,6 @@
     // Dispose of any resources that can be recreated.
 }
 
-- (void)loadView
-{
-    [super loadView];
-    self.view.backgroundColor = [UIColor whiteColor];
-    if ([self respondsToSelector:@selector(setEdgesForExtendedLayout:)])
-    {
-        [self setEdgesForExtendedLayout:UIRectEdgeNone];
-    }
-}
-
 - (void)setUI
 {
     UIButton *button = [UIButton buttonWithType: UIButtonTypeCustom];
@@ -45,8 +35,10 @@
     button.frame = CGRectMake(10.0, 10.0, (self.view.width - 10.0 * 2), 40.0);
     button.backgroundColor = [UIColor colorRandom];
     [button setTitle:@"UIAlertView弹窗提示" forState:UIControlStateNormal];
+    
+    kSelfWeak;
     button.buttonClick = ^(UIButton *button){
-        [UIAlertView alertWithTitle:@"温馨提示" message:@"UIAlertView弹窗提示" cancelButtonTitle:@"取消" otherButtonTitles:@[@"知道了", @"拒绝了", @"警告了"] controller:self onDismiss:^(int buttonIndex, NSString *buttonTitle) {
+        [UIAlertView alertWithTitle:@"温馨提示" message:@"UIAlertView弹窗提示" cancelButtonTitle:@"取消" otherButtonTitles:@[@"知道了", @"拒绝了", @"警告了"] controller:weakSelf onDismiss:^(int buttonIndex, NSString *buttonTitle) {
             if ([buttonTitle isEqualToString:@"知道了"])
             {
                 NSLog(@"知道了");
@@ -73,7 +65,7 @@
     button2.backgroundColor = [UIColor colorRandom];
     [button2 setTitle:@"UIAlertController弹窗提示" forState:UIControlStateNormal];
     button2.buttonClick = ^(UIButton *button){
-        [UIAlertController alertWithViewType:AlertControllerTypeAlert title:@"温馨提示" message:@"UIAlertController弹窗提示" cancelButtonTitle:@"取消" otherButtonTitles:@[@"知道了", @"拒绝了", @"警告了"] controller:self showInView:self.view onDismiss:^(int buttonIndex, NSString *buttonTitle) {
+        [UIAlertController alertWithViewType:AlertControllerTypeAlert title:@"温馨提示" message:@"UIAlertController弹窗提示" cancelButtonTitle:@"取消" otherButtonTitles:@[@"知道了", @"拒绝了", @"警告了"] controller:weakSelf showInView:weakSelf.view onDismiss:^(int buttonIndex, NSString *buttonTitle) {
             if ([buttonTitle isEqualToString:@"知道了"])
             {
                 NSLog(@"知道了");
@@ -99,7 +91,7 @@
     button3.backgroundColor = [UIColor colorRandom];
     [button3 setTitle:@"UIActionSheet表单提示" forState:UIControlStateNormal];
     button3.buttonClick = ^(UIButton *button){
-        [UIActionSheet actionSheetWithTitle:@"温馨提示" message:@"UIActionSheet表单提示" cancelButtonTitle:@"取消" otherButtonTitles:@[@"知道了", @"拒绝了", @"警告了"] controller:self showInView:self.view onDismiss:^(int buttonIndex, NSString *buttonTitle) {
+        [UIActionSheet actionSheetWithTitle:@"温馨提示" message:@"UIActionSheet表单提示" cancelButtonTitle:@"取消" otherButtonTitles:@[@"知道了", @"拒绝了", @"警告了"] controller:weakSelf showInView:weakSelf.view onDismiss:^(int buttonIndex, NSString *buttonTitle) {
             if ([buttonTitle isEqualToString:@"知道了"])
             {
                 NSLog(@"知道了");
@@ -125,7 +117,7 @@
     button4.backgroundColor = [UIColor colorRandom];
     [button4 setTitle:@"UIAlertController表单提示" forState:UIControlStateNormal];
     button4.buttonClick = ^(UIButton *button){
-        [UIAlertController alertWithViewType:AlertControllerTypeActionSheet title:@"温馨提示" message:@"UIAlertController表单提示" cancelButtonTitle:@"取消" otherButtonTitles:@[@"知道了", @"拒绝了", @"警告了"] controller:self showInView:self.view onDismiss:^(int buttonIndex, NSString *buttonTitle) {
+        [UIAlertController alertWithViewType:AlertControllerTypeActionSheet title:@"温馨提示" message:@"UIAlertController表单提示" cancelButtonTitle:@"取消" otherButtonTitles:@[@"知道了", @"拒绝了", @"警告了"] controller:weakSelf showInView:weakSelf.view onDismiss:^(int buttonIndex, NSString *buttonTitle) {
             if ([buttonTitle isEqualToString:@"知道了"])
             {
                 NSLog(@"知道了");

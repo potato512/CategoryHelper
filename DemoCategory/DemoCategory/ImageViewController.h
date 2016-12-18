@@ -6,8 +6,8 @@
 //  Copyright © 2016年 zhangshaoyu. All rights reserved.
 //
 
-#import <UIKit/UIKit.h>
+#import "SYViewController.h"
 
-@interface ImageViewController : UIViewController
+@interface ImageViewController : SYViewController
 
 @end
