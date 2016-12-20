@@ -10,4 +10,9 @@
 
 @interface SYViewController : UIViewController
 
+/**
+ *  是否通过点击视图控制器隐藏键盘（默认NO）
+ */
+@property (nonatomic, assign) BOOL isHieddenKeyboard;
+
 @end

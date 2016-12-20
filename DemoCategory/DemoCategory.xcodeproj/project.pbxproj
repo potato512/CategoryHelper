@@ -10,7 +10,19 @@
 		A73F85B91DF806B7006DBA3B /* UIImage+SYFilter.m in Sources */ = {isa = PBXBuildFile; fileRef = A73F85B81DF806B7006DBA3B /* UIImage+SYFilter.m */; };
 		A73F85BC1DF806D6006DBA3B /* UIImage+SYBytes.m in Sources */ = {isa = PBXBuildFile; fileRef = A73F85BB1DF806D6006DBA3B /* UIImage+SYBytes.m */; };
 		A73F85BF1DF807C1006DBA3B /* UIImage+SYAssetsLibrary.m in Sources */ = {isa = PBXBuildFile; fileRef = A73F85BE1DF807C1006DBA3B /* UIImage+SYAssetsLibrary.m */; };
+		A751EBC31E0926220058BB67 /* NSStringViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A751EBC21E0926220058BB67 /* NSStringViewController.m */; };
 		A75B285F1DE7E00A0002E8A6 /* image.png in Resources */ = {isa = PBXBuildFile; fileRef = A75B285E1DE7E00A0002E8A6 /* image.png */; };
+		A767E1241E09308800F62952 /* NSObjectViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A767E1231E09308800F62952 /* NSObjectViewController.m */; };
+		A767E1271E09309300F62952 /* NSFileManagerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A767E1261E09309300F62952 /* NSFileManagerViewController.m */; };
+		A767E12A1E09309C00F62952 /* NSNumberViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A767E1291E09309C00F62952 /* NSNumberViewController.m */; };
+		A767E12D1E0930A400F62952 /* NSArrayViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A767E12C1E0930A400F62952 /* NSArrayViewController.m */; };
+		A767E1301E0930AE00F62952 /* NSDictionaryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A767E12F1E0930AE00F62952 /* NSDictionaryViewController.m */; };
+		A767E1331E0930B600F62952 /* NSTimerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A767E1321E0930B600F62952 /* NSTimerViewController.m */; };
+		A767E1361E0930C400F62952 /* NSURLConnectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A767E1351E0930C400F62952 /* NSURLConnectionViewController.m */; };
+		A767E1391E0930CC00F62952 /* NSDateViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A767E1381E0930CC00F62952 /* NSDateViewController.m */; };
+		A767E13C1E0930E000F62952 /* NSNotificationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A767E13B1E0930E000F62952 /* NSNotificationViewController.m */; };
+		A767E13F1E0930EE00F62952 /* NSUserDefaultViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A767E13E1E0930EE00F62952 /* NSUserDefaultViewController.m */; };
+		A767E1421E09311500F62952 /* NSDataViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A767E1411E09311500F62952 /* NSDataViewController.m */; };
 		A769595D1DF03CB30077F572 /* image2.png in Resources */ = {isa = PBXBuildFile; fileRef = A76959591DF03CB30077F572 /* image2.png */; };
 		A769595E1DF03CB30077F572 /* header_boy.png in Resources */ = {isa = PBXBuildFile; fileRef = A769595A1DF03CB30077F572 /* header_boy.png */; };
 		A769595F1DF03CB30077F572 /* girl.png in Resources */ = {isa = PBXBuildFile; fileRef = A769595B1DF03CB30077F572 /* girl.png */; };
@@ -100,7 +112,31 @@
 		A73F85BB1DF806D6006DBA3B /* UIImage+SYBytes.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+SYBytes.m"; sourceTree = "<group>"; };
 		A73F85BD1DF807C1006DBA3B /* UIImage+SYAssetsLibrary.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+SYAssetsLibrary.h"; sourceTree = "<group>"; };
 		A73F85BE1DF807C1006DBA3B /* UIImage+SYAssetsLibrary.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+SYAssetsLibrary.m"; sourceTree = "<group>"; };
+		A751EBC11E0926220058BB67 /* NSStringViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NSStringViewController.h; sourceTree = "<group>"; };
+		A751EBC21E0926220058BB67 /* NSStringViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NSStringViewController.m; sourceTree = "<group>"; };
 		A75B285E1DE7E00A0002E8A6 /* image.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = image.png; sourceTree = "<group>"; };
+		A767E1221E09308800F62952 /* NSObjectViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NSObjectViewController.h; sourceTree = "<group>"; };
+		A767E1231E09308800F62952 /* NSObjectViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NSObjectViewController.m; sourceTree = "<group>"; };
+		A767E1251E09309300F62952 /* NSFileManagerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NSFileManagerViewController.h; sourceTree = "<group>"; };
+		A767E1261E09309300F62952 /* NSFileManagerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NSFileManagerViewController.m; sourceTree = "<group>"; };
+		A767E1281E09309C00F62952 /* NSNumberViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NSNumberViewController.h; sourceTree = "<group>"; };
+		A767E1291E09309C00F62952 /* NSNumberViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NSNumberViewController.m; sourceTree = "<group>"; };
+		A767E12B1E0930A400F62952 /* NSArrayViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NSArrayViewController.h; sourceTree = "<group>"; };
+		A767E12C1E0930A400F62952 /* NSArrayViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NSArrayViewController.m; sourceTree = "<group>"; };
+		A767E12E1E0930AE00F62952 /* NSDictionaryViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NSDictionaryViewController.h; sourceTree = "<group>"; };
+		A767E12F1E0930AE00F62952 /* NSDictionaryViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NSDictionaryViewController.m; sourceTree = "<group>"; };
+		A767E1311E0930B600F62952 /* NSTimerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NSTimerViewController.h; sourceTree = "<group>"; };
+		A767E1321E0930B600F62952 /* NSTimerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NSTimerViewController.m; sourceTree = "<group>"; };
+		A767E1341E0930C400F62952 /* NSURLConnectionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NSURLConnectionViewController.h; sourceTree = "<group>"; };
+		A767E1351E0930C400F62952 /* NSURLConnectionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NSURLConnectionViewController.m; sourceTree = "<group>"; };
+		A767E1371E0930CC00F62952 /* NSDateViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NSDateViewController.h; sourceTree = "<group>"; };
+		A767E1381E0930CC00F62952 /* NSDateViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NSDateViewController.m; sourceTree = "<group>"; };
+		A767E13A1E0930E000F62952 /* NSNotificationViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NSNotificationViewController.h; sourceTree = "<group>"; };
+		A767E13B1E0930E000F62952 /* NSNotificationViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NSNotificationViewController.m; sourceTree = "<group>"; };
+		A767E13D1E0930EE00F62952 /* NSUserDefaultViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NSUserDefaultViewController.h; sourceTree = "<group>"; };
+		A767E13E1E0930EE00F62952 /* NSUserDefaultViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NSUserDefaultViewController.m; sourceTree = "<group>"; };
+		A767E1401E09311500F62952 /* NSDataViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NSDataViewController.h; sourceTree = "<group>"; };
+		A767E1411E09311500F62952 /* NSDataViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NSDataViewController.m; sourceTree = "<group>"; };
 		A76959591DF03CB30077F572 /* image2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = image2.png; sourceTree = "<group>"; };
 		A769595A1DF03CB30077F572 /* header_boy.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = header_boy.png; sourceTree = "<group>"; };
 		A769595B1DF03CB30077F572 /* girl.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = girl.png; sourceTree = "<group>"; };
@@ -262,7 +298,7 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		A78C0E2D1DED51AA00DB84A0 /* Kit */ = {
+		A78C0E2D1DED51AA00DB84A0 /* KitViewController */ = {
 			isa = PBXGroup;
 			children = (
 				A78C0E211DED513000DB84A0 /* LabelViewController.h */,
@@ -282,14 +318,38 @@
 				A78C0E351DED520F00DB84A0 /* ImagePickerViewController.h */,
 				A78C0E361DED520F00DB84A0 /* ImagePickerViewController.m */,
 			);
-			name = Kit;
+			name = KitViewController;
 			sourceTree = "<group>";
 		};
-		A78C0E2E1DED51BA00DB84A0 /* Foundation */ = {
+		A78C0E2E1DED51BA00DB84A0 /* FoundationViewController */ = {
 			isa = PBXGroup;
 			children = (
+				A751EBC11E0926220058BB67 /* NSStringViewController.h */,
+				A751EBC21E0926220058BB67 /* NSStringViewController.m */,
+				A767E1221E09308800F62952 /* NSObjectViewController.h */,
+				A767E1231E09308800F62952 /* NSObjectViewController.m */,
+				A767E1401E09311500F62952 /* NSDataViewController.h */,
+				A767E1411E09311500F62952 /* NSDataViewController.m */,
+				A767E1251E09309300F62952 /* NSFileManagerViewController.h */,
+				A767E1261E09309300F62952 /* NSFileManagerViewController.m */,
+				A767E1281E09309C00F62952 /* NSNumberViewController.h */,
+				A767E1291E09309C00F62952 /* NSNumberViewController.m */,
+				A767E12B1E0930A400F62952 /* NSArrayViewController.h */,
+				A767E12C1E0930A400F62952 /* NSArrayViewController.m */,
+				A767E12E1E0930AE00F62952 /* NSDictionaryViewController.h */,
+				A767E12F1E0930AE00F62952 /* NSDictionaryViewController.m */,
+				A767E1311E0930B600F62952 /* NSTimerViewController.h */,
+				A767E1321E0930B600F62952 /* NSTimerViewController.m */,
+				A767E1341E0930C400F62952 /* NSURLConnectionViewController.h */,
+				A767E1351E0930C400F62952 /* NSURLConnectionViewController.m */,
+				A767E1371E0930CC00F62952 /* NSDateViewController.h */,
+				A767E1381E0930CC00F62952 /* NSDateViewController.m */,
+				A767E13A1E0930E000F62952 /* NSNotificationViewController.h */,
+				A767E13B1E0930E000F62952 /* NSNotificationViewController.m */,
+				A767E13D1E0930EE00F62952 /* NSUserDefaultViewController.h */,
+				A767E13E1E0930EE00F62952 /* NSUserDefaultViewController.m */,
 			);
-			name = Foundation;
+			name = FoundationViewController;
 			sourceTree = "<group>";
 		};
 		A7D824E11DEC3211006B5633 /* SYResources */ = {
@@ -392,8 +452,8 @@
 				A769595B1DF03CB30077F572 /* girl.png */,
 				A769595C1DF03CB30077F572 /* header_girl.png */,
 				A75B285E1DE7E00A0002E8A6 /* image.png */,
-				A78C0E2D1DED51AA00DB84A0 /* Kit */,
-				A78C0E2E1DED51BA00DB84A0 /* Foundation */,
+				A78C0E2D1DED51AA00DB84A0 /* KitViewController */,
+				A78C0E2E1DED51BA00DB84A0 /* FoundationViewController */,
 				DF18C3081E06993D007D34FF /* SYCommons */,
 				DF18C2FB1E0696A6007D34FF /* SYSubClass */,
 				DFA2051C1D1E371B00929257 /* SYCategory */,
@@ -678,6 +738,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A767E13C1E0930E000F62952 /* NSNotificationViewController.m in Sources */,
 				A78C0E3D1DED843800DB84A0 /* UIImageView+SYCategory.m in Sources */,
 				A73F85BF1DF807C1006DBA3B /* UIImage+SYAssetsLibrary.m in Sources */,
 				A7B05B0F1DE84B84005007DA /* UINavigationController+SYCategory.m in Sources */,
@@ -686,8 +747,10 @@
 				A7B05AFD1DE8175B005007DA /* UIImage+SYCategory.m in Sources */,
 				DF18C2F71E069593007D34FF /* NSString+SYMD5.m in Sources */,
 				DF18C2FA1E069610007D34FF /* NSString+SYBase64.m in Sources */,
+				A767E1421E09311500F62952 /* NSDataViewController.m in Sources */,
 				A7B05B001DE81A23005007DA /* NSNotificationCenter+SYCategory.m in Sources */,
 				A7B05AEB1DE8101D005007DA /* NSDictionary+SYCategory.m in Sources */,
+				A767E1241E09308800F62952 /* NSObjectViewController.m in Sources */,
 				A78601981DEBC97E00FBD482 /* UIScrollView+SYCategory.m in Sources */,
 				A78601951DEBC82500FBD482 /* UIAlertController+SYCategory.m in Sources */,
 				A7B05B091DE8468E005007DA /* NSNumber+SYCategory.m in Sources */,
@@ -698,22 +761,28 @@
 				DF18C3041E06983C007D34FF /* SYNavigationController.m in Sources */,
 				A7B05AE81DE80E69005007DA /* UIView+SYCategory.m in Sources */,
 				A7B05B061DE82A2B005007DA /* UIGestureRecognizer+SYCategory.m in Sources */,
+				A751EBC31E0926220058BB67 /* NSStringViewController.m in Sources */,
 				A7B05AF71DE81698005007DA /* NSURLConnection+SYCategory.m in Sources */,
 				DFA205271D1E3E4E00929257 /* NSArray+SYCategory.m in Sources */,
+				A767E1391E0930CC00F62952 /* NSDateViewController.m in Sources */,
 				A78601A11DEBD72500FBD482 /* UITableViewCell+SYCategory.m in Sources */,
 				A78601A71DEBD7FC00FBD482 /* UITextField+SYCategory.m in Sources */,
 				A78C0E261DED513C00DB84A0 /* ButtonViewController.m in Sources */,
 				A786019E1DEBD6FB00FBD482 /* UICollectionView+SYCategory.m in Sources */,
+				A767E1331E0930B600F62952 /* NSTimerViewController.m in Sources */,
 				A786018F1DEBC77C00FBD482 /* UIButton+SYCategory.m in Sources */,
 				A7B05AF41DE815FF005007DA /* NSTimer+SYCategory.m in Sources */,
 				DFA205241D1E3CE300929257 /* NSString+SYCategory.m in Sources */,
 				DF18C3011E0697EF007D34FF /* SYViewController.m in Sources */,
+				A767E12A1E09309C00F62952 /* NSNumberViewController.m in Sources */,
 				A78C0E2C1DED51A500DB84A0 /* ColorViewController.m in Sources */,
 				A78C0E311DED51D800DB84A0 /* GestureViewController.m in Sources */,
 				A73F85BC1DF806D6006DBA3B /* UIImage+SYBytes.m in Sources */,
 				DFA204F11D1E131C00929257 /* ViewController.m in Sources */,
+				A767E1301E0930AE00F62952 /* NSDictionaryViewController.m in Sources */,
 				A786019B1DEBD6CB00FBD482 /* UITableView+SYCategory.m in Sources */,
 				A78601AA1DEBD86A00FBD482 /* UITextView+SYCategory.m in Sources */,
+				A767E12D1E0930A400F62952 /* NSArrayViewController.m in Sources */,
 				DFA204EE1D1E131C00929257 /* AppDelegate.m in Sources */,
 				A7B05B0C1DE84A93005007DA /* UIViewController+SYCategory.m in Sources */,
 				A78601AD1DEBDCD200FBD482 /* NSAttributedString+SYCategory.m in Sources */,
@@ -721,9 +790,11 @@
 				A7B05AF11DE815CF005007DA /* NSString+SYJSON.m in Sources */,
 				A7EB794F1DF1695E00205153 /* UISlider+SYCategory.m in Sources */,
 				DF18C3071E069866007D34FF /* SYProgressWebView.m in Sources */,
+				A767E1361E0930C400F62952 /* NSURLConnectionViewController.m in Sources */,
 				A786018C1DEBC73800FBD482 /* UIAlertView+SYCategory.m in Sources */,
 				A7B05AEE1DE8108E005007DA /* NSObject+SYCategory.m in Sources */,
 				DFA205211D1E37C500929257 /* NSFileManager+SYCategory.m in Sources */,
+				A767E1271E09309300F62952 /* NSFileManagerViewController.m in Sources */,
 				DFA204EB1D1E131C00929257 /* main.m in Sources */,
 				DFA205421D1E71ED00929257 /* UILabel+SYCategory.m in Sources */,
 				A78C0E341DED51FD00DB84A0 /* AlertSheetViewController.m in Sources */,
@@ -731,6 +802,7 @@
 				A7B05AFC1DE8175B005007DA /* UIColor+SYCategory.m in Sources */,
 				A7B05B031DE82431005007DA /* NSUserDefaults+SYCategory.m in Sources */,
 				A78C0E371DED520F00DB84A0 /* ImagePickerViewController.m in Sources */,
+				A767E13F1E0930EE00F62952 /* NSUserDefaultViewController.m in Sources */,
 				A78C0E231DED513000DB84A0 /* LabelViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

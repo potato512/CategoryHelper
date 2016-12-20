@@ -39,4 +39,14 @@
     }
 }
 
+#pragma mark - 点击事件
+
+- (void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event
+{
+    if (self.isHieddenKeyboard)
+    {
+        [self.view endEditing:YES];
+    }
+}
+
 @end
