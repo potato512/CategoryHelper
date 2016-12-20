@@ -9,9 +9,6 @@
 #import "ImageViewController.h"
 
 @interface ImageViewController ()
-{
-    CGFloat imageSaturation, imageBrightness, imageContrast;
-}
 
 @end
 
@@ -50,7 +47,7 @@
     [imageview effectViewWithAlpha:0.3];
     
     UIView *currentView = imageview;
-    
+
     UISlider *sliderT = [[UISlider alloc] initWithFrame:CGRectMake((currentView.right + originXY), currentView.top, (scrollview.width - currentView.right - originXY * 2), 20.0)];
     [scrollview addSubview:sliderT];
     sliderT.minimumValue = 0.0;
@@ -90,7 +87,7 @@
     imageview2.image = [UIImage imageWithBundleName:@"image.png"];
     
     currentView = imageview2;
-    
+
     // 本地图片-灰色处理
     UIImageView *imageview3 = [[UIImageView alloc] initWithFrame:CGRectMake((currentView.right + originXY), currentView.top, sizeImage, sizeImage)];
     [scrollview addSubview:imageview3];
@@ -104,7 +101,7 @@
     imageview4.image = [UIImage imageWithColor:[UIColor colorRandom] size:CGSizeMake(1.0, 1.0)];
     
     currentView = imageview4;
-    
+
     // 网络图片
     UIImageView *imageview5 = [[UIImageView alloc] initWithFrame:CGRectMake((currentView.right + originXY), currentView.top, sizeImage, sizeImage)];
     [scrollview addSubview:imageview5];
@@ -240,9 +237,9 @@
         }
         filterScrollView.contentSize = CGSizeMake((subImageview.right + originXY), filterScrollView.height);
     }
-    
+
     currentView = filterScrollView;
-    
+
     // 可调节的模糊处理
     __block UIImage *image100 = [UIImage imageNamed:@"girl"];
     
@@ -342,9 +339,9 @@
     };
     
     // 饱和度、亮度、对比度
-    imageSaturation = 100.0;
-    imageBrightness = 100.0;
-    imageContrast = 100.0;
+    __block CGFloat imageSaturation = 100.0;
+    __block CGFloat imageBrightness = 100.0;
+    __block CGFloat imageContrast = 100.0;
     __block UIImageView *imageview106 = [[UIImageView alloc] initWithFrame:CGRectMake(originXY, (currentView.bottom + originXY), sizeImage, sizeImage)];
     [scrollview addSubview:imageview106];
     imageview106.viewText = @"饱和度、亮度、对比度";
@@ -356,6 +353,7 @@
     [scrollview addSubview:slider106];
     slider106.minimumValue = 0.0;
     slider106.maximumValue = 100.0;
+    slider106.viewText = @"饱和度";
     slider106.sliderClick = ^(UISlider *slider){
         imageSaturation = slider.value;
         // imageview106.image = [image100 imageAdjustWithSaturation:imageSaturation brightness:imageBrightness contrast:imageContrast];
@@ -368,6 +366,7 @@
     [scrollview addSubview:slider1062];
     slider1062.minimumValue = 0.0;
     slider1062.maximumValue = 100.0;
+    slider1062.viewText = @"亮度";
     slider1062.sliderClick = ^(UISlider *slider){
         imageBrightness = slider.value;
         // imageview106.image = [image100 imageAdjustWithSaturation:imageSaturation brightness:imageBrightness contrast:imageContrast];
@@ -380,6 +379,7 @@
     [scrollview addSubview:slider1063];
     slider1063.minimumValue = 0.0;
     slider1063.maximumValue = 100.0;
+    slider1063.viewText = @"对比度";
     slider1063.sliderClick = ^(UISlider *slider){
         imageContrast = slider.value;
         // imageview106.image = [image100 imageAdjustWithSaturation:imageSaturation brightness:imageBrightness contrast:imageContrast];
