@@ -20,6 +20,15 @@
     
     self.navigationItemTitle = @"UILabel";
     
+    kSelfWeak;
+    self.navigationItem.rightBarButtonItem = [self itemWithTitle:@"alert" action:^(UIBarButtonItem *item) {
+        [UIAlertView alertWithTitle:@"温馨提示" message:@"item弹窗" cancelButtonTitle:@"取消" otherButtonTitles:@[@"知道了", @"明白了"] controller:weakSelf onDismiss:^(int buttonIndex, NSString *buttonTitle) {
+            DLog(@"点击了：%@", ([buttonTitle isEqualToString:@"明白了"] ? @"明白了" : @"知道了"));
+        } onCancel:^{
+            DLog(@"点击了：取消");
+        }];
+    }];
+    
     [self setUI];
 }
 

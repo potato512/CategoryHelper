@@ -26,6 +26,29 @@
 
 #pragma mark - 导航栏按钮
 
+#pragma mark UIBarButtonItem
+
+/**
+ *  UIBarButtonItem实例
+ *
+ *  @param title  按钮标题
+ *  @param target 响应对象
+ *  @param action 响应方法
+ *
+ *  @return UIBarButtonItem
+ */
+- (UIBarButtonItem *)itemWithTitle:(NSString *)title target:(id)target action:(SEL)action;
+
+/**
+ *  UIBarButtonItem实例
+ *
+ *  @param title  按钮标题
+ *  @param action 按钮响应方法回调
+ *
+ *  @return UIBarButtonItem
+ */
+- (UIBarButtonItem *)itemWithTitle:(NSString *)title action:(void (^)(UIBarButtonItem *item))action;
+
 #pragma mark 导航栏左按钮
 
 /**

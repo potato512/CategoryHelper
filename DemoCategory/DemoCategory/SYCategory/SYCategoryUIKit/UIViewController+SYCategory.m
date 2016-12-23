@@ -22,7 +22,29 @@ static CGFloat const sizeButton = 20.0;
 #define widthScreen  [UIScreen mainScreen].applicationFrame.size.width
 #define heightScreen [UIScreen mainScreen].applicationFrame.size.height
 
+typedef void (^ButtonActionClick)(UIBarButtonItem *item);
+
+@interface UIViewController ()
+
+@property (nonatomic, copy) ButtonActionClick buttonActionClick;
+
+@end
+
 @implementation UIViewController (SYCategory)
+
+#pragma mark - setter/getter
+
+- (void)setButtonActionClick:(ButtonActionClick)buttonActionClick
+{
+    objc_setAssociatedObject(self, @selector(buttonActionClick), buttonActionClick, OBJC_ASSOCIATION_COPY);
+}
+
+- (ButtonActionClick)buttonActionClick
+{
+    return objc_getAssociatedObject(self, @selector(buttonActionClick));
+}
+
+#pragma mark --
 
 /// 是否是根视图
 - (BOOL)isRootController
@@ -114,6 +136,52 @@ static CGFloat const sizeButton = 20.0;
 }
 
 #pragma mark - 导航栏按钮
+
+#pragma mark UIBarButtonItem
+
+/**
+ *  UIBarButtonItem实例
+ *
+ *  @param title  按钮标题
+ *  @param target 响应对象
+ *  @param action 响应方法
+ *
+ *  @return UIBarButtonItem
+ */
+- (UIBarButtonItem *)itemWithTitle:(NSString *)title target:(id)target action:(SEL)action
+{
+    return [[UIBarButtonItem alloc] initWithTitle:title
+                                            style:UIBarButtonItemStyleDone
+                                           target:target
+                                           action:action];
+}
+
+/**
+ *  UIBarButtonItem实例
+ *
+ *  @param title  按钮标题
+ *  @param action 按钮响应方法回调
+ *
+ *  @return UIBarButtonItem
+ */
+- (UIBarButtonItem *)itemWithTitle:(NSString *)title action:(void (^)(UIBarButtonItem *item))action
+{
+    if (action)
+    {
+        self.buttonActionClick = [action copy];
+    }
+    
+    UIBarButtonItem *button = [[UIBarButtonItem alloc] initWithTitle:title style:UIBarButtonItemStyleDone target:self action:@selector(buttonAction:)];
+    return button;
+}
+
+- (void)buttonAction:(UIBarButtonItem *)item
+{
+    if (self.buttonActionClick)
+    {
+        self.buttonActionClick(item);
+    }
+}
 
 #pragma mark 导航栏左按钮
 
