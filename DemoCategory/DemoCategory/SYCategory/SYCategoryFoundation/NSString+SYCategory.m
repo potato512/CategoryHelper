@@ -30,8 +30,21 @@
 //    {
 //        return str;
 //    }
+//    
+//    return nil;
     
-    return nil;
+    CFUUIDRef uuid;
+    CFStringRef uuidString;
+    NSString *result;
+    
+    uuid = CFUUIDCreate(NULL);
+    uuidString = CFUUIDCreateString(NULL, uuid);
+    result = [NSString stringWithFormat:@"%@", uuidString];
+    
+    CFRelease(uuidString);
+    CFRelease(uuid);
+    
+    return result;
 }
 
 /**

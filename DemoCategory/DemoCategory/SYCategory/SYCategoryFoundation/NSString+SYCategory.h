@@ -13,6 +13,11 @@
 
 #pragma mark - UUID
 
+/**
+ *  UUID
+ *
+ *  @return NSString
+ */
 + (NSString *)UUID;
 
 /**
@@ -39,9 +44,9 @@
 #pragma mark - 
 
 /**
- *  获取字符串首字母（含汉字）
+ *  获取字符串首字符（含汉字）
  *
- *  @return 字符串首字母
+ *  @return 字符串首字符
  */
 - (NSString *)firstCharacter;
 

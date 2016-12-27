@@ -11,18 +11,23 @@
 @interface NSString (SYMD5)
 
 /**
- *  MD5加密
+*  字符串MD5加密（区分32位，或16位大小写，同时可加盐）
+*
+*  @param is32Bit     是32位，还是16位
+*  @param isUppercase 是大写，还是小写
+*  @param salt        盐值
+*
+*  @return NSString
+*/
+- (NSString *)MD5With32Bit:(BOOL)is32Bit uppercase:(BOOL)isUppercase salt:(NSString *)salt;
+
+/**
+ *  文件转换成MD5值
+ *
+ *  @param NSString 文字路径
+ *
+ *  @return NSString
  */
++ (NSString *)MD5WithFilePath:(NSString *)path;
 
-/**
-*  MD532位大写，或小写加密
-*/
-
-/**
-*  MD516位大写，或小写加密
-*/
-
-/**
-*  MD5盐值加密
-*/
 @end

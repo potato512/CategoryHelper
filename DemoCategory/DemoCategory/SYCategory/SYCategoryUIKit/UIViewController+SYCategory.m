@@ -22,11 +22,9 @@ static CGFloat const sizeButton = 20.0;
 #define widthScreen  [UIScreen mainScreen].applicationFrame.size.width
 #define heightScreen [UIScreen mainScreen].applicationFrame.size.height
 
-typedef void (^ButtonActionClick)(UIBarButtonItem *item);
-
 @interface UIViewController ()
 
-@property (nonatomic, copy) ButtonActionClick buttonActionClick;
+@property (nonatomic, copy) void (^buttonActionClick)(UIBarButtonItem *item);
 
 @end
 
@@ -34,12 +32,12 @@ typedef void (^ButtonActionClick)(UIBarButtonItem *item);
 
 #pragma mark - setter/getter
 
-- (void)setButtonActionClick:(ButtonActionClick)buttonActionClick
+- (void)setButtonActionClick:(void (^)(UIBarButtonItem *))buttonActionClick
 {
     objc_setAssociatedObject(self, @selector(buttonActionClick), buttonActionClick, OBJC_ASSOCIATION_COPY);
 }
 
-- (ButtonActionClick)buttonActionClick
+- (void (^)(UIBarButtonItem *))buttonActionClick
 {
     return objc_getAssociatedObject(self, @selector(buttonActionClick));
 }
