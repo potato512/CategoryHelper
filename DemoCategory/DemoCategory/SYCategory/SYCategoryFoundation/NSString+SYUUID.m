@@ -44,7 +44,7 @@ static NSString *SYUDIDIdentifier = @"SYUDIDIdentifier";
 //        result = [self OpenUDIDString];
         
         // 保存到keychain，或UIPasteboard
-        [[UIPasteboard pasteboardWithUniqueName] setString:result];
+        [[UIPasteboard generalPasteboard] setString:result];
     }
 
     return result;
