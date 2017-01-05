@@ -11,15 +11,6 @@
 
 @interface NSString (SYCategory)
 
-#pragma mark - UUID
-
-/**
- *  UUID
- *
- *  @return NSString
- */
-+ (NSString *)UUID;
-
 /**
  *  获取设备 ip 地址
  *
@@ -44,7 +35,7 @@
 #pragma mark - 
 
 /**
- *  获取字符串首字符（含汉字）
+ *  获取字符串首字符（汉字会被转换成全拼音）
  *
  *  @return 字符串首字符
  */

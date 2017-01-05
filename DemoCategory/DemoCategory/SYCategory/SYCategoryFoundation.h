@@ -9,6 +9,7 @@
 
 #import "NSFileManager+SYCategory.h"
 #import "NSString+SYCategory.h"
+#import "NSString+SYUUID.h"
 #import "NSString+SYRegular.h"
 #import "NSString+SYJSON.h"
 #import "NSString+SYMD5.h"

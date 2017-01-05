@@ -204,7 +204,7 @@
 /// 字符是否只包含"数字、大小写字母、_、@"的用户帐号
 - (BOOL)isValidAccount
 {
-    BOOL isResult = [self isValidText:@"[0-9a-zA-Z_.@]"];
+    BOOL isResult = [self isValidText:@"^[0-9a-zA-Z_.@]"];
     return isResult;
 }
 

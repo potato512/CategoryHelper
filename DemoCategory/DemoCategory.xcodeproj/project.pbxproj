@@ -62,6 +62,7 @@
 		A7B05B091DE8468E005007DA /* NSNumber+SYCategory.m in Sources */ = {isa = PBXBuildFile; fileRef = A7B05B081DE8468E005007DA /* NSNumber+SYCategory.m */; };
 		A7B05B0C1DE84A93005007DA /* UIViewController+SYCategory.m in Sources */ = {isa = PBXBuildFile; fileRef = A7B05B0B1DE84A93005007DA /* UIViewController+SYCategory.m */; };
 		A7B05B0F1DE84B84005007DA /* UINavigationController+SYCategory.m in Sources */ = {isa = PBXBuildFile; fileRef = A7B05B0E1DE84B84005007DA /* UINavigationController+SYCategory.m */; };
+		A7CA85E61E1DEB64009E7F0D /* NSString+SYUUID.m in Sources */ = {isa = PBXBuildFile; fileRef = A7CA85E51E1DEB64009E7F0D /* NSString+SYUUID.m */; };
 		A7D824E51DEC3211006B5633 /* SYNavigationBackImage.png in Resources */ = {isa = PBXBuildFile; fileRef = A7D824E21DEC3211006B5633 /* SYNavigationBackImage.png */; };
 		A7D824E61DEC3211006B5633 /* SYNavigationBackImage@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A7D824E31DEC3211006B5633 /* SYNavigationBackImage@2x.png */; };
 		A7D824E71DEC3211006B5633 /* SYNavigationBackImage@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = A7D824E41DEC3211006B5633 /* SYNavigationBackImage@3x.png */; };
@@ -212,6 +213,8 @@
 		A7B05B0B1DE84A93005007DA /* UIViewController+SYCategory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+SYCategory.m"; sourceTree = "<group>"; };
 		A7B05B0D1DE84B84005007DA /* UINavigationController+SYCategory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UINavigationController+SYCategory.h"; sourceTree = "<group>"; };
 		A7B05B0E1DE84B84005007DA /* UINavigationController+SYCategory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UINavigationController+SYCategory.m"; sourceTree = "<group>"; };
+		A7CA85E41E1DEB64009E7F0D /* NSString+SYUUID.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+SYUUID.h"; sourceTree = "<group>"; };
+		A7CA85E51E1DEB64009E7F0D /* NSString+SYUUID.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+SYUUID.m"; sourceTree = "<group>"; };
 		A7D824E21DEC3211006B5633 /* SYNavigationBackImage.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = SYNavigationBackImage.png; sourceTree = "<group>"; };
 		A7D824E31DEC3211006B5633 /* SYNavigationBackImage@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "SYNavigationBackImage@2x.png"; sourceTree = "<group>"; };
 		A7D824E41DEC3211006B5633 /* SYNavigationBackImage@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "SYNavigationBackImage@3x.png"; sourceTree = "<group>"; };
@@ -568,6 +571,8 @@
 				DFA205201D1E37C500929257 /* NSFileManager+SYCategory.m */,
 				DFA205221D1E3CE200929257 /* NSString+SYCategory.h */,
 				DFA205231D1E3CE300929257 /* NSString+SYCategory.m */,
+				A7CA85E41E1DEB64009E7F0D /* NSString+SYUUID.h */,
+				A7CA85E51E1DEB64009E7F0D /* NSString+SYUUID.m */,
 				DFA2052E1D1E543900929257 /* NSString+SYRegular.h */,
 				DFA2052F1D1E543900929257 /* NSString+SYRegular.m */,
 				A7B05AEF1DE815CF005007DA /* NSString+SYJSON.h */,
@@ -756,6 +761,7 @@
 				A7B05B091DE8468E005007DA /* NSNumber+SYCategory.m in Sources */,
 				A78C0E291DED514900DB84A0 /* ImageViewController.m in Sources */,
 				A78C0E1F1DED14D800DB84A0 /* UIImagePickerController+SYCategory.m in Sources */,
+				A7CA85E61E1DEB64009E7F0D /* NSString+SYUUID.m in Sources */,
 				DFA2052D1D1E47FE00929257 /* NSDate+SYCategory.m in Sources */,
 				A78601921DEBC7C200FBD482 /* UIActionSheet+SYCategory.m in Sources */,
 				DF18C3041E06983C007D34FF /* SYNavigationController.m in Sources */,

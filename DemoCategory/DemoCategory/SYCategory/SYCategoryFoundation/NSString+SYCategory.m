@@ -12,41 +12,6 @@
 
 @implementation NSString (SYCategory)
 
-#pragma mark - UUID
-
-+ (NSString *)UUID
-{
-//    NSString *str = [SSKeychain passwordForService:UUIDService account:UUIDAccount];
-//    
-//    if (str == nil || str.length == 0)
-//    {
-//        CFUUIDRef uuidRef = CFUUIDCreate(kCFAllocatorDefault);
-//        NSString *uuid = (__bridge NSString *)CFUUIDCreateString (kCFAllocatorDefault,uuidRef);
-//        BOOL rs = [SSKeychain setPassword:uuid forService:UUIDService account:UUIDAccount];
-//        assert(rs != NO);
-//        return uuid;
-//    }
-//    else
-//    {
-//        return str;
-//    }
-//    
-//    return nil;
-    
-    CFUUIDRef uuid;
-    CFStringRef uuidString;
-    NSString *result;
-    
-    uuid = CFUUIDCreate(NULL);
-    uuidString = CFUUIDCreateString(NULL, uuid);
-    result = [NSString stringWithFormat:@"%@", uuidString];
-    
-    CFRelease(uuidString);
-    CFRelease(uuid);
-    
-    return result;
-}
-
 /**
  *  获取设备 ip 地址
  *
@@ -110,7 +75,7 @@
 #pragma mark -
 
 /**
- *  获取字符串首字母（含汉字）
+ *  获取字符串首字母（汉字会被转换成全拼音）
  *
  *  @return 字符串首字母
  */
@@ -318,8 +283,9 @@ static NSString *const keyDecimalPoint = @".";
 /// 过滤字符串中的空格符
 - (NSString *)textFilterBlankSpace
 {
-    NSCharacterSet *characterSet = [NSCharacterSet whitespaceAndNewlineCharacterSet];
-    NSString *resultString = [self stringByTrimmingCharactersInSet:characterSet];
+//    NSCharacterSet *characterSet = [NSCharacterSet whitespaceAndNewlineCharacterSet];
+//    NSString *resultString = [self stringByTrimmingCharactersInSet:characterSet];
+    NSString *resultString = [self stringByReplacingOccurrencesOfString:@" " withString:@""];
     return resultString;
 }
 
