@@ -130,6 +130,24 @@ NSComparator ComparatorNumberArraySelector = ^(id obj1, id obj2){
             return (NSComparisonResult)NSOrderedSame;
         }
     }
+    else if ([obj1 isKindOfClass:[NSIndexPath class]] && [obj2 isKindOfClass:[NSIndexPath class]])
+    {
+        NSInteger value1 = ((NSIndexPath *)obj1).section;
+        NSInteger value2 = ((NSIndexPath *)obj2).section;
+        
+        if (value1 > value2)
+        {
+            return (isAscending ? NSOrderedAscending : NSOrderedDescending);
+        }
+        else if (value1 < value2)
+        {
+            return (isAscending ? NSOrderedDescending : NSOrderedAscending);
+        }
+        else
+        {
+            return NSOrderedSame;
+        }
+    }
     
     // 默认number类型
     NSInteger value1 = [obj1 integerValue];
@@ -183,6 +201,24 @@ NSComparator ComparatorNumberArraySelector = ^(id obj1, id obj2){
                 return (NSComparisonResult)NSOrderedSame;
             }
         }
+        else if ([obj1 isKindOfClass:[NSIndexPath class]] && [obj2 isKindOfClass:[NSIndexPath class]])
+        {
+            NSInteger value1 = ((NSIndexPath *)obj1).section;
+            NSInteger value2 = ((NSIndexPath *)obj2).section;
+            
+            if (value1 > value2)
+            {
+                return (isAscending ? NSOrderedAscending : NSOrderedDescending);
+            }
+            else if (value1 < value2)
+            {
+                return (isAscending ? NSOrderedDescending : NSOrderedAscending);
+            }
+            else
+            {
+                return NSOrderedSame;
+            }
+        }
         
         // 默认number类型
         NSInteger value1 = [obj1 integerValue];
@@ -229,6 +265,24 @@ NSInteger comparatorNumberArrayFunction(id obj1, id obj2, void* context){
         else
         {
             return (NSComparisonResult)NSOrderedSame;
+        }
+    }
+    else if ([obj1 isKindOfClass:[NSIndexPath class]] && [obj2 isKindOfClass:[NSIndexPath class]])
+    {
+        NSInteger value1 = ((NSIndexPath *)obj1).section;
+        NSInteger value2 = ((NSIndexPath *)obj2).section;
+        
+        if (value1 > value2)
+        {
+            return (isAscending ? NSOrderedAscending : NSOrderedDescending);
+        }
+        else if (value1 < value2)
+        {
+            return (isAscending ? NSOrderedDescending : NSOrderedAscending);
+        }
+        else
+        {
+            return NSOrderedSame;
         }
     }
     
