@@ -63,6 +63,7 @@
 		A7B05B0C1DE84A93005007DA /* UIViewController+SYCategory.m in Sources */ = {isa = PBXBuildFile; fileRef = A7B05B0B1DE84A93005007DA /* UIViewController+SYCategory.m */; };
 		A7B05B0F1DE84B84005007DA /* UINavigationController+SYCategory.m in Sources */ = {isa = PBXBuildFile; fileRef = A7B05B0E1DE84B84005007DA /* UINavigationController+SYCategory.m */; };
 		A7CA85E61E1DEB64009E7F0D /* NSString+SYUUID.m in Sources */ = {isa = PBXBuildFile; fileRef = A7CA85E51E1DEB64009E7F0D /* NSString+SYUUID.m */; };
+		A7D118EE1E2C6C6E0094E89C /* UISegmentedControl+SYCategory.m in Sources */ = {isa = PBXBuildFile; fileRef = A7D118ED1E2C6C6E0094E89C /* UISegmentedControl+SYCategory.m */; };
 		A7D824E51DEC3211006B5633 /* SYNavigationBackImage.png in Resources */ = {isa = PBXBuildFile; fileRef = A7D824E21DEC3211006B5633 /* SYNavigationBackImage.png */; };
 		A7D824E61DEC3211006B5633 /* SYNavigationBackImage@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A7D824E31DEC3211006B5633 /* SYNavigationBackImage@2x.png */; };
 		A7D824E71DEC3211006B5633 /* SYNavigationBackImage@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = A7D824E41DEC3211006B5633 /* SYNavigationBackImage@3x.png */; };
@@ -215,6 +216,8 @@
 		A7B05B0E1DE84B84005007DA /* UINavigationController+SYCategory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UINavigationController+SYCategory.m"; sourceTree = "<group>"; };
 		A7CA85E41E1DEB64009E7F0D /* NSString+SYUUID.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+SYUUID.h"; sourceTree = "<group>"; };
 		A7CA85E51E1DEB64009E7F0D /* NSString+SYUUID.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+SYUUID.m"; sourceTree = "<group>"; };
+		A7D118EC1E2C6C6E0094E89C /* UISegmentedControl+SYCategory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UISegmentedControl+SYCategory.h"; sourceTree = "<group>"; };
+		A7D118ED1E2C6C6E0094E89C /* UISegmentedControl+SYCategory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UISegmentedControl+SYCategory.m"; sourceTree = "<group>"; };
 		A7D824E21DEC3211006B5633 /* SYNavigationBackImage.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = SYNavigationBackImage.png; sourceTree = "<group>"; };
 		A7D824E31DEC3211006B5633 /* SYNavigationBackImage@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "SYNavigationBackImage@2x.png"; sourceTree = "<group>"; };
 		A7D824E41DEC3211006B5633 /* SYNavigationBackImage@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "SYNavigationBackImage@3x.png"; sourceTree = "<group>"; };
@@ -522,6 +525,8 @@
 				A7EB794E1DF1695E00205153 /* UISlider+SYCategory.m */,
 				A7EB79501DF1698D00205153 /* UISwitch+SYCategory.h */,
 				A7EB79511DF1698D00205153 /* UISwitch+SYCategory.m */,
+				A7D118EC1E2C6C6E0094E89C /* UISegmentedControl+SYCategory.h */,
+				A7D118ED1E2C6C6E0094E89C /* UISegmentedControl+SYCategory.m */,
 				A7B05AF81DE8175B005007DA /* UIColor+SYCategory.h */,
 				A7B05AF91DE8175B005007DA /* UIColor+SYCategory.m */,
 				A7B05AFA1DE8175B005007DA /* UIImage+SYCategory.h */,
@@ -777,6 +782,7 @@
 				A786019E1DEBD6FB00FBD482 /* UICollectionView+SYCategory.m in Sources */,
 				A767E1331E0930B600F62952 /* NSTimerViewController.m in Sources */,
 				A786018F1DEBC77C00FBD482 /* UIButton+SYCategory.m in Sources */,
+				A7D118EE1E2C6C6E0094E89C /* UISegmentedControl+SYCategory.m in Sources */,
 				A7B05AF41DE815FF005007DA /* NSTimer+SYCategory.m in Sources */,
 				DFA205241D1E3CE300929257 /* NSString+SYCategory.m in Sources */,
 				DF18C3011E0697EF007D34FF /* SYViewController.m in Sources */,

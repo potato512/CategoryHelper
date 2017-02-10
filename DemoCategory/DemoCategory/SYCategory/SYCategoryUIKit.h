@@ -11,6 +11,7 @@
 #import "UIButton+SYCategory.h"
 #import "UISlider+SYCategory.h"
 #import "UISWitch+SYCategory.h"
+#import "UISegmentedControl+SYCategory.h"
 #import "UIColor+SYCategory.h"
 #import "UIImage+SYCategory.h"
 #import "UIImage+SYFilter.h"

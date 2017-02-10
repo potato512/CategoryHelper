@@ -46,6 +46,19 @@
     return address;
 }
 
+#pragma mark - 字符串后缀信息
+
+- (NSString *)fileName
+{
+    return self.lastPathComponent;
+}
+
+- (NSString *)fileType
+{
+    return self.pathExtension;
+}
+
+
 #pragma mark - 数值转字符串
 
 /// number转字string

@@ -18,6 +18,12 @@
  */
 + (NSString *)IPAddress;
 
+#pragma mark - 字符串后缀信息
+
+- (NSString *)fileName;
+
+- (NSString *)fileType;
+
 #pragma mark - 数值转字符串
 
 /// number转字string

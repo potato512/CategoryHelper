@@ -61,6 +61,22 @@
 
 /********************** 常用宏 ****************************/
 
+#pragma mark - 运行时间统计
+
+/**
+ 使用示例：
+ DelaTimeStart;
+ // coding...
+ 
+ DelaTimeEnd(@"end");
+ 
+ 使用打印结果：>>>>>>>>>> end: delaTime = 0.004761 <<<<<<<<<<
+ 
+ */
+#define DelaTimeStart NSDate *delaTimeStart = [NSDate date]
+#define DelaTimeEnd(name) {double delaTime = [[NSDate date] timeIntervalSinceDate:delaTimeStart];NSLog(@">>>>>>>>>> %@: delaTime = %f <<<<<<<<<<", name, delaTime);}
+
+
 #pragma mark - 强弱引用
 
 /// block self
