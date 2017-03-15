@@ -1,7 +1,7 @@
 # SYCategory
 
 ## 自定义UIKit、Foundation的类别，以适应在研发过程中常使用到的功能，提高开发效率。
- * [UIKit类别](https://github.com/potato512/SYCategory/tree/master/SYCategoryUIKit)
+[UIKit类别](https://github.com/potato512/SYCategory/tree/master/SYCategoryUIKit)
   * UILabel：自适应宽高、修改内容（指定文字颜色，大小，间距）
   * UIView：原点坐标设置、显示标签（内容，字体大小/颜色，对齐方式）、手势功能、缩放、旋转、翻转
   * UIButton：图标对齐方式、倒计时功能、block响应回调
@@ -17,7 +17,5 @@
   * UITextField：输入限制
   * UITextView：输入限制
   * UIImagePickerController：block响应回调
-
- * [Foundation类别](https://github.com/potato512/SYCategory/tree/master/SYCategoryFoundation)
-
- * [Commons常用宏定义](https://github.com/potato512/SYCategory/tree/master/SYCommons)
+[Foundation类别](https://github.com/potato512/SYCategory/tree/master/SYCategoryFoundation)
+[Commons常用宏定义](https://github.com/potato512/SYCategory/tree/master/SYCommons)
