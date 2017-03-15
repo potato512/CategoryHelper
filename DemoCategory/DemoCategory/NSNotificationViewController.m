@@ -35,7 +35,7 @@
     CGFloat widthButton = (self.view.width - (rowButton + 1) * origin) / rowButton;
     CGFloat heightButton = 40.0;
     
-    NSArray *array = @[];
+    NSArray *array = @[@"发消息"];
     for (int i = 0; i < array.count; i++)
     {
         UIButton *button = [UIButton buttonWithType:UIButtonTypeCustom];
@@ -49,19 +49,41 @@
         button.tag = i + 1000;
         [button addTarget:self action:@selector(buttonClick:) forControlEvents:UIControlEventTouchUpInside];
     }
+    
+    // 接收消息
+    NSString *name = @"personInfo";
+    SEL action = @selector(notificationAction:);
+//    if ((name && 0 < name.length && [name isKindOfClass:[NSString class]])) {
+//        [kNotificationCenter addObserver:self selector:action name:name object:nil];
+//    }
+    
+//    kNotificationCenterReceive(name, self, action);
+    
+    NSNotificationCenterReceive(name, self, action);
 }
 
 - (void)buttonClick:(UIButton *)button
 {
-    NSInteger index = button.tag - 1000;
-    if (0 == index)
+    NSString *title = button.titleLabel.text;
+    if ([title isEqualToString:@"发消息"])
     {
+        // 发消息
+        NSString *name = @"personInfo";
+        NSDictionary *dict = @{@"devZhang":@"name", @"30":@"age", @"iOSDev":@"job"};
         
-    }
-    else if (1 == index)
-    {
+//        [kNotificationCenter postNotificationName:name object:nil userInfo:dict];
         
+//        kNotificationCenterPost(name, dict);
+        
+        NSNotificationCenterPost(name, dict);
     }
+}
+
+- (void)notificationAction:(NSNotification *)notification
+{
+    NSString *name = notification.name;
+    NSDictionary *dict = notification.userInfo;
+    NSLog(@"name = %@ \n dict = %@", name, dict);
 }
 
 @end

@@ -11,24 +11,38 @@
 @implementation NSUserDefaults (SYCategory)
 
 /// 保存信息
-+ (void)saveUserDefault:(id)object key:(NSString *)key
+void NSUserDefaultsSave(id object, NSString *key)
 {
-    [[NSUserDefaults standardUserDefaults] setObject:object forKey:key];
-    [[NSUserDefaults standardUserDefaults] synchronize];
+    if (object && (key && [key isKindOfClass:[NSString class]] && 0 < key.length))
+    {
+        [[NSUserDefaults standardUserDefaults] setObject:object forKey:key];
+        [[NSUserDefaults standardUserDefaults] synchronize];
+    }
 }
 
 /// 读取保存的信息
-+ (NSDictionary *)getUserDefaultWithKey:(NSString *)key
+id NSUserDefaultsRead(NSString *key)
 {
-    NSDictionary *dict = [[NSUserDefaults standardUserDefaults] objectForKey:key];
-    return dict;
+    id object = nil;
+    
+    if (key && [key isKindOfClass:[NSString class]] && 0 < key.length)
+    {
+        object = [[NSUserDefaults standardUserDefaults] objectForKey:key];
+    }
+    
+    return object;
 }
 
 /// 删除保存的信息
-+ (void)deleteUserDefaultWithKey:(NSString *)key
+void NSUserDefaultsRemove(NSString *key)
 {
-    [[NSUserDefaults standardUserDefaults] removeObjectForKey:key];
-    [[NSUserDefaults standardUserDefaults] synchronize];
+    if (key && [key isKindOfClass:[NSString class]] && 0 < key.length)
+    {
+        [[NSUserDefaults standardUserDefaults] removeObjectForKey:key];
+        [[NSUserDefaults standardUserDefaults] synchronize];
+    }
 }
+
+
 
 @end

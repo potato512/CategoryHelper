@@ -124,7 +124,7 @@
     // 限制输入字符长度-方法1 属性
 //    textview2.limitMaxLength = @(30);
     // 限制输入字符长度-方法2 通知
-    [NSNotificationCenter receiveNotificationWithName:UITextViewTextDidChangeNotification target:self sel:@selector(textViewEditChange:)];
+    NSNotificationCenterReceive(UITextViewTextDidChangeNotification, self, @selector(textViewEditChange:));
     // 占位符属性
     textview2.placeHolderTextColor = [UIColor brownColor];
     textview2.placeHolderTextFont = [UIFont systemFontOfSize:12.0];
@@ -207,14 +207,14 @@
 
 - (BOOL)textViewShouldBeginEditing:(UITextView *)textView
 {
-    [NSNotificationCenter receiveNotificationWithName:UIKeyboardWillShowNotification target:self sel:@selector(keyboardShow:)];
+    NSNotificationCenterReceive(UIKeyboardWillShowNotification, self, @selector(keyboardShow:));
     
     return YES;
 }
 
 - (BOOL)textViewShouldEndEditing:(UITextView *)textView
 {
-    [NSNotificationCenter receiveNotificationWithName:UIKeyboardWillHideNotification target:self sel:@selector(keyboardHidden:)];
+    NSNotificationCenterReceive(UIKeyboardWillHideNotification, self, @selector(keyboardHidden:));
     
     return YES;
 }

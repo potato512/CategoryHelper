@@ -27,38 +27,6 @@
 #ifndef HKC_Common_define_h
 #define HKC_Common_define_h
 
-///********************** app环境 ****************************/
-
-
-#pragma mark - app环境
-
-#define isTrueEnvironment 0
-
-#if isTrueEnvironment
-
-/// 真实环境
-#define kServerHost         @"121.199.22.45:1080/XXX-api"
-
-#else
-
-/// 测试环境
-#define kServerHost         @"192.168.16.219:8082/XXX-api"
-
-#endif
-
-/// 判断无网络情况
-#define GetNetworkStatusNotReachable ()
-
-/********************** 跳转App操作 ****************************/
-
-#pragma mark - app跳转
-
-/// APP名称
-#define UrlXXX         @"XXXMember://"
-
-/// APPxxx投注界面
-#define UrlXXXRegister @"XXXMember://RRCRegister"
-
 /********************** 常用宏 ****************************/
 
 #pragma mark - 运行时间统计
@@ -90,18 +58,27 @@
 #pragma mark - tag属性
 
 /// 设置View的tag属性
-#define kViewWithTag(object,tag) [object viewWithTag:tag]
+#define kViewWithTag(object, tag) [object viewWithTag:tag]
 
 #pragma mark - GCD
 
 #define GCDBackComplete(block) dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), block)
-#define GCDMainComplete(block) dispatch_async(dispatch_get_main_queue(),block)
+#define GCDMainComplete(block) dispatch_async(dispatch_get_main_queue(), block)
 
 #pragma mark - 常用单例
 
+#pragma mark NSUserDefaults存储
 #define kUserDefault [NSUserDefaults standardUserDefaults]
+#define kUserDefaultSave(value, key) {if (value && (key && 0 < key.length && [key isKindOfClass:[NSString class]])){[kUserDefault setObject:value forKey:key];[[NSUserDefaults standardUserDefaults] synchronize];}}
+#define kUserDefaultRead(key) ((key && 0 < key.length && [key isKindOfClass:[NSString class]]) ? [kUserDefault objectForKey:key] : nil)
 
+#pragma mark NSFileManager文件
 #define kFileManager [NSFileManager defaultManager]
+
+#pragma mark NSNotificationCenter通知
+#define kNotificationCenter [NSNotificationCenter defaultCenter]
+#define kNotificationCenterReceive(name, target, action) {if ((name && 0 < name.length && [name isKindOfClass:[NSString class]])) {[kNotificationCenter addObserver:target selector:action name:name object:nil];}}
+#define kNotificationCenterPost(name, infoDict) [kNotificationCenter postNotificationName:name object:nil userInfo:infoDict]
 
 #pragma mark - 角度弧度转换
 

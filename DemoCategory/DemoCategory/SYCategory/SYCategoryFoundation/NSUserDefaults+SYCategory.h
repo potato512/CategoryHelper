@@ -11,12 +11,12 @@
 @interface NSUserDefaults (SYCategory)
 
 /// 保存信息
-+ (void)saveUserDefault:(id)object key:(NSString *)key;
+void NSUserDefaultsSave(id object, NSString *key);
 
 /// 读取保存的信息
-+ (NSDictionary *)getUserDefaultWithKey:(NSString *)key;
+id NSUserDefaultsRead(NSString *key);
 
 /// 删除保存的信息
-+ (void)deleteUserDefaultWithKey:(NSString *)key;
+void NSUserDefaultsRemove(NSString *key);
 
 @end

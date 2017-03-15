@@ -1,0 +1,13 @@
+# Foundation类别
+ * NSString：其他对象的互换、数字/金额等的处理、特殊字符的限制
+ * NSFileManager：文件操作、目录操作
+ * NSAttributedString：副文本字符串处理
+ * NSNuber
+ * NSObject：图片类型判断、文本字符宽高计算、结束编辑处理
+ * NSArray：异常判断、排序、元素操作
+ * NSDictionary：异常判断
+ * NSTimer：
+ * NSURLConnection：请求block回调处理
+ * NSDate：日期处理
+ * NSNotificationCenter：
+ * NSUserDefaults：
