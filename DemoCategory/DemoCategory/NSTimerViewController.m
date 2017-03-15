@@ -10,6 +10,8 @@
 
 @interface NSTimerViewController ()
 
+@property (nonatomic, strong) NSTimer *timer;
+
 @end
 
 @implementation NSTimerViewController
@@ -35,7 +37,7 @@
     CGFloat widthButton = (self.view.width - (rowButton + 1) * origin) / rowButton;
     CGFloat heightButton = 40.0;
     
-    NSArray *array = @[];
+    NSArray *array = @[@"开始", @"停止"];
     for (int i = 0; i < array.count; i++)
     {
         UIButton *button = [UIButton buttonWithType:UIButtonTypeCustom];
@@ -49,18 +51,35 @@
         button.tag = i + 1000;
         [button addTarget:self action:@selector(buttonClick:) forControlEvents:UIControlEventTouchUpInside];
     }
+    
+    self.timer = NSTimerInitialize(0.1, self, @selector(countDownTime:), nil, YES);
 }
 
 - (void)buttonClick:(UIButton *)button
 {
-    NSInteger index = button.tag - 1000;
-    if (0 == index)
+    NSString *title = button.titleLabel.text;
+    if ([title isEqualToString:@"开始"])
     {
-        
+        [self.timer timerStart];
     }
-    else if (1 == index)
+    else if ([title isEqualToString:@"停止"])
     {
-        
+        [self.timer timerStop];
+    }
+}
+
+NSInteger indexCount = 0;
+- (void)countDownTime:(NSTimer *)timer
+{
+    if (indexCount >= 100)
+    {
+        indexCount = 0;
+        [self.timer timerStop];
+    }
+    else
+    {
+        indexCount++;
+        NSLog(@"index = %@", @(indexCount));
     }
 }
 

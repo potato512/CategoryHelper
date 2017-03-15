@@ -29,4 +29,14 @@
     [self invalidate];
 }
 
+
+NSTimer *NSTimerInitialize(NSTimeInterval time, id target, SEL action, id object, BOOL repeat)
+{
+    NSTimer *timer = [NSTimer timerWithTimeInterval:time target:target selector:action userInfo:object repeats:repeat];
+    [[NSRunLoop currentRunLoop] addTimer:timer forMode:NSRunLoopCommonModes];
+    [timer timerStop];
+    
+    return timer;
+}
+
 @end
