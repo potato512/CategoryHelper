@@ -9,6 +9,7 @@
 #import "UIView+SYCategory.h"
 #import "UILabel+SYCategory.h"
 #import "UIButton+SYCategory.h"
+#import "UIBarButtonItem+SYCategory.h"
 #import "UISlider+SYCategory.h"
 #import "UISWitch+SYCategory.h"
 #import "UISegmentedControl+SYCategory.h"

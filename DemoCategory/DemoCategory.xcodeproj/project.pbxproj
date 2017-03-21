@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		A7041C5A1E810CEB0077E729 /* UIBarButtonItem+SYCategory.m in Sources */ = {isa = PBXBuildFile; fileRef = A7041C591E810CEB0077E729 /* UIBarButtonItem+SYCategory.m */; };
 		A73F85B91DF806B7006DBA3B /* UIImage+SYFilter.m in Sources */ = {isa = PBXBuildFile; fileRef = A73F85B81DF806B7006DBA3B /* UIImage+SYFilter.m */; };
 		A73F85BC1DF806D6006DBA3B /* UIImage+SYBytes.m in Sources */ = {isa = PBXBuildFile; fileRef = A73F85BB1DF806D6006DBA3B /* UIImage+SYBytes.m */; };
 		A73F85BF1DF807C1006DBA3B /* UIImage+SYAssetsLibrary.m in Sources */ = {isa = PBXBuildFile; fileRef = A73F85BE1DF807C1006DBA3B /* UIImage+SYAssetsLibrary.m */; };
@@ -108,6 +109,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		A7041C581E810CEB0077E729 /* UIBarButtonItem+SYCategory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIBarButtonItem+SYCategory.h"; sourceTree = "<group>"; };
+		A7041C591E810CEB0077E729 /* UIBarButtonItem+SYCategory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIBarButtonItem+SYCategory.m"; sourceTree = "<group>"; };
 		A73F85B71DF806B7006DBA3B /* UIImage+SYFilter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+SYFilter.h"; sourceTree = "<group>"; };
 		A73F85B81DF806B7006DBA3B /* UIImage+SYFilter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+SYFilter.m"; sourceTree = "<group>"; };
 		A73F85BA1DF806D6006DBA3B /* UIImage+SYBytes.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+SYBytes.h"; sourceTree = "<group>"; };
@@ -521,6 +524,8 @@
 				A7B05AE71DE80E69005007DA /* UIView+SYCategory.m */,
 				A786018D1DEBC77C00FBD482 /* UIButton+SYCategory.h */,
 				A786018E1DEBC77C00FBD482 /* UIButton+SYCategory.m */,
+				A7041C581E810CEB0077E729 /* UIBarButtonItem+SYCategory.h */,
+				A7041C591E810CEB0077E729 /* UIBarButtonItem+SYCategory.m */,
 				A7EB794D1DF1695E00205153 /* UISlider+SYCategory.h */,
 				A7EB794E1DF1695E00205153 /* UISlider+SYCategory.m */,
 				A7EB79501DF1698D00205153 /* UISwitch+SYCategory.h */,
@@ -791,6 +796,7 @@
 				A78C0E311DED51D800DB84A0 /* GestureViewController.m in Sources */,
 				A73F85BC1DF806D6006DBA3B /* UIImage+SYBytes.m in Sources */,
 				DFA204F11D1E131C00929257 /* ViewController.m in Sources */,
+				A7041C5A1E810CEB0077E729 /* UIBarButtonItem+SYCategory.m in Sources */,
 				A767E1301E0930AE00F62952 /* NSDictionaryViewController.m in Sources */,
 				A786019B1DEBD6CB00FBD482 /* UITableView+SYCategory.m in Sources */,
 				A78601AA1DEBD86A00FBD482 /* UITextView+SYCategory.m in Sources */,
