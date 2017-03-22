@@ -38,4 +38,20 @@ static NSString *const keySliderClick = @"sliderClick";
     }
 }
 
++ (instancetype)sliderWithFrame:(CGRect)frame view:(UIView *)superview value:(float)value action:(SliderClick)sliderClick
+{
+    UISlider *slider = [[UISlider alloc] initWithFrame:frame];
+    if (superview && [superview isKindOfClass:[UIView class]])
+    {
+        [superview addSubview:slider];
+    }
+    slider.value = value;
+    if (sliderClick)
+    {
+        slider.sliderClick = [sliderClick copy];
+    }
+    
+    return slider;
+}
+
 @end

@@ -38,4 +38,20 @@ static NSString *const keySegmentClick = @"SegmentClick";
     }
 }
 
++ (instancetype)segmentControlWithItems:(NSArray *)titles frame:(CGRect)frame view:(UIView *)superview action:(SegmentClick)segmentClick
+{
+    UISegmentedControl *segmentControl = [[UISegmentedControl alloc] initWithItems:titles];
+    segmentControl.frame = frame;
+    if (superview && [superview isKindOfClass:[UIView class]])
+    {
+        [superview addSubview:segmentControl];
+    }
+    if (segmentClick)
+    {
+        segmentControl.segmentClick = [segmentClick copy];
+    }
+    
+    return segmentControl;
+}
+
 @end

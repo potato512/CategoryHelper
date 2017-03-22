@@ -113,6 +113,47 @@
     [button4 setButtonCountdownTime:10.0];
     [button4 setButtonCountedownStartType:SYCountdownStartTypeActivity];
     [button4 addTarget:self action:@selector(buttonClick:) forControlEvents:UIControlEventTouchUpInside];
+    
+    currentView = button4;
+    
+    UISlider *slider = [[UISlider alloc] initWithFrame:CGRectMake(10.0, (currentView.bottom + 10.0), (self.view.width - 10.0 * 2), 10.0)];
+    [self.view addSubview:slider];
+    slider.value = 0.5;
+    slider.sliderClick = ^(UISlider *slider){
+        NSLog(@"1 当前进度是：%@", @(slider.value));
+    };
+    
+    currentView = slider;
+    
+    currentView = [UISlider sliderWithFrame:CGRectMake(10.0, (currentView.bottom + 10.0), currentView.width, 10.0) view:self.view value:10.0 action:^(UISlider *slider) {
+        float value = slider.value;
+        NSLog(@"2 当前进度是：%@", @(value));
+    }];
+    
+    UISwitch *switchView = [[UISwitch alloc] initWithFrame:CGRectMake(10.0, (currentView.bottom + 10.0), 60.0, 40.0)];
+    [self.view addSubview:switchView];
+    switchView.switchClick = ^(UISwitch *sender){
+        NSLog(@"1 当前状态：%@", @(sender.on));
+    };
+    
+    currentView = switchView;
+    
+    currentView = [UISwitch switchWithFrame:CGRectMake((currentView.right + 10.0), currentView.top, currentView.width, currentView.height) view:self.view status:NO action:^(UISwitch *sender) {
+        NSLog(@"2 当前状态：%@", @(sender.on));
+    }];
+    
+    UISegmentedControl *segmentControl = [[UISegmentedControl alloc] initWithItems:@[@"start", @"stop"]];
+    [self.view addSubview:segmentControl];
+    segmentControl.frame = CGRectMake(10.0, (currentView.bottom + 10.0), 100.0, 40.0);
+    segmentControl.segmentClick = ^(UISegmentedControl *segmentControl){
+        NSLog(@"1 你点击了第 %@ 个按钮", @(segmentControl.selectedSegmentIndex));
+    };
+    
+    currentView = segmentControl;
+    
+    [UISegmentedControl segmentControlWithItems:@[@"play", @"pause", @"stop"] frame:CGRectMake((currentView.right + 10.0), currentView.top, 200.0, currentView.height) view:self.view action:^(UISegmentedControl *sender) {
+        NSLog(@"2 你点击了第 %@ 个按钮", @(sender.selectedSegmentIndex));
+    }];
 }
 
 - (void)buttonClick:(UIButton *)button

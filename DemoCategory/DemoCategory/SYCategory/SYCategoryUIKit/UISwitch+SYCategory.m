@@ -38,4 +38,20 @@ static NSString *const keySwitchClick = @"switchClick";
     }
 }
 
++ (instancetype)switchWithFrame:(CGRect)frame view:(UIView *)superview status:(BOOL)isOff action:(SwitchClick)switchClick
+{
+    UISwitch *switchView = [[UISwitch alloc] initWithFrame:frame];
+    if (superview && [superview isKindOfClass:[UIView class]])
+    {
+        [superview addSubview:switchView];
+    }
+    switchView.on = !isOff;
+    if (switchClick)
+    {
+        switchView.switchClick = [switchClick copy];
+    }
+    
+    return switchView;
+}
+
 @end

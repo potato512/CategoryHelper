@@ -65,7 +65,7 @@
 
 - (void)setUI
 {
-    NSArray *uiArray = @[@"UILabel", @"UIButton", @"UIImage", @"UIColor", @"UIGestureRecognizer", @"UIAlertView/UIActionSheet", @"UITextField/UITextView", @"UIImagePickerViewController"];
+    NSArray *uiArray = @[@"UILabel", @"UIButton/UISlider/UISwitch/UISegmentControl", @"UIImage", @"UIColor", @"UIGestureRecognizer", @"UIAlertView/UIActionSheet", @"UITextField/UITextView", @"UIImagePickerViewController"];
     NSArray *foundationArray = @[@"NSString/AttributedString", @"NSObject", @"NSData", @"NSFileManager", @"NSNumber", @"NSArray", @"NSDictionary", @"NSTimer", @"NSURLConnection", @"NSDate", @"NSNotificationCenter", @"NSUserDefaults"];
     self.mainArray = @[uiArray, foundationArray];
     
