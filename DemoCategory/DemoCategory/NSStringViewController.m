@@ -21,7 +21,7 @@
     self.title = @"字符串";
     
     kSelfWeak;
-    self.navigationItem.rightBarButtonItem = [self itemWithTitle:@"clear" action:^(UIBarButtonItem *item) {
+    self.navigationItem.rightBarButtonItem = [UIBarButtonItem rightBarButtonItemWithTitle:@"clear" action:^(UIButton *item) {
         
         UITextField *textField = (UITextField *)[weakSelf.view viewWithTag:2001];
         textField.text = nil;
@@ -100,7 +100,7 @@
     NSInteger index = button.tag - 1000;
     if (0 == index)
     {
-        message = [NSString UUID];
+        message = [SYUUID UUID];
     }
     else if (1 == index)
     {
@@ -111,14 +111,14 @@
         if (textField.text && 0 != textField.text.length)
         {
             NSString *text = @"devZhang";
-            message = [textField.text MD5With32Bit:YES uppercase:YES salt:text];
+            message = [MD5Secure MD5SecureWithText:textField.text bitType:MD5SecureBitType32 uppercase:YES];
         }
     }
     else if (3 == index)
     {
         if (textField.text && 0 != textField.text.length)
         {
-            message = [textField.text MD5With32Bit:YES uppercase:NO salt:nil];
+            message = [MD5Secure MD5SecureWithText:textField.text bitType:MD5SecureBitType32 uppercase:NO];
         }
     }
     else if (4 == index)

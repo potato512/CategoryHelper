@@ -15,9 +15,8 @@
 #ifdef __OBJC__
     #import <UIKit/UIKit.h>
     #import <Foundation/Foundation.h>
-    #import "Common_define.h"
     #import "SYCategory.h"
-    #import "SYSubClass.h"
+    #import "SYToolsHeader.h"
 #endif
 
 #endif /* PrefixHeader_pch */

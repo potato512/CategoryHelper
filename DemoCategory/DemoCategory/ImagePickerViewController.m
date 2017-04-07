@@ -20,8 +20,8 @@
     
     self.navigationItemTitle = @"UIImagePickerController";
     
-    UIBarButtonItem *item01 = [self rightBarButtonWithTitle:@"photo" image:nil target:self action:@selector(photoClick:)];
-    UIBarButtonItem *item02 = [self rightBarButtonWithTitle:@"camera" image:nil target:self action:@selector(cameraClick:)];
+    UIBarButtonItem *item01 = [UIBarButtonItem rightBarButtonItemWithTitle:@"photo" target:self selector:@selector(photoClick:)];
+    UIBarButtonItem *item02 = [UIBarButtonItem rightBarButtonItemWithTitle:@"camera" target:self selector:@selector(cameraClick:)];
     self.navigationItem.rightBarButtonItems = @[item01, item02];
     
     [self setUI];

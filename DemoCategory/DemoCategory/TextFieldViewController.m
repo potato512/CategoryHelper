@@ -41,7 +41,7 @@
     UITextField *textfield = [[UITextField alloc] initWithFrame:CGRectMake(10.0, 10.0, (backScrollView.width - 10.0 * 2), 40.0)];
     [backScrollView addSubview:textfield];
     [textfield layerWithRadius:5.0 borderColor:[UIColor colorRandom] borderWidth:0.5];
-    [textfield viewModeType:TextFieldViewModeTypeLeft];
+    [textfield viewModeType:TextFieldViewModeTypeLeft space:10.0];
     textfield.clearButtonMode = UITextFieldViewModeWhileEditing;
     textfield.tag = 1001;
     textfield.delegate = self;
@@ -57,7 +57,7 @@
     UITextField *textfield2 = [[UITextField alloc] initWithFrame:CGRectMake(10.0, (currentView.bottom + 10.0), currentView.width, currentView.height)];
     [backScrollView addSubview:textfield2];
     [textfield2 layerWithRadius:5.0 borderColor:[UIColor colorRandom] borderWidth:0.5];
-    [textfield2 viewModeType:TextFieldViewModeTypeLeft];
+    [textfield2 viewModeType:TextFieldViewModeTypeLeft space:10.0];
     textfield2.clearButtonMode = UITextFieldViewModeWhileEditing;
     textfield2.tag = 1002;
     textfield2.delegate = self;
@@ -68,7 +68,7 @@
     UITextField *textfield3 = [[UITextField alloc] initWithFrame:CGRectMake(10.0, (currentView.bottom + 10.0), currentView.width, currentView.height)];
     [backScrollView addSubview:textfield3];
     [textfield3 layerWithRadius:5.0 borderColor:[UIColor colorRandom] borderWidth:0.5];
-    [textfield3 viewModeType:TextFieldViewModeTypeLeft];
+    [textfield3 viewModeType:TextFieldViewModeTypeLeft space:10.0];
     textfield3.clearButtonMode = UITextFieldViewModeWhileEditing;
     textfield3.tag = 1003;
     textfield3.delegate = self;
@@ -79,7 +79,7 @@
     UITextField *textfield4 = [[UITextField alloc] initWithFrame:CGRectMake(10.0, (currentView.bottom + 10.0), currentView.width, currentView.height)];
     [backScrollView addSubview:textfield4];
     [textfield4 layerWithRadius:5.0 borderColor:[UIColor colorRandom] borderWidth:0.5];
-    [textfield4 viewModeType:TextFieldViewModeTypeLeft];
+    [textfield4 viewModeType:TextFieldViewModeTypeLeft space:10.0];
     textfield4.clearButtonMode = UITextFieldViewModeWhileEditing;
     textfield4.tag = 1004;
     textfield4.delegate = self;
@@ -90,7 +90,7 @@
     UITextField *textfield5 = [[UITextField alloc] initWithFrame:CGRectMake(10.0, (currentView.bottom + 10.0), currentView.width, currentView.height)];
     [backScrollView addSubview:textfield5];
     [textfield5 layerWithRadius:5.0 borderColor:[UIColor colorRandom] borderWidth:0.5];
-    [textfield5 viewModeType:TextFieldViewModeTypeLeft];
+    [textfield5 viewModeType:TextFieldViewModeTypeLeft space:10.0];
     textfield5.clearButtonMode = UITextFieldViewModeWhileEditing;
     textfield5.tag = 1005;
     textfield5.delegate = self;
