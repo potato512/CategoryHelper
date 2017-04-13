@@ -38,7 +38,7 @@
 /// double转字string
 + (NSString *)stringWithDouble:(double)value;
 
-#pragma mark - 
+#pragma mark -
 
 /**
  *  获取字符串首字符（汉字会被转换成全拼音）
@@ -72,13 +72,12 @@
 /// 过滤字符串中的空格符
 - (NSString *)textFilterBlankSpace;
 
-/// 字符中是否包含汉字
-- (BOOL)textContantCN;
-
-/// 字符串是否是纯中文字符
-- (BOOL)isCNNSString;
-
 /// 判断输入的字符长度 一个汉字算2个字符，是否区分中英文
 - (NSUInteger)textLength:(BOOL)isCN;
+
+#pragma mark - 字符等级强弱度识别
+
+/// 字符等级强弱度识别（1弱；2中；3强）
+- (NSInteger)textStrengthGrade;
 
 @end

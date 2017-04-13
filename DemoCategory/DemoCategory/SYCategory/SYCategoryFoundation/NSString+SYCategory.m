@@ -58,7 +58,6 @@
     return self.pathExtension;
 }
 
-
 #pragma mark - 数值转字符串
 
 /// number转字string
@@ -119,7 +118,6 @@
     
     return result;
 }
-
 
 #pragma mark - 字符处理方法
 
@@ -296,52 +294,10 @@ static NSString *const keyDecimalPoint = @".";
 /// 过滤字符串中的空格符
 - (NSString *)textFilterBlankSpace
 {
-//    NSCharacterSet *characterSet = [NSCharacterSet whitespaceAndNewlineCharacterSet];
-//    NSString *resultString = [self stringByTrimmingCharactersInSet:characterSet];
+    //    NSCharacterSet *characterSet = [NSCharacterSet whitespaceAndNewlineCharacterSet];
+    //    NSString *resultString = [self stringByTrimmingCharactersInSet:characterSet];
     NSString *resultString = [self stringByReplacingOccurrencesOfString:@" " withString:@""];
     return resultString;
-}
-
-/// 字符中是否包含汉字
-- (BOOL)textContantCN
-{
-    BOOL isResult = NO;
-    
-    NSInteger count = self.length;
-    for (NSInteger i = 0; i < count; i++)
-    {
-        int charCN = [self characterAtIndex:i];
-        if (charCN > 0x4e00 && charCN < 0x9fff)
-        {
-            isResult = YES;
-            break;
-        }
-    }
-    
-    return isResult;
-}
-
-/// 字符串是否是纯中文字符
-- (BOOL)isCNNSString
-{
-    BOOL isResult = YES;
-    
-    NSInteger count = self.length;
-    for (NSInteger i = 0; i < count; i++)
-    {
-        int charCN = [self characterAtIndex:i];
-        if (charCN > 0x4e00 && charCN < 0x9fff)
-        {
-            continue;
-        }
-        else
-        {
-            isResult = NO;
-            break;
-        }
-    }
-    
-    return isResult;
 }
 
 /// 判断输入的字符长度 一个汉字算2个字符，是否区分中英文
@@ -355,6 +311,45 @@ static NSString *const keyDecimalPoint = @".";
         asciiLength += (isascii(uc) ? 1 : (isCN ? 2 : 1));
     }
     return asciiLength;
+}
+
+#pragma mark - 字符等级强弱度识别
+
+- (NSInteger)textStrengthGrade
+{
+    NSInteger grade = 0;
+    if ([NSString isValidNSString:self])
+    {
+        // 弱、中、高判定规则：将长度大于10、含大写字母、含小写字母、含数字、含特殊符号作为五个判定标准，基础密码必须满足两个标准安全等级为弱；满足三个条件安全等级为中；满足四个及以上安全等级为强。根据不同密码安全等级显示对应提示
+        BOOL isLength = (self.length > 10);
+        BOOL isUpper = [self isContantSomeCharacters:@"ABCDEFGHIJKLMNOPQRSTUVWXYZ"];
+        BOOL isLower = [self isContantSomeCharacters:@"abcdefghijklmnopqrstuvwxyz"];
+        BOOL isNumber = [self isContantSomeCharacters:@"0123456789"];
+        BOOL isSpecial = [self isContantSomeCharacters:@"~!@#$%^&*()_+-=\\|{}[];':,./<>?\""];
+        
+        NSArray *array = @[@(isLength), @(isUpper), @(isLower), @(isNumber), @(isSpecial)];
+        for (NSNumber *number in array)
+        {
+            BOOL isTrue = number.boolValue;
+            if (isTrue)
+            {
+                grade++;
+            }
+        }
+        if (grade >= 4)
+        {
+            grade = 3;
+        }
+        else if (grade >= 3)
+        {
+            grade = 2;
+        }
+        else if (grade >= 2)
+        {
+            grade = 1;
+        }
+    }
+    return grade;
 }
 
 @end

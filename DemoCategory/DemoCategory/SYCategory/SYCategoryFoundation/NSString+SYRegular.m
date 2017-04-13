@@ -8,7 +8,15 @@
 
 #import "NSString+SYRegular.h"
 
+static NSString *const kNumberRegular = @"0123456789";
+static NSString *const kUpperRegular = @"ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+static NSString *const kLowerRegular = @"abcdefghijklmnopqrstuvwxyz";
+static NSString *const kENRegular = @"ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz";
+static NSString *const kSpecialRegular = @";~`!@#$%^&*()_+-={}[]|:\"'<>,.?/\";";
+
 @implementation NSString (SYRegular)
+
+#pragma mark - 字符正则
 
 /**
  *  是否是正确的指定正则的格式
@@ -115,19 +123,19 @@
     }
     
     /*
-    // 手机号码判断
-    NSString *regex = @"^(13[0-9]|14[0-9]|15[0-9]|18[0-9])\\d{8}$";
-    NSPredicate *pred = [NSPredicate predicateWithFormat:@"SELF MATCHES %@", regex];
-    BOOL isMatch = [pred evaluateWithObject:string];
-    if (isMatch)
-    {
-        return YES;
-    }
-    else
-    {
-        return NO;
-    }
-    */
+     // 手机号码判断
+     NSString *regex = @"^(13[0-9]|14[0-9]|15[0-9]|18[0-9])\\d{8}$";
+     NSPredicate *pred = [NSPredicate predicateWithFormat:@"SELF MATCHES %@", regex];
+     BOOL isMatch = [pred evaluateWithObject:string];
+     if (isMatch)
+     {
+     return YES;
+     }
+     else
+     {
+     return NO;
+     }
+     */
 }
 
 /**
@@ -141,108 +149,6 @@
     BOOL isValid = [self isValidText:regex];
     
     return isValid;
-}
-
-/**
- *  判断是否含有空格的字符串
- *
- *  @return 是，或否
- */
-- (BOOL)isSpaceString
-{
-    NSRange range = [self rangeOfString:@" "];
-    if (range.location != NSNotFound)
-    {
-        return YES;
-    }
-    
-    return NO;
-}
-
-/**
- *  判断字符串中是否有某个子字符串
- *
- *  @param subString 子字符串
- *
- *  @return 是，或否
- */
-- (BOOL)isHasSubString:(NSString *)subString
-{
-    NSRange range = [self rangeOfString:subString];
-    if (range.location != NSNotFound)
-    {
-        return YES;
-    }
-    
-    return NO;
-}
-
-/**
- *  判断字符串是是否有中文
- *
- *  @return 是，或否
- */
-- (BOOL)isHasChineseString
-{
-    for (NSInteger i = 0; i < self.length; i++)
-    {
-        int a = [self characterAtIndex:i];
-        if (a > 0x4e00 && a < 0x9fff)
-        {
-            return YES;
-        }
-    }
-    
-    return NO;
-}
-
-/**
- *  判断字符串是否是纯数字字符串
- *
- *  @return 是，或否
- */
-- (BOOL)isNumberString
-{
-    unichar c;
-    for (int i = 0; i < self.length; i++)
-    {
-        c = [self characterAtIndex:i];
-        if (!isdigit(c))
-        {
-            return NO;
-        }
-    }
-    
-    return YES;
-}
-
-/// 判断一个数字字符串是整数还是一个小数字符串
-- (BOOL)isDecimalNumberString
-{
-    NSRange range = [self rangeOfString:@"."];
-    if (range.location == NSNotFound)
-    {
-        BOOL result = NO;
-        
-        NSString *pointString = [self substringFromIndex:(range.location + range.length)];
-        NSInteger count = pointString.length;
-        for (int i = 0; i < count; i++)
-        {
-            NSString *tempString = [pointString substringWithRange:NSMakeRange(i, 1)];
-            if ([tempString isEqualToString:@"0"])
-            {
-                result = YES;
-            }
-            else
-            {
-                result = NO;
-                break;
-            }
-        }
-        return result;
-    }
-    
-    return YES;
 }
 
 /// 字符是否只包含"数字、大小写字母、_、@"的用户帐号
@@ -434,6 +340,186 @@
     return isResult;
 }
 
+#pragma mark - 字符判断
+
+/**
+ *  判断是否含有空格的字符串
+ *
+ *  @return 是，或否
+ */
+- (BOOL)isSpaceString
+{
+    NSRange range = [self rangeOfString:@" "];
+    if (range.location != NSNotFound)
+    {
+        return YES;
+    }
+    
+    return NO;
+}
+
+/**
+ *  判断字符串是否是纯数字字符串
+ *
+ *  @return 是，或否
+ */
+- (BOOL)isNumberNSString
+{
+    /*
+     unichar c;
+     for (int i = 0; i < self.length; i++)
+     {
+     c = [self characterAtIndex:i];
+     if (!isdigit(c))
+     {
+     return NO;
+     }
+     }
+     return YES;
+     */
+    
+    BOOL isResult = [self isContantWithText:kNumberRegular];
+    return isResult;
+}
+
+/// 判断一个数字字符串是整数还是一个小数字符串
+- (BOOL)isDecimalNumberNSString
+{
+    NSRange range = [self rangeOfString:@"."];
+    if (range.location == NSNotFound)
+    {
+        BOOL result = NO;
+        
+        NSString *pointString = [self substringFromIndex:(range.location + range.length)];
+        NSInteger count = pointString.length;
+        for (int i = 0; i < count; i++)
+        {
+            NSString *tempString = [pointString substringWithRange:NSMakeRange(i, 1)];
+            if ([tempString isEqualToString:@"0"])
+            {
+                result = YES;
+            }
+            else
+            {
+                result = NO;
+                break;
+            }
+        }
+        return result;
+    }
+    return YES;
+}
+
+/// 字符串是否是纯汉字字符串
+- (BOOL)isCNNSString
+{
+    BOOL isResult = YES;
+    NSInteger count = self.length;
+    for (NSInteger i = 0; i < count; i++)
+    {
+        int charCN = [self characterAtIndex:i];
+        if (charCN > 0x4e00 && charCN < 0x9fff)
+        {
+            continue;
+        }
+        else
+        {
+            isResult = NO;
+            break;
+        }
+    }
+    return isResult;
+}
+
+- (BOOL)isENNString
+{
+    BOOL isResult = [self isContantWithText:kENRegular];
+    return isResult;
+}
+
+- (BOOL)isUppercaseNSString
+{
+    BOOL isResult = [self isContantWithText:kUpperRegular];
+    return isResult;
+}
+
+- (BOOL)isLowercaseNSString
+{
+    BOOL isResult = [self isContantWithText:kLowerRegular];
+    return isResult;
+}
+
+- (BOOL)isSpecialNSString
+{
+    BOOL isResult = [self isContantWithText:kSpecialRegular];
+    return isResult;
+}
+
+/// 字符中是否包含汉字
+- (BOOL)isContantCNNSString
+{
+    BOOL isResult = NO;
+    NSInteger count = self.length;
+    for (NSInteger i = 0; i < count; i++)
+    {
+        int charCN = [self characterAtIndex:i];
+        if (charCN > 0x4e00 && charCN < 0x9fff)
+        {
+            isResult = YES;
+            break;
+        }
+    }
+    return isResult;
+}
+
+/// 判断当前字符是中文字符，还是英文字符
+- (BOOL)isENCharacter
+{
+    unichar uc = [self characterAtIndex:0];
+    return (isascii(uc) ? YES : NO);
+}
+
+/// 是否是指定的字符类型
+- (BOOL)isContantWithText:(NSString *)text
+{
+    BOOL isResult = YES;
+    if ([NSString isValidNSString:self] && 0 != text.length)
+    {
+        NSInteger length = self.length;
+        for (NSInteger index = 0; index < length; index++)
+        {
+            NSString *subText = [self substringWithRange:NSMakeRange(index, 1)];
+            NSRange range = [text rangeOfString:subText];
+            if (range.location == NSNotFound)
+            {
+                isResult = NO;
+                break;
+            }
+        }
+    }
+    return isResult;
+}
+
+/// 是否包含指定的字符
+- (BOOL)isContantSomeCharacters:(NSString *)characters
+{
+    BOOL isResult = NO;
+    if ([NSString isValidNSString:self] && 0 != characters.length)
+    {
+        NSInteger length = self.length;
+        for (NSInteger index = 0; index < length; index++)
+        {
+            NSString *subText = [self substringWithRange:NSMakeRange(index, 1)];
+            NSRange range = [characters rangeOfString:subText];
+            if (range.location != NSNotFound)
+            {
+                isResult = YES;
+                break;
+            }
+        }
+    }
+    return isResult;
+}
 
 #pragma mark - 表情输入限制
 
@@ -492,5 +578,52 @@
     return isEomji;
 }
 
+#pragma mark - 字符类型判断
+
+- (void)regularWithText:(NSString *)text limitedHandle:(void (^)(NSInteger index))regular
+{
+    [self regularWithText:text limited:YES handle:regular];
+}
+
+- (void)regularWithText:(NSString *)text allowedHandle:(void (^)(NSInteger index))regular
+{
+    [self regularWithText:text limited:NO handle:regular];
+}
+
+- (void)regularWithText:(NSString *)text limited:(BOOL)islimit handle:(void (^)(NSInteger index))regular
+{
+    if ([NSString isValidNSString:self] && 0 != text.length)
+    {
+        for (NSInteger index = 0; index < self.length; index++)
+        {
+            NSString *subSelf = [self substringWithRange:NSMakeRange(index, 1)];
+            NSRange range = [text rangeOfString:subSelf];
+            if (islimit)
+            {
+                // 限制不能输入指定字符
+                if (range.location != NSNotFound)
+                {
+                    if (regular)
+                    {
+                        regular(index);
+                    }
+                    break;
+                }
+            }
+            else
+            {
+                // 限制只能输入指定字符
+                if (range.location == NSNotFound)
+                {
+                    if (regular)
+                    {
+                        regular(index);
+                    }
+                    break;
+                }
+            }
+        }
+    }
+}
 
 @end

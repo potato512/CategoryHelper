@@ -55,4 +55,10 @@
     [tableview reloadData];
 }
 
+- (void)scrollAtIndex:(NSInteger)section row:(NSInteger)row position:(UITableViewScrollPosition)position
+{
+    NSIndexPath *indexPath = [NSIndexPath indexPathForRow:row inSection:section];
+    [self scrollToRowAtIndexPath:indexPath atScrollPosition:position animated:YES];
+}
+
 @end

@@ -1,6 +1,76 @@
 # SYCategory
 自定义UIKit、Foundation的类别，以适应在研发过程中常使用到的功能，提高开发效率。
 
+* 20170413
+ * UITextField添加属性：
+~~~ javascript
+/// 限制输入指定字符（不需要结合通知使用）
+@property (nonatomic, strong) NSString *allowedText;
+~~~
+ * UITextView添加属性：
+~~~ javascript
+/// 限制输入指定字符（不需要结合通知使用）
+@property (nonatomic, strong) NSString *allowedText;
+~~~
+ * 修改输入字符限制（中文联想导致异常），只能输入指定字符，不能输入指定字符。
+
+
+* 20170412
+ * UITableView添加方法：
+~~~ javascript
+/// 动态滚动到指定位置
+- (void)scrollAtIndex:(NSInteger)section row:(NSInteger)row position:(UITableViewScrollPosition)position;
+~~~ 
+
+ * NSString添加方法：
+~~~ javascript
+/// 是否包含指定的字符
+- (BOOL)isContantSomeCharacters:(NSString *)characters;
+
+/// 字符等级强弱度识别（1弱；2中；3强）
+- (NSInteger)textStrengthGrade;
+
+/// 是否是指定的字符类型
+- (BOOL)isContantWithText:(NSString *)text;
+
+/// 字符串是大小写英文
+- (BOOL)isENNString;
+
+/// 字符串是大写英文
+- (BOOL)isUppercaseNSString;
+
+/// 字符串是小写英文
+- (BOOL)isLowercaseNSString;
+
+/// 判断当前字符类型（NO中文字符；YES英文字符）
+- (BOOL)isENCharacter;
+
+/**
+*  限制不能输入指定字符回调
+*
+*  @param text    限制不能输入的字符串
+*  @param regular 回调
+*/
+- (void)regularWithText:(NSString *)text limitedHandle:(void (^)(NSInteger))regular;
+
+/**
+*  限制只能输入指定字符回调
+*
+*  @param text    限制只能输入的字符串
+*  @param regular 回调
+*/
+- (void)regularWithText:(NSString *)text allowedHandle:(void (^)(NSInteger))regular;
+
+/**
+*  限制输入指定字符回调
+*
+*  @param text    限制指定字符串
+*  @param islimit 是限制输入，还是允许输入
+*  @param regular 回调
+*/
+- (void)regularWithText:(NSString *)text limited:(BOOL)islimit handle:(void (^)(NSInteger index))regular;
+~~~
+
 [UIKit类别](https://github.com/potato512/SYCategory/tree/master/SYCategoryUIKit)
  * UILabel：自适应宽高、修改内容（指定文字颜色，大小，间距）
  * UIView：原点坐标设置、显示标签（内容，字体大小/颜色，对齐方式）、手势功能、缩放、旋转、翻转

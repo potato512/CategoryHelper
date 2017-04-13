@@ -326,23 +326,23 @@
 - (BOOL)limitTextField:(NSString *)string limitStr:(NSString *)limitStr edit:(BOOL)canEdit
 {
     /*
-    /// 限制textField输入的文字
-    NSCharacterSet *cs;
-    cs = [[NSCharacterSet characterSetWithCharactersInString:limitStr] invertedSet];
-    NSString *filtered = [[string componentsSeparatedByCharactersInSet:cs]componentsJoinedByString:@""];
-    BOOL canChange = [string isEqualToString:filtered];
-    return canChange;
-    */
-        
+     /// 限制textField输入的文字
+     NSCharacterSet *cs;
+     cs = [[NSCharacterSet characterSetWithCharactersInString:limitStr] invertedSet];
+     NSString *filtered = [[string componentsSeparatedByCharactersInSet:cs]componentsJoinedByString:@""];
+     BOOL canChange = [string isEqualToString:filtered];
+     return canChange;
+     */
+    
     /*
-    /// 限制textField不能输入的字符
-    NSCharacterSet *cs;
-    cs = [[NSCharacterSet characterSetWithCharactersInString:limitStr] invertedSet];
-    NSString *filtered = [[string componentsSeparatedByCharactersInSet:cs]componentsJoinedByString:@""];
-    BOOL canChange = [string isEqualToString:filtered];
-    return !canChange;
-    */
-        
+     /// 限制textField不能输入的字符
+     NSCharacterSet *cs;
+     cs = [[NSCharacterSet characterSetWithCharactersInString:limitStr] invertedSet];
+     NSString *filtered = [[string componentsSeparatedByCharactersInSet:cs]componentsJoinedByString:@""];
+     BOOL canChange = [string isEqualToString:filtered];
+     return !canChange;
+     */
+    
     BOOL isResult = NO;
     
     NSCharacterSet *limitSet = [NSCharacterSet characterSetWithCharactersInString:limitStr];
@@ -401,7 +401,7 @@
             }
         }
     }
-
+    
     return isResult;
 }
 
@@ -411,7 +411,7 @@
 - (void)limitTextFieldLength:(NSUInteger)maxLength
 {
     NSString *text = self.text;
-    NSInteger length = [self textLength:text CNText:NO];
+    NSInteger length = [text textLength:NO];
     if (length > maxLength)
     {
         self.text = [text substringToIndex:maxLength];
@@ -427,9 +427,11 @@
     NSString *text = self.text;
     for (NSUInteger i = 0; i < text.length; i++)
     {
-        unichar textChar = [text characterAtIndex:i];
-        NSInteger lengthChar = (isascii(textChar) ? 1 : 2);
-
+//        unichar textChar = [text characterAtIndex:i];
+//        NSInteger lengthChar = (isascii(textChar) ? 1 : 2);
+        NSString *subText = [text substringWithRange:NSMakeRange(i, 1)];
+        NSInteger lengthChar = ([subText isENCharacter] ? 1 : 2);
+        
         lengthTotal++;
         lengthText += lengthChar;
         if (lengthText > maxLength)
@@ -439,40 +441,6 @@
         }
     }
     self.text = [text substringToIndex:lengthTotal];
-}
-
-/// 判断输入的字符长度 一个汉字算2个字符，是否区分中英文
-- (NSUInteger)textLength:(NSString *)text CNText:(BOOL)isCN
-{
-    NSUInteger asciiLength = 0;
-    NSInteger length = text.length;
-    for (NSUInteger i = 0; i < length; i++)
-    {
-        unichar uc = [text characterAtIndex:i];
-        asciiLength += (isascii(uc) ? 1 : (isCN ? 2 : 1));
-    }
-    return asciiLength;
-}
-
-/**
- *  是否是中文字符
- *
- *  @return BOOL
- */
-- (BOOL)isCNText
-{
-    BOOL isCN = YES;
-    for (NSUInteger i = 0; i < self.text.length; i++)
-    {
-        unichar charText = [self.text characterAtIndex:i];
-        isCN = isascii(charText);
-        if (!isCN)
-        {
-            // 如果有一个字符不是则不全是中文
-            break;
-        }
-    }
-    return isCN;
 }
 
 #pragma mark - 属性
@@ -489,8 +457,8 @@
 
 - (NSInteger)limitMaxLength
 {
-    NSNumber *limitMaxLength = objc_getAssociatedObject(self, @selector(limitMaxLength));
-    return limitMaxLength.integerValue;
+    NSNumber *number = objc_getAssociatedObject(self, @selector(limitMaxLength));
+    return number.integerValue;
 }
 
 - (void)setLimitText:(NSString *)limitText
@@ -499,14 +467,30 @@
     {
         objc_setAssociatedObject(self, @selector(limitText), limitText, OBJC_ASSOCIATION_RETAIN);
         
-        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(textEditChanged:) name:UITextFieldTextDidChangeNotification object:nil];
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(limitTextChanged:) name:UITextFieldTextDidChangeNotification object:nil];
     }
 }
 
 - (NSString *)limitText
 {
-    NSString *limitText = objc_getAssociatedObject(self, @selector(limitText));
-    return limitText;
+    NSString *text = objc_getAssociatedObject(self, @selector(limitText));
+    return text;
+}
+
+- (void)setAllowedText:(NSString *)allowedText
+{
+    if (0 < allowedText.length)
+    {
+        objc_setAssociatedObject(self, @selector(allowedText), allowedText, OBJC_ASSOCIATION_RETAIN);
+        
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(allowedTextChanged:) name:UITextFieldTextDidChangeNotification object:nil];
+    }
+}
+
+- (NSString *)allowedText
+{
+    NSString *text = objc_getAssociatedObject(self, @selector(allowedText));
+    return text;
 }
 
 #pragma mark - 通知方法
@@ -525,58 +509,66 @@
     }
 }
 
-- (void)textEditChanged:(NSNotification *)notification
+- (void)limitTextChanged:(NSNotification *)notification
 {
     if ([self isFirstResponder])
     {
-        [self limitTextField:self.limitText complete:^(NSInteger index) {
+        [self.text regularWithText:self.limitText limitedHandle:^(NSInteger index) {
             if (0 == index)
             {
-                // 第一位且没有输入时
-                if (0 == self.text.length)
+                // 首位输入
+                NSInteger length = self.text.length;
+                if (0 == length)
                 {
-                    // 还没有输入时
+                    // 首次输入
                     self.text = @"";
                 }
                 else
                 {
-                    // 已经有输入时
-                    self.text = [self.text substringFromIndex:1];
+                    // 非首次输入
+                    self.text = [self.text substringFromIndex:(index + 1)];
                 }
             }
             else
             {
-                if (index < self.text.length)
-                {
-                    // 中间插入限制字符时
-                    NSString *textPart1 = [self.text substringToIndex:index];
-                    NSString *textPart2 = [self.text substringFromIndex:(index + 1)];
-                    self.text = [NSString stringWithFormat:@"%@%@", textPart1, textPart2];
-                }
+                // 非首位输入
+                self.text = [self.text stringByReplacingCharactersInRange:NSMakeRange(index, 1) withString:@""];
             }
         }];
     }
 }
 
-// 输入
-- (void)limitTextField:(NSString *)limitStr complete:(void (^)(NSInteger index))complete
+- (void)allowedTextChanged:(NSNotification *)notification
 {
-    NSCharacterSet *limitSet = [NSCharacterSet characterSetWithCharactersInString:limitStr];
-    
-    NSString *text = self.text;
-    NSInteger length = text.length;
-    for (int i = 0; i < length; i++)
+    if ([self isFirstResponder])
     {
-        NSString *limitChar = [text substringWithRange:NSMakeRange(i, 1)];
-        NSRange range = [limitChar rangeOfCharacterFromSet:limitSet];
-        if (range.location == NSNotFound)
-        {
-            if (complete)
+        [self.text regularWithText:self.allowedText allowedHandle:^(NSInteger index) {
+            if (0 == index)
             {
-                complete(i);
+                // 首位输入
+                NSInteger length = self.text.length;
+                if (0 == length)
+                {
+                    // 首次输入
+                    self.text = @"";
+                }
+                else
+                {
+                    // 非首次输入
+                    self.text = [self.text substringFromIndex:(index + 1)];
+                }
             }
-            
-            break;
+            else
+            {
+                // 非首位输入
+                self.text = [self.text stringByReplacingCharactersInRange:NSMakeRange(index, 1) withString:@""];
+            }
+        }];
+        
+        // 如果包含有不是指定字符串的字符则递归调用（避免中文多词联想异常）
+        if (![self.text isContantWithText:self.allowedText])
+        {
+            [self allowedTextChanged:notification];
         }
     }
 }

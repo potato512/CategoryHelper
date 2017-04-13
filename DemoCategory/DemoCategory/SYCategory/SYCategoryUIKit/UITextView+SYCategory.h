@@ -30,9 +30,10 @@
 /// 字符输入字数限制
 @property (nonatomic, assign) NSInteger limitMaxLength;
 
-/// 字符输入限制
+/// 限制不能输入指定字符（不需要结合通知使用）
 @property (nonatomic, strong) NSString *limitText;
-
+/// 限制只能输入指定字符（不需要结合通知使用）
+@property (nonatomic, strong) NSString *allowedText;
 
 @end
 

@@ -25,4 +25,13 @@
  */
 + (void)refreshTableView:(NSArray *)dataSource tabelview:(UITableView *)tableview message:(NSString *)message;
 
+/**
+ *  动态滚动到指定位置
+ *
+ *  @param section  指定的段位置
+ *  @param row      指定的行位置
+ *  @param position 指定的动态样式
+ */
+- (void)scrollAtIndex:(NSInteger)section row:(NSInteger)row position:(UITableViewScrollPosition)position;
+
 @end
