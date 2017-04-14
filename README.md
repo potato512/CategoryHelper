@@ -1,7 +1,7 @@
 # SYCategory
+自定义UIKit、Foundation的类别，以适应在研发过程中常使用到的功能，提高开发效率。
 
-## 自定义UIKit、Foundation的类别，以适应在研发过程中常使用到的功能，提高开发效率。
-[UIKit类别](https://github.com/potato512/SYCategory/tree/master/SYCategoryUIKit)
+# UIKit类别
   * UILabel：自适应宽高、修改内容（指定文字颜色，大小，间距）
   * UIView：原点坐标设置、显示标签（内容，字体大小/颜色，对齐方式）、手势功能、缩放、旋转、翻转
   * UIButton：图标对齐方式、倒计时功能、block响应回调
@@ -18,7 +18,7 @@
   * UITextView：输入限制
   * UIImagePickerController：block响应回调
 
-[Foundation类别](https://github.com/potato512/SYCategory/tree/master/SYCategoryFoundation)
+# Foundation类别
  * NSString：其他对象的互换、数字/金额等的处理、特殊字符的限制
  * NSFileManager：文件操作、目录操作
  * NSAttributedString：副文本字符串处理
@@ -32,40 +32,3 @@
  * NSNotificationCenter：
  * NSUserDefaults：
 
-[Commons常用宏定义](https://github.com/potato512/SYCategory/tree/master/SYCommons)
-#### difine中的简化操作
- * 运行时间统计
- * 强弱引用
- * 国际化字符串
- * GCD使用：子线程、主线程
- * NSUserDefaults使用：存储、读取
- * NSNotificationCenter使用：发送通知、接收通知
- * 角度与弧度的互转
- * 调试信息DLog的使用
- * 常用对象互转：NSURL、NSNumber、NSString
-#### time时间格式
-#### color颜色
- * 随机颜色设置
- * 十六进制颜色设置
-#### font常用字体
-#### device设备信息
- * APP信息：版本号、标识符、名称
- * 尺寸信息
- * 设备信息：设备类型、设备系统号
-#### limit限制条件
-#### markwords常用提示语
- * 注册登录提示语
- * 弹窗提示语
- * 网络交互提示语
- * 输入限制提示语
- * LBS定位提示语
-#### symbol常用符号
-#### image常用图片处理
- * 图片读取
- * 图片拉升
-#### filePath常用沙盒路径
- * home目录
- * temp目录
- * document目录
- * cache目录
- * library目录
