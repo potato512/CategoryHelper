@@ -500,6 +500,21 @@ static NSString *const kSpecialRegular = @";~`!@#$%^&*()_+-={}[]|:\"'<>,.?/\";";
     return isResult;
 }
 
+/// 是否包含子字符串
+- (BOOL)isContantSubtext:(NSString *)text
+{
+    BOOL isResult = NO;
+    if ([NSString isValidNSString:self] && [NSString isValidNSString:text])
+    {
+        NSRange range = [self rangeOfString:text];
+        if (range.location != NSNotFound)
+        {
+            isResult = YES;
+        }
+    }
+    return isResult;
+}
+
 /// 是否包含指定的字符
 - (BOOL)isContantSomeCharacters:(NSString *)characters
 {

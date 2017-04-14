@@ -34,7 +34,7 @@
             {
                 if ([[NSString stringWithUTF8String:temp_addr->ifa_name] isEqualToString:@"en0"])
                 {
-                    //                    address = [NSString stringWithUTF8String:inet_ntop(((struct sockaddr_in *)temp_addr->ifa_addr)->sin_addr)];
+//                    address = [NSString stringWithUTF8String:inet_ntop(((struct sockaddr_in *)temp_addr->ifa_addr)->sin_addr)];
                 }
             }
             temp_addr = temp_addr->ifa_next;
@@ -93,6 +93,10 @@
  */
 - (NSString *)firstCharacter
 {
+    if (![NSString isValidNSString:self])
+    {
+        return nil;
+    }
     NSMutableString *string = [NSMutableString stringWithString:self];
     CFStringTransform((CFMutableStringRef)string, NULL, kCFStringTransformMandarinLatin, NO);
     CFStringTransform((CFMutableStringRef)string, NULL, kCFStringTransformStripDiacritics, NO);
@@ -294,8 +298,8 @@ static NSString *const keyDecimalPoint = @".";
 /// 过滤字符串中的空格符
 - (NSString *)textFilterBlankSpace
 {
-    //    NSCharacterSet *characterSet = [NSCharacterSet whitespaceAndNewlineCharacterSet];
-    //    NSString *resultString = [self stringByTrimmingCharactersInSet:characterSet];
+//    NSCharacterSet *characterSet = [NSCharacterSet whitespaceAndNewlineCharacterSet];
+//    NSString *resultString = [self stringByTrimmingCharactersInSet:characterSet];
     NSString *resultString = [self stringByReplacingOccurrencesOfString:@" " withString:@""];
     return resultString;
 }

@@ -123,6 +123,9 @@
 /// 是否是指定的字符类型
 - (BOOL)isContantWithText:(NSString *)text;
 
+/// 是否包含子字符串
+- (BOOL)isContantSubtext:(NSString *)text;
+
 /// 是否包含指定的字符
 - (BOOL)isContantSomeCharacters:(NSString *)characters;
 

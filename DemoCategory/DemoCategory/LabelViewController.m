@@ -35,11 +35,11 @@
 //            DLog(@"点击了：取消");
 //        }];
 //    }];
-    self.navigationItem.rightBarButtonItem = [UIBarButtonItem rightBarButtonItemWithImage:kImageWithName(@"header_boy")  action:^(UIButton *item) {
+    self.navigationItem.rightBarButtonItem = [UIBarButtonItem rightBarButtonItemWithImage:[UIImage imageNamed:@"header_boy"] action:^(UIButton *item) {
         [UIAlertView alertWithTitle:@"温馨提示" message:@"item弹窗" cancelButtonTitle:@"取消" otherButtonTitles:@[@"知道了", @"明白了"] controller:weakSelf onDismiss:^(int buttonIndex, NSString *buttonTitle) {
-            DLog(@"点击了：%@", ([buttonTitle isEqualToString:@"明白了"] ? @"明白了" : @"知道了"));
+            NSLog(@"点击了：%@", ([buttonTitle isEqualToString:@"明白了"] ? @"明白了" : @"知道了"));
         } onCancel:^{
-            DLog(@"点击了：取消");
+            NSLog(@"点击了：取消");
         }];
     }];
 
@@ -80,7 +80,7 @@
     UILabel *label2 = [[UILabel alloc] initWithFrame:CGRectMake(10.0, (currentView.bottom + 10.0), (scrollview.width - 10.0 * 2), 100.0)];
     [scrollview addSubview:label2];
     label2.backgroundColor = [UIColor yellowColor];
-    label2.font = kFontWithSize(12.0);
+    label2.font = [UIFont systemFontOfSize:12.0];
     label2.text = @"多行显示：\nUILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(10.0, 10.0, 100.0, 100.0)];\n[self.view addSubview:label];\nlabel.backgroundColor = [UIColor greenColor];\nlabel.text = ...;\n[label2 labelAutoSize:SYLabelAutoSizeTypeAll];";
     [label2 labelAutoSize:SYLabelAutoSizeTypeAll];
     
@@ -90,10 +90,10 @@
     UILabel *label3 = [[UILabel alloc] initWithFrame:CGRectMake(10.0, (currentView.bottom + 10.0), (scrollview.width - 10.0 * 2), 30.0)];
     [scrollview addSubview:label3];
     label3.backgroundColor = [UIColor purpleColor];
-    label3.font = kFontWithSize(12.0);
+    label3.font = [UIFont systemFontOfSize:12.0];
     label3.text = @"修改标签栏信息：devZhang";
     [label3 labelAttributedText:@"修改标签栏信息" color:label3.textColor font:label3.font space:5.0 rowSpace:0.0];
-    [label3 labelAttributedText:@"devZhang" color:[UIColor redColor] font:kFontWithSize(20.0) space:1.0 rowSpace:0.0];
+    [label3 labelAttributedText:@"devZhang" color:[UIColor redColor] font:[UIFont systemFontOfSize:20.0] space:1.0 rowSpace:0.0];
     
     
     currentView = label3;

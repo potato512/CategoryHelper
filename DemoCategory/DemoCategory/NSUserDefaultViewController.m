@@ -70,22 +70,22 @@
     NSString *title = button.titleLabel.text;
     if ([title isEqualToString:@"读取信息"])
     {
-        NSString *name = kUserDefaultRead(@"name");
+        NSString *name = NSUserDefaultsRead(@"name");
         NSLog(@"name = %@", name);
     }
     if ([title isEqualToString:@"保存信息"])
     {
-        kUserDefaultSave(@"devZhang", @"name");
+        NSUserDefaultsSave(@"devZhang", @"name");
     }
     if ([title isEqualToString:@"删除信息"])
     {
-        kUserDefaultSave(@"", @"name");
+        NSUserDefaultsRemove(@"name");
     }
     if ([title isEqualToString:@"修改信息"])
     {
         UITextField *textfield = [(UITextField *)self.view viewWithTag:2000];
         NSString *text = textfield.text;
-        kUserDefaultSave(text, @"name");
+        NSUserDefaultsSave(text, @"name");
     }
 }
 

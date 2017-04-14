@@ -26,7 +26,7 @@
 
 - (void)dealloc
 {
-    DLog(@"%@ 被释放了", self);
+    NSLog(@"%@ 被释放了", self);
 }
 
 - (void)loadView

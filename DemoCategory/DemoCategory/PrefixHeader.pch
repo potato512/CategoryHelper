@@ -16,7 +16,6 @@
     #import <UIKit/UIKit.h>
     #import <Foundation/Foundation.h>
     #import "SYCategory.h"
-    #import "SYToolsHeader.h"
 #endif
 
 #endif /* PrefixHeader_pch */
