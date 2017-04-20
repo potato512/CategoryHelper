@@ -59,7 +59,14 @@
     
 //    kNotificationCenterReceive(name, self, action);
     
-    NSNotificationCenterReceive(name, self, action);
+    // 方法1
+//    NSNotificationCenterReceive(name, self, action);
+    
+    // 方法2
+    kSelfWeak;
+    [[NSNotificationCenter defaultCenter] receiveNotificationWithName:name handle:^(NSNotification *notification) {
+        [weakSelf notificationAction:notification];
+    }];
 }
 
 - (void)buttonClick:(UIButton *)button
@@ -69,13 +76,17 @@
     {
         // 发消息
         NSString *name = @"personInfo";
-        NSDictionary *dict = @{@"devZhang":@"name", @"30":@"age", @"iOSDev":@"job"};
+        NSDictionary *dict = @{@"name":@"devZhang", @"age":@"30", @"job":@"iOSDev"};
         
 //        [kNotificationCenter postNotificationName:name object:nil userInfo:dict];
         
 //        kNotificationCenterPost(name, dict);
         
-        NSNotificationCenterPost(name, dict);
+        // 方法1
+//        NSNotificationCenterPost(name, dict);
+        
+        // 方法2
+        [[NSNotificationCenter defaultCenter] postNotificationWithName:name userInfo:dict];
     }
 }
 

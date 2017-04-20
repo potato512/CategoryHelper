@@ -34,7 +34,12 @@
 
 
 # 修改完善
-## 20170421
+## 20170420
+* NSObject添加KVO类别方法（回调响应）
+~~~ javascript
+/// 监听响应，同时进行回调响应
+- (void)observerComplete:(void (^)(id object))handle;
+~~~
 * NSNotificationCenter添加方法（回调响应）
 ~~~ javascript
 /**

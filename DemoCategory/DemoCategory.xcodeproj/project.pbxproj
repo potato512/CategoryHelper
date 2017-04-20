@@ -78,6 +78,7 @@
 		A78C0E341DED51FD00DB84A0 /* AlertSheetViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A78C0E331DED51FD00DB84A0 /* AlertSheetViewController.m */; };
 		A78C0E371DED520F00DB84A0 /* ImagePickerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A78C0E361DED520F00DB84A0 /* ImagePickerViewController.m */; };
 		A78C0E3A1DED522400DB84A0 /* TextFieldViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A78C0E391DED522400DB84A0 /* TextFieldViewController.m */; };
+		DF5A76141EA8EAB60091A683 /* NSObject+SYKVO.m in Sources */ = {isa = PBXBuildFile; fileRef = DF5A76131EA8EAB60091A683 /* NSObject+SYKVO.m */; };
 		DFA204EB1D1E131C00929257 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = DFA204EA1D1E131C00929257 /* main.m */; };
 		DFA204EE1D1E131C00929257 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = DFA204ED1D1E131C00929257 /* AppDelegate.m */; };
 		DFA204F11D1E131C00929257 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DFA204F01D1E131C00929257 /* ViewController.m */; };
@@ -243,6 +244,8 @@
 		A78C0E361DED520F00DB84A0 /* ImagePickerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ImagePickerViewController.m; sourceTree = "<group>"; };
 		A78C0E381DED522400DB84A0 /* TextFieldViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TextFieldViewController.h; sourceTree = "<group>"; };
 		A78C0E391DED522400DB84A0 /* TextFieldViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TextFieldViewController.m; sourceTree = "<group>"; };
+		DF5A76121EA8EAB60091A683 /* NSObject+SYKVO.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+SYKVO.h"; sourceTree = "<group>"; };
+		DF5A76131EA8EAB60091A683 /* NSObject+SYKVO.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+SYKVO.m"; sourceTree = "<group>"; };
 		DFA204E61D1E131C00929257 /* DemoCategory.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DemoCategory.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		DFA204EA1D1E131C00929257 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		DFA204EC1D1E131C00929257 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -319,6 +322,8 @@
 				A72E450E1E97639D008DD2F3 /* NSNumber+SYCategory.m */,
 				A72E450F1E97639D008DD2F3 /* NSObject+SYCategory.h */,
 				A72E45101E97639D008DD2F3 /* NSObject+SYCategory.m */,
+				DF5A76121EA8EAB60091A683 /* NSObject+SYKVO.h */,
+				DF5A76131EA8EAB60091A683 /* NSObject+SYKVO.m */,
 				A72E45111E97639D008DD2F3 /* NSString+SYCategory.h */,
 				A72E45121E97639D008DD2F3 /* NSString+SYCategory.m */,
 				A72E45131E97639D008DD2F3 /* NSString+SYJSON.h */,
@@ -706,6 +711,7 @@
 				A72E45751E97639D008DD2F3 /* UIImage+SYCategory.m in Sources */,
 				A72E45831E97639D008DD2F3 /* UITextView+SYCategory.m in Sources */,
 				A72E457E1E97639D008DD2F3 /* UISwitch+SYCategory.m in Sources */,
+				DF5A76141EA8EAB60091A683 /* NSObject+SYKVO.m in Sources */,
 				A72E456E1E97639D008DD2F3 /* UIBarButtonItem+SYCategory.m in Sources */,
 				A72E455C1E97639D008DD2F3 /* NSArray+SYCategory.m in Sources */,
 				DFA204F11D1E131C00929257 /* ViewController.m in Sources */,

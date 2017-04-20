@@ -14,6 +14,7 @@
 #import "NSAttributedString+SYCategory.h"
 #import "NSNumber+SYCategory.h"
 #import "NSObject+SYCategory.h"
+#import "NSObject+SYKVO.h"
 #import "NSArray+SYCategory.h"
 #import "NSDictionary+SYCategory.h"
 #import "NSTimer+SYCategory.h"
