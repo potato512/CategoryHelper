@@ -76,6 +76,43 @@
 - (void)removeNotificationWithName:(NSString *)name target:(id)target;
 ~~~
 
+## 20170419
+* NSNotificationCenter添加方法（回调响应）
+~~~ javascript
+/**
+*  发送通知
+*  add by zhangshaoyu, 2017-04-20
+*  @param name 通知名称
+*  @param dict 通知携带参数
+*/
+- (void)postNotificationWithName:(NSString *)name userInfo:(NSDictionary *)dict;
+
+/**
+*  接收通知
+*  add by zhangshaoyu, 2017-04-20
+*  @param name   通知名称
+*  @param target 响应对象
+*  @param action 响应方法
+*/
+- (void)receiveNotificationWithName:(NSString *)name target:(id)target selector:(SEL)action;
+
+/**
+*  接收通知并执行回调
+*  add by zhangshaoyu, 2017-04-20
+*  @param name   通知名称
+*  @param handle 响应回调
+*/
+- (void)receiveNotificationWithName:(NSString *)name handle:(void (^)(NSNotification *notification))handle;
+
+/**
+*  移除通知
+*  add by zhangshaoyu, 2017-04-20
+*  @param name   通知名称
+*  @param target 响应对象
+*/
+- (void)removeNotificationWithName:(NSString *)name target:(id)target;
+~~~
+
 ## 20170414
 * NSString修改异常
 
