@@ -34,6 +34,16 @@
 
 
 # 修改完善
+## 20170421
+* NSTimer添加实例化方法（回调响应 & 子线程模式）
+~~~ javascript
+/// 实例化NSTimer（无须处理强引用 & 回调响应）
++ (NSTimer *)timerWithTimeInterval:(NSTimeInterval)time userInfo:(id)userInfo repeats:(BOOL)isRepeat handle:(void (^)(NSTimer *timer))handle;
+
+/// 倒计时
++ (void)timerCountdownWithTimeInterval:(NSTimeInterval)time maxTimerInterval:(NSInteger)maxTime handle:(void (^)(NSInteger remainTime))handle;
+~~~
+
 ## 20170420
 * NSObject添加KVO类别方法（回调响应）
 ~~~ javascript

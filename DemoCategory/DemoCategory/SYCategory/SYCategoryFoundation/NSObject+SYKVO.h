@@ -11,6 +11,8 @@
 @interface NSObject (SYKVO)
 
 /// 监听响应，同时进行回调响应
-- (void)observerComplete:(void (^)(id object))handle;
+//- (void)observerComplete:(void (^)(id object))handle;
+
+- (void)observerForKeyPath:(NSString *)keyPath complete:(void (^)(id object, NSDictionary *change))complete;
 
 @end

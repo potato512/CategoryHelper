@@ -20,7 +20,7 @@
 - (void)timerKill;
 
 /**
- *  实例化NSTimer
+ *  实例化NSTimer（注意处理强引用）
  *
  *  @param time   时间间隔
  *  @param target 执行方法的对象
@@ -31,5 +31,12 @@
  *  @return NSTimer
  */
 NSTimer *NSTimerInitialize(NSTimeInterval time, id target, SEL action, id object, BOOL repeat);
+
+/// 实例化NSTimer（无须处理强引用 & 回调响应）
++ (NSTimer *)timerWithTimeInterval:(NSTimeInterval)time userInfo:(id)userInfo repeats:(BOOL)isRepeat handle:(void (^)(NSTimer *timer))handle;
+
+
+/// 倒计时
++ (void)timerCountdownWithTimeInterval:(NSTimeInterval)time maxTimerInterval:(NSInteger)maxTime handle:(void (^)(NSInteger remainTime))handle;
 
 @end
