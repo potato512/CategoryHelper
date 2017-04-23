@@ -34,6 +34,16 @@
 
 
 # 修改完善
+## 20170423
+* NSObject添加响应回调方法
+~~~ javascript
+/// 监听响应，同时进行回调响应
+- (void)observerForKeyPath:(NSString *)keyPath complete:(void (^)(NSString *key, id object, NSDictionary *change))complete;
+
+/// 编辑控件输入响应（object为text）
+- (void)observerTextEditComplete:(void (^)(id object))complete;
+~~~
+
 ## 20170421
 * NSTimer添加实例化方法（回调响应 & 子线程模式）
 ~~~ javascript

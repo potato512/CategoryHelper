@@ -9,11 +9,13 @@
 #import "NSObject+SYKVO.h"
 #import <objc/runtime.h>
 #import <objc/message.h>
+#import <UIKit/UIKit.h>
 
 @interface NSObject ()
 
 //@property (nonatomic, copy) void (^singleHandle)(id object);
-@property (nonatomic, copy) void (^singleHandle)(id object, NSDictionary *change);
+@property (nonatomic, copy) void (^observerBlock)(NSString *key, id object, NSDictionary *change);
+@property (nonatomic, copy) void (^observerBlockText)(id object);
 
 @end
 
@@ -60,27 +62,74 @@
 //}
 
 
-- (void)setSingleHandle:(void (^)(id, NSDictionary *))singleHandle
+- (void)setObserverBlock:(void (^)(NSString *, id, NSDictionary *))observerBlock
 {
-    objc_setAssociatedObject(self, @selector(singleHandle), singleHandle, OBJC_ASSOCIATION_COPY);
+    objc_setAssociatedObject(self, @selector(observerBlock), observerBlock, OBJC_ASSOCIATION_COPY);
 }
 
-- (void (^)(id, NSDictionary *))singleHandle
+- (void (^)(NSString *, id, NSDictionary *))observerBlock
 {
-    return objc_getAssociatedObject(self, @selector(singleHandle));
+    return objc_getAssociatedObject(self, @selector(observerBlock));
 }
 
-- (void)observerForKeyPath:(NSString *)keyPath complete:(void (^)(id object, NSDictionary *change))complete
+- (void)observerForKeyPath:(NSString *)keyPath complete:(void (^)(NSString *key, id object, NSDictionary *change))complete
 {
-    self.singleHandle = [complete copy];
+    self.observerBlock = [complete copy];
+    
     [self addObserver:self forKeyPath:keyPath options:(NSKeyValueObservingOptionNew | NSKeyValueObservingOptionOld) context:nil];
 }
 
 - (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary<NSString *,id> *)change context:(void *)context
 {
-    if (self.singleHandle)
+    if (self.observerBlock)
     {
-        self.singleHandle(object, change);
+        self.observerBlock(keyPath, object, change);
+    }
+}
+
+
+- (void)setObserverBlockText:(void (^)(id))observerBlockText
+{
+    objc_setAssociatedObject(self, @selector(observerBlockText), observerBlockText, OBJC_ASSOCIATION_COPY);
+}
+
+- (void (^)(id))observerBlockText
+{
+    return objc_getAssociatedObject(self, @selector(observerBlockText));
+}
+
+- (void)observerTextEditComplete:(void (^)(id object))complete
+{
+    self.observerBlockText = [complete copy];
+    
+    NSString *nameNotification = UITextFieldTextDidChangeNotification;
+    if ([self isKindOfClass:[UITextField class]])
+    {
+        nameNotification = UITextFieldTextDidChangeNotification;
+    }
+    else if ([self isKindOfClass:[UITextView class]])
+    {
+        nameNotification = UITextViewTextDidEndEditingNotification;
+    }
+    
+    __weak typeof(self) weakObject = self;
+    [[NSNotificationCenter defaultCenter] addObserver:weakObject selector:@selector(textEditChange:) name:nameNotification object:nil];
+}
+
+- (void)textEditChange:(NSNotification *)notification
+{
+    if (self.observerBlockText)
+    {
+        if ([self isKindOfClass:[UITextField class]])
+        {
+            UITextField *textfield = (UITextField *)self;
+            self.observerBlockText(textfield.text);
+        }
+        else if ([self isKindOfClass:[UITextView class]])
+        {
+            UITextView *textfield = (UITextView *)self;
+            self.observerBlockText(textfield.text);
+        }
     }
 }
 

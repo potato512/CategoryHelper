@@ -13,6 +13,10 @@
 /// 监听响应，同时进行回调响应
 //- (void)observerComplete:(void (^)(id object))handle;
 
-- (void)observerForKeyPath:(NSString *)keyPath complete:(void (^)(id object, NSDictionary *change))complete;
+/// 监听响应，同时进行回调响应
+- (void)observerForKeyPath:(NSString *)keyPath complete:(void (^)(NSString *key, id object, NSDictionary *change))complete;
+
+/// 编辑控件输入响应（object为text）
+- (void)observerTextEditComplete:(void (^)(id object))complete;
 
 @end
