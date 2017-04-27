@@ -8,6 +8,8 @@
 
 #import <Foundation/Foundation.h>
 
+typedef void (^TimerBlock)(NSTimer *timer);
+
 @interface NSTimer (SYCategory)
 
 /// 开启定时器
@@ -20,7 +22,7 @@
 - (void)timerKill;
 
 /**
- *  实例化NSTimer（注意处理强引用）
+ *  实例化NSTimer（注意处理强引用：只能在使用的视图控制器中的处理，且不能在dealloc中处理）
  *
  *  @param time   时间间隔
  *  @param target 执行方法的对象
@@ -32,9 +34,8 @@
  */
 NSTimer *NSTimerInitialize(NSTimeInterval time, id target, SEL action, id object, BOOL repeat);
 
-/// 实例化NSTimer（无须处理强引用 & 回调响应）
-+ (NSTimer *)timerWithTimeInterval:(NSTimeInterval)time userInfo:(id)userInfo repeats:(BOOL)isRepeat handle:(void (^)(NSTimer *timer))handle;
-
+/// 实例化NSTimer（注意处理强引用 & 回调响应：可以在任意对象中处理）
++ (NSTimer *)timerWithTimeInterval:(NSTimeInterval)time userInfo:(id)userInfo repeats:(BOOL)isRepeat handle:(TimerBlock)handle;
 
 /// 倒计时
 + (void)timerCountdownWithTimeInterval:(NSTimeInterval)time maxTimerInterval:(NSInteger)maxTime handle:(void (^)(NSInteger remainTime))handle;

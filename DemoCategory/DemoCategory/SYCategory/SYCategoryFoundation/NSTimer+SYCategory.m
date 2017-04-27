@@ -8,9 +8,6 @@
 
 #import "NSTimer+SYCategory.h"
 
-typedef void (^TimerBlock)(NSTimer *timer);
-static TimerBlock timerBlock;
-
 @implementation NSTimer (SYCategory)
 
 /// 开启定时器
@@ -42,14 +39,20 @@ NSTimer *NSTimerInitialize(NSTimeInterval time, id target, SEL action, id object
     return timer;
 }
 
-/// 实例化NSTimer（无须处理强引用 & 回调响应）
+/// 实例化NSTimer（处理强引用 & 回调响应）
 + (NSTimer *)timerWithTimeInterval:(NSTimeInterval)time userInfo:(id)userInfo repeats:(BOOL)isRepeat handle:(void (^)(NSTimer *timer))handle
 {
-    timerBlock = [handle copy];
+    TimerBlock timerBlock = [handle copy];
+    NSMutableArray *array = [NSMutableArray array];
+    [array addObject:timerBlock];
+    if (userInfo)
+    {
+        [array addObject:userInfo];
+    }
     
     __weak typeof(self) weakSelf = self;
     
-    NSTimer *timer = [NSTimer timerWithTimeInterval:time target:weakSelf selector:@selector(timerBlock:) userInfo:userInfo repeats:isRepeat];
+    NSTimer *timer = [NSTimer timerWithTimeInterval:time target:weakSelf selector:@selector(timerBlock:) userInfo:array repeats:isRepeat];
     [[NSRunLoop currentRunLoop] addTimer:timer forMode:NSRunLoopCommonModes];
     [timer timerStop];
     
@@ -58,6 +61,8 @@ NSTimer *NSTimerInitialize(NSTimeInterval time, id target, SEL action, id object
 
 + (void)timerBlock:(NSTimer *)timer
 {
+    NSArray *array = timer.userInfo;
+    TimerBlock timerBlock = array.firstObject;
     if (timerBlock)
     {
         timerBlock(timer);
