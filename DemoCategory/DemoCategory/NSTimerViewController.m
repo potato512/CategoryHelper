@@ -59,13 +59,13 @@
     }
     
     // 1
-    self.timer = NSTimerInitialize(0.1, self, @selector(countDownTime:), nil, YES);
+//    self.timer = NSTimerInitialize(0.1, self, @selector(countDownTime:), nil, YES);
     // 2
-//    __block NSInteger number = 0;
-//    self.timer = [NSTimer timerWithTimeInterval:0.1 userInfo:nil repeats:YES handle:^(NSTimer *timer) {
-//        number++;
-//        NSLog(@"index = %@", @(number));
-//    }];
+    __block NSInteger number = 0;
+    self.timer = [NSTimer timerWithTimeInterval:0.1 userInfo:nil repeats:YES handle:^(NSTimer *timer) {
+        number++;
+        NSLog(@"handle index = %@", @(number));
+    }];
     // 3
 //    [NSTimer timerCountdownWithTimeInterval:1.0 maxTimerInterval:10 handle:^(NSInteger remainTime) {
 //        NSLog(@"remainTime = %@", @(remainTime));
@@ -98,7 +98,7 @@ NSInteger indexCount = 0;
     else
     {
         indexCount++;
-        NSLog(@"index = %@", @(indexCount));
+        NSLog(@"selector index = %@", @(indexCount));
     }
 }
 
