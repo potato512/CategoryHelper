@@ -10,6 +10,7 @@
 
 @interface NSTimerViewController ()
 
+@property (nonatomic, strong) UILabel *label;
 @property (nonatomic, strong) NSTimer *timer;
 
 @end
@@ -38,6 +39,13 @@
 
 - (void)setUI
 {
+    self.label = [[UILabel alloc] initWithFrame:CGRectMake(10.0, 10.0, (self.view.frame.size.width - 10.0 * 2), 30.0)];
+    [self.view addSubview:self.label];
+    self.label.backgroundColor = [UIColor colorRandom];
+    self.label.textColor = [UIColor colorRandom];
+    self.label.textAlignment = NSTextAlignmentCenter;
+    
+    
     int rowButton = 3;
     CGFloat origin = 10.0;
     CGFloat widthButton = (self.view.width - (rowButton + 1) * origin) / rowButton;
@@ -48,7 +56,7 @@
     {
         UIButton *button = [UIButton buttonWithType:UIButtonTypeCustom];
         [self.view addSubview:button];
-        button.frame = CGRectMake((i % rowButton * (widthButton + origin) + origin), (i / rowButton * (heightButton + origin) + origin), widthButton, heightButton);
+        button.frame = CGRectMake((i % rowButton * (widthButton + origin) + origin), (i / rowButton * (heightButton + origin) + origin + (self.label.frame.origin.y + self.label.frame.size.height)), widthButton, heightButton);
         button.backgroundColor = [UIColor colorRandom];
         button.titleLabel.adjustsFontSizeToFitWidth = YES;
         [button setTitle:array[i] forState:UIControlStateNormal];
@@ -58,18 +66,22 @@
         [button addTarget:self action:@selector(buttonClick:) forControlEvents:UIControlEventTouchUpInside];
     }
     
+    
+    
     // 1
 //    self.timer = NSTimerInitialize(0.1, self, @selector(countDownTime:), nil, YES);
+    
     // 2
-    __block NSInteger number = 0;
-    self.timer = [NSTimer timerWithTimeInterval:0.1 userInfo:nil repeats:YES handle:^(NSTimer *timer) {
-        number++;
-        NSLog(@"handle index = %@", @(number));
-    }];
-    // 3
-//    [NSTimer timerCountdownWithTimeInterval:1.0 maxTimerInterval:10 handle:^(NSInteger remainTime) {
-//        NSLog(@"remainTime = %@", @(remainTime));
+//    __block NSInteger number = 0;
+//    self.timer = [NSTimer timerWithTimeInterval:0.1 userInfo:nil repeats:YES handle:^(NSTimer *timer) {
+//        number++;
+//        self.label.text = [NSString stringWithFormat:@"%@", @(number)];
 //    }];
+    
+    // 3
+    [NSTimer timerGCDWithTimeInterval:1.0 maxTimerInterval:300 afterTime:0 handle:^(NSInteger remainTime) {
+        self.label.text = [NSString stringWithFormat:@"%@", @(remainTime)];
+    }];
 }
 
 - (void)buttonClick:(UIButton *)button
@@ -98,7 +110,7 @@ NSInteger indexCount = 0;
     else
     {
         indexCount++;
-        NSLog(@"selector index = %@", @(indexCount));
+        self.label.text = [NSString stringWithFormat:@"%@", @(indexCount)];
     }
 }
 

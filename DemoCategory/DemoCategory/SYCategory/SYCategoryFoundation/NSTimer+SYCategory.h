@@ -38,6 +38,6 @@ NSTimer *NSTimerInitialize(NSTimeInterval time, id target, SEL action, id object
 + (NSTimer *)timerWithTimeInterval:(NSTimeInterval)time userInfo:(id)userInfo repeats:(BOOL)isRepeat handle:(TimerBlock)handle;
 
 /// 倒计时
-+ (void)timerCountdownWithTimeInterval:(NSTimeInterval)time maxTimerInterval:(NSInteger)maxTime handle:(void (^)(NSInteger remainTime))handle;
++ (void)timerGCDWithTimeInterval:(NSTimeInterval)time maxTimerInterval:(NSInteger)maxTime afterTime:(NSTimeInterval)afterTime handle:(void (^)(NSInteger remainTime))handle;
 
 @end

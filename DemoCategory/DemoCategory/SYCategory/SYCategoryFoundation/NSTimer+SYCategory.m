@@ -70,7 +70,7 @@ NSTimer *NSTimerInitialize(NSTimeInterval time, id target, SEL action, id object
 }
 
 // 倒计时
-+ (void)timerCountdownWithTimeInterval:(NSTimeInterval)time maxTimerInterval:(NSInteger)maxTime handle:(void (^)(NSInteger remainTime))handle
++ (void)timerGCDWithTimeInterval:(NSTimeInterval)time maxTimerInterval:(NSInteger)maxTime afterTime:(NSTimeInterval)afterTime handle:(void (^)(NSInteger remainTime))handle
 {
     if (0 >= maxTime)
     {
@@ -85,26 +85,30 @@ NSTimer *NSTimerInitialize(NSTimeInterval time, id target, SEL action, id object
     dispatch_source_set_timer(timer, dispatch_walltime(NULL, 0), (time * NSEC_PER_SEC), 0);
     dispatch_source_set_event_handler(timer, ^{
         
-        if (0 >= countdownTime)
-        {
-            dispatch_source_cancel(timer);
-            dispatch_async(dispatch_get_main_queue(), ^{
-                if (handle)
-                {
-                    handle(0);
-                }
-            });
-        }
-        else
-        {
-            dispatch_async(dispatch_get_main_queue(), ^{
-                if (handle)
-                {
-                    handle(countdownTime);
-                }
-            });
-            countdownTime--;
-        }
+        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(afterTime * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+        
+            if (0 >= countdownTime)
+            {
+                dispatch_async(dispatch_get_main_queue(), ^{
+                    if (handle)
+                    {
+                        handle(0);
+                    }
+                });
+                dispatch_source_cancel(timer);
+            }
+            else
+            {
+                dispatch_async(dispatch_get_main_queue(), ^{
+                    if (handle)
+                    {
+                        handle(countdownTime);
+                    }
+                });
+                countdownTime--;
+            }
+
+        });
     });
 
     dispatch_resume(timer);

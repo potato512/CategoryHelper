@@ -34,6 +34,13 @@
 
 
 # 修改完善
+## 20170510
+* NSTimer完善方法
+~~~ javascript
+/// 倒计时-添加延时执行时间
++ (void)timerGCDWithTimeInterval:(NSTimeInterval)time maxTimerInterval:(NSInteger)maxTime afterTime:(NSTimeInterval)afterTime handle:(void (^)(NSInteger remainTime))handle;
+~~~
+
 ## 20170423
 * NSObject添加响应回调方法
 ~~~ javascript

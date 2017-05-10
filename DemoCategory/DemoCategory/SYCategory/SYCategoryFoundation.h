@@ -4,7 +4,7 @@
 //
 //  Created by zhangshaoyu on 16/6/25.
 //  Copyright © 2016年 zhangshaoyu. All rights reserved.
-//
+//  https://github.com/potato512/SYCategory
 
 
 #import "NSFileManager+SYCategory.h"
