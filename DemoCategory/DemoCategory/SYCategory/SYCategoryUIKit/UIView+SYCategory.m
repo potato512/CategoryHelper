@@ -257,12 +257,10 @@
 {
     UIBlurEffect *effect = [UIBlurEffect effectWithStyle:UIBlurEffectStyleLight];
     UIVisualEffectView *effectView = [[UIVisualEffectView alloc] initWithEffect:effect];
-    effectView.frame = self.frame;
+    effectView.frame = self.bounds;
     effectView.alpha = alpha;
-    if (self.superview)
-    {
-        [self.superview addSubview:effectView];
-    }
+
+    [self addSubview:effectView];
 }
 
 /// 设置UI视图的边框属性

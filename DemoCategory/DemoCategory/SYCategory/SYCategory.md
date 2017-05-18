@@ -34,6 +34,9 @@
 
 
 # 修改完善
+## 20170518
+* UIView+SYCategory修改完善
+
 ## 20170510
 * NSTimer完善方法
 ~~~ javascript
