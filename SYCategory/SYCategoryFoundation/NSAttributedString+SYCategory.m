@@ -17,9 +17,9 @@
  *  @param aFont   字体大小
  *  @param aColor  字体颜色
  */
-- (void)attributedText:(NSString *)text font:(UIFont *)aFont color:(UIColor *)aColor
+- (NSAttributedString *)attributedText:(NSString *)text font:(UIFont *)aFont color:(UIColor *)aColor
 {
-    [self attributedText:text font:aFont color:aColor bgColor:nil];
+    return [self attributedText:text font:aFont color:aColor bgColor:nil];
 }
 
 /**
@@ -30,9 +30,9 @@
  *  @param color   字体颜色
  *  @param bgColor 字体背景颜色
  */
-- (void)attributedText:(NSString *)text font:(UIFont *)font color:(UIColor *)color bgColor:(UIColor *)bgColor
+- (NSAttributedString *)attributedText:(NSString *)text font:(UIFont *)font color:(UIColor *)color bgColor:(UIColor *)bgColor
 {
-    [self attributedText:text color:color font:font space:0.0 rowSpace:0.0 bgColor:bgColor];
+    return [self attributedText:text color:color font:font space:0.0 rowSpace:0.0 bgColor:bgColor];
 }
 
 /**
@@ -45,7 +45,7 @@
  *  @param rowSpace       行间距
  *  @param bgColor        字体背景颜色
  */
-- (void)attributedText:(NSString *)text color:(UIColor *)textColor font:(UIFont *)textFont space:(CGFloat)characterSpace rowSpace:(CGFloat)rowSpace bgColor:(UIColor *)bgColor
+- (NSAttributedString *)attributedText:(NSString *)text color:(UIColor *)textColor font:(UIFont *)textFont space:(CGFloat)characterSpace rowSpace:(CGFloat)rowSpace bgColor:(UIColor *)bgColor
 {
     NSMutableAttributedString *attributed = [[NSMutableAttributedString alloc] initWithAttributedString:self];
     NSString *textTmp = attributed.string;
@@ -83,10 +83,12 @@
             [attributed addAttribute:NSBackgroundColorAttributeName value:bgColor range:range];
         }
     }
+    
+    return attributed;
 }
 
 /// 设置字体的下划线，或删除线，及其线条大小、颜色与类型（如下划线单线类型NSUnderlineStyleSingle）
-- (void)attributedText:(NSString *)text color:(UIColor *)textColor font:(UIFont *)textFont lineStyle:(BOOL)delete lineType:(NSInteger)type lineWidth:(CGFloat)width lineColor:(UIColor *)color
+- (NSAttributedString *)attributedText:(NSString *)text color:(UIColor *)textColor font:(UIFont *)textFont lineStyle:(BOOL)delete lineType:(NSInteger)type lineWidth:(CGFloat)width lineColor:(UIColor *)color
 {
     NSMutableAttributedString *attributed = [[NSMutableAttributedString alloc] initWithAttributedString:self];
     NSString *textTmp = attributed.string;
@@ -118,6 +120,8 @@
                            range:range];
 
     }
+    
+    return attributed;
 }
 
 @end

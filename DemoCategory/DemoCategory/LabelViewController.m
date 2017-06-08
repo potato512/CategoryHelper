@@ -20,29 +20,6 @@
     
     self.navigationItemTitle = @"UILabel";
     
-    kSelfWeak;
-//    self.navigationItem.rightBarButtonItem = [self itemWithTitle:@"alert" action:^(UIBarButtonItem *item) {
-//        [UIAlertView alertWithTitle:@"温馨提示" message:@"item弹窗" cancelButtonTitle:@"取消" otherButtonTitles:@[@"知道了", @"明白了"] controller:weakSelf onDismiss:^(int buttonIndex, NSString *buttonTitle) {
-//            DLog(@"点击了：%@", ([buttonTitle isEqualToString:@"明白了"] ? @"明白了" : @"知道了"));
-//        } onCancel:^{
-//            DLog(@"点击了：取消");
-//        }];
-//    }];
-//    self.navigationItem.rightBarButtonItem = [UIBarButtonItem buttonItemWithTitle:@"alert" action:^(UIButton *item) {
-//        [UIAlertView alertWithTitle:@"温馨提示" message:@"item弹窗" cancelButtonTitle:@"取消" otherButtonTitles:@[@"知道了", @"明白了"] controller:weakSelf onDismiss:^(int buttonIndex, NSString *buttonTitle) {
-//            DLog(@"点击了：%@", ([buttonTitle isEqualToString:@"明白了"] ? @"明白了" : @"知道了"));
-//        } onCancel:^{
-//            DLog(@"点击了：取消");
-//        }];
-//    }];
-    self.navigationItem.rightBarButtonItem = [UIBarButtonItem rightBarButtonItemWithImage:[UIImage imageNamed:@"header_boy"] action:^(UIButton *item) {
-        [UIAlertView alertWithTitle:@"温馨提示" message:@"item弹窗" cancelButtonTitle:@"取消" otherButtonTitles:@[@"知道了", @"明白了"] controller:weakSelf onDismiss:^(int buttonIndex, NSString *buttonTitle) {
-            NSLog(@"点击了：%@", ([buttonTitle isEqualToString:@"明白了"] ? @"明白了" : @"知道了"));
-        } onCancel:^{
-            NSLog(@"点击了：取消");
-        }];
-    }];
-
     [self setUI];
 }
 
@@ -91,12 +68,12 @@
     [scrollview addSubview:label3];
     label3.backgroundColor = [UIColor colorWithWhite:0.5 alpha:0.3];
     label3.font = [UIFont systemFontOfSize:12.0];
-    // 无效 ？？
+    // 1
 //    label3.text = @"修改标签栏信息：devZhang";
 //    [label3 labelAttributedText:@"标签栏" color:[UIColor yellowColor] font:[UIFont systemFontOfSize:12.0]];
-//    [label3 labelAttributedText:@"修改标签栏信息" color:label3.textColor font:label3.font space:5.0 rowSpace:0.0];
+//    [label3 labelAttributedText:@"信息" color:[UIColor brownColor] font:label3.font space:5.0 rowSpace:0.0];
 //    [label3 labelAttributedText:@"devZhang" color:[UIColor redColor] font:[UIFont systemFontOfSize:20.0] space:1.0 rowSpace:0.0];
-    // test 有效
+    // 2
 //    NSString *text = @"修改标签栏信息：devZhang";
 //    NSRange range = [text rangeOfString:@"devZhang"];
 //    NSMutableAttributedString *attributed = [[NSMutableAttributedString alloc] initWithString:text];
@@ -108,9 +85,9 @@
 //        [attributed addAttribute:NSFontAttributeName value:[UIFont systemFontOfSize:20.0] range:range];
 //    }
 //    label3.attributedText = attributed;
-    // 无效 ？？？
-    NSMutableAttributedString *attributed = [[NSMutableAttributedString alloc] initWithString:@"修改标签栏信息：devZhang"];
-    [attributed attributedText:@"devZhang" font:[UIFont systemFontOfSize:18.0] color:[UIColor redColor]];
+    // 3
+    NSAttributedString *attributed = [[NSAttributedString alloc] initWithString:@"修改标签栏信息：devZhang"];
+    attributed = [attributed attributedText:@"devZhang" font:[UIFont systemFontOfSize:18.0] color:[UIColor redColor]];
     label3.attributedText = attributed;
 
     

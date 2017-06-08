@@ -34,6 +34,10 @@
 
 
 # 修改完善
+## 20170608
+* NSAttributedString+SYCategory bug修改，并添加返回值
+* UILabel+SYCategory bug修改
+
 ## 20170518
 * UIView+SYCategory修改完善
 

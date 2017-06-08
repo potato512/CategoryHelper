@@ -34,7 +34,7 @@
 - (void)labelAttributedText:(NSString *)string color:(UIColor *)textColor font:(UIFont *)textFont space:(CGFloat)characterSpace rowSpace:(CGFloat)rowSpace
 {
     NSAttributedString *attributed = [[NSAttributedString alloc] initWithString:self.text];
-    [attributed attributedText:string color:textColor font:textFont space:characterSpace rowSpace:rowSpace bgColor:nil];
+    attributed = [attributed attributedText:string color:textColor font:textFont space:characterSpace rowSpace:rowSpace bgColor:nil];
     self.attributedText = attributed;
 }
 

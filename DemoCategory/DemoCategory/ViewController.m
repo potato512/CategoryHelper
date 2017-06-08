@@ -44,7 +44,7 @@
     // Do any additional setup after loading the view, typically from a nib.
     
     self.title = @"category";
-    
+    [self setNavigationButton];
     [self setUI];
 }
 
@@ -61,6 +61,26 @@
     {
         [self setEdgesForExtendedLayout:UIRectEdgeNone];
     }
+}
+
+- (void)setNavigationButton
+{
+    kSelfWeak;
+    self.navigationItem.rightBarButtonItem = [UIBarButtonItem leftBarButtonItemWithTitle:@"alert" action:^(UIButton *item) {
+        [UIAlertView alertWithTitle:@"温馨提示" message:@"item弹窗" cancelButtonTitle:@"取消" otherButtonTitles:@[@"知道了", @"明白了"] controller:weakSelf onDismiss:^(int buttonIndex, NSString *buttonTitle) {
+            NSLog(@"点击了：%@", ([buttonTitle isEqualToString:@"明白了"] ? @"明白了" : @"知道了"));
+        } onCancel:^{
+            NSLog(@"点击了：取消");
+        }];
+    }];
+    
+//    self.navigationItem.rightBarButtonItem = [UIBarButtonItem rightBarButtonItemWithImage:[UIImage imageNamed:@"header_boy"] action:^(UIButton *item) {
+//        [UIAlertView alertWithTitle:@"温馨提示" message:@"item弹窗" cancelButtonTitle:@"取消" otherButtonTitles:@[@"知道了", @"明白了"] controller:weakSelf onDismiss:^(int buttonIndex, NSString *buttonTitle) {
+//            NSLog(@"点击了：%@", ([buttonTitle isEqualToString:@"明白了"] ? @"明白了" : @"知道了"));
+//        } onCancel:^{
+//            NSLog(@"点击了：取消");
+//        }];
+//    }];
 }
 
 - (void)setUI
