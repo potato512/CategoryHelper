@@ -89,12 +89,30 @@
     
     UILabel *label3 = [[UILabel alloc] initWithFrame:CGRectMake(10.0, (currentView.bottom + 10.0), (scrollview.width - 10.0 * 2), 30.0)];
     [scrollview addSubview:label3];
-    label3.backgroundColor = [UIColor purpleColor];
+    label3.backgroundColor = [UIColor colorWithWhite:0.5 alpha:0.3];
     label3.font = [UIFont systemFontOfSize:12.0];
-    label3.text = @"修改标签栏信息：devZhang";
-    [label3 labelAttributedText:@"修改标签栏信息" color:label3.textColor font:label3.font space:5.0 rowSpace:0.0];
-    [label3 labelAttributedText:@"devZhang" color:[UIColor redColor] font:[UIFont systemFontOfSize:20.0] space:1.0 rowSpace:0.0];
-    
+    // 无效 ？？
+//    label3.text = @"修改标签栏信息：devZhang";
+//    [label3 labelAttributedText:@"标签栏" color:[UIColor yellowColor] font:[UIFont systemFontOfSize:12.0]];
+//    [label3 labelAttributedText:@"修改标签栏信息" color:label3.textColor font:label3.font space:5.0 rowSpace:0.0];
+//    [label3 labelAttributedText:@"devZhang" color:[UIColor redColor] font:[UIFont systemFontOfSize:20.0] space:1.0 rowSpace:0.0];
+    // test 有效
+//    NSString *text = @"修改标签栏信息：devZhang";
+//    NSRange range = [text rangeOfString:@"devZhang"];
+//    NSMutableAttributedString *attributed = [[NSMutableAttributedString alloc] initWithString:text];
+//    if (range.location != NSNotFound)
+//    {
+//        // 颜色
+//        [attributed addAttribute:NSForegroundColorAttributeName value:[UIColor redColor] range:range];
+//        // 字体
+//        [attributed addAttribute:NSFontAttributeName value:[UIFont systemFontOfSize:20.0] range:range];
+//    }
+//    label3.attributedText = attributed;
+    // 无效 ？？？
+    NSMutableAttributedString *attributed = [[NSMutableAttributedString alloc] initWithString:@"修改标签栏信息：devZhang"];
+    [attributed attributedText:@"devZhang" font:[UIFont systemFontOfSize:18.0] color:[UIColor redColor]];
+    label3.attributedText = attributed;
+
     
     currentView = label3;
     
