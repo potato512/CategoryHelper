@@ -3,7 +3,7 @@ UILabel：自适应宽高、修改内容（指定文字颜色，大小，间距�
 
 # 效果图
 
-![SYCategory_label.gif](./CategoryRead/UILabelCategory/SYCategory_label.gif)
+![SYCategory_label.gif](./SYCategory_label.gif)
 
 # 使用示例
 ``` javascript
