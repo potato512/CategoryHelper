@@ -63,6 +63,22 @@ static CGContextRef _newBitmapContext(CGSize size)
     return img;
 }
 
+/// 生成指定颜色的图片
++ (UIImage *)imageWithColor:(UIColor *)color
+{
+    CGRect rect = CGRectMake(0.0, 0.0, 1.0, 1.0);
+    UIGraphicsBeginImageContext(rect.size);
+    CGContextRef context = UIGraphicsGetCurrentContext();
+    CGContextSetFillColorWithColor(context, color.CGColor);
+    CGContextFillRect(context, rect);
+    
+    UIImage *image = UIGraphicsGetImageFromCurrentImageContext();
+    UIGraphicsEndImageContext();
+    
+    return image;
+}
+
+
 /// 获取图片，根据图片url（如：url = http://.../xxx.jpg）
 + (UIImage *)imageWithUrl:(NSString *)url
 {

@@ -1,36 +1,43 @@
 # SYCategory
-自定义UIKit、Foundation的类别，以适应在研发过程中常使用到的功能，提高开发效率。
-
-# UIKit类别
-  * UILabel：自适应宽高、修改内容（指定文字颜色，大小，间距）
-  * UIView：原点坐标设置、显示标签（内容，字体大小/颜色，对齐方式）、手势功能、缩放、旋转、翻转
-  * UIButton：图标对齐方式、倒计时功能、block响应回调
-  * UISlider：block响应回调
-  * UISwitch：block响应回调
-  * UIColor：十六进制颜色、随机颜色
-  * UIImage：纯色图片、图片拉升、截图、压缩、裁剪、位图处理、滤镜、相册图片、保存
-  * UIGestureRecognizer：block响应回调
-  * UIViewController：根视图判断、导航栏标题、导航栏视图、导航栏返回按钮、导航栏右按钮
-  * UINavigationController：导航栏样式
-  * UIAlertView：block响应回调
-  * UIActionSheet：block响应回调
-  * UITextField：输入限制
-  * UITextView：输入限制
-  * UIImagePickerController：block响应回调
-
-# Foundation类别
- * NSString：其他对象的互换、数字/金额等的处理、特殊字符的限制
- * NSFileManager：文件操作、目录操作
- * NSAttributedString：副文本字符串处理
- * NSNumber：
- * NSObject：图片类型判断、文本字符宽高计算、结束编辑处理
- * NSArray：异常判断、排序、元素操作
- * NSDictionary：异常判断
- * NSTimer：
- * NSURLConnection：请求block回调处理
- * NSDate：日期处理
- * NSNotificationCenter：
- * NSUserDefaults：
-
+UIButton：图标对齐方式、倒计时功能、block响应回调
+  
 # 效果图
-![SYCategory.gif](./images/SYCategory.gif)
+![SYCategory_button.gif](./SYCategory_button.gif)
+
+# 使用
+``` javascript
+// 倒计时按钮样式
+/// 设置当前按钮为倒计时类型的按钮
+- (void)setButtonCountdownType;
+
+/// 倒计时长（默认60秒）
+- (void)setButtonCountdownTime:(NSTimeInterval)time;
+
+/// 倒计时开始后显示样式（菊花转，或文字，默认菊花转）
+- (void)setButtonCountedownStartType:(SYCountdownStartType)type;
+
+/// 倒计时按钮状态（开始请求网络，请求成功-倒计时，请求失败-常规/停止。特别说明，若在倒计时进行时，务必在视图释放时在方法"- (void)viewWillDisappear:(BOOL)animated { }"中置为CountdownTypeStop）
+- (void)setButtonCountdownType:(SYCountdownType)type;
+
+/// 按钮标题-normal（默认@"获取验证码"）
+@property (nonatomic, strong) NSString *titleNormal;
+/// 按钮标题-disabledStart（默认@"正在获取..."）
+@property (nonatomic, strong) NSString *titleDisabledStart;
+/// 按钮标题-disabledFinish（默认@"N秒"）
+@property (nonatomic, strong) NSString *titleDisabledFinish;
+
+/// 字体大小
+@property (nonatomic, strong) UIFont *titleFont;
+/// 字体颜色-normal
+@property (nonatomic, strong) UIColor *colorNormal;
+/// 字体颜色-disabledStart/disabledFinish
+@property (nonatomic, strong) UIColor *colorDisabled;
+```
+
+``` javascript
+/// 图片与标题显示样式（offset大于0时拉开距离，offset小于0时缩小距离）
+- (void)buttonStyle:(SYButtonStyle)style offSet:(CGFloat)offset;
+
+/// 回调方法
+@property (nonatomic, copy) ButtonClick buttonClick;
+``` 

@@ -1,36 +1,117 @@
 # SYCategory
-自定义UIKit、Foundation的类别，以适应在研发过程中常使用到的功能，提高开发效率。
+NSFileManager：文件操作、目录操作
 
-# UIKit类别
-  * UILabel：自适应宽高、修改内容（指定文字颜色，大小，间距）
-  * UIView：原点坐标设置、显示标签（内容，字体大小/颜色，对齐方式）、手势功能、缩放、旋转、翻转
-  * UIButton：图标对齐方式、倒计时功能、block响应回调
-  * UISlider：block响应回调
-  * UISwitch：block响应回调
-  * UIColor：十六进制颜色、随机颜色
-  * UIImage：纯色图片、图片拉升、截图、压缩、裁剪、位图处理、滤镜、相册图片、保存
-  * UIGestureRecognizer：block响应回调
-  * UIViewController：根视图判断、导航栏标题、导航栏视图、导航栏返回按钮、导航栏右按钮
-  * UINavigationController：导航栏样式
-  * UIAlertView：block响应回调
-  * UIActionSheet：block响应回调
-  * UITextField：输入限制
-  * UITextView：输入限制
-  * UIImagePickerController：block响应回调
+# 使用
+``` javascript
+/// 获取程序的Home目录路径
++ (NSString *)GetHomeDirectoryPath;
 
-# Foundation类别
- * NSString：其他对象的互换、数字/金额等的处理、特殊字符的限制
- * NSFileManager：文件操作、目录操作
- * NSAttributedString：副文本字符串处理
- * NSNumber：
- * NSObject：图片类型判断、文本字符宽高计算、结束编辑处理
- * NSArray：异常判断、排序、元素操作
- * NSDictionary：异常判断
- * NSTimer：
- * NSURLConnection：请求block回调处理
- * NSDate：日期处理
- * NSNotificationCenter：
- * NSUserDefaults：
+/// 获取document目录路径
++ (NSString *)GetDocumentPath;
 
-# 效果图
-![SYCategory.gif](./images/SYCategory.gif)
+/// 获取Cache目录路径
++ (NSString *)GetCachePath;
+
+/// 获取Library目录路径
++ (NSString *)GetLibraryPath;
+
+/// 获取Tmp目录路径
++ (NSString *)GetTmpPath;
+
+/// 创建目录文件夹
++ (NSString *)CreateList:(NSString *)List ListName:(NSString *)Name;
+```
+
+``` javascript
+/// 写入NsArray文件
++ (BOOL)WriteFileArray:(NSArray *)ArrarObject SpecifiedFile:(NSString *)path;
+
+/// 写入NSDictionary文件
++ (BOOL)WriteFileDictionary:(NSMutableDictionary *)DictionaryObject SpecifiedFile:(NSString *)path;
+
+/// 是否存在该文件
++ (BOOL)IsFileExists:(NSString *)filepath;
+
+/// 删除指定文件
++ (void)DeleteFile:(NSString *)filepath;
+
+/// 删除 document/dir 目录下 所有文件
++ (void)deleteAllForDocumentsDir:(NSString *)dir;
+
+/// 删除 Caches/dir 目录下 所有文件
++ (void)deleteAllForCachesDir:(NSString *)dir;
+```
+
+``` javascript
+/// 获取目录列表里所有的文件名
++(NSArray *)GetSubpathsAtPath:(NSString *)path;
+
+/// 改名
++ (BOOL)renameForPath:(NSString *)oldPath newName:(NSString *)newName;
+
+/// 直接取文件数据
++ (NSData *)GetDataForResource:(NSString *)name inDir:(NSString *)type;
++ (NSData *)GetDataForDocuments:(NSString *)name inDir:(NSString *)dir;
++ (NSData *)GetDataForPath:(NSString *)path;
+
+/// 获取文件路径
++ (NSString *)GetPathForCaches:(NSString *)filename;
++ (NSString *)GetPathForCaches:(NSString *)filename inDir:(NSString *)dir;
+
++ (NSString *)GetPathForDocuments:(NSString *)filename;
++ (NSString *)GetPathForDocuments:(NSString *)filename inDir:(NSString *)dir;
+
++ (NSString *)GetPathForResource:(NSString *)name;
++ (NSString *)GetPathForResource:(NSString *)name inDir:(NSString *)dir;
+
+/// 获取文件大小
++ (long long)fileSizeAtPath:(NSString *)filePath;
+
+/// 获取目录大小
++ (float)folderSizeAtPath:(NSString *)folderPath;
+
+/**
+*  磁盘总空间大小
+*
+*  @return float 字节
+*/
++ (CGFloat)sizeBytesAllFiles;
+
+/**
+*  磁盘可用空间大小
+*
+*  @return float 字节
+*/
++ (CGFloat)sizeBytesFree;
+
+/**
+*  指定路径下某个文件的大小
+*
+*  @param filePath 指定路径的文件
+*
+*  @return long long 大小
+*/
++ (long long)sizeBytesWithFilePath:(NSString *)filePath;
+
+/**
+*  指定路径下所有文件的大小
+*
+*  @param fileFolder 指定路径
+*
+*  @return long long 大小
+*/
++ (long long)sizeBytesWithFileFolder:(NSString *)fileFolder;
+
+/// 当前上传文件名称（无类型后缀。以时间命名 yyyyMMddHHmmssSSS）
++ (NSString *)getFileName;
+
+/// 当前上传文件路径（保存在本地的路径）
++ (NSString *)getFilePathWithName:(NSString *)fileName;
+
+/// 当前上传文件保存在本地
++ (BOOL)saveImageFile:(UIImage *)image filePath:(NSString *)filePath;
+
+/// 文件删除（NSDictionary-value为文件路径）
++ (void)deleteFile:(NSDictionary *)fileDict;
+```
+

@@ -18,6 +18,8 @@ typedef void (^SaveToPhotosAlbumComplete)(BOOL isSuccess);
 
 /// 生成指定颜色和大小的图片
 + (UIImage *)imageWithColor:(UIColor *)color size:(CGSize)size;
+/// 生成指定颜色的图片
++ (UIImage *)imageWithColor:(UIColor *)color;
 
 /// 获取图片，根据图片url（如：url = http://.../xxx.jpg）
 + (UIImage *)imageWithUrl:(NSString *)url;

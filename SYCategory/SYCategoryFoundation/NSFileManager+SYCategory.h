@@ -11,6 +11,8 @@
 
 @interface NSFileManager (SYCategory)
 
+#pragma mark - 目录
+
 /// 获取程序的Home目录路径
 + (NSString *)GetHomeDirectoryPath;
 
@@ -29,6 +31,8 @@
 /// 创建目录文件夹
 + (NSString *)CreateList:(NSString *)List ListName:(NSString *)Name;
 
+#pragma mark - 操作
+
 /// 写入NsArray文件
 + (BOOL)WriteFileArray:(NSArray *)ArrarObject SpecifiedFile:(NSString *)path;
 
@@ -46,6 +50,8 @@
 
 /// 删除 Caches/dir 目录下 所有文件
 + (void)deleteAllForCachesDir:(NSString *)dir;
+
+#pragma mark - 信息获取
 
 /// 获取目录列表里所有的文件名
 +(NSArray *)GetSubpathsAtPath:(NSString *)path;
