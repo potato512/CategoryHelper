@@ -32,3 +32,6 @@
  * NSNotificationCenter：
  * NSUserDefaults：
 
+# 效果图
+
+![SYCategory.gif](./images/SYCategory.gif)
