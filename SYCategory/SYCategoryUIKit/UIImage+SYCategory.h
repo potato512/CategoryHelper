@@ -21,8 +21,9 @@ typedef void (^SaveToPhotosAlbumComplete)(BOOL isSuccess);
 /// 生成指定颜色的图片
 + (UIImage *)imageWithColor:(UIColor *)color;
 
-/// 获取图片，根据图片url（如：url = http://.../xxx.jpg）
-+ (UIImage *)imageWithUrl:(NSString *)url;
+/// 获取图片，根据图片url-缓存功能（如：url = http://.../xxx.jpg）
++ (void)imageWithUrl:(NSString *)url complete:(void ((^)(UIImage *image)))complete;
+
 
 /// 读取本地图片（如：name = xxx.png）
 + (UIImage *)imageWithBundleName:(NSString *)name;

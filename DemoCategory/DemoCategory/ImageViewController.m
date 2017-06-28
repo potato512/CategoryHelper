@@ -106,8 +106,12 @@
     UIImageView *imageview5 = [[UIImageView alloc] initWithFrame:CGRectMake((currentView.right + originXY), currentView.top, sizeImage, sizeImage)];
     [scrollview addSubview:imageview5];
     imageview5.viewText = @"网络图片";
-    UIImage *image = [UIImage imageWithUrl:@"https://gd4.alicdn.com/imgextra/i2/328015135/TB2AhDMtFXXXXcoXpXXXXXXXXXX_!!328015135.jpg_400x400.jpg"];
-    imageview5.image = image;
+    __block UIImage *image = nil;
+    [UIImage imageWithUrl:@"https://gd4.alicdn.com/imgextra/i2/328015135/TB2AhDMtFXXXXcoXpXXXXXXXXXX_!!328015135.jpg_400x400.jpg" complete:^(UIImage *imageCache) {
+        imageview5.image = imageCache;
+        image = imageCache;
+    }];
+    
     
     currentView = imageview5;
     

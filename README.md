@@ -42,9 +42,20 @@
 
 
 # 修改说明
-* 20170627 UIImage添加纯色生成图片方法
-``` javascript
+## 20170628
+* UIImage方法修改
+~~~ javascript
+// 废除：获取图片，根据图片url（如：url = http://.../xxx.jpg）
++ (UIImage *)imageWithUrl:(NSString *)url;
+
+/// 新增：获取图片，根据图片url-缓存功能（如：url = http://.../xxx.jpg）
++ (void)imageWithUrl:(NSString *)url complete:(void ((^)(UIImage *image)))complete;
+~~~
+
+## 20170627 
+* UIImage添加纯色生成图片方法
+~~~ javascript
 /// 生成指定颜色的图片
 + (UIImage *)imageWithColor:(UIColor *)color;
-```
+~~~
 

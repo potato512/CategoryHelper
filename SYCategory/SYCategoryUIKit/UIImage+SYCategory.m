@@ -88,6 +88,40 @@ static CGContextRef _newBitmapContext(CGSize size)
     return image;
 }
 
+/// 获取图片，根据图片url-缓存功能（如：url = http://.../xxx.jpg）
++ (void)imageWithUrl:(NSString *)url complete:(void ((^)(UIImage *image)))complete
+{
+    __block NSData *imageData = [[NSUserDefaults standardUserDefaults] objectForKey:url];
+    if (imageData && 0 < imageData.length)
+    {
+        UIImage *image = [UIImage imageWithData:imageData];
+        if (complete)
+        {
+            complete(image);
+        }
+    }
+    else
+    {
+        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+            // 获取网络图片数据
+            NSURL *imageUrl = [NSURL URLWithString:url];
+            imageData = [NSData dataWithContentsOfURL:imageUrl];
+            // 只在图片
+            [[NSUserDefaults standardUserDefaults] setObject:imageData forKey:url];
+            // 返回图片
+            __block UIImage *image = [UIImage imageWithData:imageData];
+            dispatch_async(dispatch_get_main_queue(), ^{
+                if (complete)
+                {
+                    complete(image);
+                }
+            });
+        });
+    }
+}
+
+
+
 /// 读取本地图片（如：name = xxx.png）
 + (UIImage *)imageWithBundleName:(NSString *)name
 {
