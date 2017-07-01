@@ -8,6 +8,7 @@
 
 
 #import "NSFileManager+SYCategory.h"
+#import "NSFileHandle+SYCategory.h"
 #import "NSString+SYCategory.h"
 #import "NSString+SYRegular.h"
 #import "NSString+SYJSON.h"

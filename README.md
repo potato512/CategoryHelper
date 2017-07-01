@@ -42,6 +42,9 @@
 
 
 # 修改说明
+* 添加类别文件：NSFileHandle+SYCategory
+* 完善类别方法：NSFileManager+SYCategory
+
 ## 20170628
 * UIImage方法修改
 ~~~ javascript
