@@ -122,6 +122,7 @@
     if (cell == nil)
     {
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"UITableViewCell"];
+        cell.textLabel.adjustsFontSizeToFitWidth = YES;
     }
     
     NSArray *array = self.mainArray[indexPath.section];
