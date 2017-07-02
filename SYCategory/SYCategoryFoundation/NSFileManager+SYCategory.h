@@ -256,6 +256,24 @@
 + (NSArray *)getSubFilesSomeWithFilePath:(NSString *)filePath;
 
 /**
+ *  指定文件路径的当前层级的文件夹
+ *
+ *  @param filePath 文件路径
+ *
+ *  @return NSArray
+ */
++ (NSArray *)getDirectorysWithFilePath:(NSString *)filePath;
+
+/**
+ *  指定文件路径的所有层级的文件，子文件
+ *
+ *  @param filePath 文件路径
+ *
+ *  @return NSArray
+ */
++ (NSArray *)getFilesWithFilePath:(NSString *)filePath;
+
+/**
  *  指定文件路径的文件，及文件夹
  *
  *  @param filePath    文件路径

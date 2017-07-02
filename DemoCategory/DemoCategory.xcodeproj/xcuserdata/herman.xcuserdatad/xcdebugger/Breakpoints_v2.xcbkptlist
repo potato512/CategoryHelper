@@ -10,11 +10,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "../SYCategory/SYCategoryFoundation/NSFileManager+SYCategory.m"
-            timestampString = "520618968.18667"
+            timestampString = "520707698.154477"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "457"
-            endingLineNumber = "457"
+            startingLineNumber = "551"
+            endingLineNumber = "551"
             landmarkName = "+getSubFilesWithFilePath:isDirectory:isAll:"
             landmarkType = "5">
          </BreakpointContent>
@@ -32,6 +32,38 @@
             startingLineNumber = "24"
             endingLineNumber = "24"
             landmarkName = "+writeFileWithFilePath:content:position:"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "../SYCategory/SYCategoryFoundation/NSFileManager+SYCategory.m"
+            timestampString = "520707698.154477"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "515"
+            endingLineNumber = "515"
+            landmarkName = "+getFilesWithFilePath:"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "../SYCategory/SYCategoryFoundation/NSFileManager+SYCategory.m"
+            timestampString = "520707462.648314"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "458"
+            endingLineNumber = "458"
+            landmarkName = "+getDirectorysWithFilePath:"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>

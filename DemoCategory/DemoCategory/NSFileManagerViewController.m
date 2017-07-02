@@ -78,17 +78,30 @@
     if (0 == indexPath.row)
     {
         // 查看home目录所有文件/文件夹
-        NSArray *array = [NSFileManager getSubFilesAllWithFilePath:[NSFileManager getHomeDirectoryPath]];
-        NSLog(@"array = %@", array);
+//        NSArray *array = [NSFileManager getSubFilesAllWithFilePath:[NSFileManager getHomeDirectoryPath]];
+//        NSLog(@"array = %@", array);
+//        
+//        NSArray *cachesAll = [NSFileManager getSubFilesAllWithFilePath:[NSFileManager getCacheDirectoryPath]];
+//        NSLog(@"cachesAll = %@", cachesAll);
+//        NSArray *cachesSome = [NSFileManager getSubFilesSomeWithFilePath:[NSFileManager getCacheDirectoryPath]];
+//        NSLog(@"cachesSome = %@", cachesSome);
+//        NSArray *cacheFiles = [NSFileManager getSubFilesWithFilePath:[NSFileManager getCacheDirectoryPath] isDirectory:NO isAll:YES];
+//        NSLog(@"cacheFiles = %@", cacheFiles);
+//        NSArray *cacheDirectorys = [NSFileManager getSubFilesWithFilePath:[NSFileManager getCacheDirectoryPath] isDirectory:YES isAll:YES];
+//        NSLog(@"cacheDirectorys = %@", cacheDirectorys);
         
-        NSArray *cachesAll = [NSFileManager getSubFilesAllWithFilePath:[NSFileManager getCacheDirectoryPath]];
-        NSLog(@"cachesAll = %@", cachesAll);
-        NSArray *cachesSome = [NSFileManager getSubFilesSomeWithFilePath:[NSFileManager getCacheDirectoryPath]];
-        NSLog(@"cachesSome = %@", cachesSome);
-        NSArray *cacheFiles = [NSFileManager getSubFilesWithFilePath:[NSFileManager getCacheDirectoryPath] isDirectory:NO isAll:YES];
-        NSLog(@"cacheFiles = %@", cacheFiles);
-        NSArray *cacheDirectorys = [NSFileManager getSubFilesWithFilePath:[NSFileManager getCacheDirectoryPath] isDirectory:YES isAll:YES];
-        NSLog(@"cacheDirectorys = %@", cacheDirectorys);
+        
+        NSArray *directory = [NSFileManager getDirectorysWithFilePath:[NSFileManager getHomeDirectoryPath]];
+        NSLog(@"directory = %@", directory);
+        
+        NSArray *files = [NSFileManager getFilesWithFilePath:[NSFileManager getHomeDirectoryPath]];
+        NSLog(@"files = %@", files);
+        
+        BOOL isDirectory = [NSFileManager isDirectory:[NSFileManager getHomeDirectoryPath]];
+        NSLog(@"%@ -- %d", [NSFileManager getHomeDirectoryPath], isDirectory);
+        isDirectory = [NSFileManager isDirectory:txtFilePath];
+        NSLog(@"%@ -- %d", txtFilePath, isDirectory);
+        
     }
     else if (1 == indexPath.row)
     {

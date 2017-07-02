@@ -34,6 +34,29 @@
 
 
 # 修改完善
+## 20170702
+* 添加类别文件：UIDocument+SYCategory（待完善）、NSFileManager+iCloud（待完善）、NSStream+SYCategory（待完善）
+* 完善类型方法：NSFileManger+SYCategory
+~~~ javascript
+/**
+*  指定文件路径的当前层级的文件夹
+*
+*  @param filePath 文件路径
+*
+*  @return NSArray
+*/
++ (NSArray *)getDirectorysWithFilePath:(NSString *)filePath;
+
+/**
+*  指定文件路径的所有层级的文件，子文件
+*
+*  @param filePath 文件路径
+*
+*  @return NSArray
+*/
++ (NSArray *)getFilesWithFilePath:(NSString *)filePath;
+~~~
+
 ## 20170701
 * 添加类别文件：NSFileHandle+SYCategory
 * 完善类别方法：NSFileManager+SYCategory

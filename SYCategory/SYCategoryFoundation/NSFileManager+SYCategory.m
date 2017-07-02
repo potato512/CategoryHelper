@@ -98,9 +98,16 @@
  */
 + (BOOL)isDirectory:(NSString *)filePath
 {
-    BOOL isDirectory = NO;
-    [FileManager fileExistsAtPath:filePath isDirectory:&isDirectory];
-    return isDirectory;
+    // 方法1
+//    BOOL isDirectory = NO;
+//    [FileManager fileExistsAtPath:filePath isDirectory:&isDirectory];
+//    return isDirectory;
+    
+    // 方法2
+    NSNumber *isDirectory;
+    NSURL *fileUrl = [NSURL fileURLWithPath:filePath];
+    [fileUrl getResourceValue:&isDirectory forKey:NSURLIsDirectoryKey error:nil];
+    return isDirectory.boolValue;
 }
 
 /**
@@ -347,6 +354,7 @@
 {
     if ([self isFileExists:filePath])
     {
+        // 方法1
         NSRange range = [filePath rangeOfString:@"/" options:NSBackwardsSearch];
         if (range.location != NSNotFound)
         {
@@ -355,6 +363,12 @@
         }
         
         return nil;
+        
+        // 方法2
+//        NSString *fileName;
+//        NSURL *fileUrl = [NSURL fileURLWithPath:filePath];
+//        [fileUrl getResourceValue:&fileName forKey:NSURLNameKey error:nil];
+//        return fileName;
     }
     
     return nil;
@@ -428,6 +442,86 @@
 {
     NSArray *files = [FileManager contentsOfDirectoryAtPath:filePath error:nil];
     return files;
+}
+
+/**
+ *  指定文件路径的当前层级的文件夹
+ *
+ *  @param filePath 文件路径
+ *
+ *  @return NSArray
+ */
++ (NSArray *)getDirectorysWithFilePath:(NSString *)filePath
+{
+    if ([self isFileExists:filePath])
+    {
+        // NSURL *urlDirectory = [[NSBundle mainBundle] bundleURL];
+        NSURL *urlDirectory = [NSURL fileURLWithPath:filePath];
+        NSArray *array = [FileManager contentsOfDirectoryAtURL:urlDirectory
+                                       includingPropertiesForKeys:@[]
+                                                          options:NSDirectoryEnumerationSkipsHiddenFiles
+                                                            error:nil];
+        
+        NSMutableArray *results = [NSMutableArray arrayWithCapacity:array.count];
+        for (NSURL *fileUrl in array)
+        {
+            [results addObject:fileUrl.path];
+        }
+        return results;
+    }
+    return nil;
+}
+
+/**
+ *  指定文件路径的所有层级的文件，子文件
+ *
+ *  @param filePath 文件路径
+ *
+ *  @return NSArray
+ */
++ (NSArray *)getFilesWithFilePath:(NSString *)filePath
+{
+    if ([self isFileExists:filePath])
+    {
+        // NSURL *urlFile = [[NSBundle mainBundle] bundleURL];
+        NSURL *urlFile = [NSURL fileURLWithPath:filePath];
+        NSDirectoryEnumerator *enumerator = [FileManager enumeratorAtURL:urlFile
+                                              includingPropertiesForKeys:@[NSURLNameKey, NSURLIsDirectoryKey]
+                                                                 options:NSDirectoryEnumerationSkipsHiddenFiles
+                                                            errorHandler:^BOOL(NSURL *url, NSError *error){
+                                                                if (error)
+                                                                {
+                                                                    return NO;
+                                                                }
+                                                                
+                                                                return YES;
+                                                            }];
+        
+        NSMutableArray *array = [NSMutableArray array];
+        for (NSURL *fileURL in enumerator)
+        {
+            NSString *filename;
+            [fileURL getResourceValue:&filename forKey:NSURLNameKey error:nil];
+            
+            NSNumber *isDirectory;
+            [fileURL getResourceValue:&isDirectory forKey:NSURLIsDirectoryKey error:nil];
+            
+            // Skip directories with '_' prefix, for example
+            if ([filename hasPrefix:@"_"] && [isDirectory boolValue])
+            {
+                [enumerator skipDescendants];
+                continue;
+            }
+            
+            if (!isDirectory.boolValue)
+            {
+                // 转成文件路径
+                [array addObject:fileURL.path];
+            }
+        }
+        return array;
+    }
+    return nil;
 }
 
 /**
@@ -797,208 +891,5 @@
         }];
     }
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-/*
-
-/// 返回Documents下的指定文件路径(加创建)
-+ (NSString *)GetDirectoryForDocuments:(NSString *)dir
-{
-    NSError *error;
-    NSString *path = [[self GetDocumentPath] stringByAppendingPathComponent:dir];
-    if (![[NSFileManager defaultManager] createDirectoryAtPath:path withIntermediateDirectories:YES attributes:nil error:&error])
-    {
-        NSLog(@"create dir error: %@",error.debugDescription);
-    }
-    return path;
-}
-
-/// 返回Caches下的指定文件路径
-+ (NSString *)GetDirectoryForCaches:(NSString *)dir
-{
-    NSError *error;
-    NSString *path = [[self GetCachePath] stringByAppendingPathComponent:dir];
-    
-    if (![[NSFileManager defaultManager] createDirectoryAtPath:path withIntermediateDirectories:YES attributes:nil error:&error])
-    {
-        NSLog(@"create dir error: %@",error.debugDescription);
-    }
-    return path;
-}
-
-/// 创建目录文件夹
-+ (NSString *)CreateList:(NSString *)List ListName:(NSString *)Name
-{
-    NSFileManager *fileManager = [NSFileManager defaultManager];
-    NSString *FileDirectory = [List stringByAppendingPathComponent:Name];
-    if ([self IsFileExists:Name])
-    {
-        NSLog(@"exist,%@", Name);
-    }
-    else
-    {
-        [fileManager createDirectoryAtPath:FileDirectory withIntermediateDirectories:YES attributes:nil error:nil];
-    }
-    return FileDirectory;
-}
-
-/// 写入NsArray文件
-+ (BOOL)WriteFileArray:(NSArray *)ArrarObject SpecifiedFile:(NSString *)path
-{
-    return [ArrarObject writeToFile:path atomically:YES];
-}
-
-/// 写入NSDictionary文件
-+ (BOOL)WriteFileDictionary:(NSMutableDictionary *)DictionaryObject SpecifiedFile:(NSString *)path
-{
-    return [DictionaryObject writeToFile:path atomically:YES];
-}
-
-/// 是否存在该文件
-+ (BOOL)IsFileExists:(NSString *)filepath
-{
-    return [[NSFileManager defaultManager] fileExistsAtPath:filepath];
-}
-
-/// 删除指定文件
-+ (void)DeleteFile:(NSString *)filepath
-{
-    if([[NSFileManager defaultManager] fileExistsAtPath:filepath])
-    {
-        [[NSFileManager defaultManager] removeItemAtPath:filepath error:nil];
-    }
-}
-
-/// 获取目录列表里所有的文件名
-+ (NSArray *)GetSubpathsAtPath:(NSString *)path
-{
-    NSFileManager *fileManage = [NSFileManager defaultManager];
-    NSArray *file = [fileManage subpathsAtPath:path];
-    return file;
-}
-
-+ (void)deleteAllForDocumentsDir:(NSString *)dir
-{
-    NSFileManager *fileManager = [NSFileManager defaultManager];
-    NSArray *fileList = [fileManager contentsOfDirectoryAtPath:[self GetDirectoryForDocuments:dir] error:nil];
-    for (NSString *filename in fileList)
-    {
-        [fileManager removeItemAtPath:[self GetPathForDocuments:filename inDir:dir] error:nil];
-    }
-}
-
-+ (void)deleteAllForCachesDir:(NSString *)dir
-{
-    NSFileManager *fileManager = [NSFileManager defaultManager];
-    NSArray *fileList = [fileManager contentsOfDirectoryAtPath:[self GetDirectoryForCaches:dir] error:nil];
-    for (NSString *filename in fileList)
-    {
-        [fileManager removeItemAtPath:[self GetPathForCaches:filename inDir:dir] error:nil];
-    }
-}
-
-/// 改名
-+ (BOOL)renameForPath:(NSString *)oldPath newName:(NSString *)newName
-{
-    NSString *newPath = [[oldPath stringByDeletingLastPathComponent] stringByAppendingPathComponent:newName];
-    return [[NSFileManager defaultManager] moveItemAtPath:oldPath toPath:newPath error:nil];
-}
-
-/// 获取文件的数据
-+ (NSData *)GetDataForPath:(NSString *)path
-{
-    return [[NSFileManager defaultManager] contentsAtPath:path];
-}
-
-+ (NSData *)GetDataForResource:(NSString *)name inDir:(NSString *)dir
-{
-    return [self GetDataForPath:[self GetPathForResource:name inDir:dir]];
-}
-
-+ (NSData *)GetDataForDocuments:(NSString *)name inDir:(NSString *)dir
-{
-    return [self GetDataForPath:[self GetPathForDocuments:name inDir:dir]];
-}
-
-/// 获取文件路径
-+ (NSString *)GetPathForResource:(NSString *)name
-{
-    return [[NSBundle mainBundle].resourcePath stringByAppendingPathComponent:name];
-}
-
-+ (NSString *)GetPathForResource:(NSString *)name inDir:(NSString *)dir
-{
-    return [[[NSBundle mainBundle].resourcePath stringByAppendingPathComponent:dir] stringByAppendingPathComponent:name];
-}
-
-+ (NSString *)GetPathForDocuments:(NSString *)filename
-{
-    return [[self GetDocumentPath] stringByAppendingPathComponent:filename];
-}
-
-+ (NSString *)GetPathForDocuments:(NSString *)filename inDir:(NSString *)dir
-{
-    return [[self GetDirectoryForDocuments:dir] stringByAppendingPathComponent:filename];
-}
-
-+ (NSString *)GetPathForCaches:(NSString *)filename
-{
-    return [[self GetCachePath] stringByAppendingPathComponent:filename];
-}
-
-+ (NSString *)GetPathForCaches:(NSString *)filename inDir:(NSString *)dir
-{
-    return [[self GetDirectoryForCaches:dir] stringByAppendingPathComponent:filename];
-}
-
-/// 单个文件的大小
-+ (long long)fileSizeAtPath:(NSString*)filePath
-{
-    NSFileManager *manager = [NSFileManager defaultManager];
-    if ([manager fileExistsAtPath:filePath])
-    {
-        return [[manager attributesOfItemAtPath:filePath error:nil] fileSize];
-    }
-    return 0;
-}
-
-/// 遍历文件夹获得文件夹大小，返回多少M
-+ (float)folderSizeAtPath:(NSString *)folderPath
-{
-    NSFileManager *manager = [NSFileManager defaultManager];
-    if (![manager fileExistsAtPath:folderPath]) return 0;
-    NSEnumerator *childFilesEnumerator = [[manager subpathsAtPath:folderPath] objectEnumerator];
-    NSString *fileName;
-    long long folderSize = 0;
-    while ((fileName = [childFilesEnumerator nextObject]) != nil)
-    {
-        NSString *fileAbsolutePath = [folderPath stringByAppendingPathComponent:fileName];
-        folderSize += [self fileSizeAtPath:fileAbsolutePath];
-    }
-    return folderSize / (1024.0 * 1024.0);
-}
-*/
-
-
-
-
-
-
 
 @end

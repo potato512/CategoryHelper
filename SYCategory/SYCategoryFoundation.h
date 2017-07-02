@@ -8,6 +8,7 @@
 
 
 #import "NSFileManager+SYCategory.h"
+#import "NSFileManager+iCloud.h"
 #import "NSFileHandle+SYCategory.h"
 #import "NSString+SYCategory.h"
 #import "NSString+SYRegular.h"
@@ -23,7 +24,7 @@
 #import "NSDate+SYCategory.h"
 #import "NSNotificationCenter+SYCategory.h"
 #import "NSUserDefaults+SYCategory.h"
-
+#import "NSStream+SYCategory.h"
 
 #ifndef SYCategoryFoundation_h
 #define SYCategoryFoundation_h
