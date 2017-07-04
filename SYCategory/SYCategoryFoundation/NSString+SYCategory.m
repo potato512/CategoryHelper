@@ -356,4 +356,7 @@ static NSString *const keyDecimalPoint = @".";
     return grade;
 }
 
+
+#pragma mark - 链式属性
+
 @end

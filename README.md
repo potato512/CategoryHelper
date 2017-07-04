@@ -42,6 +42,27 @@
 
 
 # 修改说明
+## 20170704
+* UILabel添加链式编程属性
+~~~ javascript
+/// 链式编程 实例化
++ (UILabel *)newUILabel:(void (^)(UILabel *))newlabel;
+/// 链式编程 位置大小
+- (UILabel *(^)(CGRect))labelFrame;
+/// 链式编程 父视图
+- (UILabel *(^)(UIView *))labelSuperview;
+/// 链式编程 文本字体大小
+- (UILabel *(^)(UIFont *))labelFont;
+/// 链式编程 文本颜色
+- (UILabel *(^)(UIColor *))labelColor;
+/// 链式编程 文本对方方式
+- (UILabel *(^)(NSTextAlignment))labelAlignment;
+/// 链式编程 文本
+- (UILabel *(^)(NSString *))labelText;
+/// 链式编程 背景颜色
+- (UILabel *(^)(UIColor *))labelBackgroundColor;
+~~~ 
+
 ## 20170628
 * UIImage方法修改
 ~~~ javascript

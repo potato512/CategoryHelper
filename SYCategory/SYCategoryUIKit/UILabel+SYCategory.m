@@ -7,6 +7,14 @@
 //
 
 #import "UILabel+SYCategory.h"
+#import <objc/runtime.h>
+
+@interface UILabel ()
+
+@property (nonatomic, copy) void (^tapBlock)(UITapGestureRecognizer *);
+
+
+@end
 
 @implementation UILabel (SYCategory)
 
@@ -54,6 +62,71 @@
     {
         self.frame = CGRectMake(self.frame.origin.x, self.frame.origin.y, labelsize.width, labelsize.height);
     }
+}
+
+#pragma mark - 链式属性
+
++ (UILabel *)newUILabel:(void (^)(UILabel *))newlabel
+{
+    UILabel *label = [[UILabel alloc] init];
+    newlabel(label);
+    return label;
+}
+
+- (UILabel *(^)(CGRect))labelFrame
+{
+    return ^(CGRect rect) {
+        self.frame = rect;
+        return self;
+    };
+}
+
+- (UILabel *(^)(UIView *))labelSuperview
+{
+    return ^(UIView *view) {
+        [view addSubview:self];
+        return self;
+    };
+}
+
+- (UILabel *(^)(UIFont *))labelFont
+{
+    return ^(UIFont *font) {
+        self.font = font;
+        return self;
+    };
+}
+
+- (UILabel *(^)(UIColor *))labelColor
+{
+    return ^(UIColor *textColor) {
+        self.textColor = textColor;
+        return self;
+    };
+}
+
+- (UILabel *(^)(NSTextAlignment))labelAlignment
+{
+    return ^(NSTextAlignment alignment) {
+        self.textAlignment = alignment;
+        return self;
+    };
+}
+
+- (UILabel *(^)(NSString *))labelText
+{
+    return ^(NSString *text) {
+        self.text = text;
+        return self;
+    };
+}
+
+- (UILabel *(^)(UIColor *))labelBackgroundColor
+{
+   return ^(UIColor *color) {
+       self.backgroundColor = color;
+       return self;
+   };
 }
 
 @end

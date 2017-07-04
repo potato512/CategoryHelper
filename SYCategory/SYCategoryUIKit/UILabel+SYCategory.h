@@ -47,4 +47,24 @@ typedef NS_ENUM(NSInteger, SYLabelAutoSizeType)
 
 // 字体阴影
 
+
+#pragma mark - 链式属性
+
+/// 链式编程 实例化
++ (UILabel *)newUILabel:(void (^)(UILabel *))newlabel;
+/// 链式编程 位置大小
+- (UILabel *(^)(CGRect))labelFrame;
+/// 链式编程 父视图
+- (UILabel *(^)(UIView *))labelSuperview;
+/// 链式编程 文本字体大小
+- (UILabel *(^)(UIFont *))labelFont;
+/// 链式编程 文本颜色
+- (UILabel *(^)(UIColor *))labelColor;
+/// 链式编程 文本对方方式
+- (UILabel *(^)(NSTextAlignment))labelAlignment;
+/// 链式编程 文本
+- (UILabel *(^)(NSString *))labelText;
+/// 链式编程 背景颜色
+- (UILabel *(^)(UIColor *))labelBackgroundColor;
+
 @end
