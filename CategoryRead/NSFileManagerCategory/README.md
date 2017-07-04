@@ -3,115 +3,375 @@ NSFileManager：文件操作、目录操作
 
 # 使用
 ``` javascript
-/// 获取程序的Home目录路径
-+ (NSString *)GetHomeDirectoryPath;
+/**
+*  Home目录路径
+*
+*  @return NSString
+*/
++ (NSString *)getHomeDirectoryPath;
 
-/// 获取document目录路径
-+ (NSString *)GetDocumentPath;
+/**
+*  document目录路径
+*
+*  @return NSString
+*/
++ (NSString *)getDocumentDirectoryPath;
 
-/// 获取Cache目录路径
-+ (NSString *)GetCachePath;
+/**
+*  Cache目录路径
+*
+*  @return NSString
+*/
++ (NSString *)getCacheDirectoryPath;
 
-/// 获取Library目录路径
-+ (NSString *)GetLibraryPath;
+/**
+*  Library目录路径
+*
+*  @return NSString
+*/
++ (NSString *)getLibraryDirectoryPath;
 
-/// 获取Tmp目录路径
-+ (NSString *)GetTmpPath;
-
-/// 创建目录文件夹
-+ (NSString *)CreateList:(NSString *)List ListName:(NSString *)Name;
+/**
+*  Tmp目录路径
+*
+*  @return NSString
+*/
++ (NSString *)getTmpDirectoryPath;
 ```
 
 ``` javascript
-/// 写入NsArray文件
-+ (BOOL)WriteFileArray:(NSArray *)ArrarObject SpecifiedFile:(NSString *)path;
+/**
+*  文件，或文件夹是否存在
+*
+*  @param filepath 文件路径
+*
+*  @return BOOL
+*/
++ (BOOL)isFileExists:(NSString *)filepath;
 
-/// 写入NSDictionary文件
-+ (BOOL)WriteFileDictionary:(NSMutableDictionary *)DictionaryObject SpecifiedFile:(NSString *)path;
+/**
+*  判断一个文件是否是文件还是文件夹
+*
+*  @param filePath 文件路径
+*
+*  @return BOOL
+*/
++ (BOOL)isDirectory:(NSString *)filePath;
 
-/// 是否存在该文件
-+ (BOOL)IsFileExists:(NSString *)filepath;
+/**
+*  新建文件路径（未在沙盒）
+*
+*  @param filePath 文件路径（如：xxx/xxx/xx/.../xx）
+*  @param fileName 文件名称（如：xx.txt）
+*
+*  @return NSString
+*/
++ (NSString *)createFilePath:(NSString *)filePath fileName:(NSString *)fileName;
 
-/// 删除指定文件
-+ (void)DeleteFile:(NSString *)filepath;
+/**
+*  新建文件
+*
+*  @param filePath 文件路径
+*  @param fileName 文件名称，如xxx.png，或xxx/xx.png
+*
+*  @return NSString
+*/
++ (NSString *)createFileWithFilePath:(NSString *)filePath fileName:(NSString *)fileName;
 
-/// 删除 document/dir 目录下 所有文件
-+ (void)deleteAllForDocumentsDir:(NSString *)dir;
+/**
+*  新建Document文件夹下的文件
+*
+*  @param fileName 文件名称（如：xx.png，download/xx.png）
+*
+*  @return NSString
+*/
++ (NSString *)createFileDocumentWithFileName:(NSString *)fileName;
 
-/// 删除 Caches/dir 目录下 所有文件
-+ (void)deleteAllForCachesDir:(NSString *)dir;
+/**
+*  新建Cache文件夹下的文件
+*
+*  @param fileName 文件名称（如：xx.png，download/xx.png）
+*
+*  @return NSString
+*/
++ (NSString *)createFileCacheWithFileName:(NSString *)fileName;
+
+/**
+*  新建文件夹
+*
+*  @param filePath 文件路径
+*  @param fileName 目录名称，如xxx，或xxx/xxx
+*
+*  @return NSString
+*/
++ (NSString *)createDirectoryWithFilePath:(NSString *)filePath fileName:(NSString *)fileName;
+
+/**
+*  新建Document文件夹下的文件夹
+*
+*  @param fileName 文件夹名称（如：download，download/tmp）
+*
+*  @return NSString
+*/
++ (NSString *)createDirectoryDocumentWithFileName:(NSString *)fileName;
+
+/**
+*  新建Cache文件夹下的文件夹
+*
+*  @param fileName 文件夹名称（如：download，download/tmp）
+*
+*  @return NSString
+*/
++ (NSString *)createDirectoryCacheWithFileName:(NSString *)fileName;
+
+/**
+*  删除指定文件路径的文件，或文件夹
+*
+*  @param filePath 文件路径，或文件夹路径
+*
+*  @return BOOL
+*/
++ (BOOL)deleteFileWithFilePath:(NSString *)filePath;
+
+/**
+*  文件复制
+*
+*  @param fromPath 目标文件路径（如：xxx/xxx/.../xx.png）
+*  @param toPath   复制后文件路径（如：xxx/xxx/.../xx.png）
+*
+*  @return BOOL
+*/
++ (BOOL)copyFileWithFilePath:(NSString *)fromPath toPath:(NSString *)toPath;
+
+/**
+*  文件移动
+*
+*  @param fromPath 移动前位置（如：xxx/xxx/.../xx.png）
+*  @param toPath   移动后位置（如：xxx/xxx/.../111/xx.png）
+*
+*  @return BOOL
+*/
+
++ (BOOL)moveFileWithFilePath:(NSString *)fromPath toPath:(NSString *)toPath;
+
+/**
+*  文件重新名
+*
+*  @param filePath 文件路径（如：xxx/xxx/.../xx.png）
+*  @param newName  文件新名称（如：xx11.png）
+*
+*  @return BOOL
+*/
++ (BOOL)renameFileWithFilePath:(NSString *)filePath newName:(NSString *)newName;
 ```
 
 ``` javascript
-/// 获取目录列表里所有的文件名
-+(NSArray *)GetSubpathsAtPath:(NSString *)path;
-
-/// 改名
-+ (BOOL)renameForPath:(NSString *)oldPath newName:(NSString *)newName;
-
-/// 直接取文件数据
-+ (NSData *)GetDataForResource:(NSString *)name inDir:(NSString *)type;
-+ (NSData *)GetDataForDocuments:(NSString *)name inDir:(NSString *)dir;
-+ (NSData *)GetDataForPath:(NSString *)path;
-
-/// 获取文件路径
-+ (NSString *)GetPathForCaches:(NSString *)filename;
-+ (NSString *)GetPathForCaches:(NSString *)filename inDir:(NSString *)dir;
-
-+ (NSString *)GetPathForDocuments:(NSString *)filename;
-+ (NSString *)GetPathForDocuments:(NSString *)filename inDir:(NSString *)dir;
-
-+ (NSString *)GetPathForResource:(NSString *)name;
-+ (NSString *)GetPathForResource:(NSString *)name inDir:(NSString *)dir;
-
-/// 获取文件大小
-+ (long long)fileSizeAtPath:(NSString *)filePath;
-
-/// 获取目录大小
-+ (float)folderSizeAtPath:(NSString *)folderPath;
+/**
+*  文件数据写入
+*
+*  @param filePath 文件路径（如：xxx/xxx/.../png.txt）
+*  @param data     文件数据（如：NSArray、NSDictionary、NSData、NSString）
+*
+*  @return BOOL
+*/
++ (BOOL)writeFileWithFilePath:(NSString *)filePath data:(id)data;
 
 /**
-*  磁盘总空间大小
+*  指定文件路径的二进制数据
 *
-*  @return float 字节
+*  @param filePath 文件路径
+*
+*  @return NSData
 */
-+ (CGFloat)sizeBytesAllFiles;
-
-/**
-*  磁盘可用空间大小
-*
-*  @return float 字节
-*/
-+ (CGFloat)sizeBytesFree;
-
-/**
-*  指定路径下某个文件的大小
-*
-*  @param filePath 指定路径的文件
-*
-*  @return long long 大小
-*/
-+ (long long)sizeBytesWithFilePath:(NSString *)filePath;
-
-/**
-*  指定路径下所有文件的大小
-*
-*  @param fileFolder 指定路径
-*
-*  @return long long 大小
-*/
-+ (long long)sizeBytesWithFileFolder:(NSString *)fileFolder;
-
-/// 当前上传文件名称（无类型后缀。以时间命名 yyyyMMddHHmmssSSS）
-+ (NSString *)getFileName;
-
-/// 当前上传文件路径（保存在本地的路径）
-+ (NSString *)getFilePathWithName:(NSString *)fileName;
-
-/// 当前上传文件保存在本地
-+ (BOOL)saveImageFile:(UIImage *)image filePath:(NSString *)filePath;
-
-/// 文件删除（NSDictionary-value为文件路径）
-+ (void)deleteFile:(NSDictionary *)fileDict;
++ (NSData *)readFileWithFilePath:(NSString *)filePath;
 ```
+
+``` javascript
+/**
+*  文件信息字典
+*
+*  @param filePath 文件路径
+*
+*  @return NSDictionary
+*/
++ (NSDictionary *)getFileAttributesWithFilePath:(NSString *)filePath;
+``` 
+
+``` javascript
+/**
+*  文件名称（如：hello.png）
+*
+*  @param filePath 文件路径
+*
+*  @return NSString
+*/
++ (NSString *)getFileNameWithFilePath:(NSString *)filePath;
+
+/**
+*  文件类型（如：.png）
+*
+*  @param filePath 文件路径
+*
+*  @return NSString
+*/
++ (NSString *)getFileTypeWithFilePath:(NSString *)filePath;
+
+/**
+*  文件类型（如：png）
+*
+*  @param filePath 文件路径
+*
+*  @return NSString
+*/
++ (NSString *)getFileTypeExtensionWithFilePath:(NSString *)filePath;
+``` 
+
+``` javascript
+/**
+*  指定文件路径的所有层级子文件夹下的所有文件，及文件夹
+*
+*  @param filePath 文件路径
+*
+*  @return NSArray
+*/
++ (NSArray *)getSubFilesAllWithFilePath:(NSString *)filePath;
+
+/**
+*  指定文件路径的当前层级文件夹下的文件，及文件夹
+*
+*  @param filePath 文件路径
+*
+*  @return NSArray
+*/
++ (NSArray *)getSubFilesSomeWithFilePath:(NSString *)filePath;
+
+/**
+*  指定文件路径的文件，及文件夹
+*
+*  @param filePath    文件路径
+*  @param isDirectory 文件，或文件夹
+*  @param isAll       所有层级，或当前层级
+*
+*  @return NSArray
+*/
++ (NSArray *)getSubFilesWithFilePath:(NSString *)filePath isDirectory:(BOOL)isDirectory isAll:(BOOL)isAll;
+``` 
+
+``` javascript
+/**
+*  文件大小类型转换：数值型转字符型
+*
+*  1MB = 1024KB 1KB = 1024B
+*
+*  @param fileSize 文件大小
+*
+*  @return NSString
+*/
++ (NSString *)fileSizeConversion:(CGFloat)fileSize;
+
+/**
+*  单个文件的大小 CGFloat
+*
+*  @param filePath 文件路径
+*
+*  @return CGFloat
+*/
++ (CGFloat)getFileSizeWithFilePath:(NSString *)filePath;
+
+/**
+*  单个文件的大小 NSString
+*
+*  @param filePath 文件路径
+*
+*  @return NSString
+*/
++ (NSString *)getFileSizeTextWithFilePath:(NSString *)filePath;
+
+/**
+*  文件夹的大小 CGFloat
+*
+*  @param directory 指定目录
+*
+*  @return CGFloat
+*/
++ (CGFloat)getFileSizeTotalWithDirectory:(NSString *)directory;
+
+/**
+*  文件夹的大小 NSString
+*
+*  @param directory 指定目录
+*
+*  @return NSString
+*/
++ (NSString *)getFileSizeTotalTextWithDirectory:(NSString *)directory;
+``` 
+
+``` javascript
+/**
+*  磁盘空间总大小
+*
+*  @return CGFloat
+*/
++ (CGFloat)getSizeDiskSpace;
+
+/**
+*  磁盘空间总大小 NSString
+*
+*  @return NSString
+*/
++ (NSString *)getSizeTextDiskSpace;
+
+/**
+*  磁盘空间可用大小
+*
+*  @return CGFloat
+*/
++ (CGFloat)getSizeFreeDiskSpace;
+
+/**
+*  磁盘空间可用大小 NSString
+*
+*  @return NSString
+*/
++ (NSString *)getSizeFreeTextDiskSpace;
+``` 
+
+``` javascript
+/**
+*  以时间（yyyyMMddHHmmssSSS）命名的临时文件名
+*
+*  @param NSString 文件类型（如.png、.txt等）
+*
+*  @return NSString
+*/
++ (NSString *)newCacheFileNameWithType:(NSString *)type;
+
+/**
+*  缓存目录下的临时文件路径
+*
+*  @param fileName 文件名称
+*
+*  @return NSString
+*/
++ (NSString *)newCacheFilePathWithFileName:(NSString *)fileName;
+
+/**
+*  保存临时图片文件
+*
+*  @param image    图片
+*  @param filePath 文件路径
+*
+*  @return BOOL
+*/
++ (BOOL)saveCacheFileImage:(UIImage *)image filePath:(NSString *)filePath;
+
+/**
+*  删除临时文件
+*
+*  @param fileDict 文件字典集合（key-文件名称、value-文件路径）
+*/
++ (void)deleteCacheFile:(NSDictionary *)fileDict;
+``` 
+
+
 

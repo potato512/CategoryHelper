@@ -79,6 +79,9 @@
 		DF2CF9D91EE98F24004253B5 /* SYNavigationBackImage.png in Resources */ = {isa = PBXBuildFile; fileRef = DF2CF9AB1EE98F24004253B5 /* SYNavigationBackImage.png */; };
 		DF2CF9DA1EE98F24004253B5 /* SYNavigationBackImage@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DF2CF9AC1EE98F24004253B5 /* SYNavigationBackImage@2x.png */; };
 		DF2CF9DB1EE98F24004253B5 /* SYNavigationBackImage@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = DF2CF9AD1EE98F24004253B5 /* SYNavigationBackImage@3x.png */; };
+		DF2ED9B11F0947AE00829C5F /* NSFileManager+iCloud.m in Sources */ = {isa = PBXBuildFile; fileRef = DF2ED9B01F0947AE00829C5F /* NSFileManager+iCloud.m */; };
+		DF2ED9B41F094B8F00829C5F /* UIDocument+SYCategory.m in Sources */ = {isa = PBXBuildFile; fileRef = DF2ED9B31F094B8F00829C5F /* UIDocument+SYCategory.m */; };
+		DF2ED9B71F094C7C00829C5F /* NSStream+SYCategory.m in Sources */ = {isa = PBXBuildFile; fileRef = DF2ED9B61F094C7C00829C5F /* NSStream+SYCategory.m */; };
 		DFA204EB1D1E131C00929257 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = DFA204EA1D1E131C00929257 /* main.m */; };
 		DFA204EE1D1E131C00929257 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = DFA204ED1D1E131C00929257 /* AppDelegate.m */; };
 		DFA204F11D1E131C00929257 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DFA204F01D1E131C00929257 /* ViewController.m */; };
@@ -87,6 +90,8 @@
 		DFA204F91D1E131C00929257 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DFA204F71D1E131C00929257 /* LaunchScreen.storyboard */; };
 		DFA205041D1E131C00929257 /* DemoCategoryTests.m in Sources */ = {isa = PBXBuildFile; fileRef = DFA205031D1E131C00929257 /* DemoCategoryTests.m */; };
 		DFA2050F1D1E131C00929257 /* DemoCategoryUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = DFA2050E1D1E131C00929257 /* DemoCategoryUITests.m */; };
+		DFB51A051F073DDA00F7DE63 /* NSFileHandle+SYCategory.m in Sources */ = {isa = PBXBuildFile; fileRef = DFB51A041F073DDA00F7DE63 /* NSFileHandle+SYCategory.m */; };
+		DFB51A081F0745B800F7DE63 /* NSFileHandleViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DFB51A071F0745B800F7DE63 /* NSFileHandleViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -246,6 +251,12 @@
 		DF2CF9AB1EE98F24004253B5 /* SYNavigationBackImage.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = SYNavigationBackImage.png; sourceTree = "<group>"; };
 		DF2CF9AC1EE98F24004253B5 /* SYNavigationBackImage@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "SYNavigationBackImage@2x.png"; sourceTree = "<group>"; };
 		DF2CF9AD1EE98F24004253B5 /* SYNavigationBackImage@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "SYNavigationBackImage@3x.png"; sourceTree = "<group>"; };
+		DF2ED9AF1F0947AE00829C5F /* NSFileManager+iCloud.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSFileManager+iCloud.h"; sourceTree = "<group>"; };
+		DF2ED9B01F0947AE00829C5F /* NSFileManager+iCloud.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSFileManager+iCloud.m"; sourceTree = "<group>"; };
+		DF2ED9B21F094B8F00829C5F /* UIDocument+SYCategory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIDocument+SYCategory.h"; sourceTree = "<group>"; };
+		DF2ED9B31F094B8F00829C5F /* UIDocument+SYCategory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIDocument+SYCategory.m"; sourceTree = "<group>"; };
+		DF2ED9B51F094C7C00829C5F /* NSStream+SYCategory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSStream+SYCategory.h"; sourceTree = "<group>"; };
+		DF2ED9B61F094C7C00829C5F /* NSStream+SYCategory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSStream+SYCategory.m"; sourceTree = "<group>"; };
 		DFA204E61D1E131C00929257 /* DemoCategory.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DemoCategory.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		DFA204EA1D1E131C00929257 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		DFA204EC1D1E131C00929257 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -262,6 +273,10 @@
 		DFA2050A1D1E131C00929257 /* DemoCategoryUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = DemoCategoryUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		DFA2050E1D1E131C00929257 /* DemoCategoryUITests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DemoCategoryUITests.m; sourceTree = "<group>"; };
 		DFA205101D1E131C00929257 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		DFB51A031F073DDA00F7DE63 /* NSFileHandle+SYCategory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSFileHandle+SYCategory.h"; sourceTree = "<group>"; };
+		DFB51A041F073DDA00F7DE63 /* NSFileHandle+SYCategory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSFileHandle+SYCategory.m"; sourceTree = "<group>"; };
+		DFB51A061F0745B800F7DE63 /* NSFileHandleViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NSFileHandleViewController.h; sourceTree = "<group>"; };
+		DFB51A071F0745B800F7DE63 /* NSFileHandleViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NSFileHandleViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -323,6 +338,8 @@
 				A767E1411E09311500F62952 /* NSDataViewController.m */,
 				A767E1251E09309300F62952 /* NSFileManagerViewController.h */,
 				A767E1261E09309300F62952 /* NSFileManagerViewController.m */,
+				DFB51A061F0745B800F7DE63 /* NSFileHandleViewController.h */,
+				DFB51A071F0745B800F7DE63 /* NSFileHandleViewController.m */,
 				A767E1281E09309C00F62952 /* NSNumberViewController.h */,
 				A767E1291E09309C00F62952 /* NSNumberViewController.m */,
 				A767E12B1E0930A400F62952 /* NSArrayViewController.h */,
@@ -371,6 +388,12 @@
 				DF2CF95A1EE98F24004253B5 /* NSDictionary+SYCategory.m */,
 				DF2CF95B1EE98F24004253B5 /* NSFileManager+SYCategory.h */,
 				DF2CF95C1EE98F24004253B5 /* NSFileManager+SYCategory.m */,
+				DF2ED9AF1F0947AE00829C5F /* NSFileManager+iCloud.h */,
+				DF2ED9B01F0947AE00829C5F /* NSFileManager+iCloud.m */,
+				DF2ED9B51F094C7C00829C5F /* NSStream+SYCategory.h */,
+				DF2ED9B61F094C7C00829C5F /* NSStream+SYCategory.m */,
+				DFB51A031F073DDA00F7DE63 /* NSFileHandle+SYCategory.h */,
+				DFB51A041F073DDA00F7DE63 /* NSFileHandle+SYCategory.m */,
 				DF2CF95D1EE98F24004253B5 /* NSNotificationCenter+SYCategory.h */,
 				DF2CF95E1EE98F24004253B5 /* NSNotificationCenter+SYCategory.m */,
 				DF2CF95F1EE98F24004253B5 /* NSNumber+SYCategory.h */,
@@ -414,6 +437,8 @@
 				DF2CF9801EE98F24004253B5 /* UIColor+SYCategory.m */,
 				DF2CF9811EE98F24004253B5 /* UIGestureRecognizer+SYCategory.h */,
 				DF2CF9821EE98F24004253B5 /* UIGestureRecognizer+SYCategory.m */,
+				DF2ED9B21F094B8F00829C5F /* UIDocument+SYCategory.h */,
+				DF2ED9B31F094B8F00829C5F /* UIDocument+SYCategory.m */,
 				DF2CF9831EE98F24004253B5 /* UIImage+SYAssetsLibrary.h */,
 				DF2CF9841EE98F24004253B5 /* UIImage+SYAssetsLibrary.m */,
 				DF2CF9851EE98F24004253B5 /* UIImage+SYBytes.h */,
@@ -688,6 +713,7 @@
 				A767E1421E09311500F62952 /* NSDataViewController.m in Sources */,
 				A767E1241E09308800F62952 /* NSObjectViewController.m in Sources */,
 				DF2CF9CE1EE98F24004253B5 /* UIScrollView+SYCategory.m in Sources */,
+				DF2ED9B11F0947AE00829C5F /* NSFileManager+iCloud.m in Sources */,
 				DF2CF9C11EE98F24004253B5 /* UIBarButtonItem+SYCategory.m in Sources */,
 				A78C0E291DED514900DB84A0 /* ImageViewController.m in Sources */,
 				DF2CF9D61EE98F24004253B5 /* UITextView+SYCategory.m in Sources */,
@@ -726,6 +752,7 @@
 				A767E1361E0930C400F62952 /* NSURLConnectionViewController.m in Sources */,
 				A767E1271E09309300F62952 /* NSFileManagerViewController.m in Sources */,
 				DF2CF9D41EE98F24004253B5 /* UITableViewCell+SYCategory.m in Sources */,
+				DFB51A051F073DDA00F7DE63 /* NSFileHandle+SYCategory.m in Sources */,
 				DF2CF9B81EE98F24004253B5 /* NSString+SYCategory.m in Sources */,
 				DF2CF9D11EE98F24004253B5 /* UISwitch+SYCategory.m in Sources */,
 				DF2CF9B31EE98F24004253B5 /* NSFileManager+SYCategory.m in Sources */,
@@ -734,6 +761,7 @@
 				DF2CF9C81EE98F24004253B5 /* UIImage+SYCategory.m in Sources */,
 				DFA204EB1D1E131C00929257 /* main.m in Sources */,
 				A78C0E341DED51FD00DB84A0 /* AlertSheetViewController.m in Sources */,
+				DF2ED9B41F094B8F00829C5F /* UIDocument+SYCategory.m in Sources */,
 				DF2CF9C71EE98F24004253B5 /* UIImage+SYBytes.m in Sources */,
 				A78C0E371DED520F00DB84A0 /* ImagePickerViewController.m in Sources */,
 				DF2CF9CD1EE98F24004253B5 /* UINavigationController+SYCategory.m in Sources */,
@@ -743,9 +771,11 @@
 				DF2CF9AE1EE98F24004253B5 /* SYCategory.md in Sources */,
 				A767E13F1E0930EE00F62952 /* NSUserDefaultViewController.m in Sources */,
 				DF2CF9BF1EE98F24004253B5 /* UIAlertController+SYCategory.m in Sources */,
+				DF2ED9B71F094C7C00829C5F /* NSStream+SYCategory.m in Sources */,
 				DF2CF9C21EE98F24004253B5 /* UIButton+SYCategory.m in Sources */,
 				DF2CF9B71EE98F24004253B5 /* NSObject+SYKVO.m in Sources */,
 				A78C0E231DED513000DB84A0 /* LabelViewController.m in Sources */,
+				DFB51A081F0745B800F7DE63 /* NSFileHandleViewController.m in Sources */,
 				DF2CF9BE1EE98F24004253B5 /* UIActionSheet+SYCategory.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

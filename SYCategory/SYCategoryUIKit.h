@@ -33,6 +33,7 @@
 #import "UITextView+SYCategory.h"
 #import "UIImagePickerController+SYCategory.h"
 #import "UITabBarController+SYCategory.h"
+#import "UIDocument+SYCategory.h"
 
 #ifndef SYCategoryUIKit_h
 #define SYCategoryUIKit_h
