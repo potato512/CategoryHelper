@@ -51,7 +51,7 @@ typedef NS_ENUM(NSInteger, SYLabelAutoSizeType)
 #pragma mark - 链式属性
 
 /// 链式编程 实例化
-+ (UILabel *)newUILabel:(void (^)(UILabel *))newlabel;
++ (UILabel *)newUILabel:(void (^)(UILabel *label))newlabel;
 /// 链式编程 位置大小
 - (UILabel *(^)(CGRect))labelFrame;
 /// 链式编程 父视图

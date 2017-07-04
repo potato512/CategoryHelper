@@ -359,4 +359,29 @@ static NSString *const keyDecimalPoint = @".";
 
 #pragma mark - 链式属性
 
+- (NSAttributedString *(^)(NSString *text, UIFont *font, UIColor *color, UIColor *backColor))attrinbuted
+{
+    return ^(NSString *text, UIFont *font, UIColor *color, UIColor *backColor) {
+        NSMutableAttributedString *attributedText = [[NSMutableAttributedString alloc] initWithString:self];
+        NSRange range = [self rangeOfString:text];
+        if (range.location != NSNotFound)
+        {
+            if (font)
+            {
+                [attributedText setAttributes:@{NSFontAttributeName:font} range:range];
+            }
+            if (color)
+            {
+                [attributedText setAttributes:@{NSForegroundColorAttributeName:color} range:range];
+            }
+            if (backColor)
+            {
+                [attributedText setAttributes:@{NSBackgroundColorAttributeName:backColor} range:range];
+            }
+        }
+        return [[NSAttributedString alloc] initWithAttributedString:attributedText];
+    };
+}
+
+
 @end

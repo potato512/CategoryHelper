@@ -137,15 +137,17 @@
     
     
     // 链式编程
-    [UILabel newUILabel:^(UILabel *label) {
+    UILabel *labelChain = [UILabel newUILabel:^(UILabel *label) {
         label.labelFont([UIFont systemFontOfSize:12.0])
-        .labelColor([UIColor redColor])
+        .labelColor([UIColor blackColor])
         .labelSuperview(self.view)
         .labelFrame(CGRectMake(10.0, currentView.bottom + 10.0, 120.0, 30.0))
         .labelBackgroundColor([UIColor colorWithWhite:0.5 alpha:0.2])
         .labelAlignment(NSTextAlignmentCenter)
         .labelText(@"链式编程实例化");
     }];
+    labelChain.attributedText = @"链式编程NSString".attrinbuted(@"NSString", [UIFont boldSystemFontOfSize:20.0], [UIColor redColor], nil);
+    
     
     scrollview.contentSize = CGSizeMake(scrollview.width, (currentView.bottom + 10.0));
     

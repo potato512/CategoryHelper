@@ -80,4 +80,9 @@
 /// 字符等级强弱度识别（1弱；2中；3强）
 - (NSInteger)textStrengthGrade;
 
+#pragma mark - 链式属性
+
+/// 属性设置NSString转换NSAttributedString
+- (NSAttributedString *(^)(NSString *text, UIFont *font, UIColor *color, UIColor *backColor))attrinbuted;
+
 @end

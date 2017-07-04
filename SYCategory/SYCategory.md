@@ -55,6 +55,13 @@
 - (UILabel *(^)(UIColor *))labelBackgroundColor;
 ~~~ 
 
+* NSString添加链式编程属性
+~~~ javascript
+/// 属性设置NSString转换NSAttributedString
+- (NSAttributedString *(^)(NSString *text, UIFont *font, UIColor *color, UIColor *backColor))attrinbuted;
+~~~
+
+
 ## 20170702
 * 添加类别文件：UIDocument+SYCategory（待完善）、NSFileManager+iCloud（待完善）、NSStream+SYCategory（待完善）
 * 完善类型方法：NSFileManger+SYCategory
