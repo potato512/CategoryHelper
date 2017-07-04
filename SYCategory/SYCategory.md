@@ -34,7 +34,6 @@
 
 
 # 修改完善
-<<<<<<< HEAD
 ## 20170704
 * UILabel添加链式编程属性
 ~~~ javascript
@@ -55,7 +54,7 @@
 /// 链式编程 背景颜色
 - (UILabel *(^)(UIColor *))labelBackgroundColor;
 ~~~ 
-=======
+
 ## 20170702
 * 添加类别文件：UIDocument+SYCategory（待完善）、NSFileManager+iCloud（待完善）、NSStream+SYCategory（待完善）
 * 完善类型方法：NSFileManger+SYCategory
@@ -82,7 +81,6 @@
 ## 20170701
 * 添加类别文件：NSFileHandle+SYCategory
 * 完善类别方法：NSFileManager+SYCategory
->>>>>>> origin/master
 
 ## 20170628
 * UIImage方法修改
