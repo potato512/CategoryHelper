@@ -23,37 +23,37 @@ typedef NS_ENUM(NSInteger, ViewFlipType)
 #pragma mark - 原点尺寸
 
 /// 坐标
-@property CGPoint origin;
+@property (nonatomic, assign) CGPoint origin;
 
 /// 大小
-@property CGSize size;
+@property (nonatomic, assign) CGSize size;
 
 /// 底部左侧，即x，y坐标
-@property (readonly) CGPoint bottomLeft;
+@property (nonatomic, assign, readonly) CGPoint bottomLeft;
 
 /// 底部右侧，即x，y坐标
-@property (readonly) CGPoint bottomRight;
+@property (nonatomic, assign, readonly) CGPoint bottomRight;
 
 /// 顶端右侧，即x，y坐标
-@property (readonly) CGPoint topRight;
+@property (nonatomic, assign, readonly) CGPoint topRight;
 
 /// 高
-@property CGFloat height;
+@property (nonatomic, assign) CGFloat height;
 
 /// 宽
-@property CGFloat width;
+@property (nonatomic, assign) CGFloat width;
 
 /// 顶部，即y坐标
-@property CGFloat top;
+@property (nonatomic, assign) CGFloat top;
 
 /// 左侧，即x坐标
-@property CGFloat left;
+@property (nonatomic, assign) CGFloat left;
 
 /// 底部，即y坐标
-@property CGFloat bottom;
+@property (nonatomic, assign) CGFloat bottom;
 
 /// 右侧，即x坐标
-@property CGFloat right;
+@property (nonatomic, assign) CGFloat right;
 
 /// 移动到指定位置（中心点位置改变）
 - (void)moveToPoint:(CGPoint)point;
@@ -115,5 +115,86 @@ typedef NS_ENUM(NSInteger, ViewFlipType)
 
 /// 旋转手势
 - (void)rotationRecognizer:(void (^)(UIRotationGestureRecognizer *recognizer))action;
+
+
+
+#pragma mark - 链式属性
+
++ (UIView *)newUIView:(void (^)(UIView *view))complete;
+
+#pragma mark 原点尺寸
+
+- (UIView *(^)(UIView *view))viewSuperView;
+
+- (UIView *(^)(CGRect frame))viewFrame;
+
+- (UIView *(^)(CGPoint point))viewOrigin;
+
+- (UIView *(^)(CGPoint center))viewCenter;
+
+- (UIView *(^)(CGSize size))viewSize;
+
+- (UIView *(^)(CGFloat left))viewLeft;
+
+- (UIView *(^)(CGFloat top))viewTop;
+
+- (UIView *(^)(CGFloat right))viewRight;
+
+- (UIView *(^)(CGFloat bottom))viewBottom;
+
+- (UIView *(^)(CGFloat width))viewWidth;
+
+- (UIView *(^)(CGFloat height))viewHeight;
+
+#pragma mark 变换设置
+
+- (UIView *(^)(CGPoint point))viewMove;
+
+- (UIView *(^)(CGFloat rotation))viewTransformRotation;
+
+- (UIView *(^)(CGFloat size))viewTransformScale;
+
+- (UIView *(^)(CGFloat scale))viewScale;
+
+#pragma mark 边框圆角
+
+- (UIView *(^)(CGFloat alpha))viewEffect;
+
+#pragma mark 边框圆角
+
+- (UIView *(^)(CGFloat radius))viewRadius;
+
+- (UIView *(^)(CGFloat width, UIColor *color))viewBorder;
+
+#pragma mark 属性设置
+
+- (UIView *(^)(UIColor *color))viewBackgroundColor;
+
+- (UIView *(^)(NSInteger tag))viewTag;
+
+- (UIView *(^)(CGFloat alpha))viewAlpha;
+
+- (UIView *(^)(UIColor *color, CGFloat alpha))viewColorAlpha;
+
+- (UIView *(^)(BOOL hidden))viewHidden;
+
+- (UIView *(^)(UIViewContentMode mode))viewContentMode;
+
+- (UIView *(^)(UIViewAutoresizing autoresizing))viewAutoresizing;
+
+- (UIView *(^)(BOOL enable))viewInteractionEnabled;
+
+#pragma mark 文本信息
+
+- (UIView *(^)(NSString *text))viewTitle;
+
+- (UIView *(^)(UIColor *color))viewTitleColor;
+
+- (UIView *(^)(UIFont *font))viewTitleFont;
+
+- (UIView *(^)(CGRect frame))viewTitleFrame;
+
+- (UIView *(^)(NSTextAlignment alignment))viewTitleAlignament;
+
 
 @end

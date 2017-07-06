@@ -149,5 +149,27 @@
     return object;
 }
 
+#pragma mark - 链式属性
+
+- (UIViewController *(^)())autoLayoutExtended
+{
+    return ^() {
+        if ([self respondsToSelector:@selector(setEdgesForExtendedLayout:)])
+        {
+            // 不要往四周边沿展开，避免被导航栏遮挡
+            self.edgesForExtendedLayout = UIRectEdgeNone;
+        
+            // 取消半透明色，避免被导航栏遮挡
+            self.navigationController.navigationBar.translucent = NO;
+            
+            // 展开时不包含导航栏，避免被导航栏遮挡
+            self.extendedLayoutIncludesOpaqueBars = NO;
+            
+            // 改变scrollView的contentInsets，避免scrollView，tableView，collectionView的contentInset.top = 64
+            self.automaticallyAdjustsScrollViewInsets = NO;
+        }
+        return self;
+    };
+}
 
 @end

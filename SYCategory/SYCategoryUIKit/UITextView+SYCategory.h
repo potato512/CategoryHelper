@@ -35,6 +35,33 @@
 /// 限制只能输入指定字符（不需要结合通知使用）
 @property (nonatomic, strong) NSString *allowedText;
 
+
+#pragma mark - 链式属性
+
+- (UITextView *(^)(id<UITextViewDelegate> delegate))delegate;
+
+- (UITextView *(^)(NSString *text))text;
+
+- (UITextView *(^)(UIFont *fong))textFont;
+
+- (UITextView *(^)(UIColor *color))textColor;
+
+- (UITextView *(^)(NSTextAlignment alignment))textAlignment;
+
+- (UITextView *(^)(UIView *view))inputView;
+
+- (UITextView *(^)(UIView *view))inputAccessoryView;
+
+- (UITextView *(^)(UIReturnKeyType type))returnKeyType;
+
+- (UITextView *(^)(UIKeyboardType type))keyboardType;
+
+- (UITextView *(^)(NSString *text))textViewLimit;
+
+- (UITextView *(^)(NSString *text))textViewAllow;
+
+
+
 @end
 
 /*

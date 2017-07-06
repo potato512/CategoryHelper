@@ -52,4 +52,56 @@
     return switchView;
 }
 
+
+#pragma mark - 链式属性
+
+- (UISwitch *(^)(UIColor *color))onTintColor
+{
+    return ^(UIColor *color) {
+        self.onTintColor = color;
+        return self;
+    };
+}
+
+- (UISwitch *(^)(UIColor *color))tintColor
+{
+    return ^(UIColor *color) {
+        self.tintColor = color;
+        return self;
+    };
+}
+
+- (UISwitch *(^)(UIColor *color))thumbTintColor
+{
+    return ^(UIColor *color) {
+        self.thumbTintColor = color;
+        return self;
+    };
+}
+
+- (UISwitch *(^)(UIImage *image))onImage
+{
+    return ^(UIImage *image) {
+        self.onImage = image;
+        return self;
+    };
+}
+
+- (UISwitch *(^)(UIImage *image))offImage
+{
+    return ^(UIImage *image) {
+        self.offImage = image;
+        return self;
+    };
+}
+
+- (UISwitch *(^)(BOOL isEnable))on
+{
+    return ^(BOOL isEnable) {
+        self.on = isEnable;
+        return self;
+    };
+}
+
+
 @end

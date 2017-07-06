@@ -10,6 +10,20 @@
 
 @interface UIImageView (SYCategory)
 
-// 图片拿捏放大缩小，双击放大缩小，旋转
+#pragma mark - 链式属性
+
+- (UIImageView *(^)(UIImage *image))image;
+
+- (UIImageView *(^)(UIImage *image))highlightedImage;
+
+- (UIImageView *(^)(NSArray<UIImage *> *images))animationImages;
+
+- (UIImageView *(^)(NSArray<UIImage *> *images))highlightedAnimationImages;
+
+- (UIImageView *(^)(NSTimeInterval duration))animationDuration;
+
+- (UIImageView *(^)(NSInteger repeat))animationRepeatCount;
+
+- (UIImageView *(^)(UIColor *color))tintColor;
 
 @end

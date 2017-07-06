@@ -107,16 +107,16 @@
         {
             [attributed addAttribute:NSStrokeWidthAttributeName value:[NSNumber numberWithFloat:width] range:range];
         }
-        
+
         // 线条颜色
         if (color)
         {
-            [attributed addAttribute:NSForegroundColorAttributeName value:color range:range];
+            [attributed addAttribute:(delete ? NSStrikethroughColorAttributeName : NSUnderlineColorAttributeName) value:color range:range];
         }
         
-        // 线条样式，删除线，或下划线
+        // 线条样式，删除线 NSStrikethroughStyleAttributeName，或下划线 NSUnderlineStyleAttributeName
         [attributed addAttribute:(delete ? NSStrikethroughStyleAttributeName : NSUnderlineStyleAttributeName)
-                           value:[NSNumber numberWithInteger:type]
+                           value:@(type)
                            range:range];
 
     }

@@ -111,6 +111,43 @@ typedef NS_ENUM(NSInteger, TextFieldViewModeType)
 /// 限制只能输入指定字符（不需要结合通知使用）
 @property (nonatomic, strong) NSString *allowedText;
 
+
+#pragma mark - 链式属性
+
+- (UITextField *(^)(id<UITextFieldDelegate> delegate))delegate;
+
+- (UITextField *(^)(NSString *text))placeholder;
+
+- (UITextField *(^)(NSString *text))text;
+
+- (UITextField *(^)(UIFont *fong))textFont;
+
+- (UITextField *(^)(UIColor *color))textColor;
+
+- (UITextField *(^)(NSTextAlignment alignment))textAlignment;
+
+- (UITextField *(^)(UIView *view))inputView;
+
+- (UITextField *(^)(UIView *view))inputAccessoryView;
+
+- (UITextField *(^)(UIReturnKeyType type))returnKeyType;
+
+- (UITextField *(^)(UIKeyboardType type))keyboardType;
+
+- (UITextField *(^)(NSString *text))textFieldLimit;
+
+- (UITextField *(^)(NSString *text))textFieldAllow;
+
+- (UITextField *(^)(BOOL isSecure))secureTextEntry;
+
+- (UITextField *(^)(UITextFieldViewMode mode))clearButtonMode;
+
+- (UITextField *(^)(UIView *view, UITextFieldViewMode mode))leftView;
+
+- (UITextField *(^)(UIView *view, UITextFieldViewMode mode))rightView;
+
+
+
 @end
 
 /*

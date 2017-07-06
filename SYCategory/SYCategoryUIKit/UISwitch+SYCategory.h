@@ -28,4 +28,18 @@ typedef void (^SwitchClick)(UISwitch *sender);
 + (instancetype)switchWithFrame:(CGRect)frame view:(UIView *)superview status:(BOOL)isOff action:(SwitchClick)switchClick;
 
 
+#pragma mark - 链式属性
+
+- (UISwitch *(^)(UIColor *color))onTintColor;
+
+- (UISwitch *(^)(UIColor *color))tintColor;
+
+- (UISwitch *(^)(UIColor *color))thumbTintColor;
+
+- (UISwitch *(^)(UIImage *image))onImage;
+
+- (UISwitch *(^)(UIImage *image))offImage;
+
+- (UISwitch *(^)(BOOL isEnable))on;
+
 @end

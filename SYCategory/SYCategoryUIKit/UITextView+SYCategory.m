@@ -286,4 +286,98 @@
     }
 }
 
+
+#pragma mark - 链式属性
+
+- (UITextView *(^)(id<UITextViewDelegate> delegate))delegate
+{
+    return ^(id<UITextViewDelegate> delegate) {
+        self.delegate = delegate;
+        return self;
+    };
+}
+
+- (UITextView *(^)(NSString *text))text
+{
+    return ^(NSString *text) {
+        self.text = text;
+        return self;
+    };
+}
+
+- (UITextView *(^)(UIFont *fong))textFont
+{
+    return ^(UIFont *font) {
+        self.font = font;
+        return self;
+    };
+}
+
+- (UITextView *(^)(UIColor *color))textColor
+{
+    return ^(UIColor *color) {
+        self.textColor = color;
+        return self;
+    };
+}
+
+- (UITextView *(^)(NSTextAlignment alignment))textAlignment
+{
+    return ^(NSTextAlignment alignment) {
+        self.textAlignment = alignment;
+        return self;
+    };
+}
+
+- (UITextView *(^)(UIView *view))inputView
+{
+    return ^(UIView *view) {
+        self.inputView = view;
+        return self;
+    };
+}
+
+- (UITextView *(^)(UIView *view))inputAccessoryView
+{
+    return ^(UIView *view) {
+        self.inputAccessoryView = view;
+        return self;
+    };
+}
+
+- (UITextView *(^)(UIReturnKeyType type))returnKeyType
+{
+    return ^(UIReturnKeyType type) {
+        self.returnKeyType = type;
+        return self;
+    };
+}
+
+- (UITextView *(^)(UIKeyboardType type))keyboardType
+{
+    return ^(UIKeyboardType type) {
+        self.keyboardType = type;
+        return self;
+    };
+}
+
+- (UITextView *(^)(NSString *text))textViewLimit
+{
+    return ^(NSString *text) {
+        self.limitText = text;
+        return self;
+    };
+}
+
+- (UITextView *(^)(NSString *text))textViewAllow
+{
+    return ^(NSString *text) {
+        self.allowedText = text;
+        return self;
+    };
+}
+
+
+
+
 @end

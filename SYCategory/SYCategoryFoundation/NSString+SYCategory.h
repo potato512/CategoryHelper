@@ -83,6 +83,9 @@
 #pragma mark - 链式属性
 
 /// 属性设置NSString转换NSAttributedString
-- (NSAttributedString *(^)(NSString *text, UIFont *font, UIColor *color, UIColor *backColor))attrinbuted;
+- (NSAttributedString *(^)(NSString *text, UIColor *color, UIColor *backColor, UIFont *font, CGFloat characterSpace, CGFloat rowSpace))attributedText;
+
+/// 设置字体的下划线，或删除线，及其线条大小、颜色与类型（如下划线单线类型NSUnderlineStyleSingle）
+- (NSAttributedString *(^)(NSString *text, UIColor *color, UIFont *font, BOOL isDelete, NSInteger lineType, CGFloat lineWidth, UIColor *lineColor))attributedTextlineStyle;
 
 @end

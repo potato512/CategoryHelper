@@ -27,4 +27,26 @@ typedef void (^SliderClick)(UISlider *slider);
  */
 + (instancetype)sliderWithFrame:(CGRect)frame view:(UIView *)superview value:(float)value action:(SliderClick)sliderClick;
 
+
+#pragma mark - 链式属性
+
+- (UISlider *(^)(float value))value;
+
+- (UISlider *(^)(float value))minimumValue;
+
+- (UISlider *(^)(float value))maximumValue;
+
+- (UISlider *(^)(UIImage *image))minimumValueImage;
+
+- (UISlider *(^)(UIImage *image))maximumValueImage;
+
+- (UISlider *(^)(UIColor *color))thumbTintColor;
+
+- (UISlider *(^)(UIColor *color))minimumTrackTintColor;
+
+- (UISlider *(^)(UIColor *color))maximumTrackTintColor;
+
+
+
+
 @end

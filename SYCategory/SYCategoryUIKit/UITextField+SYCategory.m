@@ -573,4 +573,137 @@
     }
 }
 
+
+#pragma mark - 链式属性
+
+- (UITextField *(^)(id<UITextFieldDelegate> delegate))delegate
+{
+    return ^(id<UITextFieldDelegate> delegate) {
+        self.delegate = delegate;
+        return self;
+    };
+}
+
+- (UITextField *(^)(NSString *text))placeholder
+{
+    return ^(NSString *text) {
+        self.placeholder = text;
+        return self;
+    };
+}
+
+- (UITextField *(^)(NSString *text))text
+{
+    return ^(NSString *text) {
+        self.text = text;
+        return self;
+    };
+}
+
+- (UITextField *(^)(UIFont *fong))textFont
+{
+    return ^(UIFont *font) {
+        self.font = font;
+        return self;
+    };
+}
+
+- (UITextField *(^)(UIColor *color))textColor
+{
+    return ^(UIColor *color) {
+        self.textColor = color;
+        return self;
+    };
+}
+
+- (UITextField *(^)(NSTextAlignment alignment))textAlignment
+{
+    return ^(NSTextAlignment alignment) {
+        self.textAlignment = alignment;
+        return self;
+    };
+}
+
+- (UITextField *(^)(UIView *view))inputView
+{
+    return ^(UIView *view) {
+        self.inputView = view;
+        return self;
+    };
+}
+
+- (UITextField *(^)(UIView *view))inputAccessoryView
+{
+    return ^(UIView *view) {
+        self.inputAccessoryView = view;
+        return self;
+    };
+}
+
+- (UITextField *(^)(UIReturnKeyType type))returnKeyType
+{
+    return ^(UIReturnKeyType type) {
+        self.returnKeyType = type;
+        return self;
+    };
+}
+
+- (UITextField *(^)(UIKeyboardType type))keyboardType
+{
+    return ^(UIKeyboardType type) {
+        self.keyboardType = type;
+        return self;
+    };
+}
+
+- (UITextField *(^)(NSString *text))textFieldLimit
+{
+    return ^(NSString *text) {
+        self.limitText = text;
+        return self;
+    };
+}
+
+- (UITextField *(^)(NSString *text))textFieldAllow
+{
+    return ^(NSString *text) {
+        self.allowedText = text;
+        return self;
+    };
+}
+
+- (UITextField *(^)(BOOL isSecure))secureTextEntry
+{
+    return ^(BOOL isSecure) {
+        self.secureTextEntry = isSecure;
+        return self;
+    };
+}
+
+- (UITextField *(^)(UITextFieldViewMode mode))clearButtonMode
+{
+    return ^(UITextFieldViewMode mode) {
+        self.clearButtonMode = mode;
+        return self;
+    };
+}
+
+- (UITextField *(^)(UIView *view, UITextFieldViewMode mode))leftView
+{
+    return ^(UIView *view, UITextFieldViewMode mode) {
+        self.leftView = view;
+        self.leftViewMode = mode;
+        return self;
+    };
+}
+
+- (UITextField *(^)(UIView *view, UITextFieldViewMode mode))rightView
+{
+    return ^(UIView *view, UITextFieldViewMode mode) {
+        self.rightView = view;
+        self.rightViewMode = mode;
+        return self;
+    };
+}
+
 @end

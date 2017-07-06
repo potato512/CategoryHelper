@@ -359,27 +359,72 @@ static NSString *const keyDecimalPoint = @".";
 
 #pragma mark - 链式属性
 
-- (NSAttributedString *(^)(NSString *text, UIFont *font, UIColor *color, UIColor *backColor))attrinbuted
+- (NSAttributedString *(^)(NSString *text, UIColor *color, UIColor *backColor, UIFont *font, CGFloat characterSpace, CGFloat rowSpace))attributedText
 {
-    return ^(NSString *text, UIFont *font, UIColor *color, UIColor *backColor) {
-        NSMutableAttributedString *attributedText = [[NSMutableAttributedString alloc] initWithString:self];
+    return ^(NSString *text, UIColor *color, UIColor *backColor, UIFont *font, CGFloat characterSpace, CGFloat rowSpace) {
+        NSMutableAttributedString *attributed = [[NSMutableAttributedString alloc] initWithString:self];
         NSRange range = [self rangeOfString:text];
         if (range.location != NSNotFound)
         {
             if (font)
             {
-                [attributedText setAttributes:@{NSFontAttributeName:font} range:range];
+                [attributed setAttributes:@{NSFontAttributeName:font} range:range];
             }
             if (color)
             {
-                [attributedText setAttributes:@{NSForegroundColorAttributeName:color} range:range];
+                [attributed setAttributes:@{NSForegroundColorAttributeName:color} range:range];
             }
             if (backColor)
             {
-                [attributedText setAttributes:@{NSBackgroundColorAttributeName:backColor} range:range];
+                [attributed setAttributes:@{NSBackgroundColorAttributeName:backColor} range:range];
+            }
+            // 字符间距
+            if (0.0 < characterSpace)
+            {
+                // 设置每个字体之间的间距 NSKernAttributeName 这个对象所对应的值是一个NSNumber对象(包含小数),作用是修改默认字体之间的距离调整,值为0的话表示字距调整是禁用的
+                [attributed addAttribute:NSKernAttributeName value:@(characterSpace) range:range];
+            }
+            // 行间距
+            if (0.0 < rowSpace)
+            {
+                // 设置每行之间的间距 NSParagraphStyleAttributeName 设置段落的样式
+                NSMutableParagraphStyle *par = [[NSMutableParagraphStyle alloc] init];
+                [par setLineSpacing:rowSpace];
+                [attributed addAttribute:NSParagraphStyleAttributeName value:par range:range];
             }
         }
-        return [[NSAttributedString alloc] initWithAttributedString:attributedText];
+        return [[NSAttributedString alloc] initWithAttributedString:attributed];
+    };
+}
+
+
+/// 设置字体的下划线，或删除线，及其线条大小、颜色与类型（如下划线单线类型NSUnderlineStyleSingle）
+- (NSAttributedString *(^)(NSString *text, UIColor *color, UIFont *font, BOOL isDelete, NSInteger lineType, CGFloat lineWidth, UIColor *lineColor))attributedTextlineStyle
+{
+    return ^(NSString *text, UIColor *color, UIFont *font, BOOL isDelete, NSInteger lineType, CGFloat lineWidth, UIColor *lineColor) {
+        NSMutableAttributedString *attributed = [[NSMutableAttributedString alloc] initWithString:self];
+        NSRange range = [self rangeOfString:text];
+        if (range.location != NSNotFound)
+        {
+            if (color)
+            {
+                [attributed addAttribute:NSForegroundColorAttributeName value:color range:range];
+            }
+            if (0.0 < lineWidth)
+            {
+                [attributed addAttribute:NSStrokeWidthAttributeName value:[NSNumber numberWithFloat:lineWidth] range:range];
+            }
+            if (lineColor)
+            {
+                [attributed addAttribute:(isDelete ? NSStrikethroughColorAttributeName : NSUnderlineColorAttributeName) value:lineColor range:range];
+            }
+            
+            // 线条样式，删除线，或下划线
+            [attributed addAttribute:(isDelete ? NSStrikethroughStyleAttributeName : NSUnderlineStyleAttributeName)
+                               value:[NSNumber numberWithInteger:lineType]
+                               range:range];
+        }
+        return [[NSAttributedString alloc] initWithAttributedString:attributed];
     };
 }
 

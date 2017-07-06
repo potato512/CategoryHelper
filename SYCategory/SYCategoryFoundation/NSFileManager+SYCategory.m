@@ -892,4 +892,52 @@
     }
 }
 
+
+#pragma mark - 链式属性
+
++ (NSString *(^)())homePath
+{
+    return ^() {
+        return NSHomeDirectory();
+    };
+}
+
++ (NSString *(^)())documentPath
+{
+    return ^() {
+        NSArray *Paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+        NSString *path = [Paths objectAtIndex:0];
+        return path;
+    };
+}
+
++ (NSString *(^)())cachePath
+{
+    return ^() {
+        NSArray *Paths = NSSearchPathForDirectoriesInDomains(NSCachesDirectory, NSUserDomainMask, YES);
+        NSString *path = [Paths objectAtIndex:0];
+        return path;
+    };
+}
+
++ (NSString *(^)())libraryPath
+{
+    return ^() {
+        NSArray *Paths = NSSearchPathForDirectoriesInDomains(NSLibraryDirectory, NSUserDomainMask, YES);
+        NSString *path = [Paths objectAtIndex:0];
+        return path;
+    };
+}
+
++ (NSString *(^)())tmpPath
+{
+    return ^() {
+        return NSTemporaryDirectory();
+    };
+}
+
+
+
+
+
 @end

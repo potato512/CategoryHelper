@@ -30,4 +30,9 @@
 /// 导航栏标题
 @property (nonatomic, strong) NSString *navigationItemTitle;
 
+#pragma mark - 链式属性
+
+- (UIViewController *(^)())autoLayoutExtended;
+
+
 @end

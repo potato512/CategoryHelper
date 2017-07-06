@@ -344,4 +344,313 @@
     [UIGestureRecognizer rotationRecognizer:self action:action];
 }
 
+#pragma mark - 链式属性
+
++ (UIView *)newUIView:(void (^)(UIView *view))complete
+{
+    UIView *view = [UIView new];
+    complete(view);
+    return view;
+}
+
+#pragma mark 原点尺寸
+
+- (UIView *(^)(UIView *view))viewSuperView
+{
+    return ^(UIView *view) {
+        if (view)
+        {
+            [view addSubview:self];
+        }
+        return self;
+    };
+}
+
+- (UIView *(^)(CGRect frame))viewFrame
+{
+    return ^(CGRect frame) {
+        self.frame = frame;
+        return self;
+    };
+}
+
+- (UIView *(^)(CGPoint point))viewOrigin
+{
+    return ^(CGPoint point) {
+        CGRect rect = self.frame;
+        rect.origin = point;
+        self.frame = rect;
+        return self;
+    };
+}
+
+- (UIView *(^)(CGPoint center))viewCenter
+{
+    return ^(CGPoint center) {
+        self.center = center;
+        return self;
+    };
+}
+
+- (UIView *(^)(CGSize size))viewSize
+{
+    return ^(CGSize size) {
+        CGRect rect = self.frame;
+        rect.size = size;
+        self.frame = rect;
+        return self;
+    };
+}
+
+- (UIView *(^)(CGFloat left))viewLeft
+{
+    return ^(CGFloat left) {
+        CGRect rect = self.frame;
+        rect.origin.x = left;
+        self.frame = rect;
+        return self;
+    };
+}
+
+- (UIView *(^)(CGFloat top))viewTop
+{
+    return ^(CGFloat top) {
+        CGRect rect = self.frame;
+        rect.origin.y = top;
+        self.frame = rect;
+        return self;
+    };
+}
+
+- (UIView *(^)(CGFloat right))viewRight
+{
+    return ^(CGFloat right) {
+        CGRect rect = self.frame;
+        rect.origin.x = (right - self.frame.size.width);
+        self.frame = rect;
+        return self;
+    };
+}
+
+- (UIView *(^)(CGFloat bottom))viewBottom
+{
+    return ^(CGFloat bottom) {
+        CGRect rect = self.frame;
+        rect.origin.y = (bottom - self.frame.size.height);
+        self.frame = rect;
+        return self;
+    };
+}
+
+- (UIView *(^)(CGFloat width))viewWidth
+{
+    return ^(CGFloat width) {
+        CGRect rect = self.frame;
+        rect.size.width = width;
+        self.frame = rect;
+        return self;
+    };
+}
+
+- (UIView *(^)(CGFloat height))viewHeight
+{
+    return ^(CGFloat height) {
+        CGRect rect = self.frame;
+        rect.size.height = height;
+        self.frame = rect;
+        return self;
+    };
+}
+
+#pragma mark 变换设置
+
+- (UIView *(^)(CGPoint point))viewMove
+{
+    return ^(CGPoint point) {
+        CGPoint newcenter = self.center;
+        newcenter.x += point.x;
+        newcenter.y += point.y;
+        self.center = newcenter;
+        return self;
+    };
+}
+
+- (UIView *(^)(CGFloat rotation))viewTransformRotation
+{
+    return ^(CGFloat rotation) {
+        self.transform = CGAffineTransformMakeRotation(rotation);
+        return self;
+    };
+}
+
+- (UIView *(^)(CGFloat size))viewTransformScale
+{
+    return ^(CGFloat size) {
+        self.transform = CGAffineTransformScale(self.transform, size, size);
+        return self;
+    };
+}
+
+- (UIView *(^)(CGFloat scale))viewScale
+{
+    return ^(CGFloat scale) {
+        CGRect newframe = self.frame;
+        newframe.size.width *= scale;
+        newframe.size.height *= scale;
+        self.frame = newframe;
+        return self;
+    };
+}
+
+#pragma mark 边框圆角
+
+- (UIView *(^)(CGFloat alpha))viewEffect
+{
+    return ^(CGFloat alpha) {
+        UIBlurEffect *effect = [UIBlurEffect effectWithStyle:UIBlurEffectStyleLight];
+        UIVisualEffectView *effectView = [[UIVisualEffectView alloc] initWithEffect:effect];
+        effectView.frame = self.bounds;
+        effectView.alpha = alpha;
+        [self addSubview:effectView];
+        return self;
+    };
+}
+
+#pragma mark 边框圆角
+
+- (UIView *(^)(CGFloat radius))viewRadius
+{
+    return ^(CGFloat radius) {
+        self.layer.cornerRadius = radius;
+        self.layer.masksToBounds = YES;
+        return self;
+    };
+}
+
+- (UIView *(^)(CGFloat width, UIColor *color))viewBorder
+{
+    return ^(CGFloat width, UIColor *color) {
+        if (color)
+        {
+            self.layer.borderColor = color.CGColor;
+        }
+        if (width > 0.0)
+        {
+            self.layer.borderWidth = width;
+        }
+        return self;
+    };
+}
+
+#pragma mark 属性设置
+
+- (UIView *(^)(UIColor *color))viewBackgroundColor
+{
+    return ^(UIColor *color) {
+        self.backgroundColor = color;
+        return self;
+    };
+}
+
+- (UIView *(^)(NSInteger tag))viewTag
+{
+    return ^(NSInteger tag) {
+        self.tag = tag;
+        return self;
+    };
+}
+
+- (UIView *(^)(CGFloat alpha))viewAlpha
+{
+    return ^(CGFloat alpha) {
+        self.alpha = alpha;
+        return self;
+    };
+}
+
+- (UIView *(^)(UIColor *color, CGFloat alpha))viewColorAlpha
+{
+    return ^(UIColor *color, CGFloat alpha) {
+        if (color)
+        {
+            self.backgroundColor = [color colorWithAlphaComponent:alpha];
+        }
+        return self;
+    };
+}
+
+- (UIView *(^)(BOOL hidden))viewHidden
+{
+    return ^(BOOL hidden) {
+        self.hidden = hidden;
+        return self;
+    };
+}
+
+- (UIView *(^)(UIViewContentMode mode))viewContentMode
+{
+    return ^(UIViewContentMode mode) {
+        self.contentMode = mode;
+        return self;
+    };
+}
+
+- (UIView *(^)(UIViewAutoresizing autoresizing))viewAutoresizing
+{
+    return ^(UIViewAutoresizing autoresizing) {
+        self.autoresizingMask = autoresizing;
+        return self;
+    };
+}
+
+- (UIView *(^)(BOOL enable))viewInteractionEnabled
+{
+    return ^(BOOL enable) {
+        self.userInteractionEnabled = enable;
+        return self;
+    };
+}
+
+#pragma mark 文本信息
+
+- (UIView *(^)(NSString *text))viewTitle
+{
+    return ^(NSString *text) {
+        self.viewText = text;
+        return self;
+    };
+}
+
+- (UIView *(^)(UIColor *color))viewTitleColor
+{
+    return ^(UIColor *color) {
+        self.viewTextColor = color;
+        return self;
+    };
+}
+
+- (UIView *(^)(UIFont *font))viewTitleFont
+{
+    return ^(UIFont *font) {
+        self.viewTextFont = font;
+        return self;
+    };
+}
+
+- (UIView *(^)(CGRect frame))viewTitleFrame
+{
+    return ^(CGRect frame) {
+        self.viewTextRect = frame;
+        return self;
+    };
+}
+
+- (UIView *(^)(NSTextAlignment alignment))viewTitleAlignament
+{
+    return ^(NSTextAlignment alignment) {
+        self.viewTextAlignment = alignment;
+        return self;
+    };
+}
+
 @end

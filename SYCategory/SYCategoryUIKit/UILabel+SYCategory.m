@@ -25,9 +25,9 @@
  *  @param textColor      要修改的文字颜色
  *  @param textFont       要修改的文字大小
  */
-- (void)labelAttributedText:(NSString *)string color:(UIColor *)textColor font:(UIFont *)textFont
+- (void)attributedText:(NSString *)string color:(UIColor *)textColor font:(UIFont *)textFont
 {
-    [self labelAttributedText:string color:textColor font:textFont space:0.0 rowSpace:0.0];
+    [self attributedText:string color:textColor backColor:nil font:textFont space:0.0 rowSpace:0.0];
 }
 
 /**
@@ -35,14 +35,33 @@
  *
  *  @param string         要修改的文字
  *  @param textColor      要修改的文字颜色
+ *  @param backColor      要修改的文字背景颜色
  *  @param textFont       要修改的文字大小
  *  @param characterSpace 字体间距
  *  @param rowSpace       行间距
  */
-- (void)labelAttributedText:(NSString *)string color:(UIColor *)textColor font:(UIFont *)textFont space:(CGFloat)characterSpace rowSpace:(CGFloat)rowSpace
+- (void)attributedText:(NSString *)string color:(UIColor *)textColor backColor:(UIColor *)backColor font:(UIFont *)textFont space:(CGFloat)characterSpace rowSpace:(CGFloat)rowSpace
 {
     NSAttributedString *attributed = [[NSAttributedString alloc] initWithString:self.text];
-    attributed = [attributed attributedText:string color:textColor font:textFont space:characterSpace rowSpace:rowSpace bgColor:nil];
+    attributed = [attributed attributedText:string color:textColor font:textFont space:characterSpace rowSpace:rowSpace bgColor:backColor];
+    self.attributedText = attributed;
+}
+
+/**
+ *  修改标签信息（文字大小颜色，分割线-样式/宽度/大小）
+ *
+ *  @param string    要修改的文字
+ *  @param textColor 要修改的文字颜色
+ *  @param textFont  要修改的文字大小
+ *  @param isDelete  是否删除线
+ *  @param lineType  线条样式，如下划线单线类型NSUnderlineStyleSingle
+ *  @param lineWidth 线条宽度
+ *  @param lineColor 线条颜色
+ */
+- (void)attributedText:(NSString *)string color:(UIColor *)textColor font:(UIFont *)textFont lineStyle:(BOOL)isDelete lineType:(NSInteger)lineType lineWidth:(CGFloat)lineWidth lineColor:(UIColor *)lineColor
+{
+    NSAttributedString *attributed = [[NSAttributedString alloc] initWithString:self.text];
+    attributed = [attributed attributedText:string color:textColor font:textFont lineStyle:isDelete lineType:lineType lineWidth:lineWidth lineColor:lineColor];
     self.attributedText = attributed;
 }
 
@@ -66,30 +85,14 @@
 
 #pragma mark - 链式属性
 
-+ (UILabel *)newUILabel:(void (^)(UILabel *))newlabel
++ (UILabel *)newUILabel:(void (^)(UILabel *label))complete
 {
     UILabel *label = [[UILabel alloc] init];
-    newlabel(label);
+    complete(label);
     return label;
 }
 
-- (UILabel *(^)(CGRect))labelFrame
-{
-    return ^(CGRect rect) {
-        self.frame = rect;
-        return self;
-    };
-}
-
-- (UILabel *(^)(UIView *))labelSuperview
-{
-    return ^(UIView *view) {
-        [view addSubview:self];
-        return self;
-    };
-}
-
-- (UILabel *(^)(UIFont *))labelFont
+- (UILabel *(^)(UIFont *font))labelFont
 {
     return ^(UIFont *font) {
         self.font = font;
@@ -97,15 +100,15 @@
     };
 }
 
-- (UILabel *(^)(UIColor *))labelColor
+- (UILabel *(^)(UIColor *color))labelColor
 {
-    return ^(UIColor *textColor) {
-        self.textColor = textColor;
+    return ^(UIColor *color) {
+        self.textColor = color;
         return self;
     };
 }
 
-- (UILabel *(^)(NSTextAlignment))labelAlignment
+- (UILabel *(^)(NSTextAlignment alignment))labelAlignment
 {
     return ^(NSTextAlignment alignment) {
         self.textAlignment = alignment;
@@ -113,7 +116,7 @@
     };
 }
 
-- (UILabel *(^)(NSString *))labelText
+- (UILabel *(^)(NSString *text))labelText
 {
     return ^(NSString *text) {
         self.text = text;
@@ -121,12 +124,24 @@
     };
 }
 
-- (UILabel *(^)(UIColor *))labelBackgroundColor
+#pragma mark NSAttributedString
+
+- (UILabel *(^)(NSString *text, UIColor *color, UIColor *backColor, UIFont *font, CGFloat characterSpace, CGFloat rowSpace))labelAttributedText
 {
-   return ^(UIColor *color) {
-       self.backgroundColor = color;
-       return self;
-   };
+    return ^(NSString *text, UIColor *color, UIColor *backColor, UIFont *font, CGFloat characterSpace, CGFloat rowSpace) {
+        [self attributedText:text color:color backColor:backColor font:font space:characterSpace rowSpace:rowSpace];
+        return self;
+    };
 }
+
+- (UILabel *(^)(NSString *text, UIColor *color, UIFont *font, BOOL isDelete, NSInteger lineType, CGFloat lineWidth, UIColor *lineColor))labelAttributedTextlineType
+{
+    return ^(NSString *text, UIColor *color, UIFont *font, BOOL isDelete, NSInteger lineType, CGFloat lineWidth, UIColor *lineColor) {
+        [self attributedText:text color:color font:font lineStyle:isDelete lineType:lineType lineWidth:lineWidth lineColor:lineColor];
+        return self;
+    };
+}
+
+
 
 @end
