@@ -87,8 +87,8 @@
     return attributed;
 }
 
-/// 设置字体的下划线，或删除线，及其线条大小、颜色与类型（如下划线单线类型NSUnderlineStyleSingle）
-- (NSAttributedString *)attributedText:(NSString *)text color:(UIColor *)textColor font:(UIFont *)textFont lineStyle:(BOOL)delete lineType:(NSInteger)type lineWidth:(CGFloat)width lineColor:(UIColor *)color
+/// 设置字体为斜体
+- (NSAttributedString *)attributedText:(NSString *)text color:(UIColor *)textColor font:(UIFont *)textFont Obliqueness:(CGFloat)Obliqueness
 {
     NSMutableAttributedString *attributed = [[NSMutableAttributedString alloc] initWithAttributedString:self];
     NSString *textTmp = attributed.string;
@@ -102,26 +102,59 @@
             [attributed addAttribute:NSForegroundColorAttributeName value:textColor range:range];
         }
         
-        // 线条大小
-        if (0.0 < width)
+        // 字体大小
+        if (textFont)
         {
-            [attributed addAttribute:NSStrokeWidthAttributeName value:[NSNumber numberWithFloat:width] range:range];
-        }
-
-        // 线条颜色
-        if (color)
-        {
-            [attributed addAttribute:(delete ? NSStrikethroughColorAttributeName : NSUnderlineColorAttributeName) value:color range:range];
+            [attributed addAttribute:NSFontAttributeName value:textFont range:range];
         }
         
-        // 线条样式，删除线 NSStrikethroughStyleAttributeName，或下划线 NSUnderlineStyleAttributeName
-        [attributed addAttribute:(delete ? NSStrikethroughStyleAttributeName : NSUnderlineStyleAttributeName)
-                           value:@(type)
-                           range:range];
-
+        //
+        NSNumber *number = (0.0 >= Obliqueness ? @(0.5) : @(Obliqueness));
+        [attributed addAttribute:NSObliquenessAttributeName value:number range:range];
+        
     }
     
     return attributed;
 }
+
+
+/// 设置字体的删除线 NSUnderlineStyleSingle
+- (NSAttributedString *)attributedText:(NSString *)text deleteLineColor:(UIColor *)color deleteLineType:(NSUnderlineStyle)type
+{
+    NSMutableAttributedString *attributed = [[NSMutableAttributedString alloc] initWithAttributedString:self];
+    NSString *textTmp = attributed.string;
+    // 字体设置范围
+    NSRange range = [textTmp rangeOfString:text];
+    if (range.location != NSNotFound)
+    {
+        [attributed addAttribute:NSStrikethroughStyleAttributeName value:@(type) range:range];
+        if (color)
+        {
+            [attributed addAttribute:NSStrikethroughColorAttributeName value:color range:range];
+        }
+    }
+    
+    return attributed;
+}
+
+/// 设置字体的下划线 NSUnderlineStyleSingle
+- (NSAttributedString *)attributedText:(NSString *)text underLineColor:(UIColor *)color underLineType:(NSUnderlineStyle)type
+{
+    NSMutableAttributedString *attributed = [[NSMutableAttributedString alloc] initWithAttributedString:self];
+    NSString *textTmp = attributed.string;
+    // 字体设置范围
+    NSRange range = [textTmp rangeOfString:text];
+    if (range.location != NSNotFound)
+    {
+        [attributed addAttribute:NSUnderlineStyleAttributeName value:@(type) range:range];
+        if (color)
+        {
+            [attributed addAttribute:NSUnderlineColorAttributeName value:color range:range];
+        }
+    }
+    
+    return attributed;
+}
+
 
 @end

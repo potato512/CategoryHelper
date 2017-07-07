@@ -12,6 +12,7 @@
 
 #pragma mark - 链式属性
 
+/// 链式编程 添加，或重置元素（key不存在时新增，存在时修改）
 - (NSMutableDictionary *(^)(id object, NSString *key))addObject
 {
     return ^(id object, NSString *key) {
@@ -23,6 +24,7 @@
     };
 }
 
+/// 链式编程 删除指定元素
 - (NSMutableDictionary *(^)(NSString *key))removeOjbectForKey
 {
     return ^(NSString *key) {
@@ -34,6 +36,7 @@
     };
 }
 
+/// 链式编程 删除所有元素
 - (NSMutableDictionary *(^)())removeAllObject
 {
     return ^() {

@@ -38,29 +38,50 @@
 
 #pragma mark - 链式属性
 
-- (UITextView *(^)(id<UITextViewDelegate> delegate))delegate;
+/// 链式编程 代理对象
+- (UITextView *(^)(id<UITextViewDelegate> delegate))textViewDelegate;
 
-- (UITextView *(^)(NSString *text))text;
+/// 链式编程 占位符
+- (UITextView *(^)(NSString *text))textViewPlaceholderText;
 
-- (UITextView *(^)(UIFont *fong))textFont;
+/// 链式编程 占位符字体大小
+- (UITextView *(^)(UIFont *font))textViewPlaceholderTextFont;
 
-- (UITextView *(^)(UIColor *color))textColor;
+/// 链式编程 占位符字体颜色
+- (UITextView *(^)(UIColor *color))textViewPlaceholderTextColor;
 
-- (UITextView *(^)(NSTextAlignment alignment))textAlignment;
+/// 链式编程 字符
+- (UITextView *(^)(NSString *text))textViewText;
 
-- (UITextView *(^)(UIView *view))inputView;
+/// 链式编程 字符字体大小
+- (UITextView *(^)(UIFont *fong))textViewTextFont;
 
-- (UITextView *(^)(UIView *view))inputAccessoryView;
+/// 链式编程 字符颜色
+- (UITextView *(^)(UIColor *color))textViewTextColor;
 
-- (UITextView *(^)(UIReturnKeyType type))returnKeyType;
+/// 链式编程 字符对齐方式
+- (UITextView *(^)(NSTextAlignment alignment))textViewTextAlignment;
 
-- (UITextView *(^)(UIKeyboardType type))keyboardType;
+/// 链式编程 输入视图
+- (UITextView *(^)(UIView *view))textViewInputView;
 
-- (UITextView *(^)(NSString *text))textViewLimit;
+/// 链式编程 附加输入视图
+- (UITextView *(^)(UIView *view))textViewInputAccessoryView;
 
-- (UITextView *(^)(NSString *text))textViewAllow;
+/// 链式编程 回车键类型
+- (UITextView *(^)(UIReturnKeyType type))textViewReturnKeyType;
 
+/// 链式编程 键盘类型
+- (UITextView *(^)(UIKeyboardType type))textViewKeyboardType;
 
+/// 链式编程 限制输入长度
+- (UITextView *(^)(NSInteger length))textViewLimitLength;
+
+/// 链式编程 限制不能输入
+- (UITextView *(^)(NSString *text))textViewLimitText;
+
+/// 链式编程 限制只能输入
+- (UITextView *(^)(NSString *text))textViewAllowText;
 
 @end
 
@@ -78,3 +99,6 @@
  }
  
  */
+
+
+

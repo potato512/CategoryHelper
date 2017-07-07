@@ -111,42 +111,58 @@ typedef NS_ENUM(NSInteger, TextFieldViewModeType)
 /// 限制只能输入指定字符（不需要结合通知使用）
 @property (nonatomic, strong) NSString *allowedText;
 
-
 #pragma mark - 链式属性
 
-- (UITextField *(^)(id<UITextFieldDelegate> delegate))delegate;
+/// 链式编程 代理对象
+- (UITextField *(^)(id<UITextFieldDelegate> delegate))textFiledDelegate;
 
-- (UITextField *(^)(NSString *text))placeholder;
+/// 链式编程 占位符
+- (UITextField *(^)(NSString *text))textFiledPlaceholder;
 
-- (UITextField *(^)(NSString *text))text;
+/// 链式编程 字符
+- (UITextField *(^)(NSString *text))textFiledText;
 
-- (UITextField *(^)(UIFont *fong))textFont;
+/// 链式编程 字符字体大小
+- (UITextField *(^)(UIFont *fong))textFiledTextFont;
 
-- (UITextField *(^)(UIColor *color))textColor;
+/// 链式编程 字符颜色
+- (UITextField *(^)(UIColor *color))textFiledTextColor;
 
-- (UITextField *(^)(NSTextAlignment alignment))textAlignment;
+/// 链式编程 字符对齐方式
+- (UITextField *(^)(NSTextAlignment alignment))textFiledTextAlignment;
 
-- (UITextField *(^)(UIView *view))inputView;
+/// 链式编程 输入视图
+- (UITextField *(^)(UIView *view))textFiledInputView;
 
-- (UITextField *(^)(UIView *view))inputAccessoryView;
+/// 链式编程 附加输入视图
+- (UITextField *(^)(UIView *view))textFiledInputAccessoryView;
 
-- (UITextField *(^)(UIReturnKeyType type))returnKeyType;
+/// 链式编程 回车键盘类型
+- (UITextField *(^)(UIReturnKeyType type))textFiledReturnKeyType;
 
-- (UITextField *(^)(UIKeyboardType type))keyboardType;
+/// 链式编程 键盘类型
+- (UITextField *(^)(UIKeyboardType type))textFiledKeyboardType;
 
-- (UITextField *(^)(NSString *text))textFieldLimit;
+/// 链式编程 限制输入长度
+- (UITextField *(^)(NSInteger length))textFieldLimitLength;
 
-- (UITextField *(^)(NSString *text))textFieldAllow;
+/// 链式编程 限制不能输入
+- (UITextField *(^)(NSString *text))textFieldLimitText;
 
-- (UITextField *(^)(BOOL isSecure))secureTextEntry;
+/// 链式编程 限制只能输入
+- (UITextField *(^)(NSString *text))textFieldAllowText;
 
-- (UITextField *(^)(UITextFieldViewMode mode))clearButtonMode;
+/// 链式编程 是否安全输入
+- (UITextField *(^)(BOOL isSecure))textFiledSecureTextEntry;
 
-- (UITextField *(^)(UIView *view, UITextFieldViewMode mode))leftView;
+/// 链式编程 清除按钮
+- (UITextField *(^)(UITextFieldViewMode mode))textFiledClearButtonMode;
 
-- (UITextField *(^)(UIView *view, UITextFieldViewMode mode))rightView;
+/// 链式编程 左视图
+- (UITextField *(^)(UIView *view, UITextFieldViewMode mode))textFiledLeftView;
 
-
+/// 链式编程 右视图
+- (UITextField *(^)(UIView *view, UITextFieldViewMode mode))textFiledRightView;
 
 @end
 

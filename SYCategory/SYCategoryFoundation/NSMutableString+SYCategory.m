@@ -10,10 +10,10 @@
 
 @implementation NSMutableString (SYCategory)
 
-
 #pragma mark - 链式属性
 
-- (NSMutableString *(^)(NSString *string))setString
+/// 链式编程 重置可变字符串
+- (NSMutableString *(^)(NSString *string))resetString
 {
     return ^(NSString *string) {
         if (string)
@@ -24,6 +24,7 @@
     };
 }
 
+/// 链式编程 追加字符串
 - (NSMutableString *(^)(NSString *string))addString
 {
     return ^(NSString *string) {
@@ -35,6 +36,7 @@
     };
 }
 
+/// 链式编程 添加字符串到指定位置
 - (NSMutableString *(^)(NSString *string, NSUInteger index))addStringAtIndex
 {
     return ^(NSString *string, NSUInteger index) {
@@ -46,6 +48,7 @@
     };
 }
 
+/// 链式编程 替换指定的字符串
 - (NSMutableString *(^)(NSString *currentString, NSString *replaceString))replaceStringForString
 {
     return ^(NSString *currentString, NSString *replaceString) {
@@ -59,6 +62,7 @@
     };
 }
 
+/// 链式编程 替换指定位置的字符串
 - (NSMutableString *(^)(NSString *string, NSRange range))replaceStringForRange
 {
     return ^(NSString *string, NSRange range) {
@@ -71,7 +75,7 @@
     };
 }
 
-
+/// 链式编程 删除字符串
 - (NSMutableString *(^)(NSString *string))deleteString
 {
     return ^(NSString *string) {
@@ -86,6 +90,5 @@
         return self;
     };
 }
-
 
 @end

@@ -27,26 +27,33 @@ typedef void (^SliderClick)(UISlider *slider);
  */
 + (instancetype)sliderWithFrame:(CGRect)frame view:(UIView *)superview value:(float)value action:(SliderClick)sliderClick;
 
-
 #pragma mark - 链式属性
 
-- (UISlider *(^)(float value))value;
+/// 链式编程 进度
+- (UISlider *(^)(float value))sliderValue;
 
-- (UISlider *(^)(float value))minimumValue;
+/// 链式编程 最小值
+- (UISlider *(^)(float value))sliderMiniValue;
 
-- (UISlider *(^)(float value))maximumValue;
+/// 链式编程 最大值
+- (UISlider *(^)(float value))sliderMaxiValue;
 
-- (UISlider *(^)(UIImage *image))minimumValueImage;
+/// 链式编程 拖动块图标
+- (UISlider *(^)(UIImage *image))sliderThumbImage;
 
-- (UISlider *(^)(UIImage *image))maximumValueImage;
+/// 链式编程 最小值图标
+- (UISlider *(^)(UIImage *image))sliderMiniValueImage;
 
-- (UISlider *(^)(UIColor *color))thumbTintColor;
+/// 链式编程 最大值图标
+- (UISlider *(^)(UIImage *image))sliderMaxiValueImage;
 
-- (UISlider *(^)(UIColor *color))minimumTrackTintColor;
+/// 链式编程 拖动块颜色
+- (UISlider *(^)(UIColor *color))sliderThumbTintColor;
 
-- (UISlider *(^)(UIColor *color))maximumTrackTintColor;
+/// 链式编程 最小值背景颜色
+- (UISlider *(^)(UIColor *color))sliderMiniTrackTintColor;
 
-
-
+/// 链式编程 最大值背景颜色
+- (UISlider *(^)(UIColor *color))sliderMaxiTrackTintColor;
 
 @end

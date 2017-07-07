@@ -140,8 +140,10 @@
     UILabel *labelChain = [UILabel newUILabel:^(UILabel *label) {
         label.labelFont([UIFont systemFontOfSize:12.0]).labelColor([UIColor blackColor]).labelAlignment(NSTextAlignmentCenter).labelText(@"链式编程实例化");
     }];
-//    labelChain.labelAttributedText(@"链式编程", [UIColor redColor], [UIColor colorRandom], [UIFont systemFontOfSize:20.0], 5.0, 0.0);
-    labelChain.labelAttributedTextlineType(@"链式编程", [UIColor redColor], [UIFont systemFontOfSize:20.0], NO, NSUnderlinePatternSolid, 0.5, [UIColor blueColor]);
+    labelChain.labelAttributedText(@"链式编程", [UIColor redColor], [UIColor colorRandom], [UIFont systemFontOfSize:20.0], 5.0, 0.0);
+    labelChain.labelAttributedTextDeleteline(@"链式", [UIColor greenColor], NSUnderlineStyleSingle);
+    labelChain.labelAttributedTextUnderline(@"编程", [UIColor brownColor], NSUnderlineStyleSingle);
+    labelChain.labelAttributedTextObliqueness(@"实例化", [UIColor blueColor], [UIFont systemFontOfSize:8.0], 1.2);
     labelChain.viewSuperView(self.view).viewFrame(CGRectMake(10.0, currentView.bottom + 10.0, 120.0, 30.0)).viewWidth(200.0).viewColorAlpha([UIColor greenColor], 0.3);
     labelChain.viewRadius(3.0).viewBorder(2.0, [UIColor colorRandom]);
     

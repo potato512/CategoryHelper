@@ -12,6 +12,7 @@
 
 #pragma mark - 链式属性
 
+/// 链式编程 追加元素
 - (NSMutableArray *(^)(id object))addObject
 {
     return ^(id object) {
@@ -23,6 +24,7 @@
     };
 }
 
+/// 链式编程 添加元素到指定位置
 - (NSMutableArray *(^)(id object, NSInteger index))addObjectAtIndex
 {
     return ^(id object, NSInteger index) {
@@ -34,6 +36,7 @@
     };
 }
 
+/// 链式编程 替换指定位置的元素
 - (NSMutableArray *(^)(id object, NSInteger index))setOjbectAtIndex
 {
     return ^(id object, NSInteger index) {
@@ -45,6 +48,7 @@
     };
 }
 
+/// 链式编程 追加数组
 - (NSMutableArray *(^)(NSArray *array))addArray
 {
     return ^(NSArray *array) {
@@ -56,17 +60,7 @@
     };
 }
 
-- (NSMutableArray *(^)(NSArray *array, NSIndexSet *index))addArrayAtIndex
-{
-    return ^(NSArray *array, NSIndexSet *index) {
-        if ((array && 0 < array.count) && index)
-        {
-            [self insertObjects:array atIndexes:index];
-        }
-        return self;
-    };
-}
-
+/// 链式编程 替换指定位置的元素
 - (NSMutableArray *(^)(id object, NSInteger index))replaceObjectAtIndex
 {
     return ^(id object, NSInteger index) {
@@ -78,7 +72,8 @@
     };
 }
 
-- (NSMutableArray *(^)())removeFirstObject
+/// 链式编程 删除第一个元素
+- (NSMutableArray *(^)())removeTheFirstObject
 {
     return ^() {
         id object = self.firstObject;
@@ -87,7 +82,8 @@
     };
 }
 
-- (NSMutableArray *(^)())removeLastOjbect
+/// 链式编程 删除最后一个元素
+- (NSMutableArray *(^)())removeTheLastOjbect
 {
     return ^() {
         [self removeLastObject];
@@ -95,6 +91,7 @@
     };
 }
 
+/// 链式编程 删除指定元素
 - (NSMutableArray *(^)(id object))removeObject
 {
     return ^(id object) {
@@ -106,6 +103,7 @@
     };
 }
 
+/// 链式编程 删除指定位置的元素
 - (NSMutableArray *(^)(NSInteger index))removeObjectAtIndex
 {
     return ^(NSInteger index) {
@@ -117,6 +115,7 @@
     };
 }
 
+/// 链式编程 删除所有元素
 - (NSMutableArray *(^)())removeAllObject
 {
     return ^() {
@@ -124,6 +123,5 @@
         return self;
     };
 }
-
 
 @end

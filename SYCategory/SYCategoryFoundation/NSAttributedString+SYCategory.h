@@ -42,18 +42,15 @@
  */
 - (NSAttributedString *)attributedText:(NSString *)text color:(UIColor *)textColor font:(UIFont *)textFont space:(CGFloat)characterSpace rowSpace:(CGFloat)rowSpace bgColor:(UIColor *)bgColor;
 
-/**
- *  修改NSAttributedString信息（删除线或下划线，线条大小颜色，文字大小颜色、字体背景颜色）
- *
- *  @param text      要修改的文字
- *  @param textColor 要修改的文字颜色
- *  @param textFont  要修改的文字大小
- *  @param delete    是否是删除线（删除线，或下划线）
- *  @param type      线条类型（如下划线单线类型：NSUnderlineStyleSingle）
- *  @param width     线条大小
- *  @param color     线条颜色
- */
-- (NSAttributedString *)attributedText:(NSString *)text color:(UIColor *)textColor font:(UIFont *)textFont lineStyle:(BOOL)delete lineType:(NSInteger)type lineWidth:(CGFloat)width lineColor:(UIColor *)color;
+/// 设置字体为斜体
+- (NSAttributedString *)attributedText:(NSString *)text color:(UIColor *)textColor font:(UIFont *)textFont Obliqueness:(CGFloat)Obliqueness;
+
+/// 设置字体的删除线 NSUnderlineStyleSingle
+- (NSAttributedString *)attributedText:(NSString *)text deleteLineColor:(UIColor *)color deleteLineType:(NSUnderlineStyle)type;
+
+/// 设置字体的下划线 NSUnderlineStyleSingle
+- (NSAttributedString *)attributedText:(NSString *)text underLineColor:(UIColor *)color underLineType:(NSUnderlineStyle)type;
+
 
 @end
 
@@ -73,3 +70,7 @@
  [attString addAttribute:NSFontAttributeName value:aFont range:range];
  
  */
+
+
+
+

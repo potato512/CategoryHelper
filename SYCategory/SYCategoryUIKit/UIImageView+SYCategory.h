@@ -12,18 +12,22 @@
 
 #pragma mark - 链式属性
 
-- (UIImageView *(^)(UIImage *image))image;
+/// 链式编程 图片
+- (UIImageView *(^)(UIImage *image))normalImage;
 
-- (UIImageView *(^)(UIImage *image))highlightedImage;
+/// 链式编程 高亮图片
+- (UIImageView *(^)(UIImage *image))highlightImage;
 
-- (UIImageView *(^)(NSArray<UIImage *> *images))animationImages;
+/// 链式编程 动画图片数组
+- (UIImageView *(^)(NSArray<UIImage *> *images))animationImageArray;
 
-- (UIImageView *(^)(NSArray<UIImage *> *images))highlightedAnimationImages;
+/// 链式编程 高亮动画图片数组
+- (UIImageView *(^)(NSArray<UIImage *> *images))highlightAnimationImageArray;
 
-- (UIImageView *(^)(NSTimeInterval duration))animationDuration;
+/// 链式编程 动画播放时长
+- (UIImageView *(^)(NSTimeInterval duration))animationTime;
 
-- (UIImageView *(^)(NSInteger repeat))animationRepeatCount;
-
-- (UIImageView *(^)(UIColor *color))tintColor;
+/// 链式编程 动画播放次数
+- (UIImageView *(^)(NSInteger repeat))animationRepeat;
 
 @end

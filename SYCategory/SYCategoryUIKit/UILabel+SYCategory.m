@@ -48,20 +48,47 @@
 }
 
 /**
- *  修改标签信息（文字大小颜色，分割线-样式/宽度/大小）
+ *  修改标签信息（删除线）
  *
  *  @param string    要修改的文字
- *  @param textColor 要修改的文字颜色
- *  @param textFont  要修改的文字大小
- *  @param isDelete  是否删除线
- *  @param lineType  线条样式，如下划线单线类型NSUnderlineStyleSingle
- *  @param lineWidth 线条宽度
- *  @param lineColor 线条颜色
+ *  @param color     线条颜色
+ *  @param type      线条样式，如下划线单线类型NSUnderlineStyleSingle
+ *
  */
-- (void)attributedText:(NSString *)string color:(UIColor *)textColor font:(UIFont *)textFont lineStyle:(BOOL)isDelete lineType:(NSInteger)lineType lineWidth:(CGFloat)lineWidth lineColor:(UIColor *)lineColor
+- (void)attributedText:(NSString *)string deleteLineColor:(UIColor *)color deleteLineType:(NSUnderlineStyle)type
 {
     NSAttributedString *attributed = [[NSAttributedString alloc] initWithString:self.text];
-    attributed = [attributed attributedText:string color:textColor font:textFont lineStyle:isDelete lineType:lineType lineWidth:lineWidth lineColor:lineColor];
+    attributed = [attributed attributedText:string deleteLineColor:color deleteLineType:type];
+    self.attributedText = attributed;
+}
+
+/**
+ *  修改标签信息（下划线）
+ *
+ *  @param string    要修改的文字
+ *  @param color     线条颜色
+ *  @param type      线条样式，如下划线单线类型NSUnderlineStyleSingle
+ *
+ */
+- (void)attributedText:(NSString *)string underLineColor:(UIColor *)color underLineType:(NSUnderlineStyle)type
+{
+    NSAttributedString *attributed = [[NSAttributedString alloc] initWithString:self.text];
+    attributed = [attributed attributedText:string underLineColor:color underLineType:type];
+    self.attributedText = attributed;
+}
+
+/**
+ *  修改标签信息（斜体）
+ *
+ *  @param string      要修改的文字
+ *  @param textColor   文字颜色
+ *  @param textFont    文字大小
+ *  @param Obliqueness 倾斜角度
+ */
+- (void)attributedText:(NSString *)string color:(UIColor *)textColor font:(UIFont *)textFont Obliqueness:(CGFloat)Obliqueness
+{
+    NSAttributedString *attributed = [[NSAttributedString alloc] initWithString:self.text];
+    attributed = [attributed attributedText:string color:textColor font:textFont Obliqueness:Obliqueness];
     self.attributedText = attributed;
 }
 
@@ -124,6 +151,14 @@
     };
 }
 
+- (UILabel *(^)(NSInteger number))labelNumberOfLines
+{
+    return ^(NSInteger number) {
+        self.numberOfLines = number;
+        return self;
+    };
+}
+
 #pragma mark NSAttributedString
 
 - (UILabel *(^)(NSString *text, UIColor *color, UIColor *backColor, UIFont *font, CGFloat characterSpace, CGFloat rowSpace))labelAttributedText
@@ -134,14 +169,44 @@
     };
 }
 
-- (UILabel *(^)(NSString *text, UIColor *color, UIFont *font, BOOL isDelete, NSInteger lineType, CGFloat lineWidth, UIColor *lineColor))labelAttributedTextlineType
+- (UILabel *(^)(NSString *text, UIFont *font))labelAttributedTextFont
 {
-    return ^(NSString *text, UIColor *color, UIFont *font, BOOL isDelete, NSInteger lineType, CGFloat lineWidth, UIColor *lineColor) {
-        [self attributedText:text color:color font:font lineStyle:isDelete lineType:lineType lineWidth:lineWidth lineColor:lineColor];
+    return ^(NSString *text, UIFont *font) {
+        [self attributedText:text color:nil font:font];
         return self;
     };
 }
 
+- (UILabel *(^)(NSString *text, UIColor *color))labelAttributedTextColor
+{
+    return ^(NSString *text, UIColor *color) {
+        [self attributedText:text color:color font:nil];
+        return self;
+    };
+}
 
+- (UILabel *(^)(NSString *text, UIColor *color, NSInteger lineType))labelAttributedTextUnderline
+{
+    return ^(NSString *text, UIColor *color, NSUnderlineStyle lineType) {
+        [self attributedText:text underLineColor:color underLineType:lineType];
+        return self;
+    };
+}
+
+- (UILabel *(^)(NSString *text, UIColor *color, NSUnderlineStyle lineType))labelAttributedTextDeleteline
+{
+    return ^(NSString *text, UIColor *color, NSInteger lineType) {
+        [self attributedText:text deleteLineColor:color deleteLineType:lineType];
+        return self;
+    };
+}
+
+- (UILabel *(^)(NSString *text, UIColor *color, UIFont *font, CGFloat Obliqueness))labelAttributedTextObliqueness
+{
+    return ^(NSString *text, UIColor *color, UIFont *font, CGFloat Obliqueness) {
+        [self attributedText:text color:color font:font Obliqueness:Obliqueness];
+        return self;
+    };
+}
 
 @end

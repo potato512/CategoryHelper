@@ -55,7 +55,8 @@
 
 #pragma mark - 链式属性
 
-- (UISlider *(^)(float value))value
+/// 链式编程 进度
+- (UISlider *(^)(float value))sliderValue
 {
     return ^(float value) {
         self.value = value;
@@ -63,7 +64,8 @@
     };
 }
 
-- (UISlider *(^)(float value))minimumValue
+/// 链式编程 最小值
+- (UISlider *(^)(float value))sliderMiniValue
 {
     return ^(float value) {
         self.minimumValue = value;
@@ -71,7 +73,8 @@
     };
 }
 
-- (UISlider *(^)(float value))maximumValue
+/// 链式编程 最大值
+- (UISlider *(^)(float value))sliderMaxiValue
 {
     return ^(float value) {
         self.maximumValue = value;
@@ -79,7 +82,17 @@
     };
 }
 
-- (UISlider *(^)(UIImage *image))minimumValueImage
+/// 链式编程 拖动块图标
+- (UISlider *(^)(UIImage *image))sliderThumbImage
+{
+    return ^(UIImage *image) {
+        [self setThumbImage:image forState:UIControlStateNormal];
+        return self;
+    };
+}
+
+/// 链式编程 最小值图标
+- (UISlider *(^)(UIImage *image))sliderMiniValueImage
 {
     return ^(UIImage *image) {
         self.minimumValueImage = image;
@@ -87,7 +100,8 @@
     };
 }
 
-- (UISlider *(^)(UIImage *image))maximumValueImage
+/// 链式编程 最大值图标
+- (UISlider *(^)(UIImage *image))sliderMaxiValueImage
 {
     return ^(UIImage *image) {
         self.maximumValueImage = image;
@@ -95,7 +109,8 @@
     };
 }
 
-- (UISlider *(^)(UIColor *color))thumbTintColor
+/// 链式编程 拖动块颜色
+- (UISlider *(^)(UIColor *color))sliderThumbTintColor
 {
     return ^(UIColor *color) {
         self.thumbTintColor = color;
@@ -103,7 +118,8 @@
     };
 }
 
-- (UISlider *(^)(UIColor *color))minimumTrackTintColor
+/// 链式编程 最小值背景颜色
+- (UISlider *(^)(UIColor *color))sliderMiniTrackTintColor
 {
     return ^(UIColor *color) {
         self.minimumTrackTintColor = color;
@@ -111,7 +127,8 @@
     };
 }
 
-- (UISlider *(^)(UIColor *color))maximumTrackTintColor
+/// 链式编程 最大值背景颜色
+- (UISlider *(^)(UIColor *color))sliderMaxiTrackTintColor
 {
     return ^(UIColor *color) {
         self.maximumTrackTintColor = color;

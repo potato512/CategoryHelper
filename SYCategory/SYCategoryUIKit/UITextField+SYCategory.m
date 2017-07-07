@@ -576,7 +576,8 @@
 
 #pragma mark - 链式属性
 
-- (UITextField *(^)(id<UITextFieldDelegate> delegate))delegate
+/// 链式编程 代理对象
+- (UITextField *(^)(id<UITextFieldDelegate> delegate))textFiledDelegate
 {
     return ^(id<UITextFieldDelegate> delegate) {
         self.delegate = delegate;
@@ -584,7 +585,8 @@
     };
 }
 
-- (UITextField *(^)(NSString *text))placeholder
+/// 链式编程 占位符
+- (UITextField *(^)(NSString *text))textFiledPlaceholder
 {
     return ^(NSString *text) {
         self.placeholder = text;
@@ -592,7 +594,8 @@
     };
 }
 
-- (UITextField *(^)(NSString *text))text
+/// 链式编程 字符
+- (UITextField *(^)(NSString *text))textFiledText
 {
     return ^(NSString *text) {
         self.text = text;
@@ -600,7 +603,8 @@
     };
 }
 
-- (UITextField *(^)(UIFont *fong))textFont
+/// 链式编程 字符字体大小
+- (UITextField *(^)(UIFont *fong))textFiledTextFont
 {
     return ^(UIFont *font) {
         self.font = font;
@@ -608,7 +612,8 @@
     };
 }
 
-- (UITextField *(^)(UIColor *color))textColor
+/// 链式编程 字符颜色
+- (UITextField *(^)(UIColor *color))textFiledTextColor
 {
     return ^(UIColor *color) {
         self.textColor = color;
@@ -616,7 +621,8 @@
     };
 }
 
-- (UITextField *(^)(NSTextAlignment alignment))textAlignment
+/// 链式编程 字符对齐方式
+- (UITextField *(^)(NSTextAlignment alignment))textFiledTextAlignment
 {
     return ^(NSTextAlignment alignment) {
         self.textAlignment = alignment;
@@ -624,7 +630,8 @@
     };
 }
 
-- (UITextField *(^)(UIView *view))inputView
+/// 链式编程 输入视图
+- (UITextField *(^)(UIView *view))textFiledInputView
 {
     return ^(UIView *view) {
         self.inputView = view;
@@ -632,7 +639,8 @@
     };
 }
 
-- (UITextField *(^)(UIView *view))inputAccessoryView
+/// 链式编程 附加输入视图
+- (UITextField *(^)(UIView *view))textFiledInputAccessoryView
 {
     return ^(UIView *view) {
         self.inputAccessoryView = view;
@@ -640,7 +648,8 @@
     };
 }
 
-- (UITextField *(^)(UIReturnKeyType type))returnKeyType
+/// 链式编程 回车键盘类型
+- (UITextField *(^)(UIReturnKeyType type))textFiledReturnKeyType
 {
     return ^(UIReturnKeyType type) {
         self.returnKeyType = type;
@@ -648,7 +657,8 @@
     };
 }
 
-- (UITextField *(^)(UIKeyboardType type))keyboardType
+/// 链式编程 键盘类型
+- (UITextField *(^)(UIKeyboardType type))textFiledKeyboardType
 {
     return ^(UIKeyboardType type) {
         self.keyboardType = type;
@@ -656,7 +666,17 @@
     };
 }
 
-- (UITextField *(^)(NSString *text))textFieldLimit
+/// 链式编程 限制输入长度
+- (UITextField *(^)(NSInteger length))textFieldLimitLength
+{
+    return ^(NSInteger length) {
+        self.limitMaxLength = length;
+        return self;
+    };
+}
+
+/// 链式编程 限制不能输入
+- (UITextField *(^)(NSString *text))textFieldLimitText
 {
     return ^(NSString *text) {
         self.limitText = text;
@@ -664,7 +684,8 @@
     };
 }
 
-- (UITextField *(^)(NSString *text))textFieldAllow
+/// 链式编程 限制只能输入
+- (UITextField *(^)(NSString *text))textFieldAllowText
 {
     return ^(NSString *text) {
         self.allowedText = text;
@@ -672,7 +693,8 @@
     };
 }
 
-- (UITextField *(^)(BOOL isSecure))secureTextEntry
+/// 链式编程 是否安全输入
+- (UITextField *(^)(BOOL isSecure))textFiledSecureTextEntry
 {
     return ^(BOOL isSecure) {
         self.secureTextEntry = isSecure;
@@ -680,7 +702,8 @@
     };
 }
 
-- (UITextField *(^)(UITextFieldViewMode mode))clearButtonMode
+/// 链式编程 清除按钮
+- (UITextField *(^)(UITextFieldViewMode mode))textFiledClearButtonMode
 {
     return ^(UITextFieldViewMode mode) {
         self.clearButtonMode = mode;
@@ -688,7 +711,8 @@
     };
 }
 
-- (UITextField *(^)(UIView *view, UITextFieldViewMode mode))leftView
+/// 链式编程 左视图
+- (UITextField *(^)(UIView *view, UITextFieldViewMode mode))textFiledLeftView
 {
     return ^(UIView *view, UITextFieldViewMode mode) {
         self.leftView = view;
@@ -697,7 +721,8 @@
     };
 }
 
-- (UITextField *(^)(UIView *view, UITextFieldViewMode mode))rightView
+/// 链式编程 右视图
+- (UITextField *(^)(UIView *view, UITextFieldViewMode mode))textFiledRightView
 {
     return ^(UIView *view, UITextFieldViewMode mode) {
         self.rightView = view;

@@ -30,25 +30,17 @@
 
 - (void)setUI
 {
-    int rowButton = 3;
-    CGFloat origin = 10.0;
-    CGFloat widthButton = (self.view.width - (rowButton + 1) * origin) / rowButton;
-    CGFloat heightButton = 40.0;
+    UIButton *button = [[UIButton alloc] init];
+    button.viewSuperView(self.view).viewFrame(CGRectMake(10.0, 10.0, (self.view.width - 10.0 * 2), 40.0)).viewBackgroundColor([UIColor colorRandom]);
+    [button setTitle:@"发消息" forState:UIControlStateNormal];
+    [button setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+    [button setTitleColor:[UIColor redColor] forState:UIControlStateHighlighted];
+    [button addTarget:self action:@selector(buttonClick:) forControlEvents:UIControlEventTouchUpInside];
+
+    UILabel *label = [UILabel new];
+    label.viewSuperView(self.view).viewFrame(CGRectMake(10.0, button.bottom + 10.0, button.width, 80.0));
+    label.labelNumberOfLines(0).viewColorAlpha([UIColor colorRandom], 0.3).viewTag(1000);
     
-    NSArray *array = @[@"发消息"];
-    for (int i = 0; i < array.count; i++)
-    {
-        UIButton *button = [UIButton buttonWithType:UIButtonTypeCustom];
-        [self.view addSubview:button];
-        button.frame = CGRectMake((i % rowButton * (widthButton + origin) + origin), (i / rowButton * (heightButton + origin) + origin), widthButton, heightButton);
-        button.backgroundColor = [UIColor colorRandom];
-        button.titleLabel.adjustsFontSizeToFitWidth = YES;
-        [button setTitle:array[i] forState:UIControlStateNormal];
-        [button setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
-        [button setTitleColor:[UIColor redColor] forState:UIControlStateHighlighted];
-        button.tag = i + 1000;
-        [button addTarget:self action:@selector(buttonClick:) forControlEvents:UIControlEventTouchUpInside];
-    }
     
     // 接收消息
     NSString *name = @"personInfo";
@@ -71,23 +63,19 @@
 
 - (void)buttonClick:(UIButton *)button
 {
-    NSString *title = button.titleLabel.text;
-    if ([title isEqualToString:@"发消息"])
-    {
-        // 发消息
-        NSString *name = @"personInfo";
-        NSDictionary *dict = @{@"name":@"devZhang", @"age":@"30", @"job":@"iOSDev"};
-        
+    // 发消息
+    NSString *name = @"personInfo";
+    NSDictionary *dict = @{@"name":@"devZhang", @"age":@"30", @"job":@"iOSDev"};
+    
 //        [kNotificationCenter postNotificationName:name object:nil userInfo:dict];
-        
+    
 //        kNotificationCenterPost(name, dict);
-        
-        // 方法1
+    
+    // 方法1
 //        NSNotificationCenterPost(name, dict);
-        
-        // 方法2
-        [[NSNotificationCenter defaultCenter] postNotificationWithName:name userInfo:dict];
-    }
+    
+    // 方法2
+    [[NSNotificationCenter defaultCenter] postNotificationWithName:name userInfo:dict];
 }
 
 - (void)notificationAction:(NSNotification *)notification
@@ -95,6 +83,15 @@
     NSString *name = notification.name;
     NSDictionary *dict = notification.userInfo;
     NSLog(@"name = %@ \n dict = %@", name, dict);
+    
+    NSMutableString *text = [NSMutableString string];
+    for (NSString *key in dict.allKeys)
+    {
+        NSString *string = [NSString stringWithFormat:@"%@ - %@;", key, [dict objectForKey:key]];
+        text.addString(string);
+    }
+    UILabel *label = (UILabel *)[self.view viewWithTag:1000];
+    label.text = text;
 }
 
 @end

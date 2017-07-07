@@ -42,17 +42,34 @@ typedef NS_ENUM(NSInteger, SYLabelAutoSizeType)
 - (void)attributedText:(NSString *)string color:(UIColor *)textColor backColor:(UIColor *)backColor font:(UIFont *)textFont space:(CGFloat)characterSpace rowSpace:(CGFloat)rowSpace;
 
 /**
- *  修改标签信息（文字大小颜色，分割线-样式/宽度/大小）
+ *  修改标签信息（删除线）
  *
  *  @param string    要修改的文字
- *  @param textColor 要修改的文字颜色
- *  @param textFont  要修改的文字大小
- *  @param isDelete  是否删除线
- *  @param lineType  线条样式，如下划线单线类型NSUnderlineStyleSingle
- *  @param lineWidth 线条宽度
- *  @param lineColor 线条颜色
+ *  @param color     线条颜色
+ *  @param type      线条样式，如下划线单线类型NSUnderlineStyleSingle
+ *
  */
-- (void)attributedText:(NSString *)string color:(UIColor *)textColor font:(UIFont *)textFont lineStyle:(BOOL)isDelete lineType:(NSInteger)lineType lineWidth:(CGFloat)lineWidth lineColor:(UIColor *)lineColor;
+- (void)attributedText:(NSString *)string deleteLineColor:(UIColor *)color deleteLineType:(NSUnderlineStyle)type;
+
+/**
+ *  修改标签信息（下划线）
+ *
+ *  @param string    要修改的文字
+ *  @param color     线条颜色
+ *  @param type      线条样式，如下划线单线类型NSUnderlineStyleSingle
+ *
+ */
+- (void)attributedText:(NSString *)string underLineColor:(UIColor *)color underLineType:(NSUnderlineStyle)type;
+
+/**
+ *  修改标签信息（斜体）
+ *
+ *  @param string      要修改的文字
+ *  @param textColor   文字颜色
+ *  @param textFont    文字大小
+ *  @param Obliqueness 倾斜角度
+ */
+- (void)attributedText:(NSString *)string color:(UIColor *)textColor font:(UIFont *)textFont Obliqueness:(CGFloat)Obliqueness;
 
 
 /// 设置自适应标签宽高
@@ -75,12 +92,27 @@ typedef NS_ENUM(NSInteger, SYLabelAutoSizeType)
 - (UILabel *(^)(NSTextAlignment alignment))labelAlignment;
 /// 链式编程 文本
 - (UILabel *(^)(NSString *text))labelText;
+/// 链式编程 行数
+- (UILabel *(^)(NSInteger number))labelNumberOfLines;
 
 #pragma mark NSAttributedString
 
+/// 链式编程 字符属性（颜色、背景色、大小、间距、行距）
 - (UILabel *(^)(NSString *text, UIColor *color, UIColor *backColor, UIFont *font, CGFloat characterSpace, CGFloat rowSpace))labelAttributedText;
 
-/// 线条样式，如下划线单线类型NSUnderlineStyleSingle
-- (UILabel *(^)(NSString *text, UIColor *color, UIFont *font, BOOL isDelete, NSInteger lineType, CGFloat lineWidth, UIColor *lineColor))labelAttributedTextlineType;
+/// 链式编程 字符属性（大小）
+- (UILabel *(^)(NSString *text, UIFont *font))labelAttributedTextFont;
+
+/// 链式编程 字符属性（颜色）
+- (UILabel *(^)(NSString *text, UIColor *color))labelAttributedTextColor;
+
+/// 链式编程 下划线（线条样式 NSUnderlineStyleSingle）
+- (UILabel *(^)(NSString *text, UIColor *color, NSUnderlineStyle lineType))labelAttributedTextUnderline;
+
+/// 链式编程 删除线（线条样式 NSUnderlineStyleSingle）
+- (UILabel *(^)(NSString *text, UIColor *color, NSUnderlineStyle lineType))labelAttributedTextDeleteline;
+
+/// 链式编程 基线位置
+- (UILabel *(^)(NSString *text, UIColor *color, UIFont *font, CGFloat Obliqueness))labelAttributedTextObliqueness;
 
 @end

@@ -55,15 +55,8 @@
 
 #pragma mark - 链式属性
 
-- (UISwitch *(^)(UIColor *color))onTintColor
-{
-    return ^(UIColor *color) {
-        self.onTintColor = color;
-        return self;
-    };
-}
-
-- (UISwitch *(^)(UIColor *color))tintColor
+/// 链式编程 关闭时的背景色
+- (UISwitch *(^)(UIColor *color))switchTintColor
 {
     return ^(UIColor *color) {
         self.tintColor = color;
@@ -71,7 +64,17 @@
     };
 }
 
-- (UISwitch *(^)(UIColor *color))thumbTintColor
+/// 链式编程 打开时的背景色
+- (UISwitch *(^)(UIColor *color))switchOnTintColor
+{
+    return ^(UIColor *color) {
+        self.onTintColor = color;
+        return self;
+    };
+}
+
+/// 链式编程 拖动块颜色
+- (UISwitch *(^)(UIColor *color))switchThumbTintColor
 {
     return ^(UIColor *color) {
         self.thumbTintColor = color;
@@ -79,7 +82,8 @@
     };
 }
 
-- (UISwitch *(^)(UIImage *image))onImage
+/// 链式编程 打开时的图标
+- (UISwitch *(^)(UIImage *image))switchOnImage
 {
     return ^(UIImage *image) {
         self.onImage = image;
@@ -87,7 +91,8 @@
     };
 }
 
-- (UISwitch *(^)(UIImage *image))offImage
+/// 链式编程 关闭时的图标
+- (UISwitch *(^)(UIImage *image))switchOffImage
 {
     return ^(UIImage *image) {
         self.offImage = image;
@@ -95,13 +100,13 @@
     };
 }
 
-- (UISwitch *(^)(BOOL isEnable))on
+/// 链式编程 是否打开
+- (UISwitch *(^)(BOOL isEnable))switchOn
 {
     return ^(BOOL isEnable) {
         self.on = isEnable;
         return self;
     };
 }
-
 
 @end

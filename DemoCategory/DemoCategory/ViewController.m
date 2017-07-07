@@ -18,6 +18,7 @@
 #import "ImagePickerViewController.h"
 
 #import "NSStringViewController.h"
+#import "NSAttributedStringVC.h"
 #import "NSObjectViewController.h"
 #import "NSDataViewController.h"
 #import "NSFileManagerViewController.h"
@@ -35,6 +36,7 @@
 
 @property (nonatomic, strong) UITableView *mainTableView;
 @property (nonatomic, strong) NSArray *mainArray;
+@property (nonatomic, strong) NSArray *controllers;
 
 @end
 
@@ -89,9 +91,8 @@
 
 - (void)setUI
 {
-    NSArray *uiArray = @[@"UILabel", @"UIButton/UISlider/UISwitch/UISegmentControl", @"UIImage", @"UIColor", @"UIGestureRecognizer", @"UIAlertView/UIActionSheet", @"UITextField/UITextView", @"UIImagePickerViewController"];
-    NSArray *foundationArray = @[@"NSString/AttributedString", @"NSObject", @"NSData", @"NSFileManager", @"NSFileHandle", @"NSNumber", @"NSArray", @"NSDictionary", @"NSTimer", @"NSURLConnection", @"NSDate", @"NSNotificationCenter", @"NSUserDefaults"];
-    self.mainArray = @[uiArray, foundationArray];
+    self.mainArray = @[@[@"UILabel", @"UIButton/UISlider/UISwitch/UISegmentControl", @"UIImage", @"UIColor", @"UIGestureRecognizer", @"UIAlertView/UIActionSheet", @"UITextField/UITextView", @"UIImagePickerViewController"], @[@"NSString", @"NSAttributedStringVC", @"NSObject", @"NSData", @"NSFileManager", @"NSFileHandle", @"NSNumber", @"NSArray", @"NSDictionary", @"NSTimer", @"NSURLConnection", @"NSDate", @"NSNotificationCenter", @"NSUserDefaults"]];
+    self.controllers = @[@[[LabelViewController class], [ButtonViewController class], [ImageViewController class], [ColorViewController class], [GestureViewController class], [AlertSheetViewController class], [TextFieldViewController class], [ImagePickerViewController class]], @[[NSStringViewController class], [NSAttributedStringVC class], [NSObjectViewController class], [NSDataViewController class], [NSFileManagerViewController class], [NSFileHandleViewController class], [NSNumberViewController class], [NSArrayViewController class], [NSDictionaryViewController class], [NSTimerViewController class], [NSURLConnectionViewController class], [NSDateViewController class], [NSNotificationViewController class], [NSUserDefaultViewController class]]];
     
     self.mainTableView = [[UITableView alloc] initWithFrame:self.view.bounds style:UITableViewStylePlain];
     [self.view addSubview:self.mainTableView];
@@ -138,44 +139,10 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
-    
-    UIViewController *nextVC = [[UIViewController alloc] init];
-    if (0 == indexPath.section)
-    {
-        switch (indexPath.row)
-        {
-            case 0: nextVC = [[LabelViewController alloc] init]; break;
-            case 1: nextVC = [[ButtonViewController alloc] init]; break;
-            case 2: nextVC = [[ImageViewController alloc] init]; break;
-            case 3: nextVC = [[ColorViewController alloc] init]; break;
-            case 4: nextVC = [[GestureViewController alloc] init]; break;
-            case 5: nextVC = [[AlertSheetViewController alloc] init]; break;
-            case 6: nextVC = [[TextFieldViewController alloc] init]; break;
-            case 7: nextVC = [[ImagePickerViewController alloc] init]; break;
-            default: break;
-        }
-    }
-    else if (1 == indexPath.section)
-    {
-        switch (indexPath.row)
-        {
-            case 0: nextVC = [[NSStringViewController alloc] init]; break;
-            case 1: nextVC = [[NSObjectViewController alloc] init]; break;
-            case 2: nextVC = [[NSDataViewController alloc] init]; break;
-            case 3: nextVC = [[NSFileManagerViewController alloc] init]; break;
-            case 4: nextVC = [[NSFileHandleViewController alloc] init]; break;
-            case 5: nextVC = [[NSNumberViewController alloc] init]; break;
-            case 6: nextVC = [[NSArrayViewController alloc] init]; break;
-            case 7: nextVC = [[NSDictionaryViewController alloc] init]; break;
-            case 8: nextVC = [[NSTimerViewController alloc] init]; break;
-            case 9: nextVC = [[NSURLConnectionViewController alloc] init]; break;
-            case 10: nextVC = [[NSDateViewController alloc] init]; break;
-            case 11: nextVC = [[NSNotificationViewController alloc] init]; break;
-            case 12: nextVC = [[NSUserDefaultViewController alloc] init]; break;
-            default: break;
-        }
-    }
-    
+
+    NSArray *array = self.controllers[indexPath.section];
+    Class class = array[indexPath.row];
+    UIViewController *nextVC = [[class alloc] init];    
     [self.navigationController pushViewController:nextVC animated:YES];
 }
 

@@ -289,7 +289,8 @@
 
 #pragma mark - 链式属性
 
-- (UITextView *(^)(id<UITextViewDelegate> delegate))delegate
+/// 链式编程 代理对象
+- (UITextView *(^)(id<UITextViewDelegate> delegate))textViewDelegate
 {
     return ^(id<UITextViewDelegate> delegate) {
         self.delegate = delegate;
@@ -297,7 +298,35 @@
     };
 }
 
-- (UITextView *(^)(NSString *text))text
+/// 链式编程 占位符
+- (UITextView *(^)(NSString *text))textViewPlaceholderText
+{
+    return ^(NSString *text) {
+        self.placeHolderText = text;
+        return self;
+    };
+}
+
+/// 链式编程 占位符字体大小
+- (UITextView *(^)(UIFont *font))textViewPlaceholderTextFont
+{
+    return ^(UIFont *font) {
+        self.placeHolderTextFont = font;
+        return self;
+    };
+}
+
+/// 链式编程 占位符字体颜色
+- (UITextView *(^)(UIColor *color))textViewPlaceholderTextColor
+{
+    return ^(UIColor *color) {
+        self.placeHolderTextColor = color;
+        return self;
+    };
+}
+
+/// 链式编程 字符
+- (UITextView *(^)(NSString *text))textViewText
 {
     return ^(NSString *text) {
         self.text = text;
@@ -305,7 +334,8 @@
     };
 }
 
-- (UITextView *(^)(UIFont *fong))textFont
+/// 链式编程 字符字体大小
+- (UITextView *(^)(UIFont *fong))textViewTextFont
 {
     return ^(UIFont *font) {
         self.font = font;
@@ -313,7 +343,8 @@
     };
 }
 
-- (UITextView *(^)(UIColor *color))textColor
+/// 链式编程 字符颜色
+- (UITextView *(^)(UIColor *color))textViewTextColor
 {
     return ^(UIColor *color) {
         self.textColor = color;
@@ -321,7 +352,8 @@
     };
 }
 
-- (UITextView *(^)(NSTextAlignment alignment))textAlignment
+/// 链式编程 字符对齐方式
+- (UITextView *(^)(NSTextAlignment alignment))textViewTextAlignment
 {
     return ^(NSTextAlignment alignment) {
         self.textAlignment = alignment;
@@ -329,7 +361,8 @@
     };
 }
 
-- (UITextView *(^)(UIView *view))inputView
+/// 链式编程 输入视图
+- (UITextView *(^)(UIView *view))textViewInputView
 {
     return ^(UIView *view) {
         self.inputView = view;
@@ -337,7 +370,8 @@
     };
 }
 
-- (UITextView *(^)(UIView *view))inputAccessoryView
+/// 链式编程 附加输入视图
+- (UITextView *(^)(UIView *view))textViewInputAccessoryView
 {
     return ^(UIView *view) {
         self.inputAccessoryView = view;
@@ -345,7 +379,8 @@
     };
 }
 
-- (UITextView *(^)(UIReturnKeyType type))returnKeyType
+/// 链式编程 回车键类型
+- (UITextView *(^)(UIReturnKeyType type))textViewReturnKeyType
 {
     return ^(UIReturnKeyType type) {
         self.returnKeyType = type;
@@ -353,7 +388,8 @@
     };
 }
 
-- (UITextView *(^)(UIKeyboardType type))keyboardType
+/// 链式编程 键盘类型
+- (UITextView *(^)(UIKeyboardType type))textViewKeyboardType
 {
     return ^(UIKeyboardType type) {
         self.keyboardType = type;
@@ -361,7 +397,17 @@
     };
 }
 
-- (UITextView *(^)(NSString *text))textViewLimit
+/// 链式编程 限制输入长度
+- (UITextView *(^)(NSInteger length))textViewLimitLength
+{
+    return ^(NSInteger length) {
+        self.limitMaxLength = length;
+        return self;
+    };
+}
+
+/// 链式编程 限制不能输入
+- (UITextView *(^)(NSString *text))textViewLimitText
 {
     return ^(NSString *text) {
         self.limitText = text;
@@ -369,15 +415,13 @@
     };
 }
 
-- (UITextView *(^)(NSString *text))textViewAllow
+/// 链式编程 限制只能输入
+- (UITextView *(^)(NSString *text))textViewAllowText
 {
     return ^(NSString *text) {
         self.allowedText = text;
         return self;
     };
 }
-
-
-
 
 @end

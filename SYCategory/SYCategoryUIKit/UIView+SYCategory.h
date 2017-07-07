@@ -120,81 +120,112 @@ typedef NS_ENUM(NSInteger, ViewFlipType)
 
 #pragma mark - 链式属性
 
+/// 链式编程 视图实例化
 + (UIView *)newUIView:(void (^)(UIView *view))complete;
 
 #pragma mark 原点尺寸
 
+/// 链式编程 视图的父视图
 - (UIView *(^)(UIView *view))viewSuperView;
 
+/// 链式编程 视图的位置大小
 - (UIView *(^)(CGRect frame))viewFrame;
 
+/// 链式编程 视图的位置
 - (UIView *(^)(CGPoint point))viewOrigin;
 
+/// 链式编程 视图的中心点
 - (UIView *(^)(CGPoint center))viewCenter;
 
+/// 链式编程 视图的大小
 - (UIView *(^)(CGSize size))viewSize;
 
+/// 链式编程 视图的左边距
 - (UIView *(^)(CGFloat left))viewLeft;
 
+/// 链式编程 视图的顶部边距
 - (UIView *(^)(CGFloat top))viewTop;
 
+/// 链式编程 视图的右边距
 - (UIView *(^)(CGFloat right))viewRight;
 
+/// 链式编程 视图的底部边距
 - (UIView *(^)(CGFloat bottom))viewBottom;
 
+/// 链式编程 视图的宽
 - (UIView *(^)(CGFloat width))viewWidth;
 
+/// 链式编程 视图的高
 - (UIView *(^)(CGFloat height))viewHeight;
 
 #pragma mark 变换设置
 
+/// 链式编程 视图移动
 - (UIView *(^)(CGPoint point))viewMove;
 
+/// 链式编程 视图旋转
 - (UIView *(^)(CGFloat rotation))viewTransformRotation;
 
+/// 链式编程 视图缩放
 - (UIView *(^)(CGFloat size))viewTransformScale;
 
+/// 链式编程 视图缩放
 - (UIView *(^)(CGFloat scale))viewScale;
 
-#pragma mark 边框圆角
+#pragma mark 模糊
 
+/// 链式编程 视图模糊化
 - (UIView *(^)(CGFloat alpha))viewEffect;
 
 #pragma mark 边框圆角
 
+/// 链式编程 视图圆角
 - (UIView *(^)(CGFloat radius))viewRadius;
 
+/// 链式编程 视图边框大小，颜色
 - (UIView *(^)(CGFloat width, UIColor *color))viewBorder;
 
 #pragma mark 属性设置
 
+/// 链式编程 视图背景颜色
 - (UIView *(^)(UIColor *color))viewBackgroundColor;
 
+/// 链式编程 视图tag
 - (UIView *(^)(NSInteger tag))viewTag;
 
+/// 链式编程 视图透明度
 - (UIView *(^)(CGFloat alpha))viewAlpha;
 
+/// 链式编程 视图背景颜色透明度
 - (UIView *(^)(UIColor *color, CGFloat alpha))viewColorAlpha;
 
+/// 链式编程 视图是否隐藏
 - (UIView *(^)(BOOL hidden))viewHidden;
 
+/// 链式编程 视图内容显示模式
 - (UIView *(^)(UIViewContentMode mode))viewContentMode;
 
+/// 链式编程 视图适配
 - (UIView *(^)(UIViewAutoresizing autoresizing))viewAutoresizing;
 
+/// 链式编程 视图用户交互
 - (UIView *(^)(BOOL enable))viewInteractionEnabled;
 
 #pragma mark 文本信息
 
+/// 链式编程 视图标题
 - (UIView *(^)(NSString *text))viewTitle;
 
+/// 链式编程 视图标题颜色
 - (UIView *(^)(UIColor *color))viewTitleColor;
 
+/// 链式编程 视图标题字体大小
 - (UIView *(^)(UIFont *font))viewTitleFont;
 
+/// 链式编程 视图标题位置大小
 - (UIView *(^)(CGRect frame))viewTitleFrame;
 
+/// 链式编程 视图标题对齐方式
 - (UIView *(^)(NSTextAlignment alignment))viewTitleAlignament;
-
 
 @end

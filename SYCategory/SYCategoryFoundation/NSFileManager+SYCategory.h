@@ -400,20 +400,21 @@
  */
 + (void)deleteCacheFile:(NSDictionary *)fileDict;
 
-
-
 #pragma mark - 链式属性
 
+/// 链式编程 home路径
 + (NSString *(^)())homePath;
 
+/// 链式编程 document路径
 + (NSString *(^)())documentPath;
 
+/// 链式编程 cache路径
 + (NSString *(^)())cachePath;
 
+/// 链式编程 library路径
 + (NSString *(^)())libraryPath;
 
+/// 链式编程 tmp路径
 + (NSString *(^)())tmpPath;
-
-
 
 @end

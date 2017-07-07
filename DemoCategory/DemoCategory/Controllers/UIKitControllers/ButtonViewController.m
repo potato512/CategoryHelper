@@ -122,25 +122,41 @@
     slider.sliderClick = ^(UISlider *slider){
         NSLog(@"1 当前进度是：%@", @(slider.value));
     };
+    slider.sliderMiniValue(0.0).sliderMaxiValue(100.0);
+    slider.sliderThumbTintColor([UIColor blackColor]).sliderMiniTrackTintColor([UIColor yellowColor]).sliderMaxiTrackTintColor([UIColor redColor]);
     
     currentView = slider;
     
-    currentView = [UISlider sliderWithFrame:CGRectMake(10.0, (currentView.bottom + 10.0), currentView.width, 10.0) view:self.view value:10.0 action:^(UISlider *slider) {
+    UISlider *slider2 = [UISlider sliderWithFrame:CGRectMake(10.0, (currentView.bottom + 10.0), currentView.width, 10.0) view:self.view value:10.0 action:^(UISlider *slider) {
         float value = slider.value;
         NSLog(@"2 当前进度是：%@", @(value));
     }];
+    slider2.sliderValue(0.5).sliderMiniValueImage([UIImage imageNamed:@"normal"]).sliderMaxiValueImage([UIImage imageNamed:@"highlight"]).sliderThumbImage([UIImage imageNamed:@"highlight_info"]);
+
+    
+    currentView = slider2;
     
     UISwitch *switchView = [[UISwitch alloc] initWithFrame:CGRectMake(10.0, (currentView.bottom + 10.0), 60.0, 40.0)];
     [self.view addSubview:switchView];
     switchView.switchClick = ^(UISwitch *sender){
         NSLog(@"1 当前状态：%@", @(sender.on));
     };
+    switchView.switchOn(YES).switchThumbTintColor([UIColor blackColor]).switchOnTintColor([UIColor yellowColor]).switchTintColor([UIColor redColor]);
+//    switchView.tintColor = [UIColor redColor];
+//    switchView.onTintColor = [UIColor yellowColor];
     
     currentView = switchView;
     
-    currentView = [UISwitch switchWithFrame:CGRectMake((currentView.right + 10.0), currentView.top, currentView.width, currentView.height) view:self.view status:NO action:^(UISwitch *sender) {
+    UISwitch *switchView2 = [UISwitch switchWithFrame:CGRectMake((currentView.right + 10.0), currentView.top, currentView.width, currentView.height) view:self.view status:NO action:^(UISwitch *sender) {
         NSLog(@"2 当前状态：%@", @(sender.on));
     }];
+    switchView2.switchOnImage([UIImage imageNamed:@"highlight"]).switchOffImage([UIImage imageNamed:@"normal"]);
+//    switchView2.onImage = [UIImage imageNamed:@"highlight"];
+//    switchView2.offImage = [UIImage imageNamed:@"normal"];
+    
+    
+    
+    currentView = switchView2;
     
     UISegmentedControl *segmentControl = [[UISegmentedControl alloc] initWithItems:@[@"start", @"stop"]];
     [self.view addSubview:segmentControl];

@@ -895,6 +895,7 @@
 
 #pragma mark - 链式属性
 
+/// 链式编程 home路径
 + (NSString *(^)())homePath
 {
     return ^() {
@@ -902,6 +903,7 @@
     };
 }
 
+/// 链式编程 document路径
 + (NSString *(^)())documentPath
 {
     return ^() {
@@ -911,6 +913,7 @@
     };
 }
 
+/// 链式编程 cache路径
 + (NSString *(^)())cachePath
 {
     return ^() {
@@ -920,6 +923,7 @@
     };
 }
 
+/// 链式编程 library路径
 + (NSString *(^)())libraryPath
 {
     return ^() {
@@ -929,6 +933,7 @@
     };
 }
 
+/// 链式编程 tmp路径
 + (NSString *(^)())tmpPath
 {
     return ^() {

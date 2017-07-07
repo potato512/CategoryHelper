@@ -30,16 +30,22 @@ typedef void (^SwitchClick)(UISwitch *sender);
 
 #pragma mark - 链式属性
 
-- (UISwitch *(^)(UIColor *color))onTintColor;
+/// 链式编程 关闭时的背景色
+- (UISwitch *(^)(UIColor *color))switchTintColor;
 
-- (UISwitch *(^)(UIColor *color))tintColor;
+/// 链式编程 打开时的背景色
+- (UISwitch *(^)(UIColor *color))switchOnTintColor;
 
-- (UISwitch *(^)(UIColor *color))thumbTintColor;
+/// 链式编程 拖动块的颜色
+- (UISwitch *(^)(UIColor *color))switchThumbTintColor;
 
-- (UISwitch *(^)(UIImage *image))onImage;
+/// 链式编程 打开时的图标
+- (UISwitch *(^)(UIImage *image))switchOnImage;
 
-- (UISwitch *(^)(UIImage *image))offImage;
+/// 链式编程 关闭时的图标
+- (UISwitch *(^)(UIImage *image))switchOffImage;
 
-- (UISwitch *(^)(BOOL isEnable))on;
+/// 链式编程 是否打开
+- (UISwitch *(^)(BOOL isEnable))switchOn;
 
 @end
