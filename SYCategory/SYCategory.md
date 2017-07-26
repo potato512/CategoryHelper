@@ -34,16 +34,21 @@
 
 
 # 修改完善
-## 20170704
-* 添加链式编程属性：
-  * UIView/UILabel/UITextField/UITextView/UISlider/UISwitch/UIImageView
-  * UIViewController
-  * NSMutableArray/NSMutableDictionary/NSAttributedString/NSFileManager/NSString/NSMutableString
+* 20170726 1.0.0
+  * 添加版本号1.0.0
+  * 通知功能完善
+
+* 20170704
+  * 添加链式编程属性：
+    * UIView/UILabel/UITextField/UITextView/UISlider/UISwitch/UIImageView
+    * UIViewController
+    * NSMutableArray/NSMutableDictionary/NSAttributedString/NSFileManager/NSString/NSMutableString
 
 
-## 20170702
-* 添加类别文件：UIDocument+SYCategory（待完善）、NSFileManager+iCloud（待完善）、NSStream+SYCategory（待完善）
-* 完善类型方法：NSFileManger+SYCategory
+* 20170702
+  * 添加类别文件：UIDocument+SYCategory（待完善）、NSFileManager+iCloud（待完善）、NSStream+SYCategory（待完善）
+  * 完善类型方法：NSFileManger+SYCategory
+
 ~~~ javascript
 /**
 *  指定文件路径的当前层级的文件夹
@@ -64,12 +69,13 @@
 + (NSArray *)getFilesWithFilePath:(NSString *)filePath;
 ~~~
 
-## 20170701
-* 添加类别文件：NSFileHandle+SYCategory
-* 完善类别方法：NSFileManager+SYCategory
+* 20170701
+  * 添加类别文件：NSFileHandle+SYCategory
+  * 完善类别方法：NSFileManager+SYCategory
 
-## 20170628
-* UIImage方法修改
+* 20170628
+  * UIImage方法修改
+
 ~~~ javascript
 // 废除：获取图片，根据图片url（如：url = http://.../xxx.jpg）
 + (UIImage *)imageWithUrl:(NSString *)url;
@@ -78,29 +84,31 @@
 + (void)imageWithUrl:(NSString *)url complete:(void ((^)(UIImage *image)))complete;
 ~~~
 
-## 20170627 
-* UIImage添加纯色生成图片方法
+* 20170627 
+  * UIImage添加纯色生成图片方法
 ~~~ javascript
 /// 生成指定颜色的图片
 + (UIImage *)imageWithColor:(UIColor *)color;
 ~~~
 
-## 20170608
-* NSAttributedString+SYCategory bug修改，并添加返回值
-* UILabel+SYCategory bug修改
+* 20170608
+  * NSAttributedString+SYCategory bug修改，并添加返回值
+  * UILabel+SYCategory bug修改
 
-## 20170518
-* UIView+SYCategory修改完善
+* 20170518
+  * UIView+SYCategory修改完善
 
-## 20170510
-* NSTimer完善方法
+* 20170510
+  * NSTimer完善方法
+
 ~~~ javascript
 /// 倒计时-添加延时执行时间
 + (void)timerGCDWithTimeInterval:(NSTimeInterval)time maxTimerInterval:(NSInteger)maxTime afterTime:(NSTimeInterval)afterTime handle:(void (^)(NSInteger remainTime))handle;
 ~~~
 
-## 20170423
-* NSObject添加响应回调方法
+* 20170423
+  * NSObject添加响应回调方法
+
 ~~~ javascript
 /// 监听响应，同时进行回调响应
 - (void)observerForKeyPath:(NSString *)keyPath complete:(void (^)(NSString *key, id object, NSDictionary *change))complete;
@@ -109,8 +117,9 @@
 - (void)observerTextEditComplete:(void (^)(id object))complete;
 ~~~
 
-## 20170421
-* NSTimer添加实例化方法（回调响应 & 子线程模式）
+* 20170421
+  * NSTimer添加实例化方法（回调响应 & 子线程模式）
+
 ~~~ javascript
 /// 实例化NSTimer（无须处理强引用 & 回调响应）
 + (NSTimer *)timerWithTimeInterval:(NSTimeInterval)time userInfo:(id)userInfo repeats:(BOOL)isRepeat handle:(void (^)(NSTimer *timer))handle;
@@ -119,13 +128,15 @@
 + (void)timerCountdownWithTimeInterval:(NSTimeInterval)time maxTimerInterval:(NSInteger)maxTime handle:(void (^)(NSInteger remainTime))handle;
 ~~~
 
-## 20170420
-* NSObject添加KVO类别方法（回调响应）
+* 20170420
+  * NSObject添加KVO类别方法（回调响应）
+  * NSNotificationCenter添加方法（回调响应）
+
 ~~~ javascript
 /// 监听响应，同时进行回调响应
 - (void)observerComplete:(void (^)(id object))handle;
 ~~~
-* NSNotificationCenter添加方法（回调响应）
+
 ~~~ javascript
 /**
 *  发送通知
@@ -161,8 +172,9 @@
 - (void)removeNotificationWithName:(NSString *)name target:(id)target;
 ~~~
 
-## 20170419
-* NSNotificationCenter添加方法（回调响应）
+* 20170419
+  * NSNotificationCenter添加方法（回调响应）
+
 ~~~ javascript
 /**
 *  发送通知
@@ -198,35 +210,39 @@
 - (void)removeNotificationWithName:(NSString *)name target:(id)target;
 ~~~
 
-## 20170414
-* NSString修改异常
+* 20170414
+  * NSString修改异常
 
-## 20170413
-* UITextField添加属性：
+* 20170413
+  * UITextField添加属性
+  * UITextView添加属性
+  * 修改输入字符限制（中文联想导致异常），只能输入指定字符，不能输入指定字符。
+  * NSString添加方法
+
 ~~~ javascript
 /// 限制输入指定字符（不需要结合通知使用）
 @property (nonatomic, strong) NSString *allowedText;
 ~~~
-* UITextView添加属性：
+
 ~~~ javascript
 /// 限制输入指定字符（不需要结合通知使用）
 @property (nonatomic, strong) NSString *allowedText;
 ~~~
-* 修改输入字符限制（中文联想导致异常），只能输入指定字符，不能输入指定字符。
-* NSString添加方法：
+
 ~~~ javascript
 /// 是否包含子字符串
 - (BOOL)isContantSubtext:(NSString *)text;
 ~~~
 
-## 20170412
-* UITableView添加方法：
+* 20170412
+  * UITableView添加方法
+  * NSString添加方法
+
 ~~~ javascript
 /// 动态滚动到指定位置
 - (void)scrollAtIndex:(NSInteger)section row:(NSInteger)row position:(UITableViewScrollPosition)position;
 ~~~ 
 
-* NSString添加方法：
 ~~~ javascript
 /// 是否包含指定的字符
 - (BOOL)isContantSomeCharacters:(NSString *)characters;
@@ -274,3 +290,5 @@
 */
 - (void)regularWithText:(NSString *)text limited:(BOOL)islimit handle:(void (^)(NSInteger index))regular;
 ~~~
+
+

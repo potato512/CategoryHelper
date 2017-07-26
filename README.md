@@ -42,16 +42,19 @@
 
 
 # 修改说明
-## 20170704
-* 添加链式编程属性：
-* UIView/UILabel/UITextField/UITextView/UISlider/UISwitch/UIImageView
-* UIViewController
-* NSMutableArray/NSMutableDictionary/NSAttributedString/NSFileManager/NSString/NSMutableString
+* 20170726
+  * 通知方法完善
+
+* 20170704
+  * 添加链式编程属性：
+  * UIView/UILabel/UITextField/UITextView/UISlider/UISwitch/UIImageView
+  * UIViewController
+  * NSMutableArray/NSMutableDictionary/NSAttributedString/NSFileManager/NSString/NSMutableString
 
 
-## 20170702
-* 添加类别文件：UIDocument+SYCategory（待完善）、NSFileManager+iCloud（待完善）、NSStream+SYCategory（待完善）
-* 完善类型方法：NSFileManger+SYCategory
+* 20170702
+  * 添加类别文件：UIDocument+SYCategory（待完善）、NSFileManager+iCloud（待完善）、NSStream+SYCategory（待完善）
+  * 完善类型方法：NSFileManger+SYCategory
 ~~~ javascript
 /**
 *  指定文件路径的当前层级的文件夹
@@ -72,12 +75,12 @@
 + (NSArray *)getFilesWithFilePath:(NSString *)filePath;
 ~~~
 
-## 20170701
-* 添加类别文件：NSFileHandle+SYCategory
-* 完善类别方法：NSFileManager+SYCategory
+* 20170701
+  * 添加类别文件：NSFileHandle+SYCategory
+  * 完善类别方法：NSFileManager+SYCategory
 
-## 20170628
-* UIImage方法修改
+* 20170628
+  * UIImage方法修改
 ~~~ javascript
 // 废除：获取图片，根据图片url（如：url = http://.../xxx.jpg）
 + (UIImage *)imageWithUrl:(NSString *)url;
@@ -86,8 +89,8 @@
 + (void)imageWithUrl:(NSString *)url complete:(void ((^)(UIImage *image)))complete;
 ~~~
 
-## 20170627 
-* UIImage添加纯色生成图片方法
+* 20170627 
+  * UIImage添加纯色生成图片方法
 ~~~ javascript
 /// 生成指定颜色的图片
 + (UIImage *)imageWithColor:(UIColor *)color;

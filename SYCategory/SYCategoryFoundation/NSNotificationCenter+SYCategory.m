@@ -38,6 +38,7 @@ void NSNotificationCenterPost(NSString *name, NSDictionary *dict)
  */
 void NSNotificationCenterReceive(NSString *name, id target, SEL action)
 {
+    NSNotificationCenterRemove(name, target);
     [[NSNotificationCenter defaultCenter] addObserver:target selector:action name:name object:nil];
 }
 
@@ -86,6 +87,7 @@ void NSNotificationCenterRemove(NSString *name, id target)
  */
 - (void)receiveNotificationWithName:(NSString *)name target:(id)target selector:(SEL)action
 {
+    [self removeNotificationWithName:name target:target];
     [[NSNotificationCenter defaultCenter] addObserver:target selector:action name:name object:nil];
 }
 
