@@ -42,7 +42,7 @@
 		A7684CC81F0E1A3700C7249D /* NSMutableArray+SYCategory.m in Sources */ = {isa = PBXBuildFile; fileRef = A7684CC71F0E1A3700C7249D /* NSMutableArray+SYCategory.m */; };
 		A7684CCB1F0E213A00C7249D /* NSMutableDictionary+SYCategory.m in Sources */ = {isa = PBXBuildFile; fileRef = A7684CCA1F0E213A00C7249D /* NSMutableDictionary+SYCategory.m */; };
 		A7684CCE1F0E25F900C7249D /* NSMutableString+SYCategory.m in Sources */ = {isa = PBXBuildFile; fileRef = A7684CCD1F0E25F900C7249D /* NSMutableString+SYCategory.m */; };
-		DF2CF9AE1EE98F24004253B5 /* SYCategory.md in Sources */ = {isa = PBXBuildFile; fileRef = DF2CF9511EE98F24004253B5 /* SYCategory.md */; };
+		A797A8731F306FB500295B05 /* README.md in Sources */ = {isa = PBXBuildFile; fileRef = A797A8721F306FB500295B05 /* README.md */; };
 		DF2CF9AF1EE98F24004253B5 /* NSArray+SYCategory.m in Sources */ = {isa = PBXBuildFile; fileRef = DF2CF9541EE98F24004253B5 /* NSArray+SYCategory.m */; };
 		DF2CF9B01EE98F24004253B5 /* NSAttributedString+SYCategory.m in Sources */ = {isa = PBXBuildFile; fileRef = DF2CF9561EE98F24004253B5 /* NSAttributedString+SYCategory.m */; };
 		DF2CF9B11EE98F24004253B5 /* NSDate+SYCategory.m in Sources */ = {isa = PBXBuildFile; fileRef = DF2CF9581EE98F24004253B5 /* NSDate+SYCategory.m */; };
@@ -182,8 +182,8 @@
 		A7684CCC1F0E25F900C7249D /* NSMutableString+SYCategory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSMutableString+SYCategory.h"; sourceTree = "<group>"; };
 		A7684CCD1F0E25F900C7249D /* NSMutableString+SYCategory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSMutableString+SYCategory.m"; sourceTree = "<group>"; };
 		A78C0E201DED2D6600DB84A0 /* PrefixHeader.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PrefixHeader.pch; sourceTree = "<group>"; };
+		A797A8721F306FB500295B05 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		DF2CF9501EE98F24004253B5 /* SYCategory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SYCategory.h; sourceTree = "<group>"; };
-		DF2CF9511EE98F24004253B5 /* SYCategory.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = SYCategory.md; sourceTree = "<group>"; };
 		DF2CF9531EE98F24004253B5 /* NSArray+SYCategory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSArray+SYCategory.h"; sourceTree = "<group>"; };
 		DF2CF9541EE98F24004253B5 /* NSArray+SYCategory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSArray+SYCategory.m"; sourceTree = "<group>"; };
 		DF2CF9551EE98F24004253B5 /* NSAttributedString+SYCategory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSAttributedString+SYCategory.h"; sourceTree = "<group>"; };
@@ -411,7 +411,7 @@
 			isa = PBXGroup;
 			children = (
 				DF2CF9501EE98F24004253B5 /* SYCategory.h */,
-				DF2CF9511EE98F24004253B5 /* SYCategory.md */,
+				A797A8721F306FB500295B05 /* README.md */,
 				DF2CF9521EE98F24004253B5 /* SYCategoryFoundation */,
 				DF2CF9711EE98F24004253B5 /* SYCategoryFoundation.h */,
 				DF2CF9721EE98F24004253B5 /* SYCategoryUIKit */,
@@ -825,9 +825,9 @@
 				DF2CF9BD1EE98F24004253B5 /* NSUserDefaults+SYCategory.m in Sources */,
 				DF2CF9CC1EE98F24004253B5 /* UILabel+SYCategory.m in Sources */,
 				A7419C5E1F0F70C000C4D04F /* NSFileManagerViewController.m in Sources */,
-				DF2CF9AE1EE98F24004253B5 /* SYCategory.md in Sources */,
 				DF2CF9BF1EE98F24004253B5 /* UIAlertController+SYCategory.m in Sources */,
 				DF2ED9B71F094C7C00829C5F /* NSStream+SYCategory.m in Sources */,
+				A797A8731F306FB500295B05 /* README.md in Sources */,
 				A7419C5C1F0F70C000C4D04F /* NSDictionaryViewController.m in Sources */,
 				DF2CF9C21EE98F24004253B5 /* UIButton+SYCategory.m in Sources */,
 				DF2CF9B71EE98F24004253B5 /* NSObject+SYKVO.m in Sources */,
