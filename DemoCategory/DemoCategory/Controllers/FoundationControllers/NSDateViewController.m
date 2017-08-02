@@ -8,7 +8,9 @@
 
 #import "NSDateViewController.h"
 
-@interface NSDateViewController ()
+@interface NSDateViewController () <UITableViewDataSource, UITableViewDelegate>
+
+@property (nonatomic, strong) NSArray *array;
 
 @end
 
@@ -30,37 +32,129 @@
 
 - (void)setUI
 {
-    int rowButton = 3;
-    CGFloat origin = 10.0;
-    CGFloat widthButton = (self.view.width - (rowButton + 1) * origin) / rowButton;
-    CGFloat heightButton = 40.0;
+    self.array = @[@"时间戳转date", @"周年月日时分秒", @"当前时间", @"日期差"];
     
-    NSArray *array = @[];
-    for (int i = 0; i < array.count; i++)
-    {
-        UIButton *button = [UIButton buttonWithType:UIButtonTypeCustom];
-        [self.view addSubview:button];
-        button.frame = CGRectMake((i % rowButton * (widthButton + origin) + origin), (i / rowButton * (heightButton + origin) + origin), widthButton, heightButton);
-        button.backgroundColor = [UIColor colorRandom];
-        button.titleLabel.adjustsFontSizeToFitWidth = YES;
-        [button setTitle:array[i] forState:UIControlStateNormal];
-        [button setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
-        [button setTitleColor:[UIColor redColor] forState:UIControlStateHighlighted];
-        button.tag = i + 1000;
-        [button addTarget:self action:@selector(buttonClick:) forControlEvents:UIControlEventTouchUpInside];
-    }
+    UITableView *tableView = [[UITableView alloc] initWithFrame:self.view.bounds style:UITableViewStylePlain];
+    [self.view addSubview:tableView];
+    [tableView registerClass:[UITableViewCell class] forCellReuseIdentifier:@"UITableViewCell"];
+    tableView.delegate = self;
+    tableView.dataSource = self;
+    tableView.tableFooterView = [UIView new];
 }
 
-- (void)buttonClick:(UIButton *)button
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    NSInteger index = button.tag - 1000;
-    if (0 == index)
+    return self.array.count;
+}
+
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"UITableViewCell"];
+    cell.textLabel.text = self.array[indexPath.row];
+    return cell;
+}
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    [tableView deselectRowAtIndexPath:indexPath animated:YES];
+
+    if (0 == indexPath.row)
     {
+        // 时间戳
+        NSDate *date = [NSDate getDateWithTimeInterval:1501575885];
+        NSString *time = [date getTimeStrWithFormat:@"yyyy-MM-dd HH:mm:ss"];
+        NSLog(@"time = %@", time);
         
+        NSDate *dateTmp = [NSDate getDateWithFormat:@"yyyy-MM-dd HH:mm:ss" time:time];
+        NSLog(@"date = %@, dateTmp = %@", date, dateTmp);
     }
-    else if (1 == index)
+    else if (1 == indexPath.row)
     {
+        NSDate *date = [NSDate getDateWithTimeInterval:1501575885];
+        NSString *year = [NSString stringWithFormat:@"年:%ld", [date getYearOfDate]];
+        NSString *month = [NSString stringWithFormat:@"月:%ld", [date getMonthOfDate]];
+        NSString *day = [NSString stringWithFormat:@"日:%ld", [date getDayOfDate]];
+        NSString *hour = [NSString stringWithFormat:@"时:%ld", [date getHourOfDate]];
+        NSString *minute = [NSString stringWithFormat:@"分:%ld", [date getMinuteOfDate]];
+        NSString *second = [NSString stringWithFormat:@"秒:%ld", [date getSecondOfDate]];
+        NSString *week = [NSString stringWithFormat:@"周:%@", [date getWeekOfDate]];
+        NSLog(@"%@,%@,%@,%@,%@,%@,%@", year, month, day, hour, minute, second, week);
+    }
+    else if (2 == indexPath.row)
+    {
+        NSString *time = [NSDate getTimeOfNower];
+        NSString *year = [NSString stringWithFormat:@"年:%ld", [NSDate getYearOfNower]];
+        NSString *month = [NSString stringWithFormat:@"月:%ld", [NSDate getMonthOfNower]];
+        NSString *day = [NSString stringWithFormat:@"日:%ld", [NSDate getDayOfNower]];
+        NSString *hour = [NSString stringWithFormat:@"时:%ld", [NSDate getHourOfNower]];
+        NSString *minute = [NSString stringWithFormat:@"分:%ld", [NSDate getMinuteOfNower]];
+        NSString *second = [NSString stringWithFormat:@"秒:%ld", [NSDate getSecondOfNower]];
+        NSString *week = [NSString stringWithFormat:@"周:%@", [NSDate getWeekOfNower]];
+        NSLog(@"%@, %@,%@,%@,%@,%@,%@,%@", time, year, month, day, hour, minute, second, week);
+    }
+    else if (3 == indexPath.row)
+    {
+        NSDate *date01 = [NSDate getDateWithTimeInterval:1498615520];
+        NSString *format01 = @"yyyy-MM-dd HH:mm:ss";
+        NSString *time01 = [date01 getTimeStrWithFormat:format01];
+        NSDate *date02 = [NSDate getDateWithTimeInterval:1501586836];
+        NSString *format02 = @"yyyy-MM-dd HH:mm:ss";
+        NSString *time02 = [date02 getTimeStrWithFormat:format02];
+        NSString *time = [NSDate getTimeStrWithBeginTime:time01 beginTimeFormat:format01 endTime:time02 endTimeFormat:format02];
+        NSLog(@"1 time = %@", time);
+        time = [NSDate getTimeStrWithBeginDate:date01 endDate:date02];
+        NSLog(@"2 time = %@", time);
         
+        NSDate *date3 = [NSDate getDateWithDate:date02 day:3 tomorrow:YES];
+        NSLog(@"date3 == %@", date3);
+        date3 = [NSDate getDateWithDate:date02 day:3 tomorrow:NO];
+        NSLog(@"date3 == %@", date3);
+        
+        
+        time = [NSDate getTimeStrFromNowStrWithDay:2 after:YES format:format01];
+        NSLog(@"time = %@", time);
+        time = [NSDate getTimeStrFromNowStrWithDay:2 after:NO format:format01];
+        NSLog(@"time = %@", time);
+        
+        NSInteger day = [NSDate getDayBetweenDate:date01 endDate:date02];
+        NSLog(@"day = %ld", day);
+        
+        NSTimeInterval second = [NSDate getTimeIntervalBetweenDate:date01 endDate:date02];
+        NSLog(@"second = %f", second);
+        
+        time = [NSDate getTimeStrWithTimeInterval:1501586836];
+        NSLog(@"time = %@", time);
+        
+        time = [NSDate getTimeStrWithTimeInterval:1501586836 mode:SYTimeShowModeDefault];
+        NSLog(@"time = %@", time);
+        time = [NSDate getTimeStrWithTimeInterval:1501586836 mode:SYTimeShowModeDefaultWithSecond];
+        NSLog(@"time = %@", time);
+        time = [NSDate getTimeStrWithTimeInterval:1501586836 mode:SYTimeShowModeDayHourMinuteSecond];
+        NSLog(@"time = %@", time);
+        time = [NSDate getTimeStrWithTimeInterval:1501586836 mode:SYTimeShowModeDayHourMinute];
+        NSLog(@"time = %@", time);
+        time = [NSDate getTimeStrWithTimeInterval:1501586836 mode:SYTimeShowModeHourMinuteSecond];
+        NSLog(@"time = %@", time);
+        time = [NSDate getTimeStrWithTimeInterval:1501586836 mode:SYTimeShowModeHourMinute];
+        NSLog(@"time = %@", time);
+
+        time = [NSDate getTimestrWithFormatTime:1501586836];
+        NSLog(@"time = %@", time);
+
+        
+        
+        NSInteger distance = [NSDate getTimeDistanceWithTimeInterval:1469860230 mode:SYDistanceModeYear];
+        NSLog(@"year = %ld", distance);
+        distance = [NSDate getTimeDistanceWithTimeInterval:1469860230 mode:SYDistanceModeMonth];
+        NSLog(@"month = %ld", distance);
+        distance = [NSDate getTimeDistanceWithTimeInterval:1469860230 mode:SYDistanceModeDay];
+        NSLog(@"day = %ld", distance);
+        distance = [NSDate getTimeDistanceWithTimeInterval:1469860230 mode:SYDistanceModeHour];
+        NSLog(@"hour = %ld", distance);
+        distance = [NSDate getTimeDistanceWithTimeInterval:1469860230 mode:SYDistanceModeMinute];
+        NSLog(@"minute = %ld", distance);
+        distance = [NSDate getTimeDistanceWithTimeInterval:1469860230 mode:SYDistanceModeSecond];
+        NSLog(@"second = %ld", distance);
     }
 }
 

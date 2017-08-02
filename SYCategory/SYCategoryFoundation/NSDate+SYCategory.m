@@ -7,53 +7,322 @@
 //
 
 #import "NSDate+SYCategory.h"
+#import <objc/runtime.h>
+
+@interface NSDate ()
+
+@property (nonatomic, strong) NSDateFormatter *dateFormatter;
+
+@end
 
 @implementation NSDate (SYCategory)
 
-/**
- *  获取指定时间时间，并根据指定格式显示
- *
- *  @param format 时间显示格式
- *
- *  @return 指定显示格式时间
- */
-- (NSString *)timeDateWithFormat:(NSString *)format
+/****************************************************************/
+
+#pragma mark - setter/getter
+
+- (void)setDateFormatter:(NSDateFormatter *)dateFormatter
 {
-    NSDateFormatter *dateFormater = [[NSDateFormatter alloc] init];
-    dateFormater.dateFormat = format;
-    NSString *result = [dateFormater stringFromDate:self];
+    objc_setAssociatedObject(self, @selector(dateFormatter), dateFormatter, OBJC_ASSOCIATION_RETAIN);
+}
+
+- (NSDateFormatter *)dateFormatter
+{
+    return objc_getAssociatedObject(self, @selector(dateFormatter));
+}
+
+/****************************************************************/
+
+#pragma mark - date/timeInterval
+
+/// 获取任意时间，即时间戳NSTimeInterval转NSDate
++ (NSDate *)getDateWithTimeInterval:(NSTimeInterval)time
+{
+    NSDate *date = [NSDate dateWithTimeIntervalSince1970:time];
+    return date;
+}
+
+/// 获取任意时间秒数，即NSDate转NSTimeInterval
+- (NSTimeInterval)getTimeInterval
+{
+    if (!self)
+    {
+        return 0;
+    }
+    NSTimeInterval timeSecond = [self timeIntervalSince1970];
+    return timeSecond;
+}
+
+/// NSDate根据时间格式Formater显示时间字符串
+- (NSString *)getTimeStrWithFormat:(NSString *)format
+{
+    if (self.dateFormatter == nil)
+    {
+        self.dateFormatter = [[NSDateFormatter alloc] init];
+    }
+    self.dateFormatter.dateFormat = format;
+    NSString *result = [self.dateFormatter stringFromDate:self];
     return result;
 }
 
-/**
- *  计算两个日期距离现在多久
- *
- *  @param lastTime      上次日期
- *  @param lastFormat    上次日期格式
- *  @param currentTime   最近日期
- *  @param currentFormat 最近日期格式
- *
- *  @return 日期距离
- */
-+ (NSString *)timeDateWithLastTime:(NSString *)lastTime lastTimeFormat:(NSString *)lastFormat currentTime:(NSString *)currentTime currentTimeFormat:(NSString *)currentFormat
+/// 根据时间格式Format将时间戳NSTimeInterval转换成时间字符串（秒数转化成yyyy-MM-dd hh:mm:ss格式）
++ (NSString *)getTimeStrWithTimeInterval:(NSTimeInterval)time format:(NSString *)format
+{
+    NSDate *date = [NSDate getDateWithTimeInterval:time];
+    NSString *result = [date getTimeStrWithFormat:format];
+    return result;
+}
+
+/// 时间字符串根据时间格式Format转换成NSDate（time格式与format必须一致，否则返回nil）
++ (NSDate *)getDateWithFormat:(NSString *)format time:(NSString *)time
+{
+    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+    dateFormatter.dateFormat = format;
+    NSDate *date = [dateFormatter dateFromString:time];
+    return date;
+}
+
+#pragma mark - private 转换（NSDateComponents/NSDate）
+
+/// NSDate转换成NSDateComponents
++ (NSDateComponents *)getDateCompontsWithDate:(NSDate *)date
+{
+    if (!date)
+    {
+        return nil;
+    }
+    
+    NSCalendar *calendar = [[NSCalendar alloc] initWithCalendarIdentifier:NSGregorianCalendar];
+    NSInteger unitFlags = (NSMonthCalendarUnit | NSDayCalendarUnit | NSYearCalendarUnit | NSHourCalendarUnit | NSMinuteCalendarUnit | NSSecondCalendarUnit | NSWeekCalendarUnit | NSWeekdayCalendarUnit);
+    NSDateComponents *component = [calendar components:unitFlags fromDate:date];
+    
+    return component;
+}
+
+/// NSTimeInterval转换成NSDateComponents
++ (NSDateComponents *)getDateComponentsWithTimeInterval:(long long)time
+{
+    NSDate *date = [NSDate dateWithTimeIntervalSince1970:time];
+    NSDateComponents *component = [self getDateCompontsWithDate:date];
+    
+    return component;
+}
+
+#pragma mark - 年/月/日/时/分/秒/周
+
+/// 获取年份
+- (NSInteger)getYearOfDate
+{
+    if (!self)
+    {
+        return 0;
+    }
+    
+    NSDateComponents *component = [[self class] getDateCompontsWithDate:self];
+    NSInteger yearNumber = [component year];
+    
+    return yearNumber;
+}
+
+/// 获取月份
+- (NSInteger)getMonthOfDate
+{
+    if (!self)
+    {
+        return 0;
+    }
+    
+    NSDateComponents *component = [[self class] getDateCompontsWithDate:self];
+    NSInteger monthNumber = [component month];
+    
+    return monthNumber;
+}
+
+/// 获取日期
+- (NSInteger)getDayOfDate
+{
+    if (!self)
+    {
+        return 0;
+    }
+    
+    NSDateComponents *component = [[self class] getDateCompontsWithDate:self];
+    NSInteger dayNumber = [component day];
+    return dayNumber;
+}
+
+/// 获取小时
+- (NSInteger)getHourOfDate
+{
+    if (!self)
+    {
+        return 0;
+    }
+    
+    NSDateComponents *component = [[self class] getDateCompontsWithDate:self];
+    NSInteger hour = [component hour];
+    return hour;
+}
+
+/// 获取分钟
+- (NSInteger)getMinuteOfDate
+{
+    if (!self)
+    {
+        return 0;
+    }
+    
+    NSDateComponents *component = [[self class] getDateCompontsWithDate:self];
+    NSInteger minute = [component minute];
+    return minute;
+}
+
+/// 获取秒
+- (NSInteger)getSecondOfDate
+{
+    if (!self)
+    {
+        return 0;
+    }
+    
+    NSDateComponents *component = [[self class] getDateCompontsWithDate:self];
+    NSInteger minute = [component second];
+    return minute;
+}
+
+/// 获取星期
+- (NSString *)getWeekOfDate
+{
+    if (!self)
+    {
+        return nil;
+    }
+    
+    NSDateComponents *component = [[self class] getDateCompontsWithDate:self];
+    NSInteger weekday = [component weekday];
+    NSString *weekStr;
+    switch (weekday)
+    {
+        case 1: weekStr = @"日"; break;
+        case 2: weekStr = @"一"; break;
+        case 3: weekStr = @"二"; break;
+        case 4: weekStr = @"三"; break;
+        case 5: weekStr = @"四"; break;
+        case 6: weekStr = @"五"; break;
+        case 7: weekStr = @"六"; break;
+        default: break;
+    }
+    
+    return weekStr;
+}
+
+#pragma mark 当前时间（年/月/日/时/分/秒/周）
+
+/// 获取当前日期 NSDate（直接显示会出现相差8个小时，使用NSDateFormatter时间格式则不会）
++ (NSDate *)getDateOfNower
+{
+    NSDate *currentDate = [NSDate date];
+    return currentDate;
+}
+
+/// 获取当前时间戳
++ (NSTimeInterval)getTimeIntervalOfNower
+{
+    NSTimeInterval time = [NSDate getDateOfNower].getTimeInterval;
+    return time;
+}
+
+/// 获取当前时间
++ (NSString *)getTimeOfNower
+{
+    NSDate *nowDate = [self getDateOfNower];
+    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+    [dateFormatter setTimeZone:[NSTimeZone localTimeZone]];
+    [dateFormatter setDateStyle:NSDateFormatterMediumStyle];
+    [dateFormatter setTimeStyle:NSDateFormatterMediumStyle];
+    NSString *time = [dateFormatter stringFromDate:nowDate];
+    return time;
+}
+
+/// 获取当前年份
++ (NSInteger)getYearOfNower
+{
+    NSInteger yearNumber = [[self getDateOfNower] getYearOfDate];
+    return yearNumber;
+}
+
+/// 获取当前月份
++ (NSInteger)getMonthOfNower
+{
+    NSInteger monthNumber = [[self getDateOfNower] getMonthOfDate];
+    return monthNumber;
+}
+
+/// 获取当前日期
++ (NSInteger)getDayOfNower
+{
+    NSInteger dayNumber = [[self getDateOfNower] getDayOfDate];
+    return dayNumber;
+}
+
+/// 获取当前小时
++ (NSInteger)getHourOfNower
+{
+    NSInteger hour = [[self getDateOfNower] getHourOfDate];
+    return hour;
+}
+
+/// 获取当前分钟
++ (NSInteger)getMinuteOfNower
+{
+    NSInteger minute = [[self getDateOfNower] getMinuteOfDate];
+    return minute;
+}
+
+/// 获取当前秒
++ (NSInteger)getSecondOfNower
+{
+    NSInteger minute = [[self getDateOfNower] getSecondOfDate];
+    return minute;
+}
+
+/// 获取当前星期
++ (NSString *)getWeekOfNower
+{
+    NSString *weekday = [[self getDateOfNower] getWeekOfDate];
+    return weekday;
+}
+
+#pragma mark - 时间差
+
+/// 根据时间戳NSTimeInterval计算时间间隔数
++ (NSString *)getTimeStrWithTimeInterval:(NSTimeInterval)comparetime
+{
+    NSDate *compareDate = [self getDateWithTimeInterval:comparetime];
+    NSDate *currentDate = [self getDateOfNower];
+    NSString *result = [self getTimeStrWithBeginDate:compareDate endDate:currentDate];
+    return result;
+}
+
+/// 计算两个日期距离现在多久
++ (NSString *)getTimeStrWithBeginTime:(NSString *)beginTime beginTimeFormat:(NSString *)beginFormat endTime:(NSString *)endTime endTimeFormat:(NSString *)endFormat
 {
     // 上次时间
-    NSDateFormatter *dateFormatLast = [[NSDateFormatter alloc] init];
-    dateFormatLast.dateFormat = lastFormat;
-    NSDate *dateLast = [dateFormatLast dateFromString:lastTime];
-    
+    NSDate *dateLast = [NSDate getDateWithFormat:beginFormat time:beginTime];
     // 当前时间
-    NSDateFormatter *dateFormatNow = [[NSDateFormatter alloc] init];
-    dateFormatNow.dateFormat = currentFormat;
-    NSDate *dateNow = [dateFormatNow dateFromString:currentTime];
-    
-    NSTimeZone *timeZone = [NSTimeZone systemTimeZone];
-    // 上次时间
-    NSDate *lastDate = [dateLast dateByAddingTimeInterval:[timeZone secondsFromGMTForDate:dateLast]];
-    // 当前时间
-    NSDate *nowDate = [dateNow dateByAddingTimeInterval:[timeZone secondsFromGMTForDate:dateNow]];
+    NSDate *dateNow = [NSDate getDateWithFormat:endFormat time:endTime];
+
     // 时间间距
-    NSInteger intervalTime = [nowDate timeIntervalSinceReferenceDate] - [lastDate timeIntervalSinceReferenceDate];
+    NSString *resutl = [self getTimeStrWithBeginDate:dateLast endDate:dateNow];
+    return resutl;
+}
+
+/// 计算两个日期距离现在多久
++ (NSString *)getTimeStrWithBeginDate:(NSDate *)beginDate endDate:(NSDate *)endDate
+{
+    // 时间间距
+    NSInteger intervalTime = endDate.getTimeInterval - beginDate.getTimeInterval;
+    
     // 秒、分、小时、天、月、年
     NSInteger minutes = intervalTime / 60;
     NSInteger hours = intervalTime / 60 / 60;
@@ -82,315 +351,19 @@
     {
         NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
         dateFormatter.dateFormat = @"M月d日";
-        resutl = [dateFormatter stringFromDate:lastDate];
+        resutl = [dateFormatter stringFromDate:beginDate];
     }
-    else if (years >=1)
+    else if (years >= 1)
     {
         NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
         dateFormatter.dateFormat = @"yyyy年M月d日";
-        resutl = [dateFormatter stringFromDate:lastDate];
+        resutl = [dateFormatter stringFromDate:beginDate];
     }
     
     return resutl;
 }
 
-#pragma mark - 转换（NSDateComponents/NSDate）
-
-/// 时间转换成NSDateComponents
-+ (NSDateComponents *)getDateComponents:(long long)time
-{
-    NSDate *date = [NSDate dateWithTimeIntervalSince1970:time];
-    NSCalendar *calendar = [[NSCalendar alloc] initWithCalendarIdentifier:NSGregorianCalendar];
-    NSInteger unitFlags = NSMonthCalendarUnit | NSDayCalendarUnit | NSYearCalendarUnit | NSHourCalendarUnit | NSMinuteCalendarUnit | NSSecondCalendarUnit;
-    NSDateComponents *component = [calendar components:unitFlags fromDate:date];
-    
-    return component;
-}
-
-/// 日期转换成NSDateComponents
-+ (NSDateComponents *)getDateCompontsWithDate:(NSDate *)date
-{
-    if (!date)
-    {
-        return nil;
-    }
-    
-    NSCalendar *calendar = [[NSCalendar alloc] initWithCalendarIdentifier:NSGregorianCalendar];
-    NSInteger unitFlags = NSMonthCalendarUnit | NSDayCalendarUnit | NSYearCalendarUnit |NSHourCalendarUnit | NSMinuteCalendarUnit | NSSecondCalendarUnit | NSWeekCalendarUnit |NSWeekdayCalendarUnit;
-    
-    NSDateComponents *component = [calendar components:unitFlags fromDate:date];
-    
-    return component;
-}
-
-/// 获取任意时间秒数，即NSDate转NSTimeInterval
-+ (NSTimeInterval)getTimeSecondWithDate:(NSDate *)date
-{
-    if (!date)
-    {
-        return 0;
-    }
-    
-    NSDate *currentDate = date;
-    NSTimeInterval timeSecond = [currentDate timeIntervalSince1970];
-    
-    return timeSecond;
-}
-
-/// 获取任意时间，即NSTimeInterval转NSDate
-+ (NSDate *)getDateWithTime:(NSTimeInterval)time
-{
-    NSDate *date = [NSDate dateWithTimeIntervalSinceNow:time];
-    return date;
-}
-
-#pragma mark - 年/月/日/周
-
-/// 获取年份
-+ (NSInteger)getYearWithDate:(NSDate *)date
-{
-    if (!date)
-    {
-        return 0;
-    }
-    
-    NSDateComponents *component = [self getDateCompontsWithDate:date];
-    
-    NSInteger yearNumber = [component year];
-    
-    return yearNumber;
-}
-
-/// 获取月份
-+ (NSInteger)getMonthWithDate:(NSDate *)date
-{
-    if (!date)
-    {
-        return 0;
-    }
-    
-    NSDateComponents *component = [self getDateCompontsWithDate:date];
-    
-    NSInteger monthNumber = [component month];
-    
-    return monthNumber;
-}
-
-/// 获取日期
-+ (NSInteger)getDayWithDate:(NSDate *)date
-{
-    if (!date)
-    {
-        return 0;
-    }
-    
-    NSDateComponents *component = [self getDateCompontsWithDate:date];
-    NSInteger dayNumber = [component day];
-    return dayNumber;
-}
-
-/// 获取小时
-+ (NSInteger)getHourWithDate:(NSDate *)date
-{
-    if (!date)
-    {
-        return 0;
-    }
-    
-    NSDateComponents *component = [self getDateCompontsWithDate:date];
-    NSInteger hour = [component hour];
-    return hour;
-}
-
-/// 获取分钟
-+ (NSInteger)getMinuteWithDate:(NSDate *)date
-{
-    if (!date)
-    {
-        return 0;
-    }
-    
-    NSDateComponents *component = [self getDateCompontsWithDate:date];
-    NSInteger minute = [component minute];
-    return minute;
-}
-
-/// 获取秒
-+ (NSInteger)getSecondWithDate:(NSDate *)date
-{
-    if (!date)
-    {
-        return 0;
-    }
-    
-    NSDateComponents *component = [self getDateCompontsWithDate:date];
-    NSInteger minute = [component second];
-    return minute;
-}
-
-/// 获取星期
-+ (NSString *)getWeekWithDate:(NSDate *)date
-{
-    if (!date)
-    {
-        return nil;
-    }
-    
-    NSDateComponents *component = [self getDateCompontsWithDate:date];
-    
-    NSString *weekStr;
-    NSInteger weekday = [component weekday];
-    switch (weekday)
-    {
-        case 1: weekStr = @"日"; break;
-        case 2: weekStr = @"一"; break;
-        case 3: weekStr = @"二"; break;
-        case 4: weekStr = @"三"; break;
-        case 5: weekStr = @"四"; break;
-        case 6: weekStr = @"五"; break;
-        case 7: weekStr = @"六"; break;
-        default: break;
-    }
-    
-    return weekStr;
-}
-
-#pragma mark - 当前时间
-
-/// 获取当前日期 NSDate（直接显示会出现相差8个小时，使用NSDateFormatter时间格式则不会）
-+ (NSDate *)getCurrentDate
-{
-    NSDate *currentDate = [NSDate date];
-    return currentDate;
-}
-
-/// 获取当前时间
-+ (NSString *)getCurrentTime
-{
-    NSDate *nowDate = [self getCurrentDate];
-    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
-    [dateFormatter setTimeZone:[NSTimeZone localTimeZone]];
-    [dateFormatter setDateStyle:NSDateFormatterMediumStyle];
-    [dateFormatter setTimeStyle:NSDateFormatterMediumStyle];
-    NSString *time = [dateFormatter stringFromDate:nowDate];
-    return time;
-}
-
-/// 获取当前年份
-+ (NSInteger)getCurrentYear
-{
-    NSInteger yearNumber = [self getYearWithDate:[self getCurrentDate]];
-    return yearNumber;
-}
-
-/// 获取当前月份
-+ (NSInteger)getCurrentMonth
-{
-    NSInteger monthNumber = [self getMonthWithDate:[self getCurrentDate]];
-    return monthNumber;
-}
-
-/// 获取当前日期
-+ (NSInteger)getCurrentDay
-{
-    NSInteger dayNumber = [self getDayWithDate:[self getCurrentDate]];
-    return dayNumber;
-}
-
-/// 获取当前小时
-+ (NSInteger)getCurrentHour
-{
-    NSInteger hour = [self getHourWithDate:[self getCurrentDate]];
-    return hour;
-}
-
-/// 获取当前分钟
-+ (NSInteger)getCurrentMinute
-{
-    NSInteger minute = [self getMinuteWithDate:[self getCurrentDate]];
-    return minute;
-}
-
-/// 获取当前秒
-+ (NSInteger)getCurrentSecond
-{
-    NSInteger minute = [self getSecondWithDate:[self getCurrentDate]];
-    return minute;
-}
-
-/// 获取当前星期
-+ (NSString *)getCurrentWeekDay
-{
-    NSString *weekday = [self getWeekWithDate:[self getCurrentDate]];
-    return weekday;
-}
-
-#pragma mark - 时间差
-
-/// 字符串转换成自定义格式时间（时间字符格式与format必须一致，否则返回nil）
-+ (NSDate *)getDateWithTime:(NSString *)time format:(NSString *)format
-{
-    NSDateFormatter *dateFormat = [[NSDateFormatter alloc] init];
-    dateFormat.dateFormat = format;
-    
-    NSDate *currentDate = [dateFormat dateFromString:time];
-    return currentDate;
-}
-
-/// 从现在开始的24小时之后的某个时间（如明天，后天），或之前的某个时间（如昨天，前天）
-+ (NSDate *)getDateWithDay:(float)day after:(BOOL)after
-{
-    NSTimeInterval secondsPerDay = (24 * 60 * 60) * day;
-    if (!after)
-    {
-        // 之前
-        secondsPerDay = -secondsPerDay;
-    }
-    NSDate *date = [self getDateWithTime:secondsPerDay];
-    
-    return date;
-}
-
-/// 计算任意两个日期间的天数
-+ (NSInteger)getDayBetweenDate:(NSDate *)startDate endDate:(NSDate *)endDate
-{
-    // 创建日历对象
-    NSCalendar *nsCalendar = [[NSCalendar alloc ] initWithCalendarIdentifier:NSGregorianCalendar];
-    // 设置组件标志识
-    NSUInteger unitFlags = NSHourCalendarUnit | NSMinuteCalendarUnit | NSSecondCalendarUnit | NSDayCalendarUnit | NSMonthCalendarUnit | NSYearCalendarUnit;
-    
-    // 创建日期组件对象，由日历对象通过起止日期及标识创建
-    NSDateComponents *cps = [nsCalendar components:unitFlags fromDate:startDate toDate:endDate options:0];
-    // NSInteger diffHour = [cps hour];
-    // NSInteger diffMin = [cps minute];
-    // NSInteger diffSec = [cps second];
-    NSInteger diffDay = [cps day];
-    // NSInteger diffMon = [cps month];
-    // NSInteger diffYear = [cps year];
-    
-    return diffDay;
-}
-
-/// 秒数计算时间天数（20秒为0天）
-+ (NSInteger)getDayWithTime:(NSTimeInterval)time
-{
-    NSInteger day = time / (24 * 60 * 60);
-    return day;
-}
-
-/// 计算时间差，秒数（两个日期对象的时间间隔）
-+ (NSTimeInterval)getTimeBetweenDate:(NSDate *)fromDate endDate:(NSDate *)nowDate
-{
-    if (!fromDate || !nowDate)
-    {
-        return 0;
-    }
-    
-    NSTimeInterval second = [nowDate timeIntervalSinceDate:fromDate];
-    return second;
-}
-
-/// 获取某个时间的前天或后天
+/// 获取某个时间的N天的前天或后天
 + (NSDate *)getDateWithDate:(NSDate *)date day:(NSInteger)day tomorrow:(BOOL)tomorrow
 {
     NSTimeInterval secondsPerDay = (24 * 60 * 60) * day;
@@ -399,92 +372,143 @@
         // 之前
         secondsPerDay = -secondsPerDay;
     }
-    
-    NSTimeInterval time = [self getTimeSecondWithDate:date];
+    NSTimeInterval time = date.getTimeInterval;
     time += secondsPerDay;
-    
-    NSDate *perDate = [NSDate dateWithTimeIntervalSinceNow:time];
-    
+    NSDate *perDate = [NSDate dateWithTimeIntervalSince1970:time];
     return perDate;
 }
 
-#pragma mark - 时间显示字符
-
-/// 获取当前日期 自定义格式
-+ (NSString *)getCurrentTimeWithFormat:(NSString *)format
+/// 从现在开始的24小时之后或之前的某个时间NSDate（如明天，后天）
++ (NSDate *)getDateFromNowWithDay:(float)day after:(BOOL)after
 {
-    NSString *currentDateString = [self getTimeWithDate:nil format:format];
-    
-    return currentDateString;
+    NSTimeInterval secondsPerDay = (24 * 60 * 60) * day;
+    if (!after)
+    {
+        // 之前
+        secondsPerDay = -secondsPerDay;
+    }
+    NSDate *date = [NSDate dateWithTimeIntervalSinceNow:secondsPerDay];
+    return date;
 }
 
-/// 时间转换成自定义格式字条串
-+ (NSString *)getTimeWithDate:(NSDate *)date format:(NSString *)format
+/// 从现在开始的24小时之后或之前的某个时间NSString（如明天，后天）
++ (NSString *)getTimeStrFromNowStrWithDay:(float)day after:(BOOL)after format:(NSString *)format
 {
-    NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
-    formatter.dateFormat = ((format && 0 != format.length) ? format : @"yyyy-MM-dd HH:mm:ss");
-    
-    NSDate *currentDate = (date ? date : [self getCurrentDate]);
-    NSString *currentDateString = [formatter stringFromDate:currentDate];
-    
-    return currentDateString;
+    NSDate *date = [self getDateFromNowWithDay:day after:after];
+    NSString *result = [date getTimeStrWithFormat:format];
+    return result;
 }
 
-/// 时间戳转换成自定义格式字符（秒数转化成yyyy-MM-dd hh:mm:ss格式）
-+ (NSString *)getTimeWithTime:(NSTimeInterval)time format:(NSString *)format
++ (NSDateComponents *)getDateComponentsWithBeginDate:(NSDate *)beginDate endDate:(NSDate *)endDate
 {
-    NSDate *date = [NSDate dateWithTimeIntervalSince1970:time];
-    NSString *timeString = [self getTimeWithDate:date format:format];
-    return timeString;
+    // 创建日历对象
+    NSCalendar *calendar = [[NSCalendar alloc ] initWithCalendarIdentifier:NSGregorianCalendar];
+    // 设置组件标志识
+    NSUInteger unitFlags = (NSHourCalendarUnit | NSMinuteCalendarUnit | NSSecondCalendarUnit | NSDayCalendarUnit | NSMonthCalendarUnit | NSYearCalendarUnit);
+    // 创建日期组件对象，由日历对象通过起止日期及标识创建
+    NSDateComponents *compoents = [calendar components:unitFlags fromDate:beginDate toDate:endDate options:0];
+    return compoents;
 }
 
-/// 计算时间间隔数
-+ (NSString *)getTimeWithTime:(NSTimeInterval)comparetime
+// private
++ (NSDictionary *)getTimeDistanceWithTimeInterval:(NSTimeInterval)time endTimeInterval:(NSTimeInterval)endTime
 {
-    if (0 == comparetime)
-    {
-        return nil;
-    }
+    NSTimeInterval currentTime = endTime - time;
     
-    NSTimeInterval time = [[NSDate date] timeIntervalSince1970];
+    NSInteger year = currentTime / (365 * 24 * 60 * 60);
+    NSInteger yearTmp = (int)currentTime % (365 * 24 * 60 * 60);
     
-    if ((time - comparetime) >= 0 && (time - comparetime) < 60 * 1)
-    {
-        // 以分钟显示
-        return @"刚刚";
-    }
-    else if ((time - comparetime) >= 60 * 1 && (time - comparetime) < 60 * 60)
-    {
-        // 大于1分钟小于一个小时
-        int mimuteNum = (time - comparetime) / 60;
-        
-        return [NSString stringWithFormat:@"%d分钟前", mimuteNum];
-    }
-    else if ((time - comparetime) >= 60 * 60 && (time - comparetime) < 60 * 60 * 24)
-    {
-        // 以小时钟显示(大于1个小时小于24个小时)
-        int hourNum = (time - comparetime) / (60 * 60);
-        
-        return [NSString stringWithFormat:@"%d小时前", hourNum];
-    }
-    else
-    {
-        // 以日期格式显示(大于24个小时)
-        NSDate *date = [NSDate dateWithTimeIntervalSince1970:comparetime];
-        
-        NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
-        [dateFormatter setDateFormat:@"yyyy-MM-dd"];
-        NSString *destDateString = [dateFormatter stringFromDate:date];
-        
-        return destDateString;
-    }
+    NSInteger month = yearTmp / (30 * 24 * 60 * 60);
+    NSInteger monthTmp = (NSInteger)yearTmp % (30 * 24 * 60 * 60);
+    
+    NSInteger day = monthTmp / (24 * 60 * 60);
+    NSInteger dayTmp = (int)monthTmp % (24 * 60 * 60);
+    
+    NSInteger hour = dayTmp / (60 * 60);
+    NSInteger hourTmp = dayTmp % (60 * 60);
+    
+    NSInteger minute = hourTmp / 60;
+    NSInteger second = hourTmp % 60;
+    
+    NSLog(@"year = %ld, month = %ld, day = %ld, hour = %ld, minute = %ld, second = %ld", year, month, day, hour, minute, second);
+    
+    NSDictionary *dict = @{@"year":@(year), @"month":@(month), @"day":@(day), @"hour":@(hour), @"minute":@(minute), @"second":@(second)};
+    return dict;
 }
 
-/// 秒数计算时间格式显示（20秒为0天0时0分20秒）
-+ (NSString *)getTimeWithTime:(NSTimeInterval)time mode:(SYTimeShowMode)mode
+/// 计算任意两个时间戳之间的间隔（秒、分、时、日、月、年）
++ (NSInteger)getTimeDistanceWithTimeInterval:(NSTimeInterval)time endTimeInterval:(NSTimeInterval)endTime mode:(SYDistanceMode)mode
 {
-    int day = time / (24 * 60 * 60);
-    int dayTmp = (int)time % (24 * 60 * 60);
+    NSDictionary *dict = [NSDate getTimeDistanceWithTimeInterval:time endTimeInterval:endTime];
+    NSInteger year = ((NSNumber *)dict[@"year"]).integerValue;
+    NSInteger month = ((NSNumber *)dict[@"month"]).integerValue;
+    NSInteger day = ((NSNumber *)dict[@"day"]).integerValue;
+    NSInteger hour = ((NSNumber *)dict[@"hour"]).integerValue;
+    NSInteger minute = ((NSNumber *)dict[@"minute"]).integerValue;
+    NSInteger second = ((NSNumber *)dict[@"second"]).integerValue;
+    
+    NSTimeInterval distance = year;
+    if (SYDistanceModeYear == mode)
+    {
+        distance = year;
+    }
+    else if (SYDistanceModeMonth == mode)
+    {
+        distance = month;
+    }
+    else if (SYDistanceModeDay == mode)
+    {
+        distance = day;
+        distance += (year * 365 + month * 30);
+    }
+    else if (SYDistanceModeHour == mode)
+    {
+        distance = hour;
+        distance += (year * 365 * 24 + month * 30 * 24 + day * 24);
+    }
+    else if (SYDistanceModeMinute == mode)
+    {
+        distance = minute;
+        distance += (year * 365 * 24 * 60 + month * 30 * 24 * 60 + day * 24 * 60 + hour * 60);
+    }
+    else if (SYDistanceModeSecond == mode)
+    {
+        distance = second;
+        distance += (year * 365 * 24 * 60 * 60 + month * 30 * 24 * 60 * 60 + hour * 60 * 60 + minute * 60);
+    }
+    return distance;
+}
+
+/// 计算任意两个日期间的天数
++ (NSInteger)getDayBetweenDate:(NSDate *)startDate endDate:(NSDate *)endDate
+{
+    NSInteger result = [NSDate getTimeDistanceWithTimeInterval:startDate.getTimeInterval endTimeInterval:endDate.getTimeInterval mode:SYDistanceModeDay];
+    return result;
+}
+
+/// 任意两个日期间的秒数
++ (NSInteger)getTimeIntervalBetweenDate:(NSDate *)startDate endDate:(NSDate *)endDate
+{
+    NSInteger result = [NSDate getTimeDistanceWithTimeInterval:startDate.getTimeInterval endTimeInterval:endDate.getTimeInterval mode:SYDistanceModeSecond];
+    return result;
+}
+
+/// 时间戳NSTimeInterval计算时间间隔（秒、分、时、日、月、年）
++ (NSInteger)getTimeDistanceWithTimeInterval:(NSTimeInterval)time mode:(SYDistanceMode)mode
+{
+    NSDate *nowDate = [NSDate getDateOfNower];
+    NSInteger distance = [NSDate getTimeDistanceWithTimeInterval:time endTimeInterval:nowDate.getTimeInterval mode:mode];
+    return distance;
+}
+
+/// 时间戳NSTimeInterval计算时间格式显示
++ (NSString *)getTimeStrWithTimeInterval:(NSTimeInterval)time mode:(SYTimeShowMode)mode
+{
+    NSTimeInterval nowerTime = [NSDate getDateOfNower].getTimeInterval;
+    NSTimeInterval currentTime = nowerTime - time;
+    
+    int day = currentTime / (24 * 60 * 60);
+    int dayTmp = (int)currentTime % (24 * 60 * 60);
     int hour = dayTmp / (60 * 60);
     int hourTmp = dayTmp % (60 * 60);
     int minute = hourTmp / 60;
@@ -531,25 +555,24 @@
     return string;
 }
 
-+ (NSString *)getVSTChatFormatTime:(long long)time
+/// 时间戳NSTimeInterval显示格式字符串
++ (NSString *)getTimestrWithFormatTime:(NSTimeInterval)time
 {
-    //1.获取当前的时间
-    NSDate *currentDate = [[self class] getCurrentDate];
-    
+    // 1.获取当前的时间
+    NSDate *currentDate = [self getDateOfNower];
     // 1.1获取年，月，日
-    NSInteger currentYear = [[self class] getYearWithDate:currentDate];
-    NSInteger currentMonth = [[self class] getMonthWithDate:currentDate];
-    NSInteger currentDay = [[self class] getDayWithDate:currentDate];
+    NSInteger currentYear = [currentDate getYearOfDate];
+    NSInteger currentMonth = [currentDate getMonthOfDate];
+    NSInteger currentDay = [currentDate getDayOfDate];
     
-    //2.获取消息发送时间
-    NSDate *msgDate = [NSDate dateWithTimeIntervalSince1970:time];
-    
+    // 2.获取消息发送时间
+    NSDate *msgDate = [NSDate getDateWithTimeInterval:time];
     // 2.1获取年，月，日
-    NSInteger msgYear = [[self class] getYearWithDate:msgDate];
-    NSInteger msgMonth = [[self class] getMonthWithDate:msgDate];
-    NSInteger msgDay = [[self class] getDayWithDate:msgDate];
+    NSInteger msgYear = [msgDate getYearOfDate];
+    NSInteger msgMonth = [msgDate getMonthOfDate];
+    NSInteger msgDay = [msgDate getDayOfDate];
     
-    //3.判断:
+    // 3.判断:
     /*
      今天：(HH:mm)
      昨天: (昨天 HH:mm)
@@ -561,10 +584,10 @@
         // 今天
         dateFormat.dateFormat = @"HH:mm";
     }
-    else if(currentYear == msgYear && currentMonth == msgMonth && currentDay - 1 == msgDay)
+    else if (currentYear == msgYear && currentMonth == msgMonth && (currentDay - 1) == msgDay)
     {
         // 昨天
-        dateFormat.dateFormat= [NSString stringWithFormat:@"昨天 %@", @"HH:mm"];
+        dateFormat.dateFormat = [NSString stringWithFormat:@"昨天 %@", @"HH:mm"];
     }
     else
     {
@@ -573,48 +596,6 @@
     }
     
     return [dateFormat stringFromDate:msgDate];
-}
-
-// 比较两个时间是否在同一个小时内,若是，返回YES,否返回NO
-+ (BOOL)isSameHourTime:(long long)timeA time:(long long)timeB;
-{
-    NSDate *dateA = [NSDate dateWithTimeIntervalSince1970:timeA];
-    NSDate *dateB = [NSDate dateWithTimeIntervalSince1970:timeB];
-    
-    // 获取年月日
-    NSString *tempStringA = [[self class] getTimeWithDate:dateA format:@"yyyy-MM-dd"];
-    NSString *tempStringB = [[self class] getTimeWithDate:dateB format:@"yyyy-MM-dd"];
-    
-    // 获取小时
-    NSInteger hourA = [[self class] getHourWithDate:dateA];
-    NSInteger hourB = [[self class] getHourWithDate:dateB];
-    
-    if (hourA == hourB)
-    {
-        // 日期也需要一样
-        if ([tempStringA isEqualToString:tempStringB])
-        {
-            return YES;
-        }
-        
-        return NO;
-    }
-    else
-    {
-        return NO;
-    }
-}
-
-// 根据时间戳返回东八区时间
-+ (NSDate *)getEastEightTime:(NSTimeInterval)time format:(NSString *)format
-{
-    NSString *timeStr = [[self class] getTimeWithTime:(time / 1000) format:format];
-    NSDateFormatter *dateFormat = [[NSDateFormatter alloc] init];
-    dateFormat.dateFormat = format;
-    // [dateFormat setTimeZone:[NSTimeZone timeZoneForSecondsFromGMT:8]];
-    NSDate *currentDate = [dateFormat dateFromString:timeStr];
-    
-    return currentDate;
 }
 
 @end

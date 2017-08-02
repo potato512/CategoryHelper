@@ -34,58 +34,141 @@ typedef NS_ENUM(NSInteger, SYTimeShowMode)
     SYTimeShowModeHourMinute,
 };
 
+/// 时间间隔显示（秒、分、时、日、月、年）
+typedef NS_ENUM(NSInteger, SYDistanceMode)
+{
+    /// 时间间隔显示-秒（默认）
+    SYDistanceModeSecond = 1,
+    
+    /// 时间间隔显示-分
+    SYDistanceModeMinute = 2,
+    
+    /// 时间间隔显示-时
+    SYDistanceModeHour = 3,
+    
+    /// 时间间隔显示-日
+    SYDistanceModeDay = 4,
+    
+    /// 时间间隔显示-月
+    SYDistanceModeMonth = 5,
+    
+    /// 时间间隔显示-年
+    SYDistanceModeYear = 6
+};
+
 @interface NSDate (SYCategory)
 
-/**
- *  获取指定时间时间，并根据指定格式显示
- *
- *  @param format 时间显示格式
- *
- *  @return 指定显示格式时间
- */
-- (NSString *)timeDateWithFormat:(NSString *)format;
+/// 获取任意时间，即时间戳NSTimeInterval转NSDate
++ (NSDate *)getDateWithTimeInterval:(NSTimeInterval)time;
 
-/**
- *  计算两个日期距离现在多久
- *
- *  @param lastTime      上次日期
- *  @param lastFormat    上次日期格式
- *  @param currentTime   最近日期
- *  @param currentFormat 最近日期格式
- *
- *  @return 日期距离
- */
-+ (NSString *)timeDateWithLastTime:(NSString *)lastTime lastTimeFormat:(NSString *)lastFormat currentTime:(NSString *)currentTime currentTimeFormat:(NSString *)currentFormat;
+/// 获取任意时间秒数，即NSDate转NSTimeInterval
+- (NSTimeInterval)getTimeInterval;
 
+/// NSDate根据时间格式Formater显示时间字符串
+- (NSString *)getTimeStrWithFormat:(NSString *)format;
 
-#pragma mark - 当前时间
+/// 根据时间格式Format将时间戳NSTimeInterval转换成时间字符串（秒数转化成yyyy-MM-dd hh:mm:ss格式）
++ (NSString *)getTimeStrWithTimeInterval:(NSTimeInterval)time format:(NSString *)format;
+
+/// 时间字符串根据时间格式Format转换成NSDate（time格式与format必须一致，否则返回nil）
++ (NSDate *)getDateWithFormat:(NSString *)format time:(NSString *)time;
+
+#pragma mark - 时间
+
+#pragma mark 指定时间
+
+/// 获取年份
+- (NSInteger)getYearOfDate;
+
+/// 获取月份
+- (NSInteger)getMonthOfDate;
+
+/// 获取日期
+- (NSInteger)getDayOfDate;
+
+/// 获取小时
+- (NSInteger)getHourOfDate;
+
+/// 获取分钟
+- (NSInteger)getMinuteOfDate;
+
+/// 获取秒
+- (NSInteger)getSecondOfDate;
+
+/// 获取星期
+- (NSString *)getWeekOfDate;
+
+#pragma mark 当前时间
 
 /// 获取当前日期 NSDate（直接显示会出现相差8个小时，使用NSDateFormatter时间格式则不会）
-+ (NSDate *)getCurrentDate;
++ (NSDate *)getDateOfNower;
+
+/// 获取当前时间戳
++ (NSTimeInterval)getTimeIntervalOfNower;
 
 /// 获取当前时间
-+ (NSString *)getCurrentTime;
++ (NSString *)getTimeOfNower;
 
 /// 获取当前年份
-+ (NSInteger)getCurrentYear;
++ (NSInteger)getYearOfNower;
 
 /// 获取当前月份
-+ (NSInteger)getCurrentMonth;
++ (NSInteger)getMonthOfNower;
 
 /// 获取当前日期
-+ (NSInteger)getCurrentDay;
++ (NSInteger)getDayOfNower;
 
 /// 获取当前小时
-+ (NSInteger)getCurrentHour;
++ (NSInteger)getHourOfNower;
 
 /// 获取当前分钟
-+ (NSInteger)getCurrentMinute;
++ (NSInteger)getMinuteOfNower;
 
 /// 获取当前秒
-+ (NSInteger)getCurrentSecond;
++ (NSInteger)getSecondOfNower;
 
 /// 获取当前星期
-+ (NSString *)getCurrentWeekDay;
++ (NSString *)getWeekOfNower;
 
+#pragma mark - 时间差
+
+/// 根据时间戳NSTimeInterval计算时间间隔数
++ (NSString *)getTimeStrWithTimeInterval:(NSTimeInterval)comparetime;
+
+/// 计算两个日期距离现在多久（）
++ (NSString *)getTimeStrWithBeginTime:(NSString *)beginTime beginTimeFormat:(NSString *)beginFormat endTime:(NSString *)endTime endTimeFormat:(NSString *)endFormat;
+
+/// 计算两个日期距离现在多久（）
++ (NSString *)getTimeStrWithBeginDate:(NSDate *)beginDate endDate:(NSDate *)endDate;
+
+/// 获取某个时间的N天的前天或后天
++ (NSDate *)getDateWithDate:(NSDate *)date day:(NSInteger)day tomorrow:(BOOL)tomorrow;
+
+/// 从现在开始的24小时之后或之前的某个时间NSDate（如明天，后天）
++ (NSDate *)getDateFromNowWithDay:(float)day after:(BOOL)after;
+
+/// 从现在开始的24小时之后或之前的某个时间NSString（如明天，后天）
++ (NSString *)getTimeStrFromNowStrWithDay:(float)day after:(BOOL)after format:(NSString *)format;
+
+/// 计算任意两个时间戳之间的间隔（秒、分、时、日、月、年）
++ (NSInteger)getTimeDistanceWithTimeInterval:(NSTimeInterval)time endTimeInterval:(NSTimeInterval)endTime mode:(SYDistanceMode)mode;
+
+/// 计算任意两个日期间的天数
++ (NSInteger)getDayBetweenDate:(NSDate *)startDate endDate:(NSDate *)endDate;
+
+/// 任意两个日期间的秒数
++ (NSInteger)getTimeIntervalBetweenDate:(NSDate *)startDate endDate:(NSDate *)endDate;
+
+/// 时间戳NSTimeInterval计算时间间隔（秒、分、时、日、月、年）
++ (NSInteger)getTimeDistanceWithTimeInterval:(NSTimeInterval)time mode:(SYDistanceMode)mode;
+
+/// 时间戳NSTimeInterval计算时间格式显示
++ (NSString *)getTimeStrWithTimeInterval:(NSTimeInterval)time mode:(SYTimeShowMode)mode;
+
+/// 时间戳NSTimeInterval显示格式字符串
++ (NSString *)getTimestrWithFormatTime:(NSTimeInterval)time;
 
 @end
+
+
+
