@@ -13,6 +13,7 @@
 @interface UIView ()
 
 @property (nonatomic, strong) UILabel *viewTextLabel;
+@property (nonatomic, strong) UIPanGestureRecognizer *panRecognizer;
 
 @end
 
@@ -156,6 +157,73 @@
     self.frame = newframe;
 }
 
+#pragma mark - drapEnable
+
+/************************************************/
+
+- (void)setDrapEnable:(BOOL)drapEnable
+{
+    if (drapEnable)
+    {
+        // 添加拖动手势
+        if (self.panRecognizer == nil)
+        {
+            self.panRecognizer = [[UIPanGestureRecognizer alloc] initWithTarget:self action:@selector(panRecognizerAction:)];
+        }
+        self.userInteractionEnabled = YES;
+        [self addGestureRecognizer:self.panRecognizer];
+        if (self.superview)
+        {
+            [self.superview bringSubviewToFront:self];
+        }
+    }
+    else
+    {
+        // 移动拖动手势
+        [self removeGestureRecognizer:self.panRecognizer];
+    }
+}
+
+- (void)setPanRecognizer:(UIPanGestureRecognizer *)panRecognizer
+{
+    objc_setAssociatedObject(self, @selector(panRecognizer), panRecognizer, OBJC_ASSOCIATION_RETAIN);
+}
+
+- (UIPanGestureRecognizer *)panRecognizer
+{
+    return objc_getAssociatedObject(self, @selector(panRecognizer));
+}
+
+// 拖动手势方法
+- (void)panRecognizerAction:(UIPanGestureRecognizer *)recognizer
+{
+    // 拖动视图
+    UIView *view = (UIView *)recognizer.view;
+    
+    CGPoint translation = [recognizer translationInView:view.superview];
+    CGFloat centerX = view.center.x + translation.x;
+    if (centerX < view.width / 2)
+    {
+        centerX = view.width / 2;
+    }
+    else if (centerX > view.superview.width - view.width / 2)
+    {
+        centerX = view.superview.width - view.width / 2;
+    }
+    CGFloat centerY = view.center.y + translation.y;
+    if (centerY < (view.height / 2))
+    {
+        centerY = (view.height / 2);
+    }
+    else if (centerY > view.superview.height - view.height / 2)
+    {
+        centerY = view.superview.height - view.height / 2;
+    }
+    view.center = CGPointMake(centerX, centerY);
+    [recognizer setTranslation:CGPointZero inView:view];
+}
+
+/************************************************/
 
 #pragma mark - 标题属性
 
@@ -681,6 +749,15 @@
 {
     return ^(NSTextAlignment alignment) {
         self.viewTextAlignment = alignment;
+        return self;
+    };
+}
+
+/// 链式编程 视图拖动
+- (UIView *(^)(BOOL dragEnable))viewDragEnable
+{
+    return ^(BOOL dragEnable) {
+        self.drapEnable = dragEnable;
         return self;
     };
 }

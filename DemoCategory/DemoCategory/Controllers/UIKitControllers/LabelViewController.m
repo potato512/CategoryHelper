@@ -50,7 +50,8 @@
     label.backgroundColor = [UIColor greenColor];
     label.text = @"圆角边框";
     [label layerWithRadius:10.0 borderColor:[UIColor redColor] borderWidth:5.0];
-    
+    label.viewDragEnable(YES);
+//    [label setDrapEnable:YES];
     
     UIView *currentView = label;
     

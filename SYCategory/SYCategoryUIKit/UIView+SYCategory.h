@@ -61,6 +61,11 @@ typedef NS_ENUM(NSInteger, ViewFlipType)
 /// 变换大小（宽高改变）
 - (void)scaleToSize:(CGFloat)scale;
 
+
+/// 随意拖动（默认NO）
+@property (nonatomic, assign) BOOL drapEnable;
+
+
 #pragma mark - 标题属性
 
 /// 标题（默认无）
@@ -227,5 +232,8 @@ typedef NS_ENUM(NSInteger, ViewFlipType)
 
 /// 链式编程 视图标题对齐方式
 - (UIView *(^)(NSTextAlignment alignment))viewTitleAlignament;
+
+/// 链式编程 视图拖动
+- (UIView *(^)(BOOL dragEnable))viewDragEnable;
 
 @end
