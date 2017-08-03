@@ -48,6 +48,11 @@
 - (NSAttributedString *)attributedText:(NSString *)text color:(UIColor *)textColor font:(UIFont *)textFont space:(CGFloat)characterSpace rowSpace:(CGFloat)rowSpace bgColor:(UIColor *)bgColor
 {
     NSMutableAttributedString *attributed = [[NSMutableAttributedString alloc] initWithAttributedString:self];
+    if (text == nil || 0 >= text.length)
+    {
+        return attributed;
+    }
+    
     NSString *textTmp = attributed.string;
     // 设置某写字体的颜色 NSForegroundColorAttributeName
     NSRange range = [textTmp rangeOfString:text];
@@ -91,6 +96,11 @@
 - (NSAttributedString *)attributedText:(NSString *)text color:(UIColor *)textColor font:(UIFont *)textFont Obliqueness:(CGFloat)Obliqueness
 {
     NSMutableAttributedString *attributed = [[NSMutableAttributedString alloc] initWithAttributedString:self];
+    if (text == nil || 0 >= text.length)
+    {
+        return attributed;
+    }
+    
     NSString *textTmp = attributed.string;
     // 字体设置范围
     NSRange range = [textTmp rangeOfString:text];
@@ -122,6 +132,11 @@
 - (NSAttributedString *)attributedText:(NSString *)text deleteLineColor:(UIColor *)color deleteLineType:(NSUnderlineStyle)type
 {
     NSMutableAttributedString *attributed = [[NSMutableAttributedString alloc] initWithAttributedString:self];
+    if (text == nil || 0 >= text.length)
+    {
+        return attributed;
+    }
+    
     NSString *textTmp = attributed.string;
     // 字体设置范围
     NSRange range = [textTmp rangeOfString:text];
@@ -141,6 +156,11 @@
 - (NSAttributedString *)attributedText:(NSString *)text underLineColor:(UIColor *)color underLineType:(NSUnderlineStyle)type
 {
     NSMutableAttributedString *attributed = [[NSMutableAttributedString alloc] initWithAttributedString:self];
+    if (text == nil || 0 >= text.length)
+    {
+        return attributed;
+    }
+    
     NSString *textTmp = attributed.string;
     // 字体设置范围
     NSRange range = [textTmp rangeOfString:text];
