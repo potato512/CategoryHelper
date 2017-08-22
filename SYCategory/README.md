@@ -34,17 +34,39 @@
 
 
 # 修改完善
-* 20170803 1.0.2
-  * NSAttributedString异常修改
-  * 添加版本号1.0.2
+* 20170822
+  * 版本号：1.1.0
+  * SYCategoryUIKit
+    * 添加shapeLayer设置边框属性
 
-* 20170802 1.0.1
+~~~ javascript
+/// 设置UI视图的shape边框属性（圆角、边框颜色、边框大小，是否虚线）
+- (void)shapeLayerWithRadius:(CGFloat)radius borderColor:(UIColor *)color borderWidth:(CGFloat)width isDotted:(BOOL)isDotted;
+
+/// 设置视图的shape边框属性-圆角
+@property (nonatomic, assign) CGFloat shapeCornerRadius;
+
+/// 设置视图的shape边框属性-边框颜色
+@property (nonatomic, strong) UIColor *shapeBorderColor;
+
+/// 设置视图的shape边框属性-边框大小
+@property (nonatomic, assign) CGFloat shapeBorderWidth;
+
+/// 设置视图的shape边框属性-是否虚线
+@property (nonatomic, assign) BOOL shapeBorderDotted;
+~~~
+
+* 20170803
+  * NSAttributedString异常修改
+  * 版本号：1.0.2
+
+* 20170802
   * NSDate类别功能完善
   * UIView添加视图拖动属性
-  * 添加版本号1.0.1
+  * 版本号：1.0.1
 
-* 20170726 1.0.0
-  * 添加版本号1.0.0
+* 20170726
+  * 版本号：1.0.0
   * 通知功能完善
 
 * 20170704

@@ -15,6 +15,8 @@
 @property (nonatomic, strong) UILabel *viewTextLabel;
 @property (nonatomic, strong) UIPanGestureRecognizer *panRecognizer;
 
+@property (nonatomic, strong) CAShapeLayer *border;
+
 @end
 
 @implementation UIView (SYCategory)
@@ -346,6 +348,115 @@
         self.layer.borderWidth = width;
     }
 }
+
+- (void)setBorder:(CAShapeLayer *)border
+{
+    objc_setAssociatedObject(self, @selector(border), border, OBJC_ASSOCIATION_RETAIN);
+}
+
+- (CAShapeLayer *)border
+{
+    return objc_getAssociatedObject(self, @selector(border));
+}
+
+- (void)resetShapeLayer
+{
+    if (self.border == nil)
+    {
+        self.border = [CAShapeLayer layer];
+        // 填充颜色
+        self.border.fillColor = nil;
+        // 添加到父视图
+        [self.layer addSublayer:self.border];
+        // 路径
+        self.border.path = [UIBezierPath bezierPathWithRoundedRect:self.bounds cornerRadius:0.0].CGPath;
+    }
+}
+
+/// 设置UI视图的shape边框属性
+- (void)shapeLayerWithRadius:(CGFloat)radius borderColor:(UIColor *)color borderWidth:(CGFloat)width isDotted:(BOOL)isDotted
+{
+    if (radius > 0.0)
+    {
+        self.layer.cornerRadius = radius;
+        self.layer.masksToBounds = YES;
+    }
+    
+    if (color && width > 0.0)
+    {
+        [self resetShapeLayer];
+        // 线条颜色
+        self.border.strokeColor = color.CGColor;
+        // 路径
+        self.border.path = [UIBezierPath bezierPathWithRoundedRect:self.bounds cornerRadius:radius].CGPath;
+        // 位置大小
+        self.border.frame = self.bounds;
+        // 不要设太大 不然看不出效果
+        self.border.lineWidth = width;
+        // 第一个是线条长度，第二个是间距；nil时为实线
+        self.border.lineDashPattern = (isDotted ? @[@9, @4] : nil);
+    }
+}
+
+- (void)setShapeCornerRadius:(CGFloat)shapeCornerRadius
+{
+    objc_setAssociatedObject(self, @selector(shapeCornerRadius), @(shapeCornerRadius), OBJC_ASSOCIATION_ASSIGN);
+    
+    self.layer.cornerRadius = shapeCornerRadius;
+    self.layer.masksToBounds = YES;
+    [self resetShapeLayer];
+    self.border.path = [UIBezierPath bezierPathWithRoundedRect:self.bounds cornerRadius:shapeCornerRadius].CGPath;
+}
+
+- (CGFloat)shapeCornerRadius
+{
+    NSNumber *number = objc_getAssociatedObject(self, @selector(shapeCornerRadius));
+    return number.floatValue;
+}
+
+- (void)setShapeBorderColor:(UIColor *)shapeBorderColor
+{
+    objc_setAssociatedObject(self, @selector(shapeBorderColor), shapeBorderColor, OBJC_ASSOCIATION_ASSIGN);
+    
+    [self resetShapeLayer];
+    self.border.strokeColor = shapeBorderColor.CGColor;
+}
+
+- (UIColor *)shapeBorderColor
+{
+    return objc_getAssociatedObject(self, @selector(shapeBorderColor));
+}
+
+- (void)setShapeBorderWidth:(CGFloat)shapeBorderWidth
+{
+    objc_setAssociatedObject(self, @selector(shapeBorderWidth), @(shapeBorderWidth), OBJC_ASSOCIATION_ASSIGN);
+    
+    [self resetShapeLayer];
+    self.border.lineWidth = shapeBorderWidth;
+}
+
+- (CGFloat)shapeBorderWidth
+{
+    NSNumber *number = objc_getAssociatedObject(self, @selector(shapeBorderWidth));
+    return number.floatValue;
+}
+
+- (void)setShapeBorderDotted:(BOOL)shapeBorderDotted
+{
+    objc_setAssociatedObject(self, @selector(shapeBorderDotted), @(shapeBorderDotted), OBJC_ASSOCIATION_ASSIGN);
+    
+    [self resetShapeLayer];
+    // 第一个是线条长度，第二个是间距；nil时为实线
+    self.border.lineDashPattern = (shapeBorderDotted ? @[@9, @4] : nil);
+}
+
+- (BOOL)shapeBorderDotted
+{
+    NSNumber *number = objc_getAssociatedObject(self, @selector(shapeBorderDotted));
+    return number.boolValue;
+}
+
+
 
 // 旋转
 - (void)viewTransformWithRotation:(CGFloat)rotation

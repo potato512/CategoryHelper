@@ -92,6 +92,18 @@ typedef NS_ENUM(NSInteger, ViewFlipType)
 /// 设置UI视图的边框属性
 - (void)layerWithRadius:(CGFloat)radius borderColor:(UIColor *)color borderWidth:(CGFloat)width;
 
+/// 设置UI视图的shape边框属性（圆角、边框颜色、边框大小，是否虚线）
+- (void)shapeLayerWithRadius:(CGFloat)radius borderColor:(UIColor *)color borderWidth:(CGFloat)width isDotted:(BOOL)isDotted;
+/// 设置视图的shape边框属性-圆角
+@property (nonatomic, assign) CGFloat shapeCornerRadius;
+/// 设置视图的shape边框属性-边框颜色
+@property (nonatomic, strong) UIColor *shapeBorderColor;
+/// 设置视图的shape边框属性-边框大小
+@property (nonatomic, assign) CGFloat shapeBorderWidth;
+/// 设置视图的shape边框属性-是否虚线
+@property (nonatomic, assign) BOOL shapeBorderDotted;
+
+
 /// 旋转
 - (void)viewTransformWithRotation:(CGFloat)rotation;
 

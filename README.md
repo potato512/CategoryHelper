@@ -41,10 +41,32 @@
 ![SYCategory.gif](./images/SYCategory.gif)
 
 
-# 修改说明
-* 20170803 1.0.2
+#### 修改完善
+* 20170822
+  * 版本号：1.1.0
+  * SYCategoryUIKit
+    * 添加shapeLayer设置边框属性
+
+~~~ javascript
+/// 设置UI视图的shape边框属性（圆角、边框颜色、边框大小，是否虚线）
+- (void)shapeLayerWithRadius:(CGFloat)radius borderColor:(UIColor *)color borderWidth:(CGFloat)width isDotted:(BOOL)isDotted;
+
+/// 设置视图的shape边框属性-圆角
+@property (nonatomic, assign) CGFloat shapeCornerRadius;
+
+/// 设置视图的shape边框属性-边框颜色
+@property (nonatomic, strong) UIColor *shapeBorderColor;
+
+/// 设置视图的shape边框属性-边框大小
+@property (nonatomic, assign) CGFloat shapeBorderWidth;
+
+/// 设置视图的shape边框属性-是否虚线
+@property (nonatomic, assign) BOOL shapeBorderDotted;
+~~~
+
+* 20170803
   * NSAttributedString异常修改
-  * 添加版本号1.0.2
+  * 版本号：1.0.2
 
 * 20170802
   * NSDate类别功能完善
@@ -63,6 +85,7 @@
 * 20170702
   * 添加类别文件：UIDocument+SYCategory（待完善）、NSFileManager+iCloud（待完善）、NSStream+SYCategory（待完善）
   * 完善类型方法：NSFileManger+SYCategory
+
 ~~~ javascript
 /**
 *  指定文件路径的当前层级的文件夹
@@ -89,6 +112,7 @@
 
 * 20170628
   * UIImage方法修改
+
 ~~~ javascript
 // 废除：获取图片，根据图片url（如：url = http://.../xxx.jpg）
 + (UIImage *)imageWithUrl:(NSString *)url;
@@ -99,6 +123,7 @@
 
 * 20170627 
   * UIImage添加纯色生成图片方法
+
 ~~~ javascript
 /// 生成指定颜色的图片
 + (UIImage *)imageWithColor:(UIColor *)color;

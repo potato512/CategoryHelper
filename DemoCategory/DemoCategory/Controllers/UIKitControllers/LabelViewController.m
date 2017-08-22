@@ -133,6 +133,13 @@
     label6.backgroundColor = [UIColor orangeColor];
     label6.text = @"毛玻璃效果";
     [label6 effectViewWithAlpha:0.4];
+    // 边框属性 方法1
+//    label6.shapeBorderColor = [UIColor blueColor];
+//    label6.shapeBorderWidth = 3.0;
+//    label6.shapeBorderDotted = YES;
+//    label6.shapeCornerRadius = 5.0;
+    // 边框属性 方法2
+    [label6 shapeLayerWithRadius:10.0 borderColor:[UIColor redColor] borderWidth:2.0 isDotted:YES];
 
     currentView = label6;
     
