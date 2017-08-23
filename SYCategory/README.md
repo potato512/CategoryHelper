@@ -34,10 +34,23 @@
 
 
 # 修改完善
+* 20170823
+  * 版本号：1.1.1
+  * SYCategoryFoundation
+    * NSDate添加时间差集方法
+
+~~~ javascript
+/// 获取任意时间两个时间差集（keySecond秒、keyMinute分、keyHour时、keyDay日、keyMonth月、keyYear年）
++ (NSDictionary *)getTimeDistanceWithTimeInterval:(NSTimeInterval)time endTimeInterval:(NSTimeInterval)endTime;
+
+/// 获取任意时间两个时间差集（keySecond秒、keyMinute分、keyHour时、keyDay日、keyMonth月、keyYear年）
++ (NSDictionary *)getTimeDistanceWithTimeInterval:(NSTimeInterval)time;
+~~~
+
 * 20170822
   * 版本号：1.1.0
   * SYCategoryUIKit
-    * 添加shapeLayer设置边框属性
+    * UIView添加shapeLayer设置边框属性
 
 ~~~ javascript
 /// 设置UI视图的shape边框属性（圆角、边框颜色、边框大小，是否虚线）

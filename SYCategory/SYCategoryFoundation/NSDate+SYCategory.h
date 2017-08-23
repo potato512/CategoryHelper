@@ -8,6 +8,13 @@
 
 #import <Foundation/Foundation.h>
 
+static NSString const *keyYear = @"year";
+static NSString const *keyMonth = @"month";
+static NSString const *keyDay = @"day";
+static NSString const *keyHour = @"hour";
+static NSString const *keyMinute = @"minute";
+static NSString const *keySecond = @"second";
+
 /// 获取时间间隔
 #define TICK   CFAbsoluteTime start = CFAbsoluteTimeGetCurrent();
 #define TOCK   NSLog(@"Time: %f", CFAbsoluteTimeGetCurrent() - start)
@@ -150,6 +157,10 @@ typedef NS_ENUM(NSInteger, SYDistanceMode)
 /// 从现在开始的24小时之后或之前的某个时间NSString（如明天，后天）
 + (NSString *)getTimeStrFromNowStrWithDay:(float)day after:(BOOL)after format:(NSString *)format;
 
+/// 获取任意时间两个时间差集（keySecond秒、keyMinute分、keyHour时、keyDay日、keyMonth月、keyYear年）
++ (NSDictionary *)getTimeDistanceWithTimeInterval:(NSTimeInterval)time endTimeInterval:(NSTimeInterval)endTime;
+/// 获取任意时间两个时间差集（keySecond秒、keyMinute分、keyHour时、keyDay日、keyMonth月、keyYear年）
++ (NSDictionary *)getTimeDistanceWithTimeInterval:(NSTimeInterval)time;
 /// 计算任意两个时间戳之间的间隔（秒、分、时、日、月、年）
 + (NSInteger)getTimeDistanceWithTimeInterval:(NSTimeInterval)time endTimeInterval:(NSTimeInterval)endTime mode:(SYDistanceMode)mode;
 

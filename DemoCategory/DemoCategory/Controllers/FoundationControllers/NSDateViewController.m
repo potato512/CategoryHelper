@@ -155,6 +155,35 @@
         NSLog(@"minute = %ld", distance);
         distance = [NSDate getTimeDistanceWithTimeInterval:1469860230 mode:SYDistanceModeSecond];
         NSLog(@"second = %ld", distance);
+        
+        // 2017/8/23 11:39:28——1503459568 2017/08/21 10:20:10——1503282010
+        NSDictionary *dict = [NSDate getTimeDistanceWithTimeInterval:1503459568 endTimeInterval:1503282010];
+        distance = ((NSNumber *)dict[keyYear]).integerValue;
+        NSLog(@"year = %ld", distance);
+        distance = ((NSNumber *)dict[keyMonth]).integerValue;
+        NSLog(@"month = %ld", distance);
+        distance = ((NSNumber *)dict[keyDay]).integerValue;
+        NSLog(@"day = %ld", distance);
+        distance = ((NSNumber *)dict[keyHour]).integerValue;
+        NSLog(@"hour = %ld", distance);
+        distance = ((NSNumber *)dict[keyMinute]).integerValue;
+        NSLog(@"minute = %ld", distance);
+        distance = ((NSNumber *)dict[keySecond]).integerValue;
+        NSLog(@"second = %ld", distance);
+        
+        date01 = [NSDate getDateWithTimeInterval:(1503459568 - 1503282010)];
+        distance = date01.getYearOfDate;
+        NSLog(@"year = %ld", distance);
+        distance = date01.getMonthOfDate;
+        NSLog(@"month = %ld", distance);
+        distance = date01.getDayOfDate;
+        NSLog(@"day = %ld", distance);
+        distance = date01.getHourOfDate;
+        NSLog(@"hour = %ld", distance);
+        distance = date01.getMinuteOfDate;
+        NSLog(@"minute = %ld", distance);
+        distance = date01.getSecondOfDate;
+        NSLog(@"second = %ld", distance);
     }
 }
 

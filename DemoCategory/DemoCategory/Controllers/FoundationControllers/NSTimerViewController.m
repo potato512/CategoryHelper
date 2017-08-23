@@ -72,16 +72,28 @@
 //    self.timer = NSTimerInitialize(0.1, self, @selector(countDownTime:), nil, YES);
     
     // 2
-//    __block NSInteger number = 0;
-//    self.timer = [NSTimer timerWithTimeInterval:0.1 userInfo:nil repeats:YES handle:^(NSTimer *timer) {
+    __block NSInteger number = 0;
+    __block NSTimeInterval time = (1503459568 - 1503282010);
+    self.timer = [NSTimer timerWithTimeInterval:1.0 userInfo:nil repeats:YES handle:^(NSTimer *timer) {
+        
 //        number++;
 //        self.label.text = [NSString stringWithFormat:@"%@", @(number)];
-//    }];
+        
+        time--;
+        NSDictionary *dict = [NSDate getTimeDistanceWithTimeInterval:time];
+        NSInteger year = ((NSNumber *)dict[keyYear]).integerValue;
+        NSInteger month = ((NSNumber *)dict[keyMonth]).integerValue;
+        NSInteger day = ((NSNumber *)dict[keyDay]).integerValue;
+        NSInteger hour = ((NSNumber *)dict[keyHour]).integerValue;
+        NSInteger minute = ((NSNumber *)dict[keyMinute]).integerValue;
+        NSInteger second = ((NSNumber *)dict[keySecond]).integerValue;
+        self.label.text = [NSString stringWithFormat:@"剩余 %@ 年 %@ 月 %@ 天 %@ 时 %@ 分 %@ 秒", @(year), @(month), @(day), @(hour), @(minute), @(second)];
+    }];
     
     // 3
-    [NSTimer timerGCDWithTimeInterval:1.0 maxTimerInterval:300 afterTime:0 handle:^(NSInteger remainTime) {
-        self.label.text = [NSString stringWithFormat:@"%@", @(remainTime)];
-    }];
+//    [NSTimer timerGCDWithTimeInterval:1.0 maxTimerInterval:300 afterTime:0 handle:^(NSInteger remainTime) {
+//        self.label.text = [NSString stringWithFormat:@"%@", @(remainTime)];
+//    }];
 }
 
 - (void)buttonClick:(UIButton *)button

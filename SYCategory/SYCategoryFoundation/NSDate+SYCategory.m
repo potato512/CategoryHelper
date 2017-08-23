@@ -410,10 +410,17 @@
     return compoents;
 }
 
-// private
 + (NSDictionary *)getTimeDistanceWithTimeInterval:(NSTimeInterval)time endTimeInterval:(NSTimeInterval)endTime
 {
     NSTimeInterval currentTime = endTime - time;
+    currentTime = fabs(currentTime);
+    NSDictionary *dict = [NSDate getTimeDistanceWithTimeInterval:currentTime];
+    return dict;
+}
+
++ (NSDictionary *)getTimeDistanceWithTimeInterval:(NSTimeInterval)time
+{
+    NSTimeInterval currentTime = time;
     
     NSInteger year = currentTime / (365 * 24 * 60 * 60);
     NSInteger yearTmp = (int)currentTime % (365 * 24 * 60 * 60);
@@ -432,7 +439,7 @@
     
     NSLog(@"year = %ld, month = %ld, day = %ld, hour = %ld, minute = %ld, second = %ld", year, month, day, hour, minute, second);
     
-    NSDictionary *dict = @{@"year":@(year), @"month":@(month), @"day":@(day), @"hour":@(hour), @"minute":@(minute), @"second":@(second)};
+    NSDictionary *dict = @{keyYear:@(year), keyMonth:@(month), keyDay:@(day), keyHour:@(hour), keyMinute:@(minute), keySecond:@(second)};
     return dict;
 }
 
@@ -440,12 +447,12 @@
 + (NSInteger)getTimeDistanceWithTimeInterval:(NSTimeInterval)time endTimeInterval:(NSTimeInterval)endTime mode:(SYDistanceMode)mode
 {
     NSDictionary *dict = [NSDate getTimeDistanceWithTimeInterval:time endTimeInterval:endTime];
-    NSInteger year = ((NSNumber *)dict[@"year"]).integerValue;
-    NSInteger month = ((NSNumber *)dict[@"month"]).integerValue;
-    NSInteger day = ((NSNumber *)dict[@"day"]).integerValue;
-    NSInteger hour = ((NSNumber *)dict[@"hour"]).integerValue;
-    NSInteger minute = ((NSNumber *)dict[@"minute"]).integerValue;
-    NSInteger second = ((NSNumber *)dict[@"second"]).integerValue;
+    NSInteger year = ((NSNumber *)dict[keyYear]).integerValue;
+    NSInteger month = ((NSNumber *)dict[keyMonth]).integerValue;
+    NSInteger day = ((NSNumber *)dict[keyDay]).integerValue;
+    NSInteger hour = ((NSNumber *)dict[keyHour]).integerValue;
+    NSInteger minute = ((NSNumber *)dict[keyMinute]).integerValue;
+    NSInteger second = ((NSNumber *)dict[keySecond]).integerValue;
     
     NSTimeInterval distance = year;
     if (SYDistanceModeYear == mode)
