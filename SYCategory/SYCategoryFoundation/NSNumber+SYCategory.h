@@ -27,4 +27,10 @@
 /// 获取一个随机整数，范围在[from,to）
 + (int)randomNumber:(int)from to:(int)to;
 
+/// 阿拉伯数字转罗马大写（如：1为一）
+- (NSString *)numberConvertedUpperRoman;
+
+/// 阿拉伯数字转中文大写（如：1为壹）
+- (NSString *)numberConvertedCNCapital;
+
 @end

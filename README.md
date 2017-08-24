@@ -42,6 +42,19 @@
 
 
 #### 修改完善
+* 20170824
+  * 版本号：1.1.2
+  * SYCategoryFoundation
+    * NSNumber添加数字转换方法
+
+~~~ javascript
+/// 阿拉伯数字转罗马大写（如：1为一）
+- (NSString *)numberConvertedUpperRoman;
+
+/// 阿拉伯数字转中文大写（如：1为壹）
+- (NSString *)numberConvertedCNCapital;
+~~~
+
 * 20170823
   * 版本号：1.1.1
   * SYCategoryFoundation

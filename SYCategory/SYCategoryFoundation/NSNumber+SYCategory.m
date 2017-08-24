@@ -42,4 +42,45 @@
     return (int)(from + (arc4random() % (to-from + 1)));
 }
 
+/// 阿拉伯数字转罗马大写
+- (NSString *)numberConvertedUpperRoman
+{
+    NSInteger number = self.integerValue;
+    switch (number)
+    {
+        case 1: return @"一"; break;
+        case 2: return @"二"; break;
+        case 3: return @"三"; break;
+        case 4: return @"四"; break;
+        case 5: return @"五"; break;
+        case 6: return @"六"; break;
+        case 7: return @"七"; break;
+        case 8: return @"八"; break;
+        case 9: return @"九"; break;
+        default: break;
+    }
+    return nil;
+}
+
+/// 阿拉伯数字转中文大写
+- (NSString *)numberConvertedCNCapital
+{
+    NSInteger number = self.integerValue;
+    switch (number)
+    {
+        case 0: return @"零"; break;
+        case 1: return @"壹"; break;
+        case 2: return @"贰"; break;
+        case 3: return @"叁"; break;
+        case 4: return @"肆"; break;
+        case 5: return @"伍"; break;
+        case 6: return @"陆"; break;
+        case 7: return @"柒"; break;
+        case 8: return @"捌"; break;
+        case 9: return @"玖"; break;
+        default: break;
+    }
+    return nil;
+}
+
 @end
