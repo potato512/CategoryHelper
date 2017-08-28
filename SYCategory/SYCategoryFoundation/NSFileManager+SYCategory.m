@@ -717,7 +717,7 @@
             continue;
         }
         
-        int folderPathLength = strlen(folderPath);
+        int folderPathLength = (int)strlen(folderPath);
         char childPath[1024]; // 子文件的路径地址
         stpcpy(childPath, folderPath);
         if (folderPath[folderPathLength-1] != '/')
