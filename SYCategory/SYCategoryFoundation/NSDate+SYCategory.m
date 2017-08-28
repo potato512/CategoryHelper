@@ -92,8 +92,8 @@
         return nil;
     }
     
-    NSCalendar *calendar = [[NSCalendar alloc] initWithCalendarIdentifier:NSGregorianCalendar];
-    NSInteger unitFlags = (NSMonthCalendarUnit | NSDayCalendarUnit | NSYearCalendarUnit | NSHourCalendarUnit | NSMinuteCalendarUnit | NSSecondCalendarUnit | NSWeekCalendarUnit | NSWeekdayCalendarUnit);
+    NSCalendar *calendar = [[NSCalendar alloc] initWithCalendarIdentifier:NSCalendarIdentifierGregorian];
+    NSInteger unitFlags = (NSCalendarUnitSecond | NSCalendarUnitMinute | NSCalendarUnitHour | NSCalendarUnitDay | NSCalendarUnitMonth | NSCalendarUnitYear | NSCalendarUnitWeekday | NSCalendarUnitWeekdayOrdinal);
     NSDateComponents *component = [calendar components:unitFlags fromDate:date];
     
     return component;
@@ -402,9 +402,9 @@
 + (NSDateComponents *)getDateComponentsWithBeginDate:(NSDate *)beginDate endDate:(NSDate *)endDate
 {
     // 创建日历对象
-    NSCalendar *calendar = [[NSCalendar alloc ] initWithCalendarIdentifier:NSGregorianCalendar];
+    NSCalendar *calendar = [[NSCalendar alloc ] initWithCalendarIdentifier:NSCalendarIdentifierGregorian];
     // 设置组件标志识
-    NSUInteger unitFlags = (NSHourCalendarUnit | NSMinuteCalendarUnit | NSSecondCalendarUnit | NSDayCalendarUnit | NSMonthCalendarUnit | NSYearCalendarUnit);
+    NSUInteger unitFlags = (NSCalendarUnitSecond | NSCalendarUnitMinute | NSCalendarUnitHour | NSCalendarUnitDay | NSCalendarUnitMonth | NSCalendarUnitYear);
     // 创建日期组件对象，由日历对象通过起止日期及标识创建
     NSDateComponents *compoents = [calendar components:unitFlags fromDate:beginDate toDate:endDate options:0];
     return compoents;
@@ -436,8 +436,6 @@
     
     NSInteger minute = hourTmp / 60;
     NSInteger second = hourTmp % 60;
-    
-    NSLog(@"year = %ld, month = %ld, day = %ld, hour = %ld, minute = %ld, second = %ld", year, month, day, hour, minute, second);
     
     NSDictionary *dict = @{keyYear:@(year), keyMonth:@(month), keyDay:@(day), keyHour:@(hour), keyMinute:@(minute), keySecond:@(second)};
     return dict;
