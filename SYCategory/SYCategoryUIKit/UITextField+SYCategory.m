@@ -7,6 +7,8 @@
 //
 
 #import "UITextField+SYCategory.h"
+#import "NSString+SYCategory.h"
+#import "NSString+SYRegular.h"
 #import <objc/runtime.h>
 
 @implementation UITextField (SYCategory)

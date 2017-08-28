@@ -7,6 +7,7 @@
 //
 
 #import "NSString+SYCategory.h"
+#import "NSString+SYRegular.h"
 #import <ifaddrs.h>
 #import <arpa/inet.h>
 

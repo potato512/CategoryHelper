@@ -7,6 +7,7 @@
 //
 
 #import "NSStream+SYCategory.h"
+#import "NSFileManager+SYCategory.h"
 
 @implementation NSStream (SYCategory)
 

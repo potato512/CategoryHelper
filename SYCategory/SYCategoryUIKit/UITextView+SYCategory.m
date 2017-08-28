@@ -7,6 +7,8 @@
 //
 
 #import "UITextView+SYCategory.h"
+#import "NSString+SYCategory.h"
+#import "NSString+SYRegular.h"
 #import <objc/runtime.h>
 #import "UILabel+SYCategory.h"
 

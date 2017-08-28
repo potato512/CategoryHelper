@@ -7,6 +7,8 @@
 //
 
 #import "UILabel+SYCategory.h"
+#import "NSAttributedString+SYCategory.h"
+#import "NSObject+SYCategory.h"
 #import <objc/runtime.h>
 
 @interface UILabel ()

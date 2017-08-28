@@ -7,6 +7,7 @@
 //
 
 #import "NSString+SYRegular.h"
+#import "NSString+SYCategory.h"
 
 static NSString *const kNumberRegular = @"0123456789";
 static NSString *const kUpperRegular = @"ABCDEFGHIJKLMNOPQRSTUVWXYZ";

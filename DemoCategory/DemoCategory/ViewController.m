@@ -8,6 +8,8 @@
 
 #import "ViewController.h"
 
+#import "SYCategory.h"
+
 #import "LabelViewController.h"
 #import "ButtonViewController.h"
 #import "ImageViewController.h"

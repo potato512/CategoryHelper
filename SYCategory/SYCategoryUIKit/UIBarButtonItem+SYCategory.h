@@ -7,6 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "UIButton+SYCategory.h"
+#import "NSObject+SYCategory.h"
 
 /// 按钮类型（左按钮、右按钮）
 typedef NS_ENUM(NSInteger, UIBarButtonItemType)

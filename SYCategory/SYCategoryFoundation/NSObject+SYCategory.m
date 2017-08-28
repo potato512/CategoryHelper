@@ -7,6 +7,7 @@
 //
 
 #import "NSObject+SYCategory.h"
+#import "NSString+SYCategory.h"
 #import <ifaddrs.h>
 #import <arpa/inet.h>
 
@@ -24,10 +25,6 @@
             NSDictionary *dict = @{NSFontAttributeName:font, NSParagraphStyleAttributeName:paragraphStyle.copy};
             
             sizeTmp = [text boundingRectWithSize:size options:NSStringDrawingUsesLineFragmentOrigin attributes:dict context:nil].size;
-        }
-        else
-        {
-            sizeTmp = [text sizeWithFont:font constrainedToSize:size lineBreakMode:NSLineBreakByWordWrapping];
         }
     }
     return sizeTmp;
