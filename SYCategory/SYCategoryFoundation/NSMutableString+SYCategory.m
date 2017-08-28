@@ -10,6 +10,46 @@
 
 @implementation NSMutableString (SYCategory)
 
+#pragma mark - 安全验证添加
+
+- (NSMutableString *)setStringSafety:(NSString *)string
+{
+    if (string)
+    {
+        [self setString:string];
+    }
+    return self;
+}
+
+- (NSMutableString *)appendStringSafety:(NSString *)string
+{
+    if (string)
+    {
+        [self appendString:string];
+    }
+    return self;
+}
+
+- (NSMutableString *)indsertStringSafety:(NSString *)string atIndex:(NSInteger)index
+{
+    if (string && (0 <= index || self.length - 1 >= index))
+    {
+        [self insertString:string atIndex:index];
+    }
+    return self;
+}
+
+- (NSMutableString *)replaceStringSafety:(NSString *)currentString withString:(NSString *)replaceString
+{
+    if (currentString && replaceString)
+    {
+        NSString *tmp = [NSString stringWithString:self];
+        tmp = [tmp stringByReplacingOccurrencesOfString:currentString withString:replaceString];
+        [self setString:tmp];
+    }
+    return self;
+}
+
 #pragma mark - 链式属性
 
 /// 链式编程 重置可变字符串

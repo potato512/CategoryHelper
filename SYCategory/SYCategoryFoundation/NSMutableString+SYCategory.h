@@ -10,6 +10,20 @@
 
 @interface NSMutableString (SYCategory)
 
+#pragma mark - 安全验证添加
+
+/// 重置字符串（安全的）
+- (NSMutableString *)setStringSafety:(NSString *)string;
+
+/// 添加字符串（安全的）
+- (NSMutableString *)appendStringSafety:(NSString *)string;
+
+/// 插入字符串（安全的）
+- (NSMutableString *)indsertStringSafety:(NSString *)string atIndex:(NSInteger)index;
+
+/// 替换字符串（安全的）
+- (NSMutableString *)replaceStringSafety:(NSString *)currentString withString:(NSString *)replaceString;
+
 #pragma mark - 链式属性
 
 /// 链式编程 重置可变字符串

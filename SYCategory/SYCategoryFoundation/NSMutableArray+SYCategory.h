@@ -10,6 +10,20 @@
 
 @interface NSMutableArray (SYCategory)
 
+#pragma mark - 安全验证添加
+
+/// 添加元素（安全的）
+- (NSMutableArray *)addObjectSafety:(id)object;
+
+/// 添加元素到指定位置（安全的）
+- (NSMutableArray *)insertObjectSafety:(id)object atIndex:(NSInteger)index;
+
+/// 用指定的元素替换指定位置的元素（安全的）
+- (NSMutableArray *)replaceObjectSafety:(id)object atIndex:(NSInteger)index;
+
+/// 添加数组中的所有元素（安全的）
+- (NSMutableArray *)addObjectsFromArraySafety:(NSArray *)array;
+
 #pragma mark - 链式属性
 
 /// 链式编程 追加元素

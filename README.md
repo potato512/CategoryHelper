@@ -46,6 +46,46 @@
   * 版本号：1.1.3
   * SYCategoryFoundation
     * NSAttributedString修改异常
+    * NSMutableArray添加方法
+    * NSMutableDictionary添加方法
+    * NSMutableString添加方法
+
+
+~~~ javascript
+/// 添加元素（安全的）
+- (NSMutableArray *)addObjectSafety:(id)object;
+
+/// 添加元素到指定位置（安全的）
+- (NSMutableArray *)insertObjectSafety:(id)object atIndex:(NSInteger)index;
+
+/// 用指定的元素替换指定位置的元素（安全的）
+- (NSMutableArray *)replaceObjectSafety:(id)object atIndex:(NSInteger)index;
+
+/// 添加数组中的所有元素（安全的）
+- (NSMutableArray *)addObjectsFromArraySafety:(NSArray *)array;
+~~~
+
+~~~ javascript
+/// 添加指定元素object（安全的）
+- (NSMutableDictionary *)setObjectSafety:(id)object forKey:(NSString *)key;
+
+/// 添加指定元素value（安全的）
+- (NSMutableDictionary *)setValueSafety:(id)object forKey:(NSString *)key;
+~~~
+
+~~~ javascript
+/// 重置字符串（安全的）
+- (NSMutableString *)setStringSafety:(NSString *)string;
+
+/// 添加字符串（安全的）
+- (NSMutableString *)appendStringSafety:(NSString *)string;
+
+/// 插入字符串（安全的）
+- (NSMutableString *)indsertStringSafety:(NSString *)string atIndex:(NSInteger)index;
+
+/// 替换字符串（安全的）
+- (NSMutableString *)replaceStringSafety:(NSString *)currentString withString:(NSString *)replaceString;
+~~~
 
 
 * 20170824

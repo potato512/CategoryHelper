@@ -10,6 +10,44 @@
 
 @implementation NSMutableArray (SYCategory)
 
+#pragma mark - 安全验证添加
+
+- (NSMutableArray *)addObjectSafety:(id)object
+{
+    if (object)
+    {
+        [self addObject:object];
+    }
+    return self;
+}
+
+- (NSMutableArray *)insertObjectSafety:(id)object atIndex:(NSInteger)index
+{
+    if (object && (0 <= index || self.count - 1 >= index))
+    {
+        [self insertObject:object atIndex:index];
+    }
+    return self;
+}
+
+- (NSMutableArray *)replaceObjectSafety:(id)object atIndex:(NSInteger)index
+{
+    if (object && (0 <= index || self.count - 1 >= index))
+    {
+        [self replaceObjectAtIndex:index withObject:object];
+    }
+    return self;
+}
+
+- (NSMutableArray *)addObjectsFromArraySafety:(NSArray *)array
+{
+    if (array && 0 < array.count)
+    {
+        [self addObjectsFromArray:array];
+    }
+    return self;
+}
+
 #pragma mark - 链式属性
 
 /// 链式编程 追加元素
