@@ -42,6 +42,12 @@
 
 
 #### 修改完善
+* 20170828
+  * 版本号：1.1.3
+  * SYCategoryFoundation
+    * NSAttributedString修改异常
+
+
 * 20170824
   * 版本号：1.1.2
   * SYCategoryFoundation
