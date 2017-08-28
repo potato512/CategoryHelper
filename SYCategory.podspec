@@ -7,7 +7,7 @@ Pod::Spec.new do |s|
   s.license      = { :type => "MIT", :file => "LICENSE" }
   s.author       = { "herman" => "zhangsy757@163.com" }
   s.platform     = :ios, "8.0"
-  s.source       = { :git => "https://github.com/potato512/SYCategory.git", :tag => "#{s.version}" }
+  s.source       = { :git => "https://github.com/potato512/SYCategory.git", :tag => s.version.to_s }
   s.source_files  = "SYCategory/*.{h}", "SYCategory/SYCategoryFoundation/*.{h,m}", "SYCategory/SYCategoryUIKit/*.{h,m}"
   s.public_header_files = "SYCategory/*.{h}", "SYCategory/SYCategoryFoundation/*.{h}", "SYCategory/SYCategoryUIKit/*.{h}"
   s.requires_arc = true
