@@ -18,7 +18,7 @@
  *
  *  @return UIColor 对象
  */
-+ (UIColor *)colorWithHexString:(NSString *)color;
++ (UIColor *)colorWithHexadecimalString:(NSString *)color;
 
 /// 设置随机颜色
 + (UIColor *)colorRandom;

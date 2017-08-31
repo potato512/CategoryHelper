@@ -42,7 +42,7 @@
         self.navigationBar.titleTextAttributes = @{NSFontAttributeName:textFont, NSForegroundColorAttributeName:textColor};
         
         // 导航底部1px的阴影颜色-修改
-        [self.navigationBar setShadowImage:[UIImage imageWithColor:[UIColor colorWithHexString:@"0xd6d7dc"] size:CGSizeMake(1.0, 1.0)]];
+        [self.navigationBar setShadowImage:[UIImage imageWithColor:[UIColor colorWithHexadecimalString:@"0xd6d7dc"] size:CGSizeMake(1.0, 1.0)]];
         
         // 导航底部1px的阴影-遮住
         /*

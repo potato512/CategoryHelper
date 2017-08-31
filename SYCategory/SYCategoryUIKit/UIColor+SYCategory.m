@@ -17,7 +17,7 @@
  *
  *  @return UIColor 对象
  */
-+ (UIColor *)colorWithHexString:(NSString *)color
++ (UIColor *)colorWithHexadecimalString:(NSString *)color
 {
     NSString *colorString = [[color stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]] uppercaseString];
     

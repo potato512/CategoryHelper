@@ -50,7 +50,7 @@
     UIView *view02 = [[UIView alloc] initWithFrame:CGRectMake(currentView.left, (currentView.bottom + 10.0), currentView.width, currentView.height)];
     [self.view addSubview:view02];
     view02.viewText = @"十六进制颜色";
-    view02.backgroundColor = [UIColor colorWithHexString:@"oXe84515"];
+    view02.backgroundColor = [UIColor colorWithHexadecimalString:@"oXe84515"];
     
     currentView = view02;
     
