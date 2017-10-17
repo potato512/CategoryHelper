@@ -45,20 +45,20 @@
     // 接收消息
     NSString *name = @"personInfo";
     SEL action = @selector(notificationAction:);
-//    if ((name && 0 < name.length && [name isKindOfClass:[NSString class]])) {
-//        [kNotificationCenter addObserver:self selector:action name:name object:nil];
-//    }
-    
-//    kNotificationCenterReceive(name, self, action);
-    
     // 方法1
-//    NSNotificationCenterReceive(name, self, action);
+//    [[NSNotificationCenter defaultCenter] addObserver:self selector:action name:name object:nil];
     
     // 方法2
-    kSelfWeak;
-    [[NSNotificationCenter defaultCenter] receiveNotificationWithName:name handle:^(NSNotification *notification) {
-        [weakSelf notificationAction:notification];
-    }];
+//    NSNotificationCenterReceive(name, self, action);
+    
+    // 方法3
+    [[NSNotificationCenter defaultCenter] receiveNotificationWithName:name target:self selector:action];
+    
+    // 方法4
+//    kSelfWeak;
+//    [[NSNotificationCenter defaultCenter] receiveNotificationWithName:name handle:^(NSNotification *notification) {
+//        [weakSelf notificationAction:notification];
+//    }];
 }
 
 - (void)buttonClick:(UIButton *)button
@@ -67,15 +67,14 @@
     NSString *name = @"personInfo";
     NSDictionary *dict = @{@"name":@"devZhang", @"age":@"30", @"job":@"iOSDev"};
     
-//        [kNotificationCenter postNotificationName:name object:nil userInfo:dict];
-    
-//        kNotificationCenterPost(name, dict);
-    
     // 方法1
-//        NSNotificationCenterPost(name, dict);
-    
+    [[NSNotificationCenter defaultCenter] postNotificationName:name object:nil userInfo:dict];
+
     // 方法2
-    [[NSNotificationCenter defaultCenter] postNotificationWithName:name userInfo:dict];
+//    NSNotificationCenterPost(name, dict);
+    
+    // 方法3
+//    [[NSNotificationCenter defaultCenter] postNotificationWithName:name userInfo:dict];
 }
 
 - (void)notificationAction:(NSNotification *)notification

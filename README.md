@@ -42,6 +42,11 @@
 
 
 #### 修改完善
+* 20171017
+  * 版本号：1.1.4
+  * SYCategoryFoundation
+    * NSNotificationCenter异常
+    
 * 20170828
   * 版本号：1.1.3
   * SYCategoryFoundation

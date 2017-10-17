@@ -99,12 +99,8 @@ void NSNotificationCenterRemove(NSString *name, id target)
  */
 - (void)receiveNotificationWithName:(NSString *)name handle:(void (^)(NSNotification *notification))handle
 {
-    [self removeNotificationWithName:name target:self];
-    
     self.NotificationBlock = [handle copy];
-    
-    SEL action = @selector(notificationMethord:);
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:action name:name object:nil];
+    [self receiveNotificationWithName:name target:self selector:@selector(notificationMethord:)];
 }
 
 - (void)notificationMethord:(NSNotification *)notification
