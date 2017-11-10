@@ -80,6 +80,11 @@
 /// 字符等级强弱度识别（1弱；2中；3强）
 - (NSInteger)textStrengthGrade;
 
+#pragma mark - 连续数字字符串
+
+/// 判断数字字符是否是连续n个或n个以上数字字符串，区分降序或升序（默认长序）
+- (BOOL)isContinuousNumberNSString:(NSInteger)number order:(BOOL)isAscending;
+
 #pragma mark - 链式属性
 
 /// 属性设置NSString转换NSAttributedString

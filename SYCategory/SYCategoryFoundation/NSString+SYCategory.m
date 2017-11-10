@@ -357,6 +357,66 @@ static NSString *const keyDecimalPoint = @".";
     return grade;
 }
 
+#pragma mark - 连续数字字符串
+
+- (BOOL)isContinuousNumberNSString:(NSInteger)number order:(BOOL)isAscending
+{
+    BOOL result = NO;
+    if ([NSString isValidNSString:self])
+    {
+        // 连接n个或n个以上顺序或倒序数字字符串
+        NSInteger lenght = self.length;
+        for (NSInteger index = 0; index < (lenght - number); index++)
+        {
+            NSInteger resultNumber = 0; // 求和
+            NSInteger resultJudge = 0;  // 判断
+            
+            NSString *subString = [self substringWithRange:NSMakeRange(index, number)];
+            for (NSInteger subIndex = 0; subIndex < subString.length; subIndex++)
+            {
+                NSString *numberString = [subString substringWithRange:NSMakeRange(subIndex, 1)];
+                if ([numberString isNumberNSString])
+                {
+                    NSInteger subNumber = numberString.integerValue;
+                    resultNumber += subNumber;
+                    if (subIndex == 0)
+                    {
+                        // 初始化判断值
+                        resultJudge = subNumber;
+                    }
+                    else if (subIndex == subString.length - 1)
+                    {
+                        if (!isAscending)
+                        {
+                            // 降序时，最后一个值
+                            resultJudge = subNumber;
+                        }
+                        // 最后一个时判断结果
+                        NSInteger judge = 0;
+                        for (NSInteger sum = 1; sum < number; sum++)
+                        {
+                            judge += sum;
+                        }
+                        judge += (number * resultJudge);
+                        if (resultNumber == judge)
+                        {
+                            // 连续
+                            result = YES;
+                            break;
+                        }
+                    }
+                }
+            }
+            
+            if (result)
+            {
+                // 有个连续的则不再继续判断
+                break;
+            }
+        }
+    }
+    return result;
+}
 
 #pragma mark - 链式属性
 
