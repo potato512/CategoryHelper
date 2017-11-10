@@ -21,11 +21,19 @@
 /// string转int
 + (int)intWithString:(NSString *)string;
 
+#pragma mark - 位数保留
+
+/// 保留n位小数
++ (double)keepDecimalsDoubleValue:(double)number decimal:(int)decimalNumber;
 /// 保留2位小数
 + (double)keepTwoDecimalsDoubleValue:(double)number;
 
+#pragma mark - 随机数
+
 /// 获取一个随机整数，范围在[from,to）
 + (int)randomNumber:(int)from to:(int)to;
+
+#pragma mark - 大小写转换
 
 /// 阿拉伯数字转罗马大写（如：1为一）
 - (NSString *)numberConvertedUpperRoman;

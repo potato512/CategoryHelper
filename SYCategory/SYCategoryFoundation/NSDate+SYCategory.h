@@ -161,6 +161,8 @@ typedef NS_ENUM(NSInteger, SYDistanceMode)
 + (NSDictionary *)getTimeDistanceWithTimeInterval:(NSTimeInterval)time endTimeInterval:(NSTimeInterval)endTime;
 /// 获取任意时间两个时间差集（keySecond秒、keyMinute分、keyHour时、keyDay日、keyMonth月、keyYear年）
 + (NSDictionary *)getTimeDistanceWithTimeInterval:(NSTimeInterval)time;
+/// 计算两个时间差-倒计时（keySecond秒、keyMinute分、keyHour时、keyDay日、keyMonth月、keyYear年）
++ (NSDictionary *)getTimeDistanceWithDate:(NSDate *)dateBegin date:(NSDate *)dateEnd;
 /// 计算任意两个时间戳之间的间隔（秒、分、时、日、月、年）
 + (NSInteger)getTimeDistanceWithTimeInterval:(NSTimeInterval)time endTimeInterval:(NSTimeInterval)endTime mode:(SYDistanceMode)mode;
 

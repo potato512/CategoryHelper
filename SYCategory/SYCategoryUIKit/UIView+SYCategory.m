@@ -271,6 +271,34 @@
     return font;
 }
 
+- (void)setViewTextNumberLines:(NSInteger)viewTextNumberLines
+{
+    objc_setAssociatedObject(self, @selector(viewTextNumberLines), @(viewTextNumberLines), OBJC_ASSOCIATION_RETAIN);
+    
+    [self refreshLabel];
+    self.viewTextLabel.numberOfLines = self.viewTextNumberLines;
+}
+
+- (NSInteger)viewTextNumberLines
+{
+    NSNumber *numberLines = objc_getAssociatedObject(self, @selector(viewTextNumberLines));
+    return numberLines.integerValue;
+}
+
+- (void)setViewTextAdjustsFontSizeToFitWidth:(BOOL)viewTextAdjustsFontSizeToFitWidth
+{
+    objc_setAssociatedObject(self, @selector(viewTextAdjustsFontSizeToFitWidth), @(viewTextAdjustsFontSizeToFitWidth), OBJC_ASSOCIATION_RETAIN);
+    
+    [self refreshLabel];
+    self.viewTextLabel.adjustsFontSizeToFitWidth = self.viewTextAdjustsFontSizeToFitWidth;
+}
+
+- (BOOL)viewTextAdjustsFontSizeToFitWidth
+{
+    NSNumber *adjust = objc_getAssociatedObject(self, @selector(viewTextAdjustsFontSizeToFitWidth));
+    return adjust.boolValue;
+}
+
 - (void)setViewTextLabel:(UILabel *)viewTextLabel
 {
     objc_setAssociatedObject(self, @selector(viewTextLabel), viewTextLabel, OBJC_ASSOCIATION_RETAIN);

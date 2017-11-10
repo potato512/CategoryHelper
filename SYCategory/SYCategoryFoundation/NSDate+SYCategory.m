@@ -441,6 +441,25 @@
     return dict;
 }
 
++ (NSDictionary *)getTimeDistanceWithDate:(NSDate *)dateBegin date:(NSDate *)dateEnd
+{
+    NSDate *nowData = dateBegin;
+    NSDate *endData = dateEnd;
+    
+    NSCalendar *chineseClendar = [[NSCalendar alloc] initWithCalendarIdentifier: NSCalendarIdentifierGregorian];
+    NSUInteger unitFlags = (NSCalendarUnitYear | NSCalendarUnitMonth | NSCalendarUnitDay | NSCalendarUnitHour | NSCalendarUnitMinute | NSCalendarUnitSecond);
+    NSDateComponents *components = [chineseClendar components:unitFlags fromDate:nowData toDate: endData options:0];
+    NSInteger hour = [components hour];
+    NSInteger minute = [components minute];
+    NSInteger second = [components second];
+    NSInteger day = [components day];
+    NSInteger month = [components month];
+    NSInteger year = [components year];
+    
+    NSDictionary *dict = @{keyYear:@(year), keyMonth:@(month), keyDay:@(day), keyHour:@(hour), keyMinute:@(minute), keySecond:@(second)};
+    return dict;
+}
+
 /// 计算任意两个时间戳之间的间隔（秒、分、时、日、月、年）
 + (NSInteger)getTimeDistanceWithTimeInterval:(NSTimeInterval)time endTimeInterval:(NSTimeInterval)endTime mode:(SYDistanceMode)mode
 {

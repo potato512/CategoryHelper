@@ -74,6 +74,10 @@ typedef NS_ENUM(NSInteger, ViewFlipType)
 @property (nonatomic, strong) UIColor *viewTextColor;
 /// 标题字体大小（默认12.0）
 @property (nonatomic, strong) UIFont *viewTextFont;
+/// 显示行数（默认多行）
+@property (nonatomic, assign) NSInteger viewTextNumberLines;
+/// 自适应字体大小（默认无）
+@property (nonatomic, assign) BOOL viewTextAdjustsFontSizeToFitWidth;
 /// 标题显示位置（默认居中）
 @property (nonatomic, assign) CGRect viewTextRect;
 /// 标题显示对齐方式（默认居中）
