@@ -320,6 +320,7 @@ static NSString *const keyDecimalPoint = @".";
 
 #pragma mark - 字符等级强弱度识别
 
+/// 5个条件（长度大于10、含大写字母、含小写字母、含数字、含特殊符号）0不包含，1任一条件，2任二条件，3任三条件，4任条件，5包含
 - (NSInteger)textStrengthGrade
 {
     NSInteger grade = 0;
@@ -340,18 +341,6 @@ static NSString *const keyDecimalPoint = @".";
             {
                 grade++;
             }
-        }
-        if (grade >= 4)
-        {
-            grade = 3;
-        }
-        else if (grade >= 3)
-        {
-            grade = 2;
-        }
-        else if (grade >= 2)
-        {
-            grade = 1;
         }
     }
     return grade;
