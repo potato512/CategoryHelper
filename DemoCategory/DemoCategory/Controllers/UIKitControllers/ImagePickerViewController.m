@@ -64,7 +64,23 @@
 - (void)photoClick:(UIBarButtonItem *)item
 {
     kSelfWeak;
-    [UIImagePickerController pickerImageWithType:UIImagePickerControllerSourceTypePhotoLibrary target:self complete:^(UIImage *image) {
+//    [UIImagePickerController pickerImageWithType:UIImagePickerControllerSourceTypePhotoLibrary target:self complete:^(UIImage *image) {
+//        if (image)
+//        {
+//            UIImageView *imageview = (UIImageView *)[weakSelf.view viewWithTag:1000];
+//            imageview.image = image;
+//        }
+//        else
+//        {
+//            NSLog(@"未成功获取到相片");
+//        }
+//    } photosAlbum:YES saveStart:^{
+//        NSLog(@"正在保存图片");
+//    } saveFinish:^(SavePhotoStatus status) {
+//        NSLog(@"图片保存：%@", (SavePhotoSuccess == status ? @"成功" : @"失败"));
+//    }];
+    
+    [UIImagePickerController pickerImageWithType:UIImagePickerControllerSourceTypePhotoLibrary edit:YES styleBgColor:[UIColor greenColor] styleTextColor:[UIColor redColor] styleTextFont:[UIFont systemFontOfSize:20.0] target:self complete:^(UIImage *image) {
         if (image)
         {
             UIImageView *imageview = (UIImageView *)[weakSelf.view viewWithTag:1000];

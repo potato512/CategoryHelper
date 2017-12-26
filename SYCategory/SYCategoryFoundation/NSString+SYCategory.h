@@ -11,6 +11,10 @@
 
 @interface NSString (SYCategory)
 
+
+/// UUID
++ (NSString *)UUID;
+
 /**
  *  获取设备 ip 地址
  *

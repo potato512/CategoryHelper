@@ -13,6 +13,15 @@
 
 @implementation NSString (SYCategory)
 
+
++ (NSString *)UUID
+{
+    CFUUIDRef uuid = CFUUIDCreate(NULL);
+    CFStringRef string = CFUUIDCreateString(NULL, uuid);
+    CFRelease(uuid);
+    return (__bridge_transfer NSString *)string;
+}
+
 /**
  *  获取设备 ip 地址
  *

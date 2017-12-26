@@ -13,6 +13,12 @@
 
 @implementation UITextField (SYCategory)
 
+//屏蔽dealloc方法（避免iOS8.x版本闪退）
+//- (void)dealloc
+//{
+//    [[NSNotificationCenter defaultCenter] removeObserver:self];
+//}
+
 
 /// 设置TextField空白间隙，左侧或右侧（默认10个间距）
 - (void)viewModeType:(TextFieldViewModeType)type space:(float)space
@@ -496,11 +502,6 @@
 }
 
 #pragma mark - 通知方法
-
-- (void)dealloc
-{
-    [[NSNotificationCenter defaultCenter] removeObserver:self name:UITextFieldTextDidChangeNotification object:nil];
-}
 
 - (void)textLengthEditChanged:(NSNotification *)notification
 {

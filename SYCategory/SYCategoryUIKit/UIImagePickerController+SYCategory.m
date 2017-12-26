@@ -87,6 +87,11 @@ static UIViewController __weak *targetController;
  */
 + (void)pickerImageWithType:(UIImagePickerControllerSourceType)sourceType target:(id)target complete:(void (^)(UIImage *image))complete photosAlbum:(BOOL)isSave saveStart:(void (^)(void))saveStart saveFinish:(void (^)(SavePhotoStatus status))saveFinish
 {
+    [self pickerImageWithType:sourceType edit:NO styleBgColor:nil styleTextColor:nil styleTextFont:nil target:target complete:complete photosAlbum:isSave saveStart:saveStart saveFinish:saveFinish];
+}
+
++ (void)pickerImageWithType:(UIImagePickerControllerSourceType)sourceType edit:(BOOL)allowEdit styleBgColor:(UIColor *)bgColor styleTextColor:(UIColor *)textColor styleTextFont:(UIFont *)textFont target:(id)target complete:(void (^)(UIImage *image))complete photosAlbum:(BOOL)isSave saveStart:(void (^)(void))saveStart saveFinish:(void (^)(SavePhotoStatus status))saveFinish
+{
     sourceTypePicker = sourceType;
     if ([[self class] isValidWithPickerSourceType])
     {
@@ -102,7 +107,24 @@ static UIViewController __weak *targetController;
         
         UIImagePickerController *pickerController = [[UIImagePickerController alloc] init];
         pickerController.sourceType = sourceType;
+        pickerController.allowsEditing = allowEdit;
         pickerController.delegate = [self class];
+        // 导航栏样式设置
+        if ([[[UIDevice currentDevice] systemVersion] floatValue] >= 7.0)
+        {
+            // 背景色
+            if (bgColor)
+            {
+                [pickerController.navigationBar setBarTintColor:bgColor];
+                pickerController.navigationBar.translucent = NO;
+            }
+            // 返回按钮标题颜色，导航标题
+            if (textColor && textFont)
+            {
+                pickerController.navigationBar.tintColor = textColor;
+                pickerController.navigationBar.titleTextAttributes = @{NSFontAttributeName:textFont, NSForegroundColorAttributeName:textColor};
+            }
+        }
         [target presentViewController:pickerController animated:YES completion:nil];
     }
 }

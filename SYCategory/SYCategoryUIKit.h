@@ -7,6 +7,7 @@
 //  https://github.com/potato512/SYCategory
 
 #import "UIView+SYCategory.h"
+#import "UIView+Status.h"
 #import "UILabel+SYCategory.h"
 #import "UIButton+SYCategory.h"
 #import "UIBarButtonItem+SYCategory.h"

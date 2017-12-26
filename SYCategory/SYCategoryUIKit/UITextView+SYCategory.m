@@ -20,10 +20,11 @@
 
 @implementation UITextView (SYCategory)
 
-- (void)dealloc
-{
-    [[NSNotificationCenter defaultCenter] removeObserver:self];
-}
+//屏蔽dealloc方法（避免iOS8.x版本闪退）
+//- (void)dealloc
+//{
+//    [[NSNotificationCenter defaultCenter] removeObserver:self];
+//}
 
 
 #pragma mark - 输入限制长度（通知方法中使用）
