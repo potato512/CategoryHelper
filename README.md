@@ -47,6 +47,8 @@
   * UIView添加类别（设置状态视图）
   * NSString添加UUID方法
   * UIImagePickerController添加设置导航栏属性、图片编辑方法
+  * UITextView屏蔽dealloc方法（避免iOS8.x版本闪退）
+  * UITextField屏蔽dealloc方法（避免iOS8.x版本闪退）
 
 
 * 20171110
