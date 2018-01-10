@@ -142,6 +142,7 @@
     NSRange range = [textTmp rangeOfString:text];
     if (range.location != NSNotFound)
     {
+        [attributed addAttribute:NSBaselineOffsetAttributeName value:@(0) range:range];
         [attributed addAttribute:NSStrikethroughStyleAttributeName value:@(type) range:range];
         if (color)
         {
@@ -166,6 +167,7 @@
     NSRange range = [textTmp rangeOfString:text];
     if (range.location != NSNotFound)
     {
+        [attributed addAttribute:NSBaselineOffsetAttributeName value:@(0) range:range];
         [attributed addAttribute:NSUnderlineStyleAttributeName value:@(type) range:range];
         if (color)
         {
