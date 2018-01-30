@@ -42,6 +42,7 @@
 		A7684CC81F0E1A3700C7249D /* NSMutableArray+SYCategory.m in Sources */ = {isa = PBXBuildFile; fileRef = A7684CC71F0E1A3700C7249D /* NSMutableArray+SYCategory.m */; };
 		A7684CCB1F0E213A00C7249D /* NSMutableDictionary+SYCategory.m in Sources */ = {isa = PBXBuildFile; fileRef = A7684CCA1F0E213A00C7249D /* NSMutableDictionary+SYCategory.m */; };
 		A7684CCE1F0E25F900C7249D /* NSMutableString+SYCategory.m in Sources */ = {isa = PBXBuildFile; fileRef = A7684CCD1F0E25F900C7249D /* NSMutableString+SYCategory.m */; };
+		A775A242202078210084090B /* NSString+Html.m in Sources */ = {isa = PBXBuildFile; fileRef = A775A241202078210084090B /* NSString+Html.m */; };
 		A797A8731F306FB500295B05 /* README.md in Sources */ = {isa = PBXBuildFile; fileRef = A797A8721F306FB500295B05 /* README.md */; };
 		A7DC9CC91FF244AB003F938A /* UIView+Status.m in Sources */ = {isa = PBXBuildFile; fileRef = A7DC9CC81FF244AB003F938A /* UIView+Status.m */; };
 		DF2CF9AF1EE98F24004253B5 /* NSArray+SYCategory.m in Sources */ = {isa = PBXBuildFile; fileRef = DF2CF9541EE98F24004253B5 /* NSArray+SYCategory.m */; };
@@ -182,6 +183,8 @@
 		A7684CCA1F0E213A00C7249D /* NSMutableDictionary+SYCategory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSMutableDictionary+SYCategory.m"; sourceTree = "<group>"; };
 		A7684CCC1F0E25F900C7249D /* NSMutableString+SYCategory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSMutableString+SYCategory.h"; sourceTree = "<group>"; };
 		A7684CCD1F0E25F900C7249D /* NSMutableString+SYCategory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSMutableString+SYCategory.m"; sourceTree = "<group>"; };
+		A775A240202078210084090B /* NSString+Html.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+Html.h"; sourceTree = "<group>"; };
+		A775A241202078210084090B /* NSString+Html.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+Html.m"; sourceTree = "<group>"; };
 		A78C0E201DED2D6600DB84A0 /* PrefixHeader.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PrefixHeader.pch; sourceTree = "<group>"; };
 		A797A8721F306FB500295B05 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		A7DC9CC71FF244AB003F938A /* UIView+Status.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+Status.h"; sourceTree = "<group>"; };
@@ -462,6 +465,8 @@
 				DF2CF9681EE98F24004253B5 /* NSString+SYJSON.m */,
 				DF2CF9691EE98F24004253B5 /* NSString+SYRegular.h */,
 				DF2CF96A1EE98F24004253B5 /* NSString+SYRegular.m */,
+				A775A240202078210084090B /* NSString+Html.h */,
+				A775A241202078210084090B /* NSString+Html.m */,
 				A7684CCC1F0E25F900C7249D /* NSMutableString+SYCategory.h */,
 				A7684CCD1F0E25F900C7249D /* NSMutableString+SYCategory.m */,
 				DF2CF96B1EE98F24004253B5 /* NSTimer+SYCategory.h */,
@@ -802,6 +807,7 @@
 				DF2CF9BB1EE98F24004253B5 /* NSTimer+SYCategory.m in Sources */,
 				DF2CF9BA1EE98F24004253B5 /* NSString+SYRegular.m in Sources */,
 				A7419C651F0F70C000C4D04F /* NSUserDefaultViewController.m in Sources */,
+				A775A242202078210084090B /* NSString+Html.m in Sources */,
 				DF2CF9B51EE98F24004253B5 /* NSNumber+SYCategory.m in Sources */,
 				A7419C601F0F70C000C4D04F /* NSNumberViewController.m in Sources */,
 				A7419C611F0F70C000C4D04F /* NSObjectViewController.m in Sources */,

@@ -13,6 +13,7 @@
 #import "NSString+SYCategory.h"
 #import "NSString+SYRegular.h"
 #import "NSString+SYJSON.h"
+#import "NSString+Html.h"
 #import "NSMutableString+SYCategory.h"
 #import "NSAttributedString+SYCategory.h"
 #import "NSNumber+SYCategory.h"

@@ -42,6 +42,34 @@
 
 
 #### 修改完善
+* 20180130
+  * 版本号：1.1.8
+  * NSAttributedString添加方法处理html
+  * 添加NSString类别，处理html
+
+~~~ javascript
+/// html源码转NSAttributedString
+- (NSAttributedString *)attributedHtml:(NSString *)html;
+~~~ 
+
+~~~ javascript
+/// html包含图片
+- (BOOL)htmlContantImage;
+
+/// html中图片大小自适应屏幕大小
+- (NSString *)htmlStringImageAutoSize;
+
+/// 修改html中图片大小的js代码
+- (NSString *)htmlStringJSImageSizeWidth:(float)width;
+
+/// 修改html的文字大小
+- (NSString *)htmlStringFontSize:(int)fontsize;
+
+/// 过滤html中的图片数组
+- (NSArray *)htmlStringFilterImages;
+~~~
+
+
 * 20180108
   * 版本号：1.1.7
   * NSAttributed下划线/删除线在iOS10.3.1显示异常处理

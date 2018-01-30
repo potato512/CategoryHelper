@@ -178,5 +178,16 @@
     return attributed;
 }
 
+/// html源码转NSAttributedString
+- (NSAttributedString *)attributedHtml:(NSString *)html
+{
+    if (html && 0 < html.length)
+    {
+        NSData *dataHtml = [html dataUsingEncoding:NSUnicodeStringEncoding];
+        NSAttributedString *attributed = [[NSAttributedString alloc] initWithData:dataHtml options:@{NSDocumentTypeDocumentAttribute: NSHTMLTextDocumentType} documentAttributes:nil error:nil];
+        return attributed;
+    }
+    return nil;
+}
 
 @end

@@ -51,6 +51,8 @@
 /// 设置字体的下划线 NSUnderlineStyleSingle
 - (NSAttributedString *)attributedText:(NSString *)text underLineColor:(UIColor *)color underLineType:(NSUnderlineStyle)type;
 
+/// html源码转NSAttributedString
+- (NSAttributedString *)attributedHtml:(NSString *)html;
 
 @end
 
