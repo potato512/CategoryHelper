@@ -11,17 +11,6 @@
 
 @interface NSString (SYCategory)
 
-
-/// UUID
-+ (NSString *)UUID;
-
-/**
- *  获取设备 ip 地址
- *
- *  @return ip 地址字符串
- */
-+ (NSString *)IPAddress;
-
 #pragma mark - 字符串后缀信息
 
 - (NSString *)fileName;
@@ -34,7 +23,9 @@
 + (NSString *)stringWithNumber:(NSNumber *)value;
 
 /// int转字string
-+ (NSString *)stringWithInteger:(int)value;
++ (NSString *)stringWithInt:(int)value;
+/// integer转字string
++ (NSString *)stringWithInteger:(NSInteger)value;
 
 /// float转字string
 + (NSString *)stringWithFloat:(float)value;

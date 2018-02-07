@@ -31,6 +31,12 @@
     }];
     
     [self setUI];
+    
+    NSString *uuid = [NSString UUID];
+    NSString *ipAddress = [NSString IPAddress];
+    NSDictionary *wifiDict = [NSString WiFiInfo];
+    NSString *wifiName = [NSString WiFiName];
+    NSLog(@"uuid = %@, ipAddress = %@, wifiDict = %@, wifiName = %@", uuid, ipAddress, wifiDict, wifiName);
 }
 
 - (void)didReceiveMemoryWarning {

@@ -13,49 +13,6 @@
 
 @implementation NSString (SYCategory)
 
-
-+ (NSString *)UUID
-{
-    CFUUIDRef uuid = CFUUIDCreate(NULL);
-    CFStringRef string = CFUUIDCreateString(NULL, uuid);
-    CFRelease(uuid);
-    return (__bridge_transfer NSString *)string;
-}
-
-/**
- *  获取设备 ip 地址
- *
- *  @return ip 地址字符串
- */
-+ (NSString *)IPAddress
-{
-    NSString *address = nil;
-    
-    struct ifaddrs *interfaces = NULL;
-    struct ifaddrs *temp_addr = NULL;
-    int success = 0;
-    success = getifaddrs(&interfaces);
-    if (0 == success)
-    {
-        temp_addr = interfaces;
-        while (temp_addr != NULL)
-        {
-            if (temp_addr->ifa_addr->sa_family == AF_INET)
-            {
-                if ([[NSString stringWithUTF8String:temp_addr->ifa_name] isEqualToString:@"en0"])
-                {
-                    address = [NSString stringWithUTF8String:inet_ntoa(((struct sockaddr_in *)temp_addr->ifa_addr)->sin_addr)];
-                }
-            }
-            temp_addr = temp_addr->ifa_next;
-        }
-    }
-    
-    freeifaddrs(interfaces);
-    
-    return address;
-}
-
 #pragma mark - 字符串后缀信息
 
 - (NSString *)fileName
@@ -77,9 +34,14 @@
 }
 
 /// int转字string
-+ (NSString *)stringWithInteger:(int)value
++ (NSString *)stringWithInt:(int)value
 {
     return [NSString stringWithFormat:@"%@", [NSNumber numberWithInt:value]];
+}
+/// integer转字string
++ (NSString *)stringWithInteger:(NSInteger)value
+{
+    return [NSString stringWithFormat:@"%@", [NSNumber numberWithInteger:value]];
 }
 
 /// float转字string

@@ -42,6 +42,13 @@
 
 
 #### 修改完善
+* 20180207
+  * 版本号：1.1.9
+  * NSString添加类别
+    * NSString+SYUUID
+    * NSString+SYHtml
+    * NSString+SYNetwork
+
 * 20180130
   * 版本号：1.1.8
   * NSAttributedString添加方法处理html

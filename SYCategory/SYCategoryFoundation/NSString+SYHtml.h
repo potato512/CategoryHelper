@@ -1,12 +1,14 @@
 //
-//  NSString+Html.h
+//  NSString+SYHtml.h
 //  zhangshaoyu
 //
-//  Created by zhangshaoyu on 2018/1/30.
+//  Created by zhangshaoyu on 2018/2/7.
 //  Copyright © 2018年 zhangshaoyu. All rights reserved.
-//  html代码过滤或处理（如图片适配显示）
+//
 
-@interface NSString (Html)
+#import <Foundation/Foundation.h>
+
+@interface NSString (SYHtml)
 
 /// html包含图片
 - (BOOL)htmlContantImage;

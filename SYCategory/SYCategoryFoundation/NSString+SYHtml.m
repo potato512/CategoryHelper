@@ -1,14 +1,14 @@
 //
-//  NSString+Html.m
+//  NSString+SYHtml.m
 //  zhangshaoyu
 //
-//  Created by zhangshaoyu on 2018/1/30.
+//  Created by zhangshaoyu on 2018/2/7.
 //  Copyright © 2018年 zhangshaoyu. All rights reserved.
 //
 
-#import "NSString+Html.h"
+#import "NSString+SYHtml.h"
 
-@implementation NSString (Html)
+@implementation NSString (SYHtml)
 
 - (NSString *)htmlStringFilterFontSize
 {
@@ -45,27 +45,27 @@
     return content;
     
     /*
-    //设置字体大小为14，颜色为0x666666，边距为18，并且图片的宽度自动充满屏幕，高度自适应
-	content = [NSString stringWithFormat:@"<html> \n"
-               "<head> \n"
-               "<style type=\"text/css\"> \n"
-               "body {margin:18;font-size:30;color:0x666666}\n"
-               "</style> \n"
-               "</head> \n"
-               "<body>"
-               "<script type='text/javascript'>"
-               "window.onload = function(){\n"
-               "var $img = document.getElementsByTagName('img');\n"
-               "for(var p in  $img){\n"
-               " $img[p].style.width = '100%%';\n"
-               "$img[p].style.height ='auto'\n"
-               "}\n"
-               "}"
-               "</script>%@"
-               "</body>"
-               "</html>",content];
-    content = [NSString stringWithFormat:@"<html> <head> <style type=\"text/css\"> body {margin:10;font-size: %d;} </style> </head> <body>%@</body> </html>", 20, content];
-    */
+     //设置字体大小为14，颜色为0x666666，边距为18，并且图片的宽度自动充满屏幕，高度自适应
+     content = [NSString stringWithFormat:@"<html> \n"
+     "<head> \n"
+     "<style type=\"text/css\"> \n"
+     "body {margin:18;font-size:30;color:0x666666}\n"
+     "</style> \n"
+     "</head> \n"
+     "<body>"
+     "<script type='text/javascript'>"
+     "window.onload = function(){\n"
+     "var $img = document.getElementsByTagName('img');\n"
+     "for(var p in  $img){\n"
+     " $img[p].style.width = '100%%';\n"
+     "$img[p].style.height ='auto'\n"
+     "}\n"
+     "}"
+     "</script>%@"
+     "</body>"
+     "</html>",content];
+     content = [NSString stringWithFormat:@"<html> <head> <style type=\"text/css\"> body {margin:10;font-size: %d;} </style> </head> <body>%@</body> </html>", 20, content];
+     */
     
     return nil;
 }
