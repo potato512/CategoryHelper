@@ -43,6 +43,8 @@
 		A7684CCB1F0E213A00C7249D /* NSMutableDictionary+SYCategory.m in Sources */ = {isa = PBXBuildFile; fileRef = A7684CCA1F0E213A00C7249D /* NSMutableDictionary+SYCategory.m */; };
 		A7684CCE1F0E25F900C7249D /* NSMutableString+SYCategory.m in Sources */ = {isa = PBXBuildFile; fileRef = A7684CCD1F0E25F900C7249D /* NSMutableString+SYCategory.m */; };
 		A797A8731F306FB500295B05 /* README.md in Sources */ = {isa = PBXBuildFile; fileRef = A797A8721F306FB500295B05 /* README.md */; };
+		A7ABF953204D31920089AB79 /* NSPredicate+SYCategory.m in Sources */ = {isa = PBXBuildFile; fileRef = A7ABF952204D31920089AB79 /* NSPredicate+SYCategory.m */; };
+		A7ABF956204D32700089AB79 /* NSPredicateViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A7ABF955204D32700089AB79 /* NSPredicateViewController.m */; };
 		A7DC9CC91FF244AB003F938A /* UIView+Status.m in Sources */ = {isa = PBXBuildFile; fileRef = A7DC9CC81FF244AB003F938A /* UIView+Status.m */; };
 		A7E53A9A202AD0CC006DA746 /* NSString+SYUUID.m in Sources */ = {isa = PBXBuildFile; fileRef = A7E53A99202AD0CC006DA746 /* NSString+SYUUID.m */; };
 		A7E53A9D202AD0DA006DA746 /* NSString+SYHtml.m in Sources */ = {isa = PBXBuildFile; fileRef = A7E53A9C202AD0DA006DA746 /* NSString+SYHtml.m */; };
@@ -190,6 +192,10 @@
 		A7684CCD1F0E25F900C7249D /* NSMutableString+SYCategory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSMutableString+SYCategory.m"; sourceTree = "<group>"; };
 		A78C0E201DED2D6600DB84A0 /* PrefixHeader.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PrefixHeader.pch; sourceTree = "<group>"; };
 		A797A8721F306FB500295B05 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
+		A7ABF951204D31920089AB79 /* NSPredicate+SYCategory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSPredicate+SYCategory.h"; sourceTree = "<group>"; };
+		A7ABF952204D31920089AB79 /* NSPredicate+SYCategory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSPredicate+SYCategory.m"; sourceTree = "<group>"; };
+		A7ABF954204D32700089AB79 /* NSPredicateViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NSPredicateViewController.h; sourceTree = "<group>"; };
+		A7ABF955204D32700089AB79 /* NSPredicateViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NSPredicateViewController.m; sourceTree = "<group>"; };
 		A7DC9CC71FF244AB003F938A /* UIView+Status.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+Status.h"; sourceTree = "<group>"; };
 		A7DC9CC81FF244AB003F938A /* UIView+Status.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+Status.m"; sourceTree = "<group>"; };
 		A7E53A98202AD0CC006DA746 /* NSString+SYUUID.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+SYUUID.h"; sourceTree = "<group>"; };
@@ -385,6 +391,8 @@
 				A7419C3F1F0F70C000C4D04F /* NSURLConnectionViewController.m */,
 				A7419C401F0F70C000C4D04F /* NSUserDefaultViewController.h */,
 				A7419C411F0F70C000C4D04F /* NSUserDefaultViewController.m */,
+				A7ABF954204D32700089AB79 /* NSPredicateViewController.h */,
+				A7ABF955204D32700089AB79 /* NSPredicateViewController.m */,
 			);
 			path = FoundationControllers;
 			sourceTree = "<group>";
@@ -465,6 +473,8 @@
 		DF2CF9521EE98F24004253B5 /* SYCategoryFoundation */ = {
 			isa = PBXGroup;
 			children = (
+				A7ABF951204D31920089AB79 /* NSPredicate+SYCategory.h */,
+				A7ABF952204D31920089AB79 /* NSPredicate+SYCategory.m */,
 				DF2CF9531EE98F24004253B5 /* NSArray+SYCategory.h */,
 				DF2CF9541EE98F24004253B5 /* NSArray+SYCategory.m */,
 				A7684CC61F0E1A3700C7249D /* NSMutableArray+SYCategory.h */,
@@ -838,6 +848,8 @@
 				A7E53AA7202AD7BC006DA746 /* SAMKeychainQuery.m in Sources */,
 				A7684CCB1F0E213A00C7249D /* NSMutableDictionary+SYCategory.m in Sources */,
 				A7419C591F0F70C000C4D04F /* NSArrayViewController.m in Sources */,
+				A7ABF956204D32700089AB79 /* NSPredicateViewController.m in Sources */,
+				A7ABF953204D31920089AB79 /* NSPredicate+SYCategory.m in Sources */,
 				A7419C5A1F0F70C000C4D04F /* NSDataViewController.m in Sources */,
 				DF2CF9CA1EE98F24004253B5 /* UIImagePickerController+SYCategory.m in Sources */,
 				A7419C7D1F0F79B900C4D04F /* NSAttributedStringVC.m in Sources */,

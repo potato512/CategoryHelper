@@ -31,9 +31,117 @@
  * NSDate：日期处理
  * NSNotificationCenter：
  * NSUserDefaults：
+ * NSPredicate：正则判断
 
 
 # 修改完善
+* 20180305
+  * 版本号：1.2.0
+  * 添加类扩展NSPredicate
+
+* 20180207
+  * 版本号：1.1.9
+  * NSString添加类别
+    * NSString+SYUUID
+    * NSString+SYHtml
+    * NSString+SYNetwork
+
+* 20180130
+  * 版本号：1.1.8
+  * NSAttributedString添加方法处理html
+  * 添加NSString类别，处理html
+
+~~~ javascript
+/// html源码转NSAttributedString
+- (NSAttributedString *)attributedHtml:(NSString *)html;
+~~~ 
+
+~~~ javascript
+/// html包含图片
+- (BOOL)htmlContantImage;
+
+/// html中图片大小自适应屏幕大小
+- (NSString *)htmlStringImageAutoSize;
+
+/// 修改html中图片大小的js代码
+- (NSString *)htmlStringJSImageSizeWidth:(float)width;
+
+/// 修改html的文字大小
+- (NSString *)htmlStringFontSize:(int)fontsize;
+
+/// 过滤html中的图片数组
+- (NSArray *)htmlStringFilterImages;
+~~~
+
+
+* 20180108
+  * 版本号：1.1.7
+  * NSAttributed下划线/删除线在iOS10.3.1显示异常处理
+
+* 20171226
+  * 版本号：1.1.6
+  * UIView添加类别（设置状态视图）
+  * NSString添加UUID方法
+  * UIImagePickerController添加设置导航栏属性、图片编辑方法
+  * UITextView屏蔽dealloc方法（避免iOS8.x版本闪退）
+  * UITextField屏蔽dealloc方法（避免iOS8.x版本闪退）
+
+
+* 20171110
+  * 版本号：1.1.5
+  * view添加字符设置方法：分行、自适应字体大小
+  * view添加设置背景图方法
+
+* 20171017
+  * 版本号：1.1.4
+  * SYCategoryFoundation
+    * NSNotificationCenter异常
+
+* 20170828
+  * 版本号：1.1.3
+  * SYCategoryFoundation
+    * NSAttributedString修改异常
+    * NSMutableArray添加方法
+    * NSMutableDictionary添加方法
+    * NSMutableString添加方法
+
+
+~~~ javascript
+/// 添加元素（安全的）
+- (NSMutableArray *)addObjectSafety:(id)object;
+
+/// 添加元素到指定位置（安全的）
+- (NSMutableArray *)insertObjectSafety:(id)object atIndex:(NSInteger)index;
+
+/// 用指定的元素替换指定位置的元素（安全的）
+- (NSMutableArray *)replaceObjectSafety:(id)object atIndex:(NSInteger)index;
+
+/// 添加数组中的所有元素（安全的）
+- (NSMutableArray *)addObjectsFromArraySafety:(NSArray *)array;
+~~~
+
+~~~ javascript
+/// 添加指定元素object（安全的）
+- (NSMutableDictionary *)setObjectSafety:(id)object forKey:(NSString *)key;
+
+/// 添加指定元素value（安全的）
+- (NSMutableDictionary *)setValueSafety:(id)object forKey:(NSString *)key;
+~~~
+
+~~~ javascript
+/// 重置字符串（安全的）
+- (NSMutableString *)setStringSafety:(NSString *)string;
+
+/// 添加字符串（安全的）
+- (NSMutableString *)appendStringSafety:(NSString *)string;
+
+/// 插入字符串（安全的）
+- (NSMutableString *)indsertStringSafety:(NSString *)string atIndex:(NSInteger)index;
+
+/// 替换字符串（安全的）
+- (NSMutableString *)replaceStringSafety:(NSString *)currentString withString:(NSString *)replaceString;
+~~~
+
 * 20170824
   * 版本号：1.1.2
   * SYCategoryFoundation

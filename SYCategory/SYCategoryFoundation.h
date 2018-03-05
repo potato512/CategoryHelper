@@ -31,7 +31,7 @@
 #import "NSNotificationCenter+SYCategory.h"
 #import "NSUserDefaults+SYCategory.h"
 #import "NSStream+SYCategory.h"
-
+#import "NSPredicate+SYCategory.h"
 
 #ifndef SYCategoryFoundation_h
 #define SYCategoryFoundation_h

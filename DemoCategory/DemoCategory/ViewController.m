@@ -33,6 +33,7 @@
 #import "NSDateViewController.h"
 #import "NSNotificationViewController.h"
 #import "NSUserDefaultViewController.h"
+#import "NSPredicateViewController.h"
 
 @interface ViewController () <UITableViewDataSource, UITableViewDelegate>
 
@@ -81,8 +82,8 @@
 
 - (void)setUI
 {
-    self.mainArray = @[@[@"UILabel", @"UIButton/UISlider/UISwitch/UISegmentControl", @"UIImage", @"UIColor", @"UIGestureRecognizer", @"UIAlertView/UIActionSheet", @"UITextField/UITextView", @"UIImagePickerViewController"], @[@"NSString", @"NSAttributedStringVC", @"NSObject", @"NSData", @"NSFileManager", @"NSFileHandle", @"NSNumber", @"NSArray", @"NSDictionary", @"NSTimer", @"NSURLConnection", @"NSDate", @"NSNotificationCenter", @"NSUserDefaults"]];
-    self.controllers = @[@[[LabelViewController class], [ButtonViewController class], [ImageViewController class], [ColorViewController class], [GestureViewController class], [AlertSheetViewController class], [TextFieldViewController class], [ImagePickerViewController class]], @[[NSStringViewController class], [NSAttributedStringVC class], [NSObjectViewController class], [NSDataViewController class], [NSFileManagerViewController class], [NSFileHandleViewController class], [NSNumberViewController class], [NSArrayViewController class], [NSDictionaryViewController class], [NSTimerViewController class], [NSURLConnectionViewController class], [NSDateViewController class], [NSNotificationViewController class], [NSUserDefaultViewController class]]];
+    self.mainArray = @[@[@"UILabel", @"UIButton/UISlider/UISwitch/UISegmentControl", @"UIImage", @"UIColor", @"UIGestureRecognizer", @"UIAlertView/UIActionSheet", @"UITextField/UITextView", @"UIImagePickerViewController"], @[@"NSString", @"NSAttributedStringVC", @"NSObject", @"NSData", @"NSFileManager", @"NSFileHandle", @"NSNumber", @"NSArray", @"NSDictionary", @"NSTimer", @"NSURLConnection", @"NSDate", @"NSNotificationCenter", @"NSUserDefaults", @"NSPredicate"]];
+    self.controllers = @[@[[LabelViewController class], [ButtonViewController class], [ImageViewController class], [ColorViewController class], [GestureViewController class], [AlertSheetViewController class], [TextFieldViewController class], [ImagePickerViewController class]], @[[NSStringViewController class], [NSAttributedStringVC class], [NSObjectViewController class], [NSDataViewController class], [NSFileManagerViewController class], [NSFileHandleViewController class], [NSNumberViewController class], [NSArrayViewController class], [NSDictionaryViewController class], [NSTimerViewController class], [NSURLConnectionViewController class], [NSDateViewController class], [NSNotificationViewController class], [NSUserDefaultViewController class], [NSPredicateViewController class]]];
     
     self.mainTableView = [[UITableView alloc] initWithFrame:self.view.bounds style:UITableViewStylePlain];
     [self.view addSubview:self.mainTableView];
