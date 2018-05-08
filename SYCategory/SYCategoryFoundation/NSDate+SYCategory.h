@@ -113,6 +113,8 @@ typedef NS_ENUM(NSInteger, SYDistanceMode)
 /// 获取当前时间戳
 + (NSTimeInterval)getTimeIntervalOfNower;
 
+/// 获取当前时间（指定格式）
++ (NSString *)getTimeOfNower:(NSString *)format;
 /// 获取当前时间
 + (NSString *)getTimeOfNower;
 

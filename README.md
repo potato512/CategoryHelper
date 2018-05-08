@@ -42,6 +42,15 @@
 
 
 #### 修改完善
+* 20180508
+  * 版本号：1.2.1
+  * NSDate添加方法
+
+~~~ javascript
+/// 获取当前时间（指定格式）
++ (NSString *)getTimeOfNower:(NSString *)format;
+~~~
+
 * 20180305
   * 版本号：1.2.0
   * 添加类扩展NSPredicate

@@ -232,6 +232,16 @@
     return time;
 }
 
+/// 获取当前时间（指定格式）
++ (NSString *)getTimeOfNower:(NSString *)format
+{
+    NSDate *nowDate = [self getDateOfNower];
+    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+    dateFormatter.dateFormat = format;
+    NSString *time = [dateFormatter stringFromDate:nowDate];
+    return time;
+}
+
 /// 获取当前时间
 + (NSString *)getTimeOfNower
 {

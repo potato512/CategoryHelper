@@ -91,6 +91,9 @@
         NSString *second = [NSString stringWithFormat:@"秒:%ld", [NSDate getSecondOfNower]];
         NSString *week = [NSString stringWithFormat:@"周:%@", [NSDate getWeekOfNower]];
         NSLog(@"%@, %@,%@,%@,%@,%@,%@,%@", time, year, month, day, hour, minute, second, week);
+        
+        time = [NSDate getTimeOfNower:@"yyyy-MM-dd HH:mm:ss"];
+        NSLog(@"format time = %@", time);
     }
     else if (3 == indexPath.row)
     {
