@@ -94,12 +94,29 @@
     
     currentView = label3;
     
-    UILabel *label4 = [[UILabel alloc] initWithFrame:CGRectMake(10.0, (currentView.bottom + 10.0), 80.0, 40.0)];
-    [scrollview addSubview:label4];
-    label4.backgroundColor = [UIColor brownColor];
-    label4.text = @"双击响应";
     kSelfWeak;
-    [label4 tapRecognizer:2 action:^(UITapGestureRecognizer *recognizer) {
+    
+    UILabel *tapSinglelabel = [[UILabel alloc] initWithFrame:CGRectMake(10.0, (currentView.bottom + 10.0), 80.0, 40.0)];
+    [scrollview addSubview:tapSinglelabel];
+    tapSinglelabel.backgroundColor = [UIColor brownColor];
+    tapSinglelabel.text = @"单击响应";
+    [tapSinglelabel tapRecognizer:1 action:^(UITapGestureRecognizer *recognizer) {
+        [UIAlertView alertWithTitle:@"label单击事件" message:@"labe被单击了~" cancelButtonTitle:nil otherButtonTitles:@[@"知道了"] controller:weakSelf onDismiss:^(int buttonIndex, NSString *buttonTitle) {
+            if ([buttonTitle isEqualToString:@"知道了"])
+            {
+                
+            }
+        } onCancel:^{
+            
+        }];
+    }];
+    currentView = tapSinglelabel;
+    
+    UILabel *tapDoubleLabel = [[UILabel alloc] initWithFrame:CGRectMake((currentView.right + 10.0), currentView.top, 80.0, 40.0)];
+    [scrollview addSubview:tapDoubleLabel];
+    tapDoubleLabel.backgroundColor = [UIColor brownColor];
+    tapDoubleLabel.text = @"双击响应";
+    [tapDoubleLabel tapRecognizer:2 action:^(UITapGestureRecognizer *recognizer) {
         [UIAlertView alertWithTitle:@"label双击事件" message:@"labe被双击了~" cancelButtonTitle:nil otherButtonTitles:@[@"知道了"] controller:weakSelf onDismiss:^(int buttonIndex, NSString *buttonTitle) {
             if ([buttonTitle isEqualToString:@"知道了"])
             {
@@ -109,14 +126,13 @@
             
         }];
     }];
+    currentView = tapDoubleLabel;
     
-    currentView = label4;
-    
-    UILabel *label5 = [[UILabel alloc] initWithFrame:CGRectMake((label4.right + 10.0), currentView.top, 80.0, 40.0)];
-    [scrollview addSubview:label5];
-    label5.backgroundColor = [UIColor brownColor];
-    label5.text = @"长按响应";
-    [label5 longPressRecognizer:2.0 action:^(UILongPressGestureRecognizer *recognizer) {
+    UILabel *longpressLabel = [[UILabel alloc] initWithFrame:CGRectMake((currentView.right + 10.0), currentView.top, 80.0, 40.0)];
+    [scrollview addSubview:longpressLabel];
+    longpressLabel.backgroundColor = [UIColor brownColor];
+    longpressLabel.text = @"长按响应";
+    [longpressLabel longPressRecognizer:2.0 action:^(UILongPressGestureRecognizer *recognizer) {
         [UIAlertView alertWithTitle:@"label长按事件" message:@"labe被长按了2秒~" cancelButtonTitle:nil otherButtonTitles:@[@"知道了"] controller:weakSelf onDismiss:^(int buttonIndex, NSString *buttonTitle) {
             if ([buttonTitle isEqualToString:@"知道了"])
             {
@@ -126,7 +142,7 @@
             
         }];
     }];
-    
+    currentView = longpressLabel;
     
     UILabel *label6 = [[UILabel alloc] initWithFrame:CGRectMake(10.0, (currentView.bottom + 10.0), 100.0, 100.0)];
     [scrollview addSubview:label6];

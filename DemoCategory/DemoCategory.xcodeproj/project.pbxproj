@@ -100,6 +100,7 @@
 		DF2ED9B11F0947AE00829C5F /* NSFileManager+iCloud.m in Sources */ = {isa = PBXBuildFile; fileRef = DF2ED9B01F0947AE00829C5F /* NSFileManager+iCloud.m */; };
 		DF2ED9B41F094B8F00829C5F /* UIDocument+SYCategory.m in Sources */ = {isa = PBXBuildFile; fileRef = DF2ED9B31F094B8F00829C5F /* UIDocument+SYCategory.m */; };
 		DF2ED9B71F094C7C00829C5F /* NSStream+SYCategory.m in Sources */ = {isa = PBXBuildFile; fileRef = DF2ED9B61F094C7C00829C5F /* NSStream+SYCategory.m */; };
+		DF84A12220A88A4000701CA7 /* UIView+SYRecognizer.m in Sources */ = {isa = PBXBuildFile; fileRef = DF84A12120A88A4000701CA7 /* UIView+SYRecognizer.m */; };
 		DFA204EB1D1E131C00929257 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = DFA204EA1D1E131C00929257 /* main.m */; };
 		DFA204EE1D1E131C00929257 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = DFA204ED1D1E131C00929257 /* AppDelegate.m */; };
 		DFA204F11D1E131C00929257 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DFA204F01D1E131C00929257 /* ViewController.m */; };
@@ -305,6 +306,8 @@
 		DF2ED9B31F094B8F00829C5F /* UIDocument+SYCategory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIDocument+SYCategory.m"; sourceTree = "<group>"; };
 		DF2ED9B51F094C7C00829C5F /* NSStream+SYCategory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSStream+SYCategory.h"; sourceTree = "<group>"; };
 		DF2ED9B61F094C7C00829C5F /* NSStream+SYCategory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSStream+SYCategory.m"; sourceTree = "<group>"; };
+		DF84A12020A88A4000701CA7 /* UIView+SYRecognizer.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIView+SYRecognizer.h"; sourceTree = "<group>"; };
+		DF84A12120A88A4000701CA7 /* UIView+SYRecognizer.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIView+SYRecognizer.m"; sourceTree = "<group>"; };
 		DFA204E61D1E131C00929257 /* DemoCategory.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DemoCategory.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		DFA204EA1D1E131C00929257 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		DFA204EC1D1E131C00929257 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -586,6 +589,8 @@
 				DF2CF9A41EE98F24004253B5 /* UITextView+SYCategory.m */,
 				DF2CF9A51EE98F24004253B5 /* UIView+SYCategory.h */,
 				DF2CF9A61EE98F24004253B5 /* UIView+SYCategory.m */,
+				DF84A12020A88A4000701CA7 /* UIView+SYRecognizer.h */,
+				DF84A12120A88A4000701CA7 /* UIView+SYRecognizer.m */,
 				DF2CF9A71EE98F24004253B5 /* UIViewController+SYCategory.h */,
 				DF2CF9A81EE98F24004253B5 /* UIViewController+SYCategory.m */,
 			);
@@ -850,6 +855,7 @@
 				A7419C591F0F70C000C4D04F /* NSArrayViewController.m in Sources */,
 				A7ABF956204D32700089AB79 /* NSPredicateViewController.m in Sources */,
 				A7ABF953204D31920089AB79 /* NSPredicate+SYCategory.m in Sources */,
+				DF84A12220A88A4000701CA7 /* UIView+SYRecognizer.m in Sources */,
 				A7419C5A1F0F70C000C4D04F /* NSDataViewController.m in Sources */,
 				DF2CF9CA1EE98F24004253B5 /* UIImagePickerController+SYCategory.m in Sources */,
 				A7419C7D1F0F79B900C4D04F /* NSAttributedStringVC.m in Sources */,

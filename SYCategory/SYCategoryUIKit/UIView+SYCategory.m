@@ -7,7 +7,6 @@
 //
 
 #import "UIView+SYCategory.h"
-#import "UIGestureRecognizer+SYCategory.h"
 #import <objc/runtime.h>
 
 @interface UIView ()
@@ -510,45 +509,6 @@
     {
         self.transform = CGAffineTransformScale(self.transform, 1.0, -1.0);
     }
-}
-
-
-#pragma mark - 解摸手势
-
-/// 单击，或双击响应
-- (void)tapRecognizer:(NSInteger)tapNumber action:(void (^)(UITapGestureRecognizer *recognizer))action
-{
-    [UIGestureRecognizer tapRecognizer:self tapNumber:tapNumber action:action];
-}
-
-/// 长按手势（长按时间默认0.5）
-- (void)longPressRecognizer:(CFTimeInterval)time action:(void (^)(UILongPressGestureRecognizer *recognizer))action
-{
-    [UIGestureRecognizer longPressRecognizer:self minimumPressDuration:time action:action];
-}
-
-/// 拖动手势
-- (void)panRecognizer:(void (^)(UIPanGestureRecognizer *recognizer))action
-{
-    [UIGestureRecognizer panRecognizer:self action:action];
-}
-
-/// 拿捏手势
-- (void)pinchRecognizer:(void (^)(UIPinchGestureRecognizer *recognizer))action
-{
-    [UIGestureRecognizer pinchRecognizer:self action:action];
-}
-
-/// 滑动手势
-- (void)swipeRecognizer:(UISwipeGestureRecognizerDirection)direction action:(void (^)(UISwipeGestureRecognizer *recognizer))action
-{
-    [UIGestureRecognizer swipeRecognizer:self direction:direction action:action];
-}
-
-/// 旋转手势
-- (void)rotationRecognizer:(void (^)(UIRotationGestureRecognizer *recognizer))action
-{
-    [UIGestureRecognizer rotationRecognizer:self action:action];
 }
 
 #pragma mark - 链式属性

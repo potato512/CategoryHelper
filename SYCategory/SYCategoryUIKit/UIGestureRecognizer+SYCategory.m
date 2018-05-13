@@ -7,7 +7,9 @@
 //
 
 #import "UIGestureRecognizer+SYCategory.h"
+#import <objc/runtime.h>
 
+/*
 typedef void (^TapRecognizer)(UITapGestureRecognizer *recognizer);
 static TapRecognizer tapRecognizer;
 
@@ -25,14 +27,26 @@ static SwipeRecognizer swipeRecognizer;
 
 typedef void (^RotationRecognizer)(UIRotationGestureRecognizer *recognizer);
 static RotationRecognizer rotationRecognizer;
+*/
 
 @implementation UIGestureRecognizer (SYCategory)
+
+/*
+void removeRecognizer(UIView *view)
+{
+    for (UIGestureRecognizer *recognizer in view.gestureRecognizers)
+    {
+        [view removeGestureRecognizer:recognizer];
+    }
+}
 
 #pragma mark - 点击手势
 
 // 点击手势（点击次数默认1）
 + (void)tapRecognizer:(UIView *)view tapNumber:(NSInteger)number action:(void (^)(UITapGestureRecognizer *recognizer))action
 {
+    removeRecognizer(view);
+    
     tapRecognizer = action;
     
     UITapGestureRecognizer *recognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tapClick:)];
@@ -57,6 +71,8 @@ static RotationRecognizer rotationRecognizer;
 // 长按手势（长按时间默认0.5）
 + (void)longPressRecognizer:(UIView *)view minimumPressDuration:(CFTimeInterval)time action:(void (^)(UILongPressGestureRecognizer *recognizer))action
 {
+    removeRecognizer(view);
+    
     longPressRecognizer = action;
     
     UILongPressGestureRecognizer *recognizer = [[UILongPressGestureRecognizer alloc] initWithTarget:self action:@selector(longPressClick:)];
@@ -80,6 +96,8 @@ static RotationRecognizer rotationRecognizer;
 
 + (void)panRecognizer:(UIView *)view action:(void (^)(UIPanGestureRecognizer *recognizer))action
 {
+    removeRecognizer(view);
+    
     panRecognizer = action;
     
     UIPanGestureRecognizer *recognizer = [[UIPanGestureRecognizer alloc] initWithTarget:self action:@selector(panClick:)];
@@ -102,6 +120,8 @@ static RotationRecognizer rotationRecognizer;
 
 + (void)pinchRecognizer:(UIView *)view action:(void (^)(UIPinchGestureRecognizer *recognizer))action
 {
+    removeRecognizer(view);
+    
     pinchRecognizer = action;
     
     UIPinchGestureRecognizer *recognizer = [[UIPinchGestureRecognizer alloc] initWithTarget:self action:@selector(pinchClick:)];
@@ -124,6 +144,8 @@ static RotationRecognizer rotationRecognizer;
 
 + (void)swipeRecognizer:(UIView *)view direction:(UISwipeGestureRecognizerDirection)direction action:(void (^)(UISwipeGestureRecognizer *recognizer))action
 {
+    removeRecognizer(view);
+    
     swipeRecognizer = action;
     
     UISwipeGestureRecognizer *recognizer = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(swipeClick:)];
@@ -147,6 +169,8 @@ static RotationRecognizer rotationRecognizer;
 
 + (void)rotationRecognizer:(UIView *)view action:(void (^)(UIRotationGestureRecognizer *recognizer))action
 {
+    removeRecognizer(view);
+    
     rotationRecognizer = action;
     
     UIRotationGestureRecognizer *recognizer = [[UIRotationGestureRecognizer alloc] initWithTarget:self action:@selector(rotationClick:)];
@@ -164,5 +188,7 @@ static RotationRecognizer rotationRecognizer;
         rotationRecognizer(recognizer);
     }
 }
+*/
+
 
 @end

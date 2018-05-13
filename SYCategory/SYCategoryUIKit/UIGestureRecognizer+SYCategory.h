@@ -10,6 +10,8 @@
 
 @interface UIGestureRecognizer (SYCategory)
 
+/*
+ 存在异常，待完善（同一步视图控制器不同视图添加手势后，只有一个有效）
 /// 点击手势（点击次数默认1）
 + (void)tapRecognizer:(UIView *)view tapNumber:(NSInteger)number action:(void (^)(UITapGestureRecognizer *recognizer))action;
 
@@ -27,5 +29,6 @@
 
 /// 旋转手势
 + (void)rotationRecognizer:(UIView *)view action:(void (^)(UIRotationGestureRecognizer *recognizer))action;
+*/
 
 @end
