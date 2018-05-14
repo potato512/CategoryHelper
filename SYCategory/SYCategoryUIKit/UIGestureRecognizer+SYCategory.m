@@ -9,186 +9,287 @@
 #import "UIGestureRecognizer+SYCategory.h"
 #import <objc/runtime.h>
 
-/*
-typedef void (^TapRecognizer)(UITapGestureRecognizer *recognizer);
-static TapRecognizer tapRecognizer;
+@interface UIGestureRecognizer ()
 
-typedef void (^LongPressRecognizer)(UILongPressGestureRecognizer *recognizer);
-static LongPressRecognizer longPressRecognizer;
+@property (nonatomic, copy) void (^tapBlock)(UITapGestureRecognizer *recognizer);
+@property (nonatomic, copy) void (^longPressBlock)(UILongPressGestureRecognizer *recognizer);
+@property (nonatomic, copy) void (^panBlock)(UIPanGestureRecognizer *recognizer);
+@property (nonatomic, copy) void (^pinchBlock)(UIPinchGestureRecognizer *recognizer);
+@property (nonatomic, copy) void (^swipeBlock)(UISwipeGestureRecognizer *recognizer);
+@property (nonatomic, copy) void (^rotationBlock)(UIRotationGestureRecognizer *recognizer);
 
-typedef void (^PanRecognizer)(UIPanGestureRecognizer *recognizer);
-static PanRecognizer panRecognizer;
-
-typedef void (^PinchRecognizer)(UIPinchGestureRecognizer *recognizer);
-static PinchRecognizer pinchRecognizer;
-
-typedef void (^SwipeRecognizer)(UISwipeGestureRecognizer *recognizer);
-static SwipeRecognizer swipeRecognizer;
-
-typedef void (^RotationRecognizer)(UIRotationGestureRecognizer *recognizer);
-static RotationRecognizer rotationRecognizer;
-*/
+@end
 
 @implementation UIGestureRecognizer (SYCategory)
 
-/*
-void removeRecognizer(UIView *view)
+/// 点击手势（点击次数默认1）
+- (instancetype)initTapGestureRecognizerWithView:(UIView *)view action:(void (^)(UITapGestureRecognizer *recognizer))callback;
 {
-    for (UIGestureRecognizer *recognizer in view.gestureRecognizers)
+    self = [self initWithTarget:self action:@selector(tapClick:)];
+    if (self)
     {
-        [view removeGestureRecognizer:recognizer];
+        ((UITapGestureRecognizer *)self).numberOfTapsRequired = 1;
+        
+        if (view)
+        {
+            view.userInteractionEnabled = YES;
+            [view addGestureRecognizer:self];
+        }
+        
+        self.tapBlock = [callback copy];
+    }
+    return self;
+}
+
+- (instancetype)initTapGestureRecognizerWithView:(UIView *)view tapNumber:(NSInteger)number action:(void (^)(UITapGestureRecognizer *recognizer))callback
+{
+    self = [self initWithTarget:self action:@selector(tapClick:)];
+    if (self)
+    {
+        ((UITapGestureRecognizer *)self).numberOfTapsRequired = (0 >= number ? 1 : number);
+        
+        if (view)
+        {
+            view.userInteractionEnabled = YES;
+            [view addGestureRecognizer:self];
+        }
+        
+        self.tapBlock = [callback copy];
+    }
+    return self;
+}
+
+- (void)tapClick:(UITapGestureRecognizer *)recognizer
+{
+    if (self.tapBlock)
+    {
+        self.tapBlock(recognizer);
     }
 }
 
-#pragma mark - 点击手势
-
-// 点击手势（点击次数默认1）
-+ (void)tapRecognizer:(UIView *)view tapNumber:(NSInteger)number action:(void (^)(UITapGestureRecognizer *recognizer))action
+/// 长按手势（默认0.5秒）
+- (instancetype)initLongPressGestureRecognizerWithView:(UIView *)view action:(void (^)(UILongPressGestureRecognizer *recognizer))callback
 {
-    removeRecognizer(view);
-    
-    tapRecognizer = action;
-    
-    UITapGestureRecognizer *recognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tapClick:)];
-    recognizer.numberOfTapsRequired = (0 >= number ? 1 : number);
-    if (view)
+    self = [self initWithTarget:self action:@selector(longPressClick:)];
+    if (self)
     {
-        view.userInteractionEnabled = YES;
-        [view addGestureRecognizer:recognizer];
+        ((UILongPressGestureRecognizer *)self).minimumPressDuration = 0.5;
+        
+        if (view)
+        {
+            view.userInteractionEnabled = YES;
+            [view addGestureRecognizer:self];
+        }
+        
+        self.longPressBlock = [callback copy];
+    }
+    return self;
+}
+
+- (instancetype)initLongPressGestureRecognizerWithView:(UIView *)view pressDuration:(CFTimeInterval)time action:(void (^)(UILongPressGestureRecognizer *recognizer))callback
+{
+    self = [self initWithTarget:self action:@selector(longPressClick:)];
+    if (self)
+    {
+        ((UILongPressGestureRecognizer *)self).minimumPressDuration = (0 >= time ? 0.5 : time);
+        
+        if (view)
+        {
+            view.userInteractionEnabled = YES;
+            [view addGestureRecognizer:self];
+        }
+        
+        self.longPressBlock = [callback copy];
+    }
+    return self;
+}
+
+- (void)longPressClick:(UILongPressGestureRecognizer *)recognizer
+{
+    if (self.longPressBlock)
+    {
+        self.longPressBlock(recognizer);
     }
 }
 
-+ (void)tapClick:(UITapGestureRecognizer *)recognizer
+/// 拖拽手势
+- (instancetype)initPanGestureRecognizerWithView:(UIView *)view action:(void (^)(UIPanGestureRecognizer *recognizer))callback
 {
-    if (tapRecognizer)
+    self = [self initWithTarget:self action:@selector(panClick:)];
+    if (self)
     {
-        tapRecognizer(recognizer);
+        if (view)
+        {
+            view.userInteractionEnabled = YES;
+            [view addGestureRecognizer:self];
+        }
+        
+        self.panBlock = [callback copy];
+    }
+    return self;
+}
+
+- (void)panClick:(UIPanGestureRecognizer *)recognizer
+{
+    if (self.panBlock)
+    {
+        self.panBlock(recognizer);
     }
 }
 
-#pragma mark - 长按手势
-
-// 长按手势（长按时间默认0.5）
-+ (void)longPressRecognizer:(UIView *)view minimumPressDuration:(CFTimeInterval)time action:(void (^)(UILongPressGestureRecognizer *recognizer))action
+/// 拿捏缩放手势
+- (instancetype)initPinchGestureRecognizerWithView:(UIView *)view action:(void (^)(UIPinchGestureRecognizer *recognizer))callback
 {
-    removeRecognizer(view);
-    
-    longPressRecognizer = action;
-    
-    UILongPressGestureRecognizer *recognizer = [[UILongPressGestureRecognizer alloc] initWithTarget:self action:@selector(longPressClick:)];
-    recognizer.minimumPressDuration = (0 >= time ? 0.5 : time);
-    if (view)
+    self = [self initWithTarget:self action:@selector(pinchClick:)];
+    if (self)
     {
-        view.userInteractionEnabled = YES;
-        [view addGestureRecognizer:recognizer];
+        if (view)
+        {
+            view.userInteractionEnabled = YES;
+            [view addGestureRecognizer:self];
+        }
+        
+        self.pinchBlock = [callback copy];
+    }
+    return self;
+}
+
+- (void)pinchClick:(UIPinchGestureRecognizer *)recognizer
+{
+    if (self.pinchBlock)
+    {
+        self.pinchBlock(recognizer);
     }
 }
 
-+ (void)longPressClick:(UILongPressGestureRecognizer *)recognizer
+/// 滑动手势
+- (instancetype)initSwipeGestureRecognizerWithView:(UIView *)view action:(void (^)(UISwipeGestureRecognizer *recognizer))callback
 {
-    if (longPressRecognizer)
+    self = [self initWithTarget:self action:@selector(swipeClick:)];
+    if (self)
     {
-        longPressRecognizer(recognizer);
+        if (view)
+        {
+            view.userInteractionEnabled = YES;
+            [view addGestureRecognizer:self];
+        }
+        
+        self.swipeBlock = [callback copy];
+    }
+    return self;
+}
+
+- (instancetype)initSwipeGestureRecognizerWithView:(UIView *)view direction:(UISwipeGestureRecognizerDirection)direction action:(void (^)(UISwipeGestureRecognizer *recognizer))callback
+{
+    self = [self initWithTarget:self action:@selector(swipeClick:)];
+    if (self)
+    {
+        ((UISwipeGestureRecognizer *)self).direction = direction;
+        
+        if (view)
+        {
+            view.userInteractionEnabled = YES;
+            [view addGestureRecognizer:self];
+        }
+        
+        self.swipeBlock = [callback copy];
+    }
+    return self;
+}
+
+- (void)swipeClick:(UISwipeGestureRecognizer *)recognizer
+{
+    if (self.swipeBlock)
+    {
+        self.swipeBlock(recognizer);
     }
 }
 
-#pragma mark - 拖拽手势
-
-+ (void)panRecognizer:(UIView *)view action:(void (^)(UIPanGestureRecognizer *recognizer))action
+/// 旋转手势
+- (instancetype)initRotationGestureRecognizerWithView:(UIView *)view action:(void (^)(UIRotationGestureRecognizer *recognizer))callback
 {
-    removeRecognizer(view);
-    
-    panRecognizer = action;
-    
-    UIPanGestureRecognizer *recognizer = [[UIPanGestureRecognizer alloc] initWithTarget:self action:@selector(panClick:)];
-    if (view)
+    self = [self initWithTarget:self action:@selector(rotationClick:)];
+    if (self)
     {
-        view.userInteractionEnabled = YES;
-        [view addGestureRecognizer:recognizer];
+        if (view)
+        {
+            view.userInteractionEnabled = YES;
+            [view addGestureRecognizer:self];
+        }
+        
+        self.rotationBlock = [callback copy];
+    }
+    return self;
+}
+
+- (void)rotationClick:(UIRotationGestureRecognizer *)recognizer
+{
+    if (self.rotationBlock)
+    {
+        self.rotationBlock(recognizer);
     }
 }
 
-+ (void)panClick:(UIPanGestureRecognizer *)recognizer
+#pragma mark - setter/getter
+
+- (void)setTapBlock:(void (^)(UITapGestureRecognizer *))tapBlock
 {
-    if (panRecognizer)
-    {
-        panRecognizer(recognizer);
-    }
+    objc_setAssociatedObject(self, @selector(tapBlock), tapBlock, OBJC_ASSOCIATION_COPY);
 }
 
-#pragma mark - 拿捏缩放手势
-
-+ (void)pinchRecognizer:(UIView *)view action:(void (^)(UIPinchGestureRecognizer *recognizer))action
+- (void (^)(UITapGestureRecognizer *))tapBlock
 {
-    removeRecognizer(view);
-    
-    pinchRecognizer = action;
-    
-    UIPinchGestureRecognizer *recognizer = [[UIPinchGestureRecognizer alloc] initWithTarget:self action:@selector(pinchClick:)];
-    if (view)
-    {
-        view.userInteractionEnabled = YES;
-        [view addGestureRecognizer:recognizer];
-    }
+    return objc_getAssociatedObject(self, @selector(tapBlock));
 }
 
-+ (void)pinchClick:(UIPinchGestureRecognizer *)recognizer
+- (void)setLongPressBlock:(void (^)(UILongPressGestureRecognizer *))longPressBlock
 {
-    if (pinchRecognizer)
-    {
-        pinchRecognizer(recognizer);
-    }
+    objc_setAssociatedObject(self, @selector(longPressBlock), longPressBlock, OBJC_ASSOCIATION_COPY);
 }
 
-#pragma mark - 滑动手势
-
-+ (void)swipeRecognizer:(UIView *)view direction:(UISwipeGestureRecognizerDirection)direction action:(void (^)(UISwipeGestureRecognizer *recognizer))action
+- (void (^)(UILongPressGestureRecognizer *))longPressBlock
 {
-    removeRecognizer(view);
-    
-    swipeRecognizer = action;
-    
-    UISwipeGestureRecognizer *recognizer = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(swipeClick:)];
-    recognizer.direction = direction;
-    if (view)
-    {
-        view.userInteractionEnabled = YES;
-        [view addGestureRecognizer:recognizer];
-    }
+    return objc_getAssociatedObject(self, @selector(longPressBlock));
 }
 
-+ (void)swipeClick:(UISwipeGestureRecognizer *)recognizer
+- (void)setPanBlock:(void (^)(UIPanGestureRecognizer *))panBlock
 {
-    if (swipeRecognizer)
-    {
-        swipeRecognizer(recognizer);
-    }
+    objc_setAssociatedObject(self, @selector(panBlock), panBlock, OBJC_ASSOCIATION_COPY);
 }
 
-#pragma mark - 旋转手势
-
-+ (void)rotationRecognizer:(UIView *)view action:(void (^)(UIRotationGestureRecognizer *recognizer))action
+- (void (^)(UIPanGestureRecognizer *))panBlock
 {
-    removeRecognizer(view);
-    
-    rotationRecognizer = action;
-    
-    UIRotationGestureRecognizer *recognizer = [[UIRotationGestureRecognizer alloc] initWithTarget:self action:@selector(rotationClick:)];
-    if (view)
-    {
-        view.userInteractionEnabled = YES;
-        [view addGestureRecognizer:recognizer];
-    }
+    return objc_getAssociatedObject(self, @selector(panBlock));
 }
 
-+ (void)rotationClick:(UIRotationGestureRecognizer *)recognizer
+- (void)setPinchBlock:(void (^)(UIPinchGestureRecognizer *))pinchBlock
 {
-    if (rotationRecognizer)
-    {
-        rotationRecognizer(recognizer);
-    }
+    objc_setAssociatedObject(self, @selector(pinchBlock), pinchBlock, OBJC_ASSOCIATION_COPY);
 }
-*/
 
+- (void (^)(UIPinchGestureRecognizer *))pinchBlock
+{
+    return objc_getAssociatedObject(self, @selector(pinchBlock));
+}
+
+- (void)setSwipeBlock:(void (^)(UISwipeGestureRecognizer *))swipeBlock
+{
+    objc_setAssociatedObject(self, @selector(swipeBlock), swipeBlock, OBJC_ASSOCIATION_COPY);
+}
+
+- (void (^)(UISwipeGestureRecognizer *))swipeBlock
+{
+    return objc_getAssociatedObject(self, @selector(swipeBlock));
+}
+
+- (void)setRotationBlock:(void (^)(UIRotationGestureRecognizer *))rotationBlock
+{
+    objc_setAssociatedObject(self, @selector(rotationBlock), rotationBlock, OBJC_ASSOCIATION_COPY);
+}
+
+- (void (^)(UIRotationGestureRecognizer *))rotationBlock
+{
+    return objc_getAssociatedObject(self, @selector(rotationBlock));
+}
 
 @end

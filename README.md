@@ -42,6 +42,11 @@
 
 
 #### 修改完善
+* 20180514
+  * 版本号：1.2.3
+  * UIView+SYRecognizer功能完善
+  * UIGestureRecognizer+SYCategory功能完善
+  
 * 20180513
   * 版本号：1.2.2
   * UIView添加类别（手势触摸）

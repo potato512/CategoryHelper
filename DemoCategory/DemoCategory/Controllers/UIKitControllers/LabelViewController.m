@@ -144,6 +144,22 @@
     }];
     currentView = longpressLabel;
     
+    UILabel *panLabel = [[UILabel alloc] initWithFrame:CGRectMake((currentView.right + 10.0), currentView.top, 80.0, 40.0)];
+    [scrollview addSubview:panLabel];
+    panLabel.backgroundColor = [UIColor brownColor];
+    panLabel.text = @"划动响应";
+    [panLabel panRecognizer:^(UIPanGestureRecognizer *recognizer) {
+        [UIAlertView alertWithTitle:@"label划动事件" message:@"labe被划动了~" cancelButtonTitle:nil otherButtonTitles:@[@"知道了"] controller:weakSelf onDismiss:^(int buttonIndex, NSString *buttonTitle) {
+            if ([buttonTitle isEqualToString:@"知道了"])
+            {
+                
+            }
+        } onCancel:^{
+            
+        }];
+    }];
+    currentView = panLabel;
+    
     UILabel *label6 = [[UILabel alloc] initWithFrame:CGRectMake(10.0, (currentView.bottom + 10.0), 100.0, 100.0)];
     [scrollview addSubview:label6];
     label6.backgroundColor = [UIColor orangeColor];

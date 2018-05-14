@@ -10,25 +10,28 @@
 
 @interface UIGestureRecognizer (SYCategory)
 
-/*
- 存在异常，待完善（同一步视图控制器不同视图添加手势后，只有一个有效）
 /// 点击手势（点击次数默认1）
-+ (void)tapRecognizer:(UIView *)view tapNumber:(NSInteger)number action:(void (^)(UITapGestureRecognizer *recognizer))action;
+- (instancetype)initTapGestureRecognizerWithView:(UIView *)view action:(void (^)(UITapGestureRecognizer *recognizer))callback;
+/// 点击手势
+- (instancetype)initTapGestureRecognizerWithView:(UIView *)view tapNumber:(NSInteger)number action:(void (^)(UITapGestureRecognizer *recognizer))callback;
 
-/// 长按手势（长按时间默认0.5）
-+ (void)longPressRecognizer:(UIView *)view minimumPressDuration:(CFTimeInterval)time action:(void (^)(UILongPressGestureRecognizer *recognizer))action;
+/// 长按手势（默认0.5秒）
+- (instancetype)initLongPressGestureRecognizerWithView:(UIView *)view action:(void (^)(UILongPressGestureRecognizer *recognizer))callback;
+/// 长按手势
+- (instancetype)initLongPressGestureRecognizerWithView:(UIView *)view pressDuration:(CFTimeInterval)time action:(void (^)(UILongPressGestureRecognizer *recognizer))callback;
 
 /// 拖拽手势
-+ (void)panRecognizer:(UIView *)view action:(void (^)(UIPanGestureRecognizer *recognizer))action;
+- (instancetype)initPanGestureRecognizerWithView:(UIView *)view action:(void (^)(UIPanGestureRecognizer *recognizer))callback;
 
 /// 拿捏缩放手势
-+ (void)pinchRecognizer:(UIView *)view action:(void (^)(UIPinchGestureRecognizer *recognizer))action;
+- (instancetype)initPinchGestureRecognizerWithView:(UIView *)view action:(void (^)(UIPinchGestureRecognizer *recognizer))callback;
 
-/// 滑动手势
-+ (void)swipeRecognizer:(UIView *)view direction:(UISwipeGestureRecognizerDirection)direction action:(void (^)(UISwipeGestureRecognizer *recognizer))action;
+/// 滑动手势（未指定方向）
+- (instancetype)initSwipeGestureRecognizerWithView:(UIView *)view action:(void (^)(UISwipeGestureRecognizer *recognizer))callback;
+/// 滑动手势（指定方向）
+- (instancetype)initSwipeGestureRecognizerWithView:(UIView *)view direction:(UISwipeGestureRecognizerDirection)direction action:(void (^)(UISwipeGestureRecognizer *recognizer))callback;
 
 /// 旋转手势
-+ (void)rotationRecognizer:(UIView *)view action:(void (^)(UIRotationGestureRecognizer *recognizer))action;
-*/
+- (instancetype)initRotationGestureRecognizerWithView:(UIView *)view action:(void (^)(UIRotationGestureRecognizer *recognizer))callback;
 
 @end
