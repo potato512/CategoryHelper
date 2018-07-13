@@ -57,4 +57,7 @@ typedef NS_ENUM(NSInteger, SYImageType)
  */
 - (SYImageType)imageTypeWithImage;
 
+/// 实体模型属性打印
+- (NSString *)descriptionShow;
+
 @end

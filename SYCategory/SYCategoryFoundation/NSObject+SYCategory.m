@@ -10,6 +10,7 @@
 #import "NSString+SYCategory.h"
 #import <ifaddrs.h>
 #import <arpa/inet.h>
+#import <objc/runtime.h>
 
 @implementation NSObject (SYCategory)
 
@@ -82,5 +83,25 @@
     return type;
 }
 
+/// 实体模型属性打印
+- (NSString *)descriptionShow
+{
+    NSString *message = @"\n";
+    unsigned int outCount;
+    objc_property_t *properties = class_copyPropertyList([self class], &outCount);
+    for (int i = 0; i < outCount; i ++)
+    {
+        objc_property_t property = properties[i];
+        const char *propName = property_getName(property);
+        if (propName)
+        {
+            NSString *key = [NSString stringWithCString:propName encoding:[NSString defaultCStringEncoding]];
+            id value = [self valueForKey:key];
+            message = [message stringByAppendingFormat:@"%@ : %@;\n", key, value];
+        }
+    }
+    free(properties);
+    return message;
+}
 
 @end

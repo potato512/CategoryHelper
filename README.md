@@ -42,6 +42,15 @@
 
 
 #### 修改完善
+* 20180713
+  * 版本号：1.2.4
+  * NSObject+SYCategory添加方法
+  
+```
+/// 实体模型属性打印
+- (NSString *)descriptionShow;
+```
+
 * 20180514
   * 版本号：1.2.3
   * UIView+SYRecognizer功能完善
