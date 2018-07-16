@@ -100,6 +100,23 @@ static CGFloat const heightLine = 0.5; // 默认分割线高度
     }
 }
 
+/// UITableViewCell复用实例化
++ (UITableViewCell *)dequeueReusableCellWithTable:(UITableView *)table style:(UITableViewCellStyle)style
+{
+    NSString *identifier = NSStringFromClass([self class]);
+    
+#ifdef DEBUG
+    NSLog(@"UITableViewCell: %@", identifier);
+#endif
+    
+    UITableViewCell *cell = [table dequeueReusableCellWithIdentifier:identifier];
+    if (cell == nil) {
+        cell = [[[self class] alloc] initWithStyle:style reuseIdentifier:identifier];
+    }
+    
+    return cell;
+}
+
 #pragma mark - setter/getter
 
 - (void)setLineViewButtom:(UIImageView *)lineViewButtom

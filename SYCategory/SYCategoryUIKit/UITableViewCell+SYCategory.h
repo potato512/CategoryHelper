@@ -37,4 +37,7 @@ typedef NS_ENUM(NSInteger, CellLineShowType)
 /// 设置系统分割线缩进样式
 - (void)cellSeparatorInset:(UIEdgeInsets)edge;
 
+/// UITableViewCell复用实例化
++ (UITableViewCell *)dequeueReusableCellWithTable:(UITableView *)table style:(UITableViewCellStyle)style;
+
 @end

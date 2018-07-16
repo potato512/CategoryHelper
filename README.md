@@ -42,6 +42,15 @@
 
 
 #### 修改完善
+* 20180716
+  * 版本号：1.2.5
+  * UITableViewCell+SYCategory添加方法
+  
+```
+/// UITableViewCell复用实例化
++ (UITableViewCell *)dequeueReusableCellWithTable:(UITableView *)table style:(UITableViewCellStyle)style;
+```
+
 * 20180713
   * 版本号：1.2.4
   * NSObject+SYCategory添加方法
