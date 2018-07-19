@@ -42,6 +42,15 @@
 
 
 #### 修改完善
+* 20180719
+  * 版本号：1.2.6
+  * UIColor+SYCategory添加属性
+  
+  ```
+  /// 设置颜色透明度
+  - (UIColor *(^)(CGFloat value))colorAlpha;
+  ```
+  
 * 20180716
   * 版本号：1.2.5
   * UITableViewCell+SYCategory添加方法

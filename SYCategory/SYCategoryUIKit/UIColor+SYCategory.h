@@ -10,6 +10,8 @@
 
 @interface UIColor (SYCategory)
 
+/// 设置颜色透明度
+- (UIColor *(^)(CGFloat value))colorAlpha;
 
 /**
  *  将十六进制颜色转换为 UIColor 对象
