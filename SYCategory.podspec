@@ -7,7 +7,7 @@ Pod::Spec.new do |s|
   s.author       = { "herman" => "zhangsy757@163.com" }
   s.platform     = :ios, "8.0"
   s.source       = { :git => "https://github.com/potato512/SYCategory.git", :tag => s.version.to_s }
-  s.source_files = 'SYCategory/**/*.{h,m}'
+  s.source_files = 'SYCategory/*.{h}', 'SYCategory/SYCategoryFoundation/*.{h,m}', 'SYCategory/SYCategoryUIKit/*.{h,m}'
   s.resource     = 'SYCategory/SYResources/*.png'
   s.requires_arc = true
   s.frameworks = 'UIKit', 'CoreFoundation', 'QuartzCore', 'AssetsLibrary', 'ImageIO', 'Security'
