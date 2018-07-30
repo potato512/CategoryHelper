@@ -164,6 +164,7 @@
 
 - (void)setDrapEnable:(BOOL)drapEnable
 {
+    objc_setAssociatedObject(self, @selector(drapEnable), @(drapEnable), OBJC_ASSOCIATION_ASSIGN);
     if (drapEnable)
     {
         // 添加拖动手势
@@ -183,6 +184,12 @@
         // 移动拖动手势
         [self removeGestureRecognizer:self.panRecognizer];
     }
+}
+
+- (BOOL)drapEnable
+{
+    NSNumber *number = objc_getAssociatedObject(self, @selector(drapEnable));
+    return number.boolValue;
 }
 
 - (void)setPanRecognizer:(UIPanGestureRecognizer *)panRecognizer

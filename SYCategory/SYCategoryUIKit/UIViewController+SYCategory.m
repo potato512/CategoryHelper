@@ -152,9 +152,9 @@
 #pragma mark - 链式属性
 
 /// 链式编程 适配（视图显示在导航栏之下）
-- (UIViewController *(^)())autoLayoutExtended
+- (UIViewController *(^)(void))autoLayoutExtended
 {
-    return ^() {
+    return ^(void) {
         if ([self respondsToSelector:@selector(setEdgesForExtendedLayout:)])
         {
             // 不要往四周边沿展开，避免被导航栏遮挡

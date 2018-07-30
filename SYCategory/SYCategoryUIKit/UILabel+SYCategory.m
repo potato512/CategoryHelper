@@ -187,7 +187,7 @@
     };
 }
 
-- (UILabel *(^)(NSString *text, UIColor *color, NSInteger lineType))labelAttributedTextUnderline
+- (UILabel *(^)(NSString *text, UIColor *color, NSUnderlineStyle lineType))labelAttributedTextUnderline
 {
     return ^(NSString *text, UIColor *color, NSUnderlineStyle lineType) {
         [self attributedText:text underLineColor:color underLineType:lineType];
@@ -197,7 +197,7 @@
 
 - (UILabel *(^)(NSString *text, UIColor *color, NSUnderlineStyle lineType))labelAttributedTextDeleteline
 {
-    return ^(NSString *text, UIColor *color, NSInteger lineType) {
+    return ^(NSString *text, UIColor *color, NSUnderlineStyle lineType) {
         [self attributedText:text deleteLineColor:color deleteLineType:lineType];
         return self;
     };
