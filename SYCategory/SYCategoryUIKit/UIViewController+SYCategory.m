@@ -45,7 +45,8 @@
 
 - (BOOL)hiddenKeyboard
 {
-    return objc_getAssociatedObject(self, @selector(hiddenKeyboard));
+    NSNumber *number = objc_getAssociatedObject(self, @selector(hiddenKeyboard));
+    return number.boolValue;
 }
 
 #pragma mark - 响应手势
@@ -135,18 +136,13 @@
 
 - (void)setNavigationItemTitle:(NSString *)navigationItemTitle
 {
-    if (navigationItemTitle)
-    {
-        objc_setAssociatedObject(self, @selector(navigationItemTitle), navigationItemTitle, OBJC_ASSOCIATION_RETAIN);
-        
-        self.navigationItem.title = navigationItemTitle;
-    }
+    objc_setAssociatedObject(self, @selector(navigationItemTitle), navigationItemTitle, OBJC_ASSOCIATION_RETAIN);
+    self.navigationItem.title = navigationItemTitle;
 }
 
 - (NSString *)navigationItemTitle
 {
-    NSString *object = objc_getAssociatedObject(self, @selector(navigationItemTitle));
-    return object;
+    return objc_getAssociatedObject(self, @selector(navigationItemTitle));
 }
 
 #pragma mark - 链式属性
