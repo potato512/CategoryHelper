@@ -108,7 +108,7 @@ static UIViewController __weak *targetController;
         UIImagePickerController *pickerController = [[UIImagePickerController alloc] init];
         pickerController.sourceType = sourceType;
         pickerController.allowsEditing = allowEdit;
-        pickerController.delegate = [self class];
+        pickerController.delegate = (id<UINavigationControllerDelegate, UIImagePickerControllerDelegate>)self;
         // 导航栏样式设置
         if ([[[UIDevice currentDevice] systemVersion] floatValue] >= 7.0)
         {

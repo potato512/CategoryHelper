@@ -36,7 +36,7 @@ static CancelBlock cancelblock;
         dismissblock = [dismisse copy];
         cancelblock = [cancel copy];
         
-        UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle:title delegate:[self class] cancelButtonTitle:cancelButtonTitle destructiveButtonTitle:nil otherButtonTitles:nil];
+        UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle:title delegate:(id<UIActionSheetDelegate>)self cancelButtonTitle:cancelButtonTitle destructiveButtonTitle:nil otherButtonTitles:nil];
         
         for (NSString *buttonTitle in otherButtonTitles)
         {

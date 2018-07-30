@@ -50,7 +50,7 @@ static errorBlock assetsLibraryErrorBlock;
     assetsLibrary = [[ALAssetsLibrary alloc] init];
     imageResults = [[NSMutableArray alloc] init];
     
-    __weak UIImage *weakSelf = self;
+    __weak UIImage *weakSelf = (UIImage *)self;
     
     __block NSString *assetPropertyType = ALAssetTypePhoto;
     __block NSMutableArray *assets = [[NSMutableArray alloc] init];

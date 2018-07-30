@@ -32,8 +32,14 @@
 
 - (NSMutableString *)indsertStringSafety:(NSString *)string atIndex:(NSInteger)index
 {
-    if ((string && string.length > 0) && (0 <= index && self.length - 1 >= index))
+    if (string && string.length > 0)
     {
+        if (index < 0) {
+            index = 0;
+        }
+        if (index > (self.length - 1)) {
+            index = self.length - 1;
+        }
         [self insertString:string atIndex:index];
     }
     return self;
@@ -80,8 +86,14 @@
 - (NSMutableString *(^)(NSString *string, NSUInteger index))addStringAtIndex
 {
     return ^(NSString *string, NSUInteger index) {
-        if (string && (0 <= index || self.length - 1 >= index))
+        if (string && string.length > 0)
         {
+            if (index < 0) {
+                index = 0;
+            }
+            if (index > self.length - 1) {
+                index = self.length - 1;
+            }
             [self insertString:string atIndex:index];
         }
         return self;
