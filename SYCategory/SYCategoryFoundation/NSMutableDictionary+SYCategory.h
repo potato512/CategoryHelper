@@ -27,6 +27,6 @@
 - (NSMutableDictionary *(^)(NSString *key))removeOjbectForKey;
 
 /// 链式编程 删除所有元素
-- (NSMutableDictionary *(^)())removeAllObject;
+- (NSMutableDictionary *(^)(void))removeAllObject;
 
 @end

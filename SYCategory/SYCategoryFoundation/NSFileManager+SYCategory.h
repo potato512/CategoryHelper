@@ -368,7 +368,7 @@
 /**
  *  以时间（yyyyMMddHHmmssSSS）命名的临时文件名
  *
- *  @param NSString 文件类型（如.png、.txt等）
+ *  @param type 文件类型（如.png、.txt等）
  *
  *  @return NSString
  */
@@ -403,18 +403,18 @@
 #pragma mark - 链式属性
 
 /// 链式编程 home路径
-+ (NSString *(^)())homePath;
++ (NSString *(^)(void))homePath;
 
 /// 链式编程 document路径
-+ (NSString *(^)())documentPath;
++ (NSString *(^)(void))documentPath;
 
 /// 链式编程 cache路径
-+ (NSString *(^)())cachePath;
++ (NSString *(^)(void))cachePath;
 
 /// 链式编程 library路径
-+ (NSString *(^)())libraryPath;
++ (NSString *(^)(void))libraryPath;
 
 /// 链式编程 tmp路径
-+ (NSString *(^)())tmpPath;
++ (NSString *(^)(void))tmpPath;
 
 @end

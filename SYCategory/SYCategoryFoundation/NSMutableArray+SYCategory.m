@@ -111,9 +111,9 @@
 }
 
 /// 链式编程 删除第一个元素
-- (NSMutableArray *(^)())removeTheFirstObject
+- (NSMutableArray *(^)(void))removeTheFirstObject
 {
-    return ^() {
+    return ^(void) {
         id object = self.firstObject;
         [self removeObject:object];
         return self;
@@ -121,9 +121,9 @@
 }
 
 /// 链式编程 删除最后一个元素
-- (NSMutableArray *(^)())removeTheLastOjbect
+- (NSMutableArray *(^)(void))removeTheLastOjbect
 {
-    return ^() {
+    return ^(void) {
         [self removeLastObject];
         return self;
     };
@@ -154,9 +154,9 @@
 }
 
 /// 链式编程 删除所有元素
-- (NSMutableArray *(^)())removeAllObject
+- (NSMutableArray *(^)(void))removeAllObject
 {
-    return ^() {
+    return ^(void) {
         [self removeAllObjects];
         return self;
     };

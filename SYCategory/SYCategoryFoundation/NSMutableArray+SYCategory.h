@@ -42,10 +42,10 @@
 - (NSMutableArray *(^)(id object, NSInteger index))replaceObjectAtIndex;
 
 /// 链式编程 删除第一个元素
-- (NSMutableArray *(^)())removeTheFirstObject;
+- (NSMutableArray *(^)(void))removeTheFirstObject;
 
 /// 链式编程 删除最后一个元素
-- (NSMutableArray *(^)())removeTheLastOjbect;
+- (NSMutableArray *(^)(void))removeTheLastOjbect;
 
 /// 链式编程 删除指定元素
 - (NSMutableArray *(^)(id object))removeObject;
@@ -54,6 +54,6 @@
 - (NSMutableArray *(^)(NSInteger index))removeObjectAtIndex;
 
 /// 链式编程 删除所有元素
-- (NSMutableArray *(^)())removeAllObject;
+- (NSMutableArray *(^)(void))removeAllObject;
 
 @end

@@ -57,9 +57,9 @@
 }
 
 /// 链式编程 删除所有元素
-- (NSMutableDictionary *(^)())removeAllObject
+- (NSMutableDictionary *(^)(void))removeAllObject
 {
-    return ^() {
+    return ^(void) {
         [self removeAllObjects];
         return self;
     };

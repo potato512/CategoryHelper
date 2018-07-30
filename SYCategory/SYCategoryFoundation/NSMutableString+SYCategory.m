@@ -32,7 +32,7 @@
 
 - (NSMutableString *)indsertStringSafety:(NSString *)string atIndex:(NSInteger)index
 {
-    if (string && (0 <= index || self.length - 1 >= index))
+    if ((string && string.length > 0) && (0 <= index && self.length - 1 >= index))
     {
         [self insertString:string atIndex:index];
     }

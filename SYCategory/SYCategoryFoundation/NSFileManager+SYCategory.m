@@ -826,7 +826,7 @@
 /**
  *  以时间（yyyyMMddHHmmssSSS）命名的临时文件名
  *
- *  @param NSString 文件类型（如.png、.txt等）
+ *  @param type 文件类型（如.png、.txt等）
  *
  *  @return NSString
  */
@@ -896,17 +896,17 @@
 #pragma mark - 链式属性
 
 /// 链式编程 home路径
-+ (NSString *(^)())homePath
++ (NSString *(^)(void))homePath
 {
-    return ^() {
+    return ^(void) {
         return NSHomeDirectory();
     };
 }
 
 /// 链式编程 document路径
-+ (NSString *(^)())documentPath
++ (NSString *(^)(void))documentPath
 {
-    return ^() {
+    return ^(void) {
         NSArray *Paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
         NSString *path = [Paths objectAtIndex:0];
         return path;
@@ -914,9 +914,9 @@
 }
 
 /// 链式编程 cache路径
-+ (NSString *(^)())cachePath
++ (NSString *(^)(void))cachePath
 {
-    return ^() {
+    return ^(void) {
         NSArray *Paths = NSSearchPathForDirectoriesInDomains(NSCachesDirectory, NSUserDomainMask, YES);
         NSString *path = [Paths objectAtIndex:0];
         return path;
@@ -924,9 +924,9 @@
 }
 
 /// 链式编程 library路径
-+ (NSString *(^)())libraryPath
++ (NSString *(^)(void))libraryPath
 {
-    return ^() {
+    return ^(void) {
         NSArray *Paths = NSSearchPathForDirectoriesInDomains(NSLibraryDirectory, NSUserDomainMask, YES);
         NSString *path = [Paths objectAtIndex:0];
         return path;
@@ -934,15 +934,11 @@
 }
 
 /// 链式编程 tmp路径
-+ (NSString *(^)())tmpPath
++ (NSString *(^)(void))tmpPath
 {
-    return ^() {
+    return ^(void) {
         return NSTemporaryDirectory();
     };
 }
-
-
-
-
 
 @end
