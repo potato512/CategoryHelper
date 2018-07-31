@@ -1,6 +1,12 @@
 # SYCategory
 自定义UIKit、Foundation的类别，以适应在研发过程中常使用到的功能，提高开发效率。
 
+
+* 使用介绍
+  * 自动导入：使用命令`pod 'SYCategory`导入到项目中
+  * 手动导入：或下载源码后，将源码添加到项目中
+  
+  
 # UIKit类别
   * [UILabel：自适应宽高、修改内容（指定文字颜色，大小，间距）](https://github.com/potato512/SYCategory/tree/master/CategoryRead/UILabelCategory)
   * [UIView：原点坐标设置、显示标签（内容，字体大小/颜色，对齐方式）、手势功能、缩放、旋转、翻转](https://github.com/potato512/SYCategory/tree/master/CategoryRead/UIViewCategory)
