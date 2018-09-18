@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		A724B71B21508D9E0050CEBC /* UIImage+SYQrcode.m in Sources */ = {isa = PBXBuildFile; fileRef = A724B71A21508D9E0050CEBC /* UIImage+SYQrcode.m */; };
+		A724B71E21508EE60050CEBC /* UIProgressView+SYCategory.m in Sources */ = {isa = PBXBuildFile; fileRef = A724B71D21508EE60050CEBC /* UIProgressView+SYCategory.m */; };
 		A72E46141E976536008DD2F3 /* SYViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A72E46131E976536008DD2F3 /* SYViewController.m */; };
 		A7419C591F0F70C000C4D04F /* NSArrayViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A7419C291F0F70C000C4D04F /* NSArrayViewController.m */; };
 		A7419C5A1F0F70C000C4D04F /* NSDataViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A7419C2B1F0F70C000C4D04F /* NSDataViewController.m */; };
@@ -129,6 +131,10 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		A724B71921508D9E0050CEBC /* UIImage+SYQrcode.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIImage+SYQrcode.h"; sourceTree = "<group>"; };
+		A724B71A21508D9E0050CEBC /* UIImage+SYQrcode.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIImage+SYQrcode.m"; sourceTree = "<group>"; };
+		A724B71C21508EE60050CEBC /* UIProgressView+SYCategory.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIProgressView+SYCategory.h"; sourceTree = "<group>"; };
+		A724B71D21508EE60050CEBC /* UIProgressView+SYCategory.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIProgressView+SYCategory.m"; sourceTree = "<group>"; };
 		A72E46121E97651C008DD2F3 /* SYViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SYViewController.h; sourceTree = "<group>"; };
 		A72E46131E976536008DD2F3 /* SYViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SYViewController.m; sourceTree = "<group>"; };
 		A7419C281F0F70C000C4D04F /* NSArrayViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NSArrayViewController.h; sourceTree = "<group>"; };
@@ -558,6 +564,8 @@
 				DF2CF9881EE98F24004253B5 /* UIImage+SYCategory.m */,
 				DF2CF9891EE98F24004253B5 /* UIImage+SYFilter.h */,
 				DF2CF98A1EE98F24004253B5 /* UIImage+SYFilter.m */,
+				A724B71921508D9E0050CEBC /* UIImage+SYQrcode.h */,
+				A724B71A21508D9E0050CEBC /* UIImage+SYQrcode.m */,
 				DF2CF98B1EE98F24004253B5 /* UIImagePickerController+SYCategory.h */,
 				DF2CF98C1EE98F24004253B5 /* UIImagePickerController+SYCategory.m */,
 				DF2CF98D1EE98F24004253B5 /* UIImageView+SYCategory.h */,
@@ -574,6 +582,8 @@
 				DF2CF9981EE98F24004253B5 /* UISlider+SYCategory.m */,
 				DF2CF9991EE98F24004253B5 /* UISwitch+SYCategory.h */,
 				DF2CF99A1EE98F24004253B5 /* UISwitch+SYCategory.m */,
+				A724B71C21508EE60050CEBC /* UIProgressView+SYCategory.h */,
+				A724B71D21508EE60050CEBC /* UIProgressView+SYCategory.m */,
 				DF2CF99B1EE98F24004253B5 /* UITabBarController+SYCategory.h */,
 				DF2CF99C1EE98F24004253B5 /* UITabBarController+SYCategory.m */,
 				DF2CF99D1EE98F24004253B5 /* UITableView+SYCategory.h */,
@@ -834,6 +844,7 @@
 				DF2CF9B41EE98F24004253B5 /* NSNotificationCenter+SYCategory.m in Sources */,
 				DF2CF9D71EE98F24004253B5 /* UIView+SYCategory.m in Sources */,
 				A72E46141E976536008DD2F3 /* SYViewController.m in Sources */,
+				A724B71B21508D9E0050CEBC /* UIImage+SYQrcode.m in Sources */,
 				A7419C6C1F0F70C000C4D04F /* LabelViewController.m in Sources */,
 				A7419C641F0F70C000C4D04F /* NSURLConnectionViewController.m in Sources */,
 				A7419C621F0F70C000C4D04F /* NSStringViewController.m in Sources */,
@@ -871,6 +882,7 @@
 				DF2CF9B11EE98F24004253B5 /* NSDate+SYCategory.m in Sources */,
 				DFA204F11D1E131C00929257 /* ViewController.m in Sources */,
 				A7419C5D1F0F70C000C4D04F /* NSFileHandleViewController.m in Sources */,
+				A724B71E21508EE60050CEBC /* UIProgressView+SYCategory.m in Sources */,
 				A7E53A9D202AD0DA006DA746 /* NSString+SYHtml.m in Sources */,
 				DF2CF9B91EE98F24004253B5 /* NSString+SYJSON.m in Sources */,
 				DFA204EE1D1E131C00929257 /* AppDelegate.m in Sources */,

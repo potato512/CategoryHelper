@@ -251,7 +251,7 @@ static NSString *const keyDecimalPoint = @".";
 /// 字符非空判断（可以是空格字符串）
 + (BOOL)isNullNSString:(NSString *)string;
 {
-    if (string == Nil || [string isEqualToString:@""] || 0 == string.length || [string isEqual:[NSNull class]])
+    if (string == nil || ![string isKindOfClass:[NSString class]] || [string isEqualToString:@""] || 0 == string.length || [string isEqual:[NSNull class]])
     {
         return YES;
     }

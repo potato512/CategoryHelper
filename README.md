@@ -48,6 +48,17 @@
 
 
 #### 修改完善
+* 20180918
+  * 版本号：1.2.7
+  * NSString+SYCategory
+    * 字符有效性判断异常修改
+  * UIImage+SYQrcode
+    * 二维码图片生成
+    * 条形码图片生成
+  * UIProgressView+SYCategory
+    * 添加高度设置属性`heightReal`    
+
+
 * 20180719
   * 版本号：1.2.6
   * UIColor+SYCategory添加属性
