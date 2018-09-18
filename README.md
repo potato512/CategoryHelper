@@ -49,6 +49,10 @@
 
 #### 修改完善
 * 20180918
+  * 版本号：1.2.8
+  * UIButton+SYCategory
+    * 倒计时定时器优化
+    
   * 版本号：1.2.7
   * NSString+SYCategory
     * 字符有效性判断异常修改

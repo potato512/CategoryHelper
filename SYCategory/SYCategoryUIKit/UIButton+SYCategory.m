@@ -8,6 +8,7 @@
 
 #import "UIButton+SYCategory.h"
 #import <objc/runtime.h>
+#import "NSTimer+SYCategory.h"
 
 static NSTimeInterval const timeSize = 1.0;
 
@@ -18,6 +19,8 @@ static NSTimeInterval const timeSize = 1.0;
 @property (nonatomic, strong) NSNumber *startTypeNumber;
 @property (nonatomic, strong) NSNumber *countdownTime;
 @property (nonatomic, strong) NSNumber *sourceCountdownTime;
+
+@property (nonatomic, strong) NSTimer *timer;
 
 @end
 
@@ -410,8 +413,7 @@ static NSTimeInterval const timeSize = 1.0;
 {
     NSTimeInterval time = self.countdownTime.doubleValue;
     
-    if (0.0 > time)
-    {
+    if (0.0 > time) {
         [self showFail];
         return;
     }
@@ -420,13 +422,23 @@ static NSTimeInterval const timeSize = 1.0;
     [self setTitle:title forState:UIControlStateDisabled];
     time -= timeSize;
     self.countdownTime = [NSNumber numberWithDouble:time];
-    [self performSelector:@selector(startCoundown) withObject:nil afterDelay:timeSize];
+    
+    if (self.timer == nil) {
+        __weak UIButton *weakButton = self;
+        self.timer = [NSTimer timerWithTimeInterval:timeSize userInfo:nil repeats:YES handle:^(NSTimer *timer){
+            [weakButton startCoundown];
+        }];
+        [self.timer timerStart];
+    }
 }
 
 // 结束
 - (void)stopCountdown
 {
-    [NSObject cancelPreviousPerformRequestsWithTarget:self];
+    if (self.timer) {
+        [self.timer timerKill];
+    }
+    
     [self setTitle:self.titleNormal forState:UIControlStateNormal];
 }
 
