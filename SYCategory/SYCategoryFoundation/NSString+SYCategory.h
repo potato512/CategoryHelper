@@ -20,18 +20,25 @@
 #pragma mark - 数值转字符串
 
 /// number转字string
-+ (NSString *)stringWithNumber:(NSNumber *)value;
+NSString *NSStringFromNumber(NSNumber *value);
 
 /// int转字string
-+ (NSString *)stringWithInt:(int)value;
+NSString *NSStringFromInt(int value);
+
 /// integer转字string
-+ (NSString *)stringWithInteger:(NSInteger)value;
+NSString *NSStringFromInteger(NSInteger value);
 
 /// float转字string
-+ (NSString *)stringWithFloat:(float)value;
+NSString *NSStringFromFloat(float value);
 
 /// double转字string
-+ (NSString *)stringWithDouble:(double)value;
+NSString *NSStringFromDouble(double value);
+
+/// 格式字符串
+NSString *NSStringFromFormat(NSString *format, ...);
+
+/// 是否相同的字符串
+BOOL NSStringEqualString(NSString *string1, NSString *string2);
 
 #pragma mark -
 

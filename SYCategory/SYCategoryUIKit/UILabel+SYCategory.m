@@ -105,10 +105,8 @@
     if (SYLabelAutoSizeTypeHorizontal == type)
     {
         self.frame = CGRectMake(self.frame.origin.x, self.frame.origin.y, labelsize.width, self.frame.size.height);
-    }
-    else if (SYLabelAutoSizeTypeAll == type)
-    {
-        self.frame = CGRectMake(self.frame.origin.x, self.frame.origin.y, labelsize.width, labelsize.height);
+    } else if (SYLabelAutoSizeTypeAll == type) {
+        self.frame = CGRectMake(self.frame.origin.x, self.frame.origin.y, size.width, labelsize.height);
     }
 }
 

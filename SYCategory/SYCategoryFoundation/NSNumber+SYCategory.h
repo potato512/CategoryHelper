@@ -10,6 +10,36 @@
 
 @interface NSNumber (SYCategory)
 
+NSNumber *NSNumberWithBool(BOOL value);
+
+NSNumber *NSNumberWithChar(char value);
+
+NSNumber *NSNumberWithUnsignedChar(unsigned char value);
+
+NSNumber *NSNumberWithShort(short value);
+
+NSNumber *NSNumberWithUnsignedShort(unsigned short value);
+
+NSNumber *NSNumberWithInt(int value);
+
+NSNumber *NSNumberWithUnsignedInt(unsigned int value);
+
+NSNumber *NSNumberWithLong(long value);
+
+NSNumber *NSNumberWithUnsignedLong(unsigned long value);
+
+NSNumber *NSNumberWithLongLong(long long value);
+
+NSNumber *NSNumberWithUnsignedLongLong(unsigned long long value);
+
+NSNumber *NSNumberWithFloat(float value);
+
+NSNumber *NSNumberWithDouble(double value);
+
+NSNumber *NSNumberWithInteger(NSInteger value);
+
+NSNumber *NSNumberWithUnsignedInteger(NSUInteger value);
+
 #pragma mark - 字符串转数值
 
 /// string转double

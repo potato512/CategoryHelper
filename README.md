@@ -48,6 +48,24 @@
 
 
 #### 修改完善
+* 20190312
+  * 版本号：1.2.9
+  * 修改完善
+    * label多行自适应异常
+    * 新增
+      * UIDevice+SYCategory
+      * NSURL+SYCategory
+      * UIScreen+SYCategory
+      * NSBundle+SYCategory
+    * 完善优化
+      * UIBarButtonItem
+      * UIColor
+      * NSString
+      * NSNumber
+      * UIImage
+
+
+
 * 20180918
   * 版本号：1.2.8
   * UIButton+SYCategory

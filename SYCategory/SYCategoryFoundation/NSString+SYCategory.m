@@ -8,6 +8,7 @@
 
 #import "NSString+SYCategory.h"
 #import "NSString+SYRegular.h"
+#import "NSNumber+SYCategory.h"
 #import <ifaddrs.h>
 #import <arpa/inet.h>
 
@@ -28,32 +29,48 @@
 #pragma mark - 数值转字符串
 
 /// number转字string
-+ (NSString *)stringWithNumber:(NSNumber *)value
+NSString *NSStringFromNumber(NSNumber *value)
 {
-    return [NSString stringWithFormat:@"%@", value];
+    return NSStringFromFormat(@"%@", value);
 }
 
 /// int转字string
-+ (NSString *)stringWithInt:(int)value
+NSString *NSStringFromInt(int value)
 {
-    return [NSString stringWithFormat:@"%@", [NSNumber numberWithInt:value]];
+    return NSStringFromFormat(@"%@", NSNumberWithInt(value));
 }
 /// integer转字string
-+ (NSString *)stringWithInteger:(NSInteger)value
+NSString *NSStringFromInteger(NSInteger value)
 {
-    return [NSString stringWithFormat:@"%@", [NSNumber numberWithInteger:value]];
+    return NSStringFromFormat(@"%@", NSNumberWithInteger(value));
 }
 
 /// float转字string
-+ (NSString *)stringWithFloat:(float)value
+NSString *NSStringFromFloat(float value)
 {
-    return [NSString stringWithFormat:@"%@", [NSNumber numberWithFloat:value]];
+    return NSStringFromFormat(@"%@", NSNumberWithFloat(value));
 }
 
 /// double转字string
-+ (NSString *)stringWithDouble:(double)value
+NSString *NSStringFromDouble(double value)
 {
-    return [NSString stringWithFormat:@"%@", [NSNumber numberWithDouble:value]];
+    return NSStringFromFormat(@"%@", NSNumberWithDouble(value));
+}
+
+/// 格式字符串
+NSString *NSStringFromFormat(NSString *format, ...)
+{
+    va_list list;
+    va_start(list, format);
+    NSString *string = [[NSString alloc] initWithFormat:format arguments:list];
+    va_end(list);
+    return string;
+}
+
+/// 是否相同的字符串
+BOOL NSStringEqualString(NSString *string1, NSString *string2)
+{
+    return [string1 isEqualToString:string2];
 }
 
 #pragma mark -
@@ -65,8 +82,7 @@
  */
 - (NSString *)firstCharacter
 {
-    if (![NSString isValidNSString:self])
-    {
+    if (![NSString isValidNSString:self]) {
         return nil;
     }
     NSMutableString *string = [NSMutableString stringWithString:self];
@@ -100,18 +116,15 @@
 /// 字符隐藏显示设置（使用诸如“*”符号代替，同时设置只显示前几位，及后几位）
 - (NSString *)textHiddenWithSymbol:(NSString *)symbol showBegin:(NSInteger)begin showEnd:(NSInteger)end
 {
-    if (![NSString isNullNSString:symbol])
-    {
+    if (![NSString isNullNSString:symbol]) {
         NSInteger countLength = self.length;
         NSInteger countBegin = begin;
         NSInteger countEnd = end;
-        if ((countBegin + countEnd <= countLength) && (begin >= 0 && end >= 0))
-        {
+        if ((countBegin + countEnd <= countLength) && (begin >= 0 && end >= 0)) {
             NSInteger countHidden = countLength - countBegin - countEnd;
             
             NSMutableString *stringSymbol = [NSMutableString string];
-            for (NSInteger i = 0; i < countHidden; i++)
-            {
+            for (NSInteger i = 0; i < countHidden; i++) {
                 [stringSymbol appendString:symbol];
             }
             
@@ -132,8 +145,7 @@ static NSString *const keyDecimalPoint = @".";
 - (NSString *)textKeepDecimalPointWithNumber:(NSInteger)length
 {
     NSRange rangePoint = [self rangeOfString:keyDecimalPoint];
-    if (rangePoint.location != NSNotFound)
-    {
+    if (rangePoint.location != NSNotFound) {
         NSString *decimalString = [self substringFromIndex:rangePoint.location + rangePoint.length];
         NSInteger countDecimal = decimalString.length;
         NSInteger countKeep = length;
@@ -144,20 +156,16 @@ static NSString *const keyDecimalPoint = @".";
         // 不足位数时补0
         countKeep = length - countDecimal;
         NSMutableString *zeroString = [NSMutableString string];
-        for (NSInteger i = 0; i < countKeep; i++)
-        {
+        for (NSInteger i = 0; i < countKeep; i++) {
             [zeroString appendString:@"0"];
         }
         resultString = [NSString stringWithFormat:@"%@%@", resultString, zeroString];
         
         return resultString;
-    }
-    else
-    {
+    } else {
         // 不足位数时补0
         NSMutableString *zeroString = [NSMutableString stringWithString:keyDecimalPoint];
-        for (NSInteger i = 0; i < length; i++)
-        {
+        for (NSInteger i = 0; i < length; i++) {
             [zeroString appendString:@"0"];
         }
         NSString *resultString = [NSString stringWithFormat:@"%@%@", self, zeroString];
@@ -169,8 +177,7 @@ static NSString *const keyDecimalPoint = @".";
 /// 金额字符串转换显示样式（每三位以空格，或,进行分割显示）
 - (NSString *)textMoneySeparatorWithSymbol:(NSString *)symbol
 {
-    if (![NSString isNullNSString:symbol])
-    {
+    if (![NSString isNullNSString:symbol]) {
         NSString *textTmp = self;
         
         // 整数位
@@ -182,24 +189,21 @@ static NSString *const keyDecimalPoint = @".";
         
         // 判断是否含有负数
         NSRange rangeMinus = [textTmp rangeOfString:@"-"];
-        if (rangeMinus.location != NSNotFound)
-        {
+        if (rangeMinus.location != NSNotFound) {
             textMinus = @"-";
             textTmp = [textTmp substringFromIndex:(rangeMinus.location + rangeMinus.length)];
         }
         
         // 判断是否含有正数
         NSRange rangePositive = [textTmp rangeOfString:@"+"];
-        if (rangePositive.location != NSNotFound)
-        {
+        if (rangePositive.location != NSNotFound) {
             textMinus = @"+";
             textTmp = [textTmp substringFromIndex:(rangePositive.location + rangePositive.length)];
         }
         
         // 判断是否含有小数，小数位不纳入处理
         NSRange rangeZero = [textTmp rangeOfString:keyDecimalPoint];
-        if (rangeZero.location != NSNotFound)
-        {
+        if (rangeZero.location != NSNotFound) {
             textMoney = [textTmp substringToIndex:rangeZero.location];
             textZero = [textTmp substringFromIndex:rangeZero.location];
         }
@@ -207,19 +211,16 @@ static NSString *const keyDecimalPoint = @".";
         // 3位以下才进行分割处理
         NSInteger countLength = textMoney.length;
         NSInteger countSpace = 3;
-        if (countLength > countSpace)
-        {
+        if (countLength > countSpace) {
             NSInteger countSymbol = countLength / countSpace;
-            if (countLength % countSpace == 0)
-            {
+            if (countLength % countSpace == 0) {
                 // 刚好整除时，减1（如：6、9、12...3n）
                 countSymbol -= 1;
             }
             
             NSInteger indexSymbol = 0;
             NSMutableString *stringSymbol = [NSMutableString stringWithString:textMoney];
-            for (NSInteger i = 0; i < countSymbol; i++)
-            {
+            for (NSInteger i = 0; i < countSymbol; i++) {
                 countLength = stringSymbol.length;
                 indexSymbol = countLength - countSpace * (1 + i) - i;
                 
@@ -251,8 +252,7 @@ static NSString *const keyDecimalPoint = @".";
 /// 字符非空判断（可以是空格字符串）
 + (BOOL)isNullNSString:(NSString *)string;
 {
-    if (string == nil || ![string isKindOfClass:[NSString class]] || [string isEqualToString:@""] || 0 == string.length || [string isEqual:[NSNull class]])
-    {
+    if (string == nil || ![string isKindOfClass:[NSString class]] || [string isEqualToString:@""] || 0 == string.length || [string isEqual:[NSNull class]]) {
         return YES;
     }
     
@@ -281,8 +281,7 @@ static NSString *const keyDecimalPoint = @".";
 {
     NSUInteger asciiLength = 0;
     NSInteger length = self.length;
-    for (NSUInteger i = 0; i < length; i++)
-    {
+    for (NSUInteger i = 0; i < length; i++) {
         unichar uc = [self characterAtIndex:i];
         asciiLength += (isascii(uc) ? 1 : (isCN ? 2 : 1));
     }
@@ -295,8 +294,7 @@ static NSString *const keyDecimalPoint = @".";
 - (NSInteger)textStrengthGrade
 {
     NSInteger grade = 0;
-    if ([NSString isValidNSString:self])
-    {
+    if ([NSString isValidNSString:self]) {
         // 弱、中、高判定规则：将长度大于10、含大写字母、含小写字母、含数字、含特殊符号作为五个判定标准，基础密码必须满足两个标准安全等级为弱；满足三个条件安全等级为中；满足四个及以上安全等级为强。根据不同密码安全等级显示对应提示
         BOOL isLength = (self.length > 10);
         BOOL isUpper = [self isContantSomeCharacters:@"ABCDEFGHIJKLMNOPQRSTUVWXYZ"];
@@ -305,11 +303,9 @@ static NSString *const keyDecimalPoint = @".";
         BOOL isSpecial = [self isContantSomeCharacters:@"~!@#$%^&*()_+-=\\|{}[];':,./<>?\""];
         
         NSArray *array = @[@(isLength), @(isUpper), @(isLower), @(isNumber), @(isSpecial)];
-        for (NSNumber *number in array)
-        {
+        for (NSNumber *number in array) {
             BOOL isTrue = number.boolValue;
-            if (isTrue)
-            {
+            if (isTrue) {
                 grade++;
             }
         }
@@ -322,44 +318,34 @@ static NSString *const keyDecimalPoint = @".";
 - (BOOL)isContinuousNumberNSString:(NSInteger)number order:(BOOL)isAscending
 {
     BOOL result = NO;
-    if ([NSString isValidNSString:self])
-    {
+    if ([NSString isValidNSString:self]) {
         // 连接n个或n个以上顺序或倒序数字字符串
         NSInteger lenght = self.length;
-        for (NSInteger index = 0; index < (lenght - number); index++)
-        {
+        for (NSInteger index = 0; index < (lenght - number); index++) {
             NSInteger resultNumber = 0; // 求和
             NSInteger resultJudge = 0;  // 判断
             
             NSString *subString = [self substringWithRange:NSMakeRange(index, number)];
-            for (NSInteger subIndex = 0; subIndex < subString.length; subIndex++)
-            {
+            for (NSInteger subIndex = 0; subIndex < subString.length; subIndex++) {
                 NSString *numberString = [subString substringWithRange:NSMakeRange(subIndex, 1)];
-                if ([numberString isNumberNSString])
-                {
+                if ([numberString isNumberNSString]) {
                     NSInteger subNumber = numberString.integerValue;
                     resultNumber += subNumber;
-                    if (subIndex == 0)
-                    {
+                    if (subIndex == 0) {
                         // 初始化判断值
                         resultJudge = subNumber;
-                    }
-                    else if (subIndex == subString.length - 1)
-                    {
-                        if (!isAscending)
-                        {
+                    } else if (subIndex == subString.length - 1) {
+                        if (!isAscending) {
                             // 降序时，最后一个值
                             resultJudge = subNumber;
                         }
                         // 最后一个时判断结果
                         NSInteger judge = 0;
-                        for (NSInteger sum = 1; sum < number; sum++)
-                        {
+                        for (NSInteger sum = 1; sum < number; sum++) {
                             judge += sum;
                         }
                         judge += (number * resultJudge);
-                        if (resultNumber == judge)
-                        {
+                        if (resultNumber == judge) {
                             // 连续
                             result = YES;
                             break;
@@ -368,8 +354,7 @@ static NSString *const keyDecimalPoint = @".";
                 }
             }
             
-            if (result)
-            {
+            if (result) {
                 // 有个连续的则不再继续判断
                 break;
             }
@@ -385,29 +370,23 @@ static NSString *const keyDecimalPoint = @".";
     return ^(NSString *text, UIColor *color, UIColor *backColor, UIFont *font, CGFloat characterSpace, CGFloat rowSpace) {
         NSMutableAttributedString *attributed = [[NSMutableAttributedString alloc] initWithString:self];
         NSRange range = [self rangeOfString:text];
-        if (range.location != NSNotFound)
-        {
-            if (font)
-            {
+        if (range.location != NSNotFound) {
+            if (font) {
                 [attributed setAttributes:@{NSFontAttributeName:font} range:range];
             }
-            if (color)
-            {
+            if (color) {
                 [attributed setAttributes:@{NSForegroundColorAttributeName:color} range:range];
             }
-            if (backColor)
-            {
+            if (backColor) {
                 [attributed setAttributes:@{NSBackgroundColorAttributeName:backColor} range:range];
             }
             // 字符间距
-            if (0.0 < characterSpace)
-            {
+            if (0.0 < characterSpace) {
                 // 设置每个字体之间的间距 NSKernAttributeName 这个对象所对应的值是一个NSNumber对象(包含小数),作用是修改默认字体之间的距离调整,值为0的话表示字距调整是禁用的
                 [attributed addAttribute:NSKernAttributeName value:@(characterSpace) range:range];
             }
             // 行间距
-            if (0.0 < rowSpace)
-            {
+            if (0.0 < rowSpace) {
                 // 设置每行之间的间距 NSParagraphStyleAttributeName 设置段落的样式
                 NSMutableParagraphStyle *par = [[NSMutableParagraphStyle alloc] init];
                 [par setLineSpacing:rowSpace];
@@ -425,18 +404,14 @@ static NSString *const keyDecimalPoint = @".";
     return ^(NSString *text, UIColor *color, UIFont *font, BOOL isDelete, NSInteger lineType, CGFloat lineWidth, UIColor *lineColor) {
         NSMutableAttributedString *attributed = [[NSMutableAttributedString alloc] initWithString:self];
         NSRange range = [self rangeOfString:text];
-        if (range.location != NSNotFound)
-        {
-            if (color)
-            {
+        if (range.location != NSNotFound) {
+            if (color) {
                 [attributed addAttribute:NSForegroundColorAttributeName value:color range:range];
             }
-            if (0.0 < lineWidth)
-            {
+            if (0.0 < lineWidth) {
                 [attributed addAttribute:NSStrokeWidthAttributeName value:[NSNumber numberWithFloat:lineWidth] range:range];
             }
-            if (lineColor)
-            {
+            if (lineColor) {
                 [attributed addAttribute:(isDelete ? NSStrikethroughColorAttributeName : NSUnderlineColorAttributeName) value:lineColor range:range];
             }
             

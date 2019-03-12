@@ -12,6 +12,15 @@ typedef void (^SaveToPhotosAlbumComplete)(BOOL isSuccess);
 
 @interface UIImage (SYCategory)
 
+/// 读取本地图片
+UIImage *UIImageWithBundleName(NSString *name, NSString *type);
+
+/// 获取图片，根据图片名称
+UIImage *UIImageWithName(NSString *name);
+
+/// 拉伸图片边框处理
+- (UIImage *)imageWithUIEdge:(UIEdgeInsets)inset;
+
 @property (nonatomic, copy) SaveToPhotosAlbumComplete saveToPhotosAlbumComplete;
 
 #pragma mark - 图片

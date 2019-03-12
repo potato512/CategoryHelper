@@ -11,6 +11,24 @@
 
 @implementation UIImage (SYCategory)
 
+/// 读取本地图片
+UIImage *UIImageWithBundleName(NSString *name, NSString *type)
+{
+    return [UIImage imageWithContentsOfFile:[NSBundle.mainBundle pathForResource:name ofType:type]];
+}
+
+/// 获取图片，根据图片名称
+UIImage *UIImageWithName(NSString *name)
+{
+    return [UIImage imageNamed:name];
+}
+
+/// 拉伸图片边框处理
+- (UIImage *)imageWithUIEdge:(UIEdgeInsets)inset
+{
+    return [self resizableImageWithCapInsets:inset resizingMode:UIImageResizingModeStretch];
+}
+
 #pragma mark - setter/getter
 
 - (void)setSaveToPhotosAlbumComplete:(SaveToPhotosAlbumComplete)saveToPhotosAlbumComplete

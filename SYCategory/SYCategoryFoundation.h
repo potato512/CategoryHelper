@@ -32,6 +32,8 @@
 #import "NSUserDefaults+SYCategory.h"
 #import "NSStream+SYCategory.h"
 #import "NSPredicate+SYCategory.h"
+#import "NSURL+SYCategory.h"
+#import "NSBundle+SYCategory.h"
 
 #ifndef SYCategoryFoundation_h
 #define SYCategoryFoundation_h

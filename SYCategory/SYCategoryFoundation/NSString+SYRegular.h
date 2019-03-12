@@ -10,6 +10,9 @@
 
 @interface NSString (SYRegular)
 
+/// 网络地址
+- (BOOL)isNetString;
+
 #pragma mark - 字符正则
 
 /**

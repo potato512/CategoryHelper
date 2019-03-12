@@ -44,16 +44,14 @@ static FailureBlock failureblock;
 {
     NSHTTPURLResponse *HTTPResponse = (NSHTTPURLResponse *)response;
     
-    if (successblock)
-    {
+    if (successblock) {
         successblock(HTTPResponse);
     }
 }
 
 + (void)connection:(NSURLConnection *)connection didReceiveData:(NSData *)data
 {
-    if (datablock)
-    {
+    if (datablock) {
         datablock(data);
     }
 }
@@ -62,16 +60,14 @@ static FailureBlock failureblock;
 {
     NSInteger progress = (totalBytesWritten * 100) / totalBytesExpectedToWrite;
     
-    if (progressblock)
-    {
+    if (progressblock) {
         progressblock(progress);
     }
 }
 
 + (void)connection:(NSURLConnection *)connection didFailWithError:(NSError *)error
 {
-    if (failureblock)
-    {
+    if (failureblock) {
         failureblock(error);
     }
 }

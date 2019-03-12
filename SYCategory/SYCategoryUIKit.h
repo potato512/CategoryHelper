@@ -38,6 +38,8 @@
 #import "UIImagePickerController+SYCategory.h"
 #import "UITabBarController+SYCategory.h"
 #import "UIDocument+SYCategory.h"
+#import "UIDevice+SYCategory.h"
+#import "UIScreen+SYCategory.h"
 
 #ifndef SYCategoryUIKit_h
 #define SYCategoryUIKit_h

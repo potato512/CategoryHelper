@@ -10,6 +10,81 @@
 
 @implementation NSNumber (SYCategory)
 
+NSNumber *NSNumberWithBool(BOOL value)
+{
+    return [NSNumber numberWithBool:value];
+}
+
+NSNumber *NSNumberWithChar(char value)
+{
+    return [NSNumber numberWithChar:value];
+}
+
+NSNumber *NSNumberWithUnsignedChar(unsigned char value)
+{
+    return [NSNumber numberWithUnsignedChar:value];
+}
+
+NSNumber *NSNumberWithShort(short value)
+{
+    return [NSNumber numberWithShort:value];
+}
+
+NSNumber *NSNumberWithUnsignedShort(unsigned short value)
+{
+    return [NSNumber numberWithUnsignedShort:value];
+}
+
+NSNumber *NSNumberWithInt(int value)
+{
+    return [NSNumber numberWithInt:value];
+}
+
+NSNumber *NSNumberWithUnsignedInt(unsigned int value)
+{
+    return [NSNumber numberWithUnsignedInt:value];
+}
+
+NSNumber *NSNumberWithLong(long value)
+{
+    return [NSNumber numberWithLong:value];
+}
+
+NSNumber *NSNumberWithUnsignedLong(unsigned long value)
+{
+    return [NSNumber numberWithUnsignedLong:value];
+}
+
+NSNumber *NSNumberWithLongLong(long long value)
+{
+    return [NSNumber numberWithLongLong:value];
+}
+
+NSNumber *NSNumberWithUnsignedLongLong(unsigned long long value)
+{
+    return [NSNumber numberWithUnsignedLongLong:value];
+}
+
+NSNumber *NSNumberWithFloat(float value)
+{
+    return [NSNumber numberWithFloat:value];
+}
+
+NSNumber *NSNumberWithDouble(double value)
+{
+    return [NSNumber numberWithDouble:value];
+}
+
+NSNumber *NSNumberWithInteger(NSInteger value)
+{
+    return [NSNumber numberWithInteger:value];
+}
+
+NSNumber *NSNumberWithUnsignedInteger(NSUInteger value)
+{
+    return [NSNumber numberWithUnsignedInteger:value];
+}
+
 #pragma mark - 字符串转数值
 
 /// string转double

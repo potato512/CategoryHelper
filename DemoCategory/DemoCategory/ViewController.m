@@ -74,9 +74,15 @@
     kSelfWeak;
     self.navigationItem.rightBarButtonItem = [UIBarButtonItem leftBarButtonItemWithTitle:@"click" action:^(UIButton *item) {
         
-        [weakSelf numberMethord];
+//        [weakSelf numberMethord];
         
 //        [weakSelf timeCountDown];
+        
+//        [weakSelf sizeInfo];
+        
+//        PhoneCallWithNumber(@"13510213244", YES);
+        
+        [weakSelf appMessage];
     }];
 }
 
@@ -308,6 +314,21 @@
         countdown=[NSString stringWithFormat:@"活动结束/开始抢购"];
     }
     NSLog(@"countdown = %@", countdown);
+}
+
+- (void)sizeInfo
+{
+    NSLog(@"applicationFrame %@", NSStringFromCGRect(UIScreen.mainScreen.applicationFrame));
+    NSLog(@"bounds %@, scale %f", NSStringFromCGRect(UIScreen.mainScreen.bounds), UIScreen.mainScreen.scale);
+    NSLog(@"nativeBounds %@, nativeScale %f", NSStringFromCGRect(UIScreen.mainScreen.nativeBounds), UIScreen.mainScreen.nativeScale);
+    NSLog(@"bounds %@", NSStringFromCGRect(self.view.bounds));
+    NSLog(@"frame %@", NSStringFromCGRect(self.view.frame));
+    NSLog(@"originSize %@, nativeSize %@, UIScreen.screenWidth %f, UIScreen.screenHeight %f, UIScreen.screenHeightWithNavigation %f, UIScreen.screenHeightWithStatusBarNavigation %f, UIScreen.tabBarHeight %f, UIScreen.navigationHeight %f, UIScreen.statusBarHeight %f, UIScreen.searchBarHeight %f, UIScreen.topSafeHeight %f, UIScreen.bottomSafeHeight %f", NSStringFromCGSize(UIScreen.originSize), NSStringFromCGSize(UIScreen.nativeSize), UIScreen.screenWidth, UIScreen.screenHeight, UIScreen.screenHeightWithoutStausBar, UIScreen.screenHeightWithoutStatusBarNavigation, UIScreen.tabBarHeight, UIScreen.navigationHeight, UIScreen.statusBarHeight, UIScreen.searchBarHeight, UIScreen.topSafeHeight, UIScreen.bottomSafeHeight);
+}
+
+- (void)appMessage
+{
+    NSLog(@"appInfo %@, appName %@, appBundleName %@, appVersion %@, appBuildVersion %@, appBundleIdentifier %@, appLanguage %@, appPlatformVersion %@, appMiniSystemVersion %@, isDeviceSimulator %d, isDevicePhone %d", appInfo(), appName(), appBundleName(), appVersion(), appVersion(), appBundleIdentifier(), appLanguage(), appPlatformVersion(), appMiniSystemVersion(), isDeviceSimulator(), isDevicePhone());
 }
 
 #pragma mark - UITableViewDataSource, UITableViewDelegate

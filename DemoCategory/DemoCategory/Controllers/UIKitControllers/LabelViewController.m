@@ -65,6 +65,28 @@
     
     currentView = label2;
     
+    UILabel *label22 = [[UILabel alloc] initWithFrame:CGRectMake(10.0, (currentView.bottom + 10.0), (scrollview.width - 10.0 * 2), 100.0)];
+    [scrollview addSubview:label22];
+    label22.backgroundColor = [UIColor yellowColor];
+    label22.font = [UIFont systemFontOfSize:12.0];
+    label22.text = @"请求失败\n网络异常";
+    [label22 labelAutoSize:SYLabelAutoSizeTypeAll];
+    
+    
+    currentView = label22;
+    
+    UILabel *label23 = [[UILabel alloc] initWithFrame:CGRectMake(10.0, (currentView.bottom + 10.0), (scrollview.width - 10.0 * 2), 100.0)];
+    [scrollview addSubview:label23];
+    label23.backgroundColor = [UIColor yellowColor];
+    label23.font = [UIFont systemFontOfSize:12.0];
+    label23.text = @"请求失败，网络异常";
+    [label23 labelAutoSize:SYLabelAutoSizeTypeHorizontal];
+    
+    
+    currentView = label23;
+    
+    
+    
     UILabel *label3 = [[UILabel alloc] initWithFrame:CGRectMake(10.0, (currentView.bottom + 10.0), (scrollview.width - 10.0 * 2), 30.0)];
     [scrollview addSubview:label3];
     label3.backgroundColor = [UIColor colorWithWhite:0.5 alpha:0.3];

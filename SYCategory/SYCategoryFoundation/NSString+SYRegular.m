@@ -17,6 +17,14 @@ static NSString *const kSpecialRegular = @";~`!@#$%^&*()_+-={}[]|:\"'<>,.?/\";";
 
 @implementation NSString (SYRegular)
 
+- (BOOL)isNetString
+{
+    if ([self.lowercaseString hasPrefix:@"https://"] || [self.lowercaseString hasPrefix:@"http://"]) {
+        return YES;
+    }
+    return NO;
+}
+
 #pragma mark - 字符正则
 
 /**

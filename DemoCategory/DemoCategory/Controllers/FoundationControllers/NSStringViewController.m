@@ -104,123 +104,76 @@
     NSString *message = nil;
     
     NSInteger index = button.tag - 1000;
-    if (0 == index)
-    {
+    if (0 == index) {
         message = [NSString IPAddress];
-    }
-    else if (1 == index)
-    {
-        message = [NSString stringWithNumber:@(16)];
-    }
-    else if (2 == index)
-    {
+    } else if (1 == index) {
+        message = NSStringFromNumber(@(16));
+    } else if (2 == index) {
         NSString *text = textField.text;
         message = [text firstCharacter];
-    }
-    else if (3 == index)
-    {
+    } else if (3 == index) {
         NSString *text = textField.text;
         message = [text textHiddenWithSymbol:@"+" showBegin:2 showEnd:2];
-    }
-    else if (4 == index)
-    {
+    } else if (4 == index) {
         NSString *text = textField.text;
         message = [text textKeepDecimalPointWithNumber:10];
-    }
-    else if (5 == index)
-    {
+    } else if (5 == index) {
         NSString *text = textField.text;
         message = [text textMoneySeparatorWithSymbol:@","];
-    }
-    else if (6 == index)
-    {
+    } else if (6 == index) {
         NSString *text = textField.text;
         message = [NSString stringWithFormat:@"%@：%@", text, ([NSString isValidNSString:text] ? @"有效" : @"无效")];
-    }
-    else if (7 == index)
-    {
+    } else if (7 == index) {
         NSString *text = textField.text;
         message = [NSString stringWithFormat:@"%@：%@", text, ([NSString isNullNSString:text] ? @"非空有效" : @"非空无效")];
-    }
-    else if (8 == index)
-    {
+    } else if (8 == index) {
         NSString *text = textField.text;
         message = [NSString stringWithFormat:@"%@：%@", text, [text textFilterBlankSpace]];
-    }
-    else if (9 == index)
-    {
+    } else if (9 == index) {
         NSString *text = textField.text;
         message = [NSString stringWithFormat:@"%@：%@", text, ([text isCNNSString] ? @"汉字字符" : @"非汉字字符")];
-    }
-    else if (10 == index)
-    {
+    } else if (10 == index) {
         NSString *text = textField.text;
         message = [NSString stringWithFormat:@"%@（长度）：%@", text, @([text textLength:NO])];
-    }
-    else if (11 == index)
-    {
+    } else if (11 == index) {
         NSString *text = textField.text;
         message = [NSString stringWithFormat:@"%@（手机）：%@", text, ([text isValidMobile] ? @"是" : @"否")];
-    }
-    else if (12 == index)
-    {
+    } else if (12 == index) {
         NSString *text = textField.text;
         message = [NSString stringWithFormat:@"%@（移动手机）：%@", text, ([text isValidMobileCM] ? @"是" : @"否")];
-    }
-    else if (13 == index)
-    {
+    } else if (13 == index) {
         NSString *text = textField.text;
         message = [NSString stringWithFormat:@"%@（联通手机）：%@", text, ([text isValidMobileCU] ? @"是" : @"否")];
-    }
-    else if (14 == index)
-    {
+    } else if (14 == index) {
         NSString *text = textField.text;
         message = [NSString stringWithFormat:@"%@（电信手机）：%@", text, ([text isValidMobileCT] ? @"是" : @"否")];
-    }
-    else if (15 == index)
-    {
+    } else if (15 == index) {
         NSString *text = textField.text;
         message = [NSString stringWithFormat:@"%@（邮箱）：%@", text, ([text isValidEmail] ? @"是" : @"否")];
-    }
-    else if (16 == index)
-    {
+    } else if (16 == index) {
         NSString *text = textField.text;
         message = [NSString stringWithFormat:@"%@（包含空格）：%@", text, ([text isSpaceString] ? @"是" : @"否")];
-    }
-    else if (17 == index)
-    {
+    } else if (17 == index) {
         NSString *text = textField.text;
         message = [NSString stringWithFormat:@"%@（包含子字符串 devZhang）：%@", text, ([text isContantSubtext:@"devZhang"] ? @"是" : @"否")];
-    }
-    else if (18 == index)
-    {
+    } else if (18 == index) {
         NSString *text = textField.text;
         message = [NSString stringWithFormat:@"%@（包含中文）：%@", text, ([text isENCharacter] ? @"是" : @"否")];
-    }
-    else if (19 == index)
-    {
+    } else if (19 == index) {
         NSString *text = textField.text;
         message = [NSString stringWithFormat:@"%@（纯数字字符串）：%@", text, ([text isNumberNSString] ? @"是" : @"否")];
-    }
-    else if (20 == index)
-    {
+    } else if (20 == index) {
         NSString *text = textField.text;
 //        message = [NSString stringWithFormat:@"%@（数字大小写字母_@）：%@", text, ([text isValidAccount] ? @"有效" : @"无效")];
         message = [NSString stringWithFormat:@"%@（数字大小写字母4~12位）：%@", text, ([text isValidLimitAccount] ? @"有效" : @"无效")];
 //        message = [NSString stringWithFormat:@"%@（数字字母8~12位）：%@", text, ([text isValidPassword] ? @"有效" : @"无效")];
-    }
-    else if (21 == index)
-    {
+    } else if (21 == index) {
         NSString *text = textField.text;
         message = [NSString stringWithFormat:@"%@（指定金额）：%@", text, ([text isValidMoney] ? @"有效" : @"无效")];
-    }
-    else if (22 == index)
-    {
+    } else if (22 == index) {
         NSString *text = textField.text;
         message = [NSString stringWithFormat:@"%@：%@ 银行卡", text, ([text isValidBankCardNumber] ? @"有效" : @"无效")];
-    }
-    else if (23 == index)
-    {
+    } else if (23 == index) {
         NSString *text = textField.text;
         message = [NSString stringWithFormat:@"%@：%@ 身份证", text, ([text isValidIdentityCard] ? @"有效" : @"无效")];
     }

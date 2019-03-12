@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		A7029C082237514600C94BD7 /* UIDevice+SYCategory.m in Sources */ = {isa = PBXBuildFile; fileRef = A7029C072237514600C94BD7 /* UIDevice+SYCategory.m */; };
+		A7029C0B2237585200C94BD7 /* NSURL+SYCategory.m in Sources */ = {isa = PBXBuildFile; fileRef = A7029C0A2237585200C94BD7 /* NSURL+SYCategory.m */; };
+		A7029C0E2237656300C94BD7 /* NSBundle+SYCategory.m in Sources */ = {isa = PBXBuildFile; fileRef = A7029C0D2237656300C94BD7 /* NSBundle+SYCategory.m */; };
+		A7029C11223781F300C94BD7 /* UIScreen+SYCategory.m in Sources */ = {isa = PBXBuildFile; fileRef = A7029C10223781F300C94BD7 /* UIScreen+SYCategory.m */; };
 		A724B71B21508D9E0050CEBC /* UIImage+SYQrcode.m in Sources */ = {isa = PBXBuildFile; fileRef = A724B71A21508D9E0050CEBC /* UIImage+SYQrcode.m */; };
 		A724B71E21508EE60050CEBC /* UIProgressView+SYCategory.m in Sources */ = {isa = PBXBuildFile; fileRef = A724B71D21508EE60050CEBC /* UIProgressView+SYCategory.m */; };
 		A72E46141E976536008DD2F3 /* SYViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A72E46131E976536008DD2F3 /* SYViewController.m */; };
@@ -131,6 +135,14 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		A7029C062237514600C94BD7 /* UIDevice+SYCategory.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIDevice+SYCategory.h"; sourceTree = "<group>"; };
+		A7029C072237514600C94BD7 /* UIDevice+SYCategory.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIDevice+SYCategory.m"; sourceTree = "<group>"; };
+		A7029C092237585200C94BD7 /* NSURL+SYCategory.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSURL+SYCategory.h"; sourceTree = "<group>"; };
+		A7029C0A2237585200C94BD7 /* NSURL+SYCategory.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSURL+SYCategory.m"; sourceTree = "<group>"; };
+		A7029C0C2237656300C94BD7 /* NSBundle+SYCategory.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSBundle+SYCategory.h"; sourceTree = "<group>"; };
+		A7029C0D2237656300C94BD7 /* NSBundle+SYCategory.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSBundle+SYCategory.m"; sourceTree = "<group>"; };
+		A7029C0F223781F300C94BD7 /* UIScreen+SYCategory.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIScreen+SYCategory.h"; sourceTree = "<group>"; };
+		A7029C10223781F300C94BD7 /* UIScreen+SYCategory.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIScreen+SYCategory.m"; sourceTree = "<group>"; };
 		A724B71921508D9E0050CEBC /* UIImage+SYQrcode.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIImage+SYQrcode.h"; sourceTree = "<group>"; };
 		A724B71A21508D9E0050CEBC /* UIImage+SYQrcode.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIImage+SYQrcode.m"; sourceTree = "<group>"; };
 		A724B71C21508EE60050CEBC /* UIProgressView+SYCategory.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIProgressView+SYCategory.h"; sourceTree = "<group>"; };
@@ -507,6 +519,8 @@
 				DF2CF9601EE98F24004253B5 /* NSNumber+SYCategory.m */,
 				DF2CF9611EE98F24004253B5 /* NSObject+SYCategory.h */,
 				DF2CF9621EE98F24004253B5 /* NSObject+SYCategory.m */,
+				A7029C092237585200C94BD7 /* NSURL+SYCategory.h */,
+				A7029C0A2237585200C94BD7 /* NSURL+SYCategory.m */,
 				DF2CF9631EE98F24004253B5 /* NSObject+SYKVO.h */,
 				DF2CF9641EE98F24004253B5 /* NSObject+SYKVO.m */,
 				DF2CF9651EE98F24004253B5 /* NSString+SYCategory.h */,
@@ -529,6 +543,8 @@
 				DF2CF96E1EE98F24004253B5 /* NSURLConnection+SYCategory.m */,
 				DF2CF96F1EE98F24004253B5 /* NSUserDefaults+SYCategory.h */,
 				DF2CF9701EE98F24004253B5 /* NSUserDefaults+SYCategory.m */,
+				A7029C0C2237656300C94BD7 /* NSBundle+SYCategory.h */,
+				A7029C0D2237656300C94BD7 /* NSBundle+SYCategory.m */,
 			);
 			path = SYCategoryFoundation;
 			sourceTree = "<group>";
@@ -538,6 +554,10 @@
 			children = (
 				A7DC9CC71FF244AB003F938A /* UIView+Status.h */,
 				A7DC9CC81FF244AB003F938A /* UIView+Status.m */,
+				A7029C062237514600C94BD7 /* UIDevice+SYCategory.h */,
+				A7029C072237514600C94BD7 /* UIDevice+SYCategory.m */,
+				A7029C0F223781F300C94BD7 /* UIScreen+SYCategory.h */,
+				A7029C10223781F300C94BD7 /* UIScreen+SYCategory.m */,
 				DF2CF9731EE98F24004253B5 /* UIActionSheet+SYCategory.h */,
 				DF2CF9741EE98F24004253B5 /* UIActionSheet+SYCategory.m */,
 				DF2CF9751EE98F24004253B5 /* UIAlertController+SYCategory.h */,
@@ -835,6 +855,7 @@
 				DF2CF9B21EE98F24004253B5 /* NSDictionary+SYCategory.m in Sources */,
 				A7419C631F0F70C000C4D04F /* NSTimerViewController.m in Sources */,
 				DF2CF9CE1EE98F24004253B5 /* UIScrollView+SYCategory.m in Sources */,
+				A7029C082237514600C94BD7 /* UIDevice+SYCategory.m in Sources */,
 				DF2ED9B11F0947AE00829C5F /* NSFileManager+iCloud.m in Sources */,
 				A7419C681F0F70C000C4D04F /* ColorViewController.m in Sources */,
 				DF2CF9C11EE98F24004253B5 /* UIBarButtonItem+SYCategory.m in Sources */,
@@ -857,6 +878,7 @@
 				DF2CF9C91EE98F24004253B5 /* UIImage+SYFilter.m in Sources */,
 				DF2CF9D01EE98F24004253B5 /* UISlider+SYCategory.m in Sources */,
 				DF2CF9CB1EE98F24004253B5 /* UIImageView+SYCategory.m in Sources */,
+				A7029C11223781F300C94BD7 /* UIScreen+SYCategory.m in Sources */,
 				A7419C6A1F0F70C000C4D04F /* ImagePickerViewController.m in Sources */,
 				A7E53AA7202AD7BC006DA746 /* SAMKeychainQuery.m in Sources */,
 				A7684CCB1F0E213A00C7249D /* NSMutableDictionary+SYCategory.m in Sources */,
@@ -874,6 +896,7 @@
 				DF2CF9C41EE98F24004253B5 /* UIColor+SYCategory.m in Sources */,
 				DF2CF9BB1EE98F24004253B5 /* NSTimer+SYCategory.m in Sources */,
 				DF2CF9BA1EE98F24004253B5 /* NSString+SYRegular.m in Sources */,
+				A7029C0B2237585200C94BD7 /* NSURL+SYCategory.m in Sources */,
 				A7E53AA0202AD163006DA746 /* NSString+SYNetwork.m in Sources */,
 				A7419C651F0F70C000C4D04F /* NSUserDefaultViewController.m in Sources */,
 				DF2CF9B51EE98F24004253B5 /* NSNumber+SYCategory.m in Sources */,
@@ -892,6 +915,7 @@
 				DF2CF9D11EE98F24004253B5 /* UISwitch+SYCategory.m in Sources */,
 				DF2CF9B31EE98F24004253B5 /* NSFileManager+SYCategory.m in Sources */,
 				DF2CF9C01EE98F24004253B5 /* UIAlertView+SYCategory.m in Sources */,
+				A7029C0E2237656300C94BD7 /* NSBundle+SYCategory.m in Sources */,
 				DF2CF9D51EE98F24004253B5 /* UITextField+SYCategory.m in Sources */,
 				A7684CC81F0E1A3700C7249D /* NSMutableArray+SYCategory.m in Sources */,
 				A7419C661F0F70C000C4D04F /* AlertSheetViewController.m in Sources */,
@@ -1061,6 +1085,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.zhangshaoyu.DemoCategory;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
 		};
@@ -1076,6 +1101,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.zhangshaoyu.DemoCategory;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;
 		};
