@@ -47,6 +47,16 @@ typedef NS_ENUM(NSInteger, UIBarButtonItemType)
 + (UIBarButtonItem *)rightBarButtonItemWithTitle:(NSString *)title colorNormal:(UIColor *)colorN colorHighlight:(UIColor *)colorH action:(void (^)(UIButton *item))action;
 
 /**
+ UIBarButtonItem：标题（字体大小）、响应回调
+
+ @param title 按钮标题
+ @param fontSize 字体大小
+ @param action 按钮l响应回调
+ @return UIBarButtonItem
+ */
++ (UIBarButtonItem *)rightBarButtonItemWithTitle:(NSString *)title fontSize:(UIFont *)fontSize action:(void (^)(UIButton *item))action;
+
+/**
  *  UIBarButtonItem：图标、响应回调
  *
  *  @param image  按钮图标
@@ -88,6 +98,16 @@ typedef NS_ENUM(NSInteger, UIBarButtonItemType)
  *  @return UIBarButtonItem
  */
 + (UIBarButtonItem *)leftBarButtonItemWithTitle:(NSString *)title colorNormal:(UIColor *)colorN colorHighlight:(UIColor *)colorH action:(void (^)(UIButton *item))action;
+
+/**
+ UIBarButtonItem：标题（字体大小）、响应回调
+
+ @param title 按钮标题
+ @param fontSize 按钮字体大小
+ @param action 按钮响应回调
+ @return UIBarButtonItem
+ */
++ (UIBarButtonItem *)leftBarButtonItemWithTitle:(NSString *)title fontSize:(UIFont *)fontSize action:(void (^)(UIButton *item))action;
 
 /**
  *  UIBarButtonItem：图标、响应回调

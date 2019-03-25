@@ -48,6 +48,7 @@
 		A7684CC81F0E1A3700C7249D /* NSMutableArray+SYCategory.m in Sources */ = {isa = PBXBuildFile; fileRef = A7684CC71F0E1A3700C7249D /* NSMutableArray+SYCategory.m */; };
 		A7684CCB1F0E213A00C7249D /* NSMutableDictionary+SYCategory.m in Sources */ = {isa = PBXBuildFile; fileRef = A7684CCA1F0E213A00C7249D /* NSMutableDictionary+SYCategory.m */; };
 		A7684CCE1F0E25F900C7249D /* NSMutableString+SYCategory.m in Sources */ = {isa = PBXBuildFile; fileRef = A7684CCD1F0E25F900C7249D /* NSMutableString+SYCategory.m */; };
+		A785E69C2248CF8E00DD2B06 /* UIFont+SYCategory.m in Sources */ = {isa = PBXBuildFile; fileRef = A785E69B2248CF8E00DD2B06 /* UIFont+SYCategory.m */; };
 		A7ABF953204D31920089AB79 /* NSPredicate+SYCategory.m in Sources */ = {isa = PBXBuildFile; fileRef = A7ABF952204D31920089AB79 /* NSPredicate+SYCategory.m */; };
 		A7ABF956204D32700089AB79 /* NSPredicateViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A7ABF955204D32700089AB79 /* NSPredicateViewController.m */; };
 		A7DC9CC91FF244AB003F938A /* UIView+Status.m in Sources */ = {isa = PBXBuildFile; fileRef = A7DC9CC81FF244AB003F938A /* UIView+Status.m */; };
@@ -208,6 +209,8 @@
 		A7684CCA1F0E213A00C7249D /* NSMutableDictionary+SYCategory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSMutableDictionary+SYCategory.m"; sourceTree = "<group>"; };
 		A7684CCC1F0E25F900C7249D /* NSMutableString+SYCategory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSMutableString+SYCategory.h"; sourceTree = "<group>"; };
 		A7684CCD1F0E25F900C7249D /* NSMutableString+SYCategory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSMutableString+SYCategory.m"; sourceTree = "<group>"; };
+		A785E69A2248CF8E00DD2B06 /* UIFont+SYCategory.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIFont+SYCategory.h"; sourceTree = "<group>"; };
+		A785E69B2248CF8E00DD2B06 /* UIFont+SYCategory.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIFont+SYCategory.m"; sourceTree = "<group>"; };
 		A78C0E201DED2D6600DB84A0 /* PrefixHeader.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PrefixHeader.pch; sourceTree = "<group>"; };
 		A7ABF951204D31920089AB79 /* NSPredicate+SYCategory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSPredicate+SYCategory.h"; sourceTree = "<group>"; };
 		A7ABF952204D31920089AB79 /* NSPredicate+SYCategory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSPredicate+SYCategory.m"; sourceTree = "<group>"; };
@@ -554,6 +557,8 @@
 			children = (
 				A7DC9CC71FF244AB003F938A /* UIView+Status.h */,
 				A7DC9CC81FF244AB003F938A /* UIView+Status.m */,
+				A785E69A2248CF8E00DD2B06 /* UIFont+SYCategory.h */,
+				A785E69B2248CF8E00DD2B06 /* UIFont+SYCategory.m */,
 				A7029C062237514600C94BD7 /* UIDevice+SYCategory.h */,
 				A7029C072237514600C94BD7 /* UIDevice+SYCategory.m */,
 				A7029C0F223781F300C94BD7 /* UIScreen+SYCategory.h */,
@@ -889,6 +894,7 @@
 				A7419C5A1F0F70C000C4D04F /* NSDataViewController.m in Sources */,
 				DF2CF9CA1EE98F24004253B5 /* UIImagePickerController+SYCategory.m in Sources */,
 				A7419C7D1F0F79B900C4D04F /* NSAttributedStringVC.m in Sources */,
+				A785E69C2248CF8E00DD2B06 /* UIFont+SYCategory.m in Sources */,
 				DF2CF9D81EE98F24004253B5 /* UIViewController+SYCategory.m in Sources */,
 				DF2CF9C31EE98F24004253B5 /* UICollectionView+SYCategory.m in Sources */,
 				DF2CF9B01EE98F24004253B5 /* NSAttributedString+SYCategory.m in Sources */,

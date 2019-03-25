@@ -27,6 +27,12 @@ static CGFloat const sizeButton = 40.0;
     return item;
 }
 
++ (UIBarButtonItem *)rightBarButtonItemWithTitle:(NSString *)title fontSize:(UIFont *)fontSize action:(void (^)(UIButton *item))action
+{
+    UIBarButtonItem *item = [UIBarButtonItem barButtonItemWithTitle:title titleHlight:nil titleSelected:nil titleFont:fontSize titleColor:nil titleColorHlight:nil titleColorSelected:nil image:nil imageHlight:nil imageSelected:nil backImage:nil backImageHlight:nil backImageSelected:nil selected:NO buttonType:SYButtonStyleDefault type:UIBarButtonItemTypeRight action:action];
+    return item;
+}
+
 + (UIBarButtonItem *)rightBarButtonItemWithImage:(UIImage *)image action:(void (^)(UIButton *item))action
 {
     UIBarButtonItem *item = [UIBarButtonItem barButtonItemWithTitle:nil titleHlight:nil titleSelected:nil titleFont:nil titleColor:nil titleColorHlight:nil titleColorSelected:nil image:image imageHlight:nil imageSelected:nil backImage:nil backImageHlight:nil backImageSelected:nil selected:NO buttonType:SYButtonStyleDefault type:UIBarButtonItemTypeRight action:action];
@@ -48,6 +54,12 @@ static CGFloat const sizeButton = 40.0;
 + (UIBarButtonItem *)leftBarButtonItemWithTitle:(NSString *)title colorNormal:(UIColor *)colorN colorHighlight:(UIColor *)colorH action:(void (^)(UIButton *item))action
 {
     UIBarButtonItem *item = [UIBarButtonItem barButtonItemWithTitle:title titleHlight:nil titleSelected:nil titleFont:nil titleColor:colorN titleColorHlight:colorH titleColorSelected:nil image:nil imageHlight:nil imageSelected:nil backImage:nil backImageHlight:nil backImageSelected:nil selected:NO buttonType:SYButtonStyleDefault type:UIBarButtonItemTypeLeft action:action];
+    return item;
+}
+
++ (UIBarButtonItem *)leftBarButtonItemWithTitle:(NSString *)title fontSize:(UIFont *)fontSize action:(void (^)(UIButton *item))action
+{
+    UIBarButtonItem *item = [UIBarButtonItem barButtonItemWithTitle:title titleHlight:nil titleSelected:nil titleFont:fontSize titleColor:nil titleColorHlight:nil titleColorSelected:nil image:nil imageHlight:nil imageSelected:nil backImage:nil backImageHlight:nil backImageSelected:nil selected:NO buttonType:SYButtonStyleDefault type:UIBarButtonItemTypeLeft action:action];
     return item;
 }
 

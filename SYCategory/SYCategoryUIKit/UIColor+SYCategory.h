@@ -21,15 +21,18 @@
  *  @return UIColor 对象
  */
 + (UIColor *)colorWithHexadecimalString:(NSString *)color;
+UIColor *UIColorWithHexadecimalString(NSString *color);
 
 /// 设置随机颜色
 + (UIColor *)colorRandom;
 
 /// 设置颜色（RGB：0.0~255.0） 示例：UIColorRGB(100, 100, 100)
 + (UIColor *)colorRed:(CGFloat)red green:(CGFloat)green blue:(CGFloat)blue;
+UIColor *UIColorRGB(CGFloat red, CGFloat green, CGFloat blue);
 
 /// 设置颜色与透明度（RGB：0.0~255.0；alpha：0.0~1.0） 示例：UIColorRGB_Alpha(100.0, 100.0, 20.0, 1.0)
 + (UIColor *)colorRed:(CGFloat)red green:(CGFloat)green blue:(CGFloat)blue alpha:(CGFloat)alpha;
+UIColor *UIColorRGBAlpha(CGFloat red, CGFloat green, CGFloat blue, CGFloat alpha);
 
 #pragma mark - 颜色
 
