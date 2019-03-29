@@ -147,4 +147,116 @@ void PhoneCallWithNumber(NSString *number, BOOL isCanBack)
     return NO;
 }
 
+#pragma mark - 设备隐私权限
+
+#import <UIKit/UIKit.h>
+#import <AVFoundation/AVFoundation.h>
+#import <AssetsLibrary/AssetsLibrary.h>
+#import <Photos/Photos.h>
+
+#import <Foundation/Foundation.h>
+#import <AssetsLibrary/AssetsLibrary.h>
+#import <CoreLocation/CoreLocation.h>
+#import <Photos/Photos.h>
+
+- (BOOL)isValidCamera
+{
+    /// 先判断摄像头硬件是否好用
+    if ([UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera]) {
+        // 用户是否允许摄像头使用
+        AVAuthorizationStatus authorizationStatus = [AVCaptureDevice authorizationStatusForMediaType:AVMediaTypeVideo];
+        // 不允许弹出提示框
+        if (authorizationStatus == AVAuthorizationStatusRestricted || authorizationStatus == AVAuthorizationStatusDenied) {
+            return NO;
+        } else {
+            return YES;
+        }
+    } else {
+        // 硬件问题提示
+        return NO;
+    }
+}
+
+- (BOOL)isValidPhoto
+{
+    //    if (UIDevice.currentDevice.systemVersion.doubleValue >= 9.0) {
+    //        PHAuthorizationStatus status = [PHPhotoLibrary authorizationStatus];
+    //        if (status == PHAuthorizationStatusRestricted || status == PHAuthorizationStatusDenied) {
+    //            return NO;
+    //        }
+    //    } else {
+    //        ALAuthorizationStatus author = [ALAssetsLibrary authorizationStatus];
+    //        if (author == ALAuthorizationStatusRestricted || author == ALAuthorizationStatusDenied){
+    //            return NO;
+    //        }
+    //    }
+    
+    if ([UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypePhotoLibrary]) {
+        if (UIDevice.currentDevice.systemVersion.doubleValue < 8.0) {
+            ALAuthorizationStatus authStatus = [ALAssetsLibrary authorizationStatus];
+            if (authStatus == ALAuthorizationStatusDenied || authStatus == ALAuthorizationStatusRestricted) {
+                return NO;
+            }
+        } else {
+            PHAuthorizationStatus authStatus = [PHPhotoLibrary authorizationStatus];
+            if (authStatus == PHAuthorizationStatusRestricted || authStatus == PHAuthorizationStatusDenied) {
+                return NO;
+            } else if (authStatus == PHAuthorizationStatusNotDetermined){
+                [PHPhotoLibrary requestAuthorization:^(PHAuthorizationStatus status) {
+                    
+                }];
+            }
+            
+        }
+        
+    }
+    
+    return YES;
+}
+
+- (BOOL)isValidLocation
+{
+    //    if (CLLocationManager.locationServicesEnabled && (CLLocationManager.authorizationStatus == kCLAuthorizationStatusAuthorizedWhenInUse || CLLocationManager.authorizationStatus == kCLAuthorizationStatusNotDetermined || CLLocationManager.authorizationStatus == kCLAuthorizationStatusAuthorized)) {
+    //        return YES;
+    //    } else if (CLLocationManager.authorizationStatus == kCLAuthorizationStatusDenied) {
+    //        return NO;
+    //    }
+    
+    if (CLLocationManager.authorizationStatus == kCLAuthorizationStatusDenied) {
+        return NO;
+    }
+    return YES;
+}
+
+- (void)isValidRecorder
+{
+    if (UIDevice.currentDevice.systemVersion.doubleValue >= 7.0) {
+        AVAuthorizationStatus videoAuthStatus = [AVCaptureDevice authorizationStatusForMediaType:AVMediaTypeAudio];
+        if (videoAuthStatus == AVAuthorizationStatusNotDetermined) {
+            // 未询问用户是否授权
+            AVAudioSession *audioSession = [AVAudioSession sharedInstance];
+            if ([audioSession respondsToSelector:@selector(requestRecordPermission:)]) {
+                [audioSession performSelector:@selector(requestRecordPermission:) withObject:^(BOOL granted) {
+                    if (granted) {
+                        bCanRecord = YES;
+                    } else {
+                        bCanRecord = NO;
+                    }
+                }];
+            }
+        } else if(videoAuthStatus == AVAuthorizationStatusRestricted || videoAuthStatus == AVAuthorizationStatusDenied) {
+            // 未授权
+            return NO;
+        } else {
+            // 已授权
+            return YES;
+        }
+    }
+    
+    
+    return YES;
+}
+
+
+
 @end
