@@ -10,6 +10,12 @@
 #import "NSURL+SYCategory.h"
 #import "NSString+SYCategory.h"
 
+#import <UIKit/UIKit.h>
+#import <AVFoundation/AVFoundation.h>
+#import <AssetsLibrary/AssetsLibrary.h>
+#import <Photos/Photos.h>
+#import <CoreLocation/CoreLocation.h>
+
 @implementation UIDevice (SYCategory)
 
 /// 打开浏览器
@@ -149,20 +155,12 @@ void PhoneCallWithNumber(NSString *number, BOOL isCanBack)
 
 #pragma mark - 设备隐私权限
 
-#import <UIKit/UIKit.h>
-#import <AVFoundation/AVFoundation.h>
-#import <AssetsLibrary/AssetsLibrary.h>
-#import <Photos/Photos.h>
-
-#import <Foundation/Foundation.h>
-#import <AssetsLibrary/AssetsLibrary.h>
-#import <CoreLocation/CoreLocation.h>
-#import <Photos/Photos.h>
-
-- (BOOL)isValidCamera
+/// 摄像头是否可用
++ (BOOL)isValidCamera
 {
     /// 先判断摄像头硬件是否好用
     if ([UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera]) {
+        // #import <AVFoundation/AVFoundation.h>
         // 用户是否允许摄像头使用
         AVAuthorizationStatus authorizationStatus = [AVCaptureDevice authorizationStatusForMediaType:AVMediaTypeVideo];
         // 不允许弹出提示框
@@ -177,36 +175,22 @@ void PhoneCallWithNumber(NSString *number, BOOL isCanBack)
     }
 }
 
-- (BOOL)isValidPhoto
+/// 相册是否可用
++ (BOOL)isValidPhoto
 {
-    //    if (UIDevice.currentDevice.systemVersion.doubleValue >= 9.0) {
-    //        PHAuthorizationStatus status = [PHPhotoLibrary authorizationStatus];
-    //        if (status == PHAuthorizationStatusRestricted || status == PHAuthorizationStatusDenied) {
-    //            return NO;
-    //        }
-    //    } else {
-    //        ALAuthorizationStatus author = [ALAssetsLibrary authorizationStatus];
-    //        if (author == ALAuthorizationStatusRestricted || author == ALAuthorizationStatusDenied){
-    //            return NO;
-    //        }
-    //    }
-    
     if ([UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypePhotoLibrary]) {
         if (UIDevice.currentDevice.systemVersion.doubleValue < 8.0) {
+            // #import <AssetsLibrary/AssetsLibrary.h>
             ALAuthorizationStatus authStatus = [ALAssetsLibrary authorizationStatus];
             if (authStatus == ALAuthorizationStatusDenied || authStatus == ALAuthorizationStatusRestricted) {
                 return NO;
             }
         } else {
+            // #import <Photos/Photos.h>
             PHAuthorizationStatus authStatus = [PHPhotoLibrary authorizationStatus];
             if (authStatus == PHAuthorizationStatusRestricted || authStatus == PHAuthorizationStatusDenied) {
                 return NO;
-            } else if (authStatus == PHAuthorizationStatusNotDetermined){
-                [PHPhotoLibrary requestAuthorization:^(PHAuthorizationStatus status) {
-                    
-                }];
             }
-            
         }
         
     }
@@ -214,47 +198,52 @@ void PhoneCallWithNumber(NSString *number, BOOL isCanBack)
     return YES;
 }
 
-- (BOOL)isValidLocation
+/// 定位是否可用
++ (BOOL)isValidLocation
 {
-    //    if (CLLocationManager.locationServicesEnabled && (CLLocationManager.authorizationStatus == kCLAuthorizationStatusAuthorizedWhenInUse || CLLocationManager.authorizationStatus == kCLAuthorizationStatusNotDetermined || CLLocationManager.authorizationStatus == kCLAuthorizationStatusAuthorized)) {
-    //        return YES;
-    //    } else if (CLLocationManager.authorizationStatus == kCLAuthorizationStatusDenied) {
-    //        return NO;
-    //    }
-    
-    if (CLLocationManager.authorizationStatus == kCLAuthorizationStatusDenied) {
+    // #import <CoreLocation/CoreLocation.h>
+    if (CLLocationManager.authorizationStatus == kCLAuthorizationStatusDenied || CLLocationManager.authorizationStatus == kCLAuthorizationStatusRestricted) {
         return NO;
     }
     return YES;
 }
 
-- (void)isValidRecorder
+/// 录音是否可用
++ (BOOL)isValidRecorder
 {
-    if (UIDevice.currentDevice.systemVersion.doubleValue >= 7.0) {
-        AVAuthorizationStatus videoAuthStatus = [AVCaptureDevice authorizationStatusForMediaType:AVMediaTypeAudio];
-        if (videoAuthStatus == AVAuthorizationStatusNotDetermined) {
-            // 未询问用户是否授权
-            AVAudioSession *audioSession = [AVAudioSession sharedInstance];
-            if ([audioSession respondsToSelector:@selector(requestRecordPermission:)]) {
-                [audioSession performSelector:@selector(requestRecordPermission:) withObject:^(BOOL granted) {
-                    if (granted) {
-                        bCanRecord = YES;
-                    } else {
-                        bCanRecord = NO;
-                    }
-                }];
-            }
-        } else if(videoAuthStatus == AVAuthorizationStatusRestricted || videoAuthStatus == AVAuthorizationStatusDenied) {
-            // 未授权
-            return NO;
-        } else {
-            // 已授权
-            return YES;
-        }
+//    if (UIDevice.currentDevice.systemVersion.doubleValue >= 7.0) {
+//        AVAuthorizationStatus videoAuthStatus = [AVCaptureDevice authorizationStatusForMediaType:AVMediaTypeAudio];
+//        if (videoAuthStatus == AVAuthorizationStatusNotDetermined) {
+//            // 未询问用户是否授权
+//            AVAudioSession *audioSession = [AVAudioSession sharedInstance];
+//            if ([audioSession respondsToSelector:@selector(requestRecordPermission:)]) {
+//                [audioSession requestRecordPermission:^(BOOL granted) {
+//                    if (complete) {
+//                        complete(granted);
+//                    }
+//                }];
+//            }
+//        } else if(videoAuthStatus == AVAuthorizationStatusRestricted || videoAuthStatus == AVAuthorizationStatusDenied) {
+//            // 未授权
+//            if (complete) {
+//                complete(NO);
+//            }
+//        } else {
+//            // 已授权
+//            if (complete) {
+//                complete(YES);
+//            }
+//        }
+//    } else {
+//
+//    }
+    
+    // #import <AVFoundation/AVFoundation.h>
+    AVAudioSessionRecordPermission status = [[AVAudioSession sharedInstance] recordPermission];
+    if (status == AVAudioSessionRecordPermissionGranted) {
+        return YES;
     }
-    
-    
-    return YES;
+    return NO;
 }
 
 

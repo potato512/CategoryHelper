@@ -69,6 +69,20 @@ void PhoneCallWithNumber(NSString *number, BOOL isCanBack);
 /// 刘海设备（如：iPhoneX/iPhoneXR/iPhoneXS/iPhoneXSMax）
 + (BOOL)iPhoneWithSaveArea;
 
+#pragma mark - 设备隐私权限
+
+/// 摄像头是否可用
++ (BOOL)isValidCamera;
+
+/// 相册是否可用
++ (BOOL)isValidPhoto;
+
+/// 定位是否可用
++ (BOOL)isValidLocation;
+
+/// 录音是否可用
++ (BOOL)isValidRecorder;
+
 @end
 
 NS_ASSUME_NONNULL_END

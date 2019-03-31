@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name         = "SYCategory"
-  s.version      = "1.3.1"
+  s.version      = "1.3.2"
   s.summary      = "SYCategory contant category for Fuondation and UIKit."
   s.homepage     = "https://github.com/potato512/SYCategory"
   s.license      = { :type => "MIT", :file => "LICENSE" }
