@@ -11,9 +11,11 @@
 #import "NSString+SYRegular.h"
 #import <objc/runtime.h>
 
+#import "NSNotificationCenter+SYCategory.h"
+
 @implementation UITextField (SYCategory)
 
-//屏蔽dealloc方法（避免iOS8.x版本闪退）
+//屏蔽dealloc方法（避免iOS8.x版本闪退），仅支持9.0及以上版本
 //- (void)dealloc
 //{
 //    [[NSNotificationCenter defaultCenter] removeObserver:self];
@@ -25,13 +27,10 @@
 {
     UIView *view = [[UIView alloc] initWithFrame:CGRectMake(0.0, 0.0, space, CGRectGetHeight(self.bounds))];
     view.backgroundColor = [UIColor clearColor];
-    if (TextFieldViewModeTypeLeft == type)
-    {
+    if (TextFieldViewModeTypeLeft == type) {
         self.leftView = view;
         self.leftViewMode = UITextFieldViewModeAlways;
-    }
-    else if (TextFieldViewModeTypeRight == type)
-    {
+    } else if (TextFieldViewModeTypeRight == type) {
         self.rightView = view;
         self.rightViewMode = UITextFieldViewModeAlways;
     }
@@ -354,26 +353,19 @@
     BOOL isResult = NO;
     
     NSCharacterSet *limitSet = [NSCharacterSet characterSetWithCharactersInString:limitStr];
-    if (![string isEqualToString:@""])
-    {
+    if (![string isEqualToString:@""]) {
         NSRange range = [string rangeOfCharacterFromSet:limitSet];
-        if (canEdit)
-        {
-            if (range.location != NSNotFound)
-            {
+        if (canEdit) {
+            if (range.location != NSNotFound) {
                 isResult = YES;
             }
-        }
-        else
-        {
-            if (range.location == NSNotFound)
-            {
+        } else {
+            if (range.location == NSNotFound) {
                 isResult = YES;
             }
         }
         
-        if (!isResult)
-        {
+        if (!isResult) {
             return NO;
         }
     }
@@ -459,7 +451,8 @@
     {
         objc_setAssociatedObject(self, @selector(limitMaxLength), @(limitMaxLength), OBJC_ASSOCIATION_RETAIN);
         
-        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(textLengthEditChanged:) name:UITextFieldTextDidChangeNotification object:nil];
+//        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(textLengthEditChanged:) name:UITextFieldTextDidChangeNotification object:nil];
+        NSNotificationCenterReceive(UITextFieldTextDidChangeNotification, self, @selector(textLengthEditChanged:));
     }
 }
 
@@ -475,7 +468,8 @@
     {
         objc_setAssociatedObject(self, @selector(limitText), limitText, OBJC_ASSOCIATION_RETAIN);
         
-        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(limitTextChanged:) name:UITextFieldTextDidChangeNotification object:nil];
+//        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(limitTextChanged:) name:UITextFieldTextDidChangeNotification object:nil];
+        NSNotificationCenterReceive(UITextFieldTextDidChangeNotification, self, @selector(limitTextChanged:));
     }
 }
 
@@ -491,7 +485,8 @@
     {
         objc_setAssociatedObject(self, @selector(allowedText), allowedText, OBJC_ASSOCIATION_RETAIN);
         
-        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(allowedTextChanged:) name:UITextFieldTextDidChangeNotification object:nil];
+//        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(allowedTextChanged:) name:UITextFieldTextDidChangeNotification object:nil];
+        NSNotificationCenterReceive(UITextFieldTextDidChangeNotification, self, @selector(allowedTextChanged:));
     }
 }
 

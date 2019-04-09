@@ -6,6 +6,18 @@
 //  Copyright © 2016年 zhangshaoyu. All rights reserved.
 //
 
+/*
+ 示例：
+ 内存管理
+ 
+ - (void)viewWillDisappear:(BOOL)animated
+ {
+    [super viewWillDisappear:animated];
+    [self.timer timerKill];
+ }
+ 
+ */
+
 #import <Foundation/Foundation.h>
 
 typedef void (^TimerBlock)(NSTimer *timer);
@@ -21,21 +33,18 @@ typedef void (^TimerBlock)(NSTimer *timer);
 /// 永久停止定时器
 - (void)timerKill;
 
-/**
- *  实例化NSTimer（注意处理强引用：只能在使用的视图控制器中的处理，且不能在dealloc中处理）
- *
- *  @param time   时间间隔
- *  @param target 执行方法的对象
- *  @param action 执行的方法
- *  @param object 传递参数对象
- *  @param repeat 是否重复
- *
- *  @return NSTimer
- */
+/// NSTimerInitialize实例化NSTimer
 NSTimer *NSTimerInitialize(NSTimeInterval time, id target, SEL action, id object, BOOL repeat);
 
-/// 实例化NSTimer（注意处理强引用 & 回调响应：可以在任意对象中处理）
-+ (NSTimer *)timerWithTimeInterval:(NSTimeInterval)time userInfo:(id)userInfo repeats:(BOOL)isRepeat handle:(TimerBlock)handle;
+/// NSTimerScheduled实例化NSTimer
+NSTimer *NSTimerScheduled(NSTimeInterval time, id target, SEL selector, id object, BOOL repeat);
+
+/// 实例化NSTimer timerScheduledWithTimeInterval
++ (NSTimer *)timerScheduledWithTimeInterval:(NSTimeInterval)time target:(id)target selector:(SEL)selector object:(id)object repeat:(BOOL)repeat;
+
+
+/// 实例化NSTimer timerWithTimeInterval
++ (NSTimer *)timerWithTimeInterval:(NSTimeInterval)time userInfo:(id)userInfo repeats:(BOOL)isRepeat handle:(void (^)(NSTimer *timer))handle;
 
 /// 倒计时
 + (void)timerGCDWithTimeInterval:(NSTimeInterval)time maxTimerInterval:(NSInteger)maxTime afterTime:(NSTimeInterval)afterTime handle:(void (^)(NSInteger remainTime))handle;

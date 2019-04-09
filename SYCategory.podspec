@@ -1,11 +1,11 @@
 Pod::Spec.new do |s|
   s.name         = "SYCategory"
-  s.version      = "1.3.2"
+  s.version      = "1.3.3"
   s.summary      = "SYCategory contant category for Fuondation and UIKit."
   s.homepage     = "https://github.com/potato512/SYCategory"
   s.license      = { :type => "MIT", :file => "LICENSE" }
   s.author       = { "herman" => "zhangsy757@163.com" }
-  s.platform     = :ios, "8.0"
+  s.platform     = :ios, "9.0"
   s.source       = { :git => "https://github.com/potato512/SYCategory.git", :tag => s.version.to_s }
   s.source_files = 'SYCategory/*.{h}', 'SYCategory/SYCategoryFoundation/*.{h,m}', 'SYCategory/SYCategoryUIKit/*.{h,m}'
   s.resource     = 'SYCategory/SYResources/*.png'

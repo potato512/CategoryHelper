@@ -13,13 +13,17 @@
 /// 开启定时器
 - (void)timerStart
 {
-    [self setFireDate:[NSDate distantPast]];
+    if ([self respondsToSelector:@selector(setFireDate:)]) {
+        [self setFireDate:[NSDate distantPast]];
+    }
 }
 
 /// 关闭定时器
 - (void)timerStop
 {
-    [self setFireDate:[NSDate distantFuture]];
+    if ([self respondsToSelector:@selector(setFireDate:)]) {
+        [self setFireDate:[NSDate distantFuture]];
+    }
 }
 
 /// 永久停止定时器
@@ -29,7 +33,7 @@
     [self invalidate];
 }
 
-/// 实例化NSTimer（注意处理强引用）
+/// NSTimerInitialize实例化NSTimer
 NSTimer *NSTimerInitialize(NSTimeInterval time, id target, SEL action, id object, BOOL repeat)
 {
     NSTimer *timer = [NSTimer timerWithTimeInterval:time target:target selector:action userInfo:object repeats:repeat];
@@ -39,20 +43,34 @@ NSTimer *NSTimerInitialize(NSTimeInterval time, id target, SEL action, id object
     return timer;
 }
 
-/// 实例化NSTimer（处理强引用 & 回调响应）
+/// NSTimerScheduled实例化NSTimer
+NSTimer *NSTimerScheduled(NSTimeInterval time, id target, SEL selector, id object, BOOL repeat)
+{
+    NSTimer *timer = [NSTimer scheduledTimerWithTimeInterval:time target:target selector:selector userInfo:object repeats:repeat];
+    [[NSRunLoop currentRunLoop] addTimer:timer forMode:NSRunLoopCommonModes];
+    return timer;
+}
+
+/// 实例化NSTimer timerScheduledWithTimeInterval
++ (NSTimer *)timerScheduledWithTimeInterval:(NSTimeInterval)time target:(id)target selector:(SEL)selector object:(id)object repeat:(BOOL)repeat
+{
+    NSTimer *timer = [NSTimer scheduledTimerWithTimeInterval:time target:target selector:selector userInfo:object repeats:repeat];
+    [[NSRunLoop currentRunLoop] addTimer:timer forMode:NSRunLoopCommonModes];
+    return timer;
+}
+
+
+/// 实例化NSTimer timerWithTimeInterval
 + (NSTimer *)timerWithTimeInterval:(NSTimeInterval)time userInfo:(id)userInfo repeats:(BOOL)isRepeat handle:(void (^)(NSTimer *timer))handle
 {
     TimerBlock timerBlock = [handle copy];
     NSMutableArray *array = [NSMutableArray array];
     [array addObject:timerBlock];
-    if (userInfo)
-    {
+    if (userInfo) {
         [array addObject:userInfo];
     }
     
-    __weak typeof(self) weakSelf = self;
-    
-    NSTimer *timer = [NSTimer timerWithTimeInterval:time target:weakSelf selector:@selector(timerBlock:) userInfo:array repeats:isRepeat];
+    NSTimer *timer = [NSTimer timerWithTimeInterval:time target:self selector:@selector(timerBlock:) userInfo:array repeats:isRepeat];
     [[NSRunLoop currentRunLoop] addTimer:timer forMode:NSRunLoopCommonModes];
     [timer timerStop];
     
@@ -63,17 +81,17 @@ NSTimer *NSTimerInitialize(NSTimeInterval time, id target, SEL action, id object
 {
     NSArray *array = timer.userInfo;
     TimerBlock timerBlock = array.firstObject;
-    if (timerBlock)
-    {
+    if (timerBlock) {
         timerBlock(timer);
     }
 }
 
+#pragma mark -
+
 // 倒计时
 + (void)timerGCDWithTimeInterval:(NSTimeInterval)time maxTimerInterval:(NSInteger)maxTime afterTime:(NSTimeInterval)afterTime handle:(void (^)(NSInteger remainTime))handle
 {
-    if (0 >= maxTime)
-    {
+    if (0 >= maxTime) {
         return;
     }
     
@@ -87,21 +105,16 @@ NSTimer *NSTimerInitialize(NSTimeInterval time, id target, SEL action, id object
         
         dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(afterTime * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
         
-            if (0 >= countdownTime)
-            {
+            if (0 >= countdownTime) {
                 dispatch_async(dispatch_get_main_queue(), ^{
-                    if (handle)
-                    {
+                    if (handle) {
                         handle(0);
                     }
                 });
                 dispatch_source_cancel(timer);
-            }
-            else
-            {
+            } else {
                 dispatch_async(dispatch_get_main_queue(), ^{
-                    if (handle)
-                    {
+                    if (handle) {
                         handle(countdownTime);
                     }
                 });
