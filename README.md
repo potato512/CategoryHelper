@@ -48,6 +48,13 @@
 
 
 #### 修改完善
+* 20190902
+  * 版本号：1.3.4
+  * 修改完善
+    * UILabel+SYClick
+    * UIView+SYAnimation
+    * NSAttributedString新增+方法
+    
 * 20190409
   * 版本号：1.3.3
   * 修改完善

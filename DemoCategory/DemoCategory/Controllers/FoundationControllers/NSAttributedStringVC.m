@@ -60,6 +60,7 @@
     attributed = [attributed attributedText:@"字符" deleteLineColor:[UIColor blueColor] deleteLineType:NSUnderlineStyleSingle];
     attributed = [attributed attributedText:@"属性变化" underLineColor:[UIColor purpleColor] underLineType:NSUnderlineStyleSingle];
     
+//    NSAttributedString *attributed = [NSAttributedString]
     
     UILabel *label = (UILabel *)[self.view viewWithTag:1000];
     label.attributedText = attributed;

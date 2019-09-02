@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		8079D66F231CAB84009D8841 /* UIView+SYAnimation.m in Sources */ = {isa = PBXBuildFile; fileRef = 8079D66E231CAB84009D8841 /* UIView+SYAnimation.m */; };
+		8079D672231CAB9A009D8841 /* UILabel+SYClick.m in Sources */ = {isa = PBXBuildFile; fileRef = 8079D671231CAB9A009D8841 /* UILabel+SYClick.m */; };
 		A7029C082237514600C94BD7 /* UIDevice+SYCategory.m in Sources */ = {isa = PBXBuildFile; fileRef = A7029C072237514600C94BD7 /* UIDevice+SYCategory.m */; };
 		A7029C0B2237585200C94BD7 /* NSURL+SYCategory.m in Sources */ = {isa = PBXBuildFile; fileRef = A7029C0A2237585200C94BD7 /* NSURL+SYCategory.m */; };
 		A7029C0E2237656300C94BD7 /* NSBundle+SYCategory.m in Sources */ = {isa = PBXBuildFile; fileRef = A7029C0D2237656300C94BD7 /* NSBundle+SYCategory.m */; };
@@ -136,6 +138,10 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		8079D66D231CAB83009D8841 /* UIView+SYAnimation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+SYAnimation.h"; sourceTree = "<group>"; };
+		8079D66E231CAB84009D8841 /* UIView+SYAnimation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+SYAnimation.m"; sourceTree = "<group>"; };
+		8079D670231CAB9A009D8841 /* UILabel+SYClick.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UILabel+SYClick.h"; sourceTree = "<group>"; };
+		8079D671231CAB9A009D8841 /* UILabel+SYClick.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UILabel+SYClick.m"; sourceTree = "<group>"; };
 		A7029C062237514600C94BD7 /* UIDevice+SYCategory.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIDevice+SYCategory.h"; sourceTree = "<group>"; };
 		A7029C072237514600C94BD7 /* UIDevice+SYCategory.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIDevice+SYCategory.m"; sourceTree = "<group>"; };
 		A7029C092237585200C94BD7 /* NSURL+SYCategory.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSURL+SYCategory.h"; sourceTree = "<group>"; };
@@ -557,6 +563,8 @@
 			children = (
 				A7DC9CC71FF244AB003F938A /* UIView+Status.h */,
 				A7DC9CC81FF244AB003F938A /* UIView+Status.m */,
+				8079D66D231CAB83009D8841 /* UIView+SYAnimation.h */,
+				8079D66E231CAB84009D8841 /* UIView+SYAnimation.m */,
 				A785E69A2248CF8E00DD2B06 /* UIFont+SYCategory.h */,
 				A785E69B2248CF8E00DD2B06 /* UIFont+SYCategory.m */,
 				A7029C062237514600C94BD7 /* UIDevice+SYCategory.h */,
@@ -597,6 +605,8 @@
 				DF2CF98E1EE98F24004253B5 /* UIImageView+SYCategory.m */,
 				DF2CF98F1EE98F24004253B5 /* UILabel+SYCategory.h */,
 				DF2CF9901EE98F24004253B5 /* UILabel+SYCategory.m */,
+				8079D670231CAB9A009D8841 /* UILabel+SYClick.h */,
+				8079D671231CAB9A009D8841 /* UILabel+SYClick.m */,
 				DF2CF9911EE98F24004253B5 /* UINavigationController+SYCategory.h */,
 				DF2CF9921EE98F24004253B5 /* UINavigationController+SYCategory.m */,
 				DF2CF9931EE98F24004253B5 /* UIScrollView+SYCategory.h */,
@@ -795,6 +805,7 @@
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
 			knownRegions = (
+				English,
 				en,
 				Base,
 			);
@@ -909,6 +920,7 @@
 				A7419C601F0F70C000C4D04F /* NSNumberViewController.m in Sources */,
 				A7419C611F0F70C000C4D04F /* NSObjectViewController.m in Sources */,
 				DF2CF9B11EE98F24004253B5 /* NSDate+SYCategory.m in Sources */,
+				8079D672231CAB9A009D8841 /* UILabel+SYClick.m in Sources */,
 				DFA204F11D1E131C00929257 /* ViewController.m in Sources */,
 				A7419C5D1F0F70C000C4D04F /* NSFileHandleViewController.m in Sources */,
 				A724B71E21508EE60050CEBC /* UIProgressView+SYCategory.m in Sources */,
@@ -937,6 +949,7 @@
 				DF2CF9AF1EE98F24004253B5 /* NSArray+SYCategory.m in Sources */,
 				DF2CF9BD1EE98F24004253B5 /* NSUserDefaults+SYCategory.m in Sources */,
 				DF2CF9CC1EE98F24004253B5 /* UILabel+SYCategory.m in Sources */,
+				8079D66F231CAB84009D8841 /* UIView+SYAnimation.m in Sources */,
 				A7419C5E1F0F70C000C4D04F /* NSFileManagerViewController.m in Sources */,
 				DF2CF9BF1EE98F24004253B5 /* UIAlertController+SYCategory.m in Sources */,
 				DF2ED9B71F094C7C00829C5F /* NSStream+SYCategory.m in Sources */,
