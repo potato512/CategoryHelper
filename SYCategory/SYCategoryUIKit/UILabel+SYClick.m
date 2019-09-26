@@ -33,7 +33,7 @@
 }
 - (NSMutableArray *)attributeStrings
 {
-    return objc_getAssociatedObject(self, @selector(attributeStrings));
+    return objc_getAssociatedObject(self, _cmd);
 }
 
 - (void)setEffectDic:(NSMutableDictionary *)effectDic
@@ -42,7 +42,7 @@
 }
 - (NSMutableDictionary *)effectDic
 {
-    return objc_getAssociatedObject(self, @selector(effectDic));
+    return objc_getAssociatedObject(self, _cmd);
 }
 
 - (void)setIsTapAction:(BOOL)isTapAction
@@ -51,7 +51,7 @@
 }
 - (BOOL)isTapAction
 {
-    return [objc_getAssociatedObject(self, @selector(isTapAction)) boolValue];
+    return [objc_getAssociatedObject(self, _cmd) boolValue];
 }
 
 - (void)setTapBlock:(void (^)(UILabel *, NSString *, NSRange, NSInteger))tapBlock
@@ -60,7 +60,7 @@
 }
 - (void (^)(UILabel *, NSString *, NSRange, NSInteger))tapBlock
 {
-    return objc_getAssociatedObject(self, @selector(tapBlock));
+    return objc_getAssociatedObject(self, _cmd);
 }
 
 - (void)setDelegate:(id<UILabelClickDelegate>)delegate
@@ -69,7 +69,7 @@
 }
 - (id<UILabelClickDelegate>)delegate
 {
-    return objc_getAssociatedObject(self, @selector(delegate));
+    return objc_getAssociatedObject(self, _cmd);
 }
 
 - (void)setEnabledEffect:(BOOL)enabledEffect
@@ -79,7 +79,7 @@
 }
 - (BOOL)enabledEffect
 {
-    return [objc_getAssociatedObject(self, @selector(enabledEffect)) boolValue];
+    return [objc_getAssociatedObject(self, _cmd) boolValue];
 }
 
 - (void)setEnlargeClickArea:(BOOL)enlargeClickArea
@@ -88,10 +88,10 @@
 }
 - (BOOL)enlargeClickArea
 {
-    NSNumber *number = objc_getAssociatedObject(self, @selector(enlargeClickArea));
+    NSNumber *number = objc_getAssociatedObject(self, _cmd);
     if (!number) {
         number = @(YES);
-        objc_setAssociatedObject(self, @selector(enlargeClickArea), number, OBJC_ASSOCIATION_ASSIGN);
+        objc_setAssociatedObject(self, _cmd, number, OBJC_ASSOCIATION_ASSIGN);
     }
     return [number boolValue];
 }
@@ -102,10 +102,10 @@
 }
 - (UIColor *)highlightedColor
 {
-    UIColor *color = objc_getAssociatedObject(self, @selector(highlightedColor));
+    UIColor *color = objc_getAssociatedObject(self, _cmd);
     if (!color) {
         color = [UIColor lightGrayColor];
-        objc_setAssociatedObject(self, @selector(highlightedColor), color, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
+        objc_setAssociatedObject(self, _cmd, color, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
     }
     return color;
 }
@@ -116,7 +116,7 @@
 }
 - (BOOL)isTapEffect
 {
-    return [objc_getAssociatedObject(self, @selector(isTapEffect)) boolValue];
+    return [objc_getAssociatedObject(self, _cmd) boolValue];
 }
 
 #pragma mark - mainFunction
@@ -128,14 +128,14 @@
     self.userInteractionEnabled = YES;
     
     if (self.tapBlock != click) {
-        self.tapBlock = [click copy];
+        self.tapBlock = click;
     }
 }
 
 - (void)labelClickAddWithStrings:(NSArray <NSString *> *)strings delegate:(id<UILabelClickDelegate>)delegate
 {
     [self labelClickRemove];
-    [self getRangesWithStrings:strings];
+    [self getRangesWithRanges:strings];
     self.userInteractionEnabled = YES;
     
     if (self.delegate != delegate) {
@@ -150,7 +150,7 @@
     self.userInteractionEnabled = YES;
     
     if (self.tapBlock != click) {
-        self.tapBlock = [click copy];
+        self.tapBlock = click;
     }
 }
 
@@ -189,8 +189,9 @@
     
     UITouch *touch = [touches anyObject];
     CGPoint point = [touch locationInView:self];
+
     __weak typeof(self) weakSelf = self;
-    BOOL ret = [self yb_getTapFrameWithTouchPoint:point result:^(NSString *string, NSRange range, NSInteger index) {
+    BOOL ret = [self getTapFrameWithTouchPoint:point result:^(NSString *string, NSRange range, NSInteger index) {
         if (weakSelf.isTapEffect) {
             [weakSelf saveEffectDicWithRange:range];
             [weakSelf tapEffectWithStatus:YES];
@@ -213,12 +214,14 @@
     
     UITouch *touch = [touches anyObject];
     CGPoint point = [touch locationInView:self];
+    
     __weak typeof(self) weakSelf = self;
-    BOOL ret = [self yb_getTapFrameWithTouchPoint:point result:^(NSString *string, NSRange range, NSInteger index) {
+    BOOL ret = [self getTapFrameWithTouchPoint:point result:^(NSString *string, NSRange range, NSInteger index) {
         if (weakSelf.tapBlock) {
             weakSelf.tapBlock (weakSelf, string, range, index);
         }
-        if (weakSelf.delegate && [weakSelf.delegate respondsToSelector:@selector(labelClick:string:range:index:)]) {
+        
+        if (weakSelf.delegate && [weakSelf.delegate respondsToSelector:@selector( labelClick:string:range:index:)]) {
             [weakSelf.delegate labelClick:weakSelf string:string range:range index:index];
         }
     }];
@@ -237,12 +240,16 @@
         [self performSelectorOnMainThread:@selector(tapEffectWithStatus:) withObject:nil waitUntilDone:NO];
     }
     UITouch *touch = [touches anyObject];
+    
     CGPoint point = [touch locationInView:self];
+    
     __weak typeof(self) weakSelf = self;
-    BOOL ret = [self yb_getTapFrameWithTouchPoint:point result:^(NSString *string, NSRange range, NSInteger index) {
+    
+    BOOL ret = [self getTapFrameWithTouchPoint:point result:^(NSString *string, NSRange range, NSInteger index) {
         if (weakSelf.tapBlock) {
             weakSelf.tapBlock (weakSelf, string, range, index);
         }
+        
         if (weakSelf.delegate && [weakSelf.delegate respondsToSelector:@selector(labelClick:string:range:index:)]) {
             [weakSelf.delegate labelClick:weakSelf string:string range:range index:index];
         }
@@ -254,7 +261,7 @@
 
 #pragma mark - getTapFrame
 
-- (BOOL)yb_getTapFrameWithTouchPoint:(CGPoint)point result:(void (^) (NSString *string , NSRange range , NSInteger index))resultBlock
+- (BOOL)getTapFrameWithTouchPoint:(CGPoint)point result:(void (^) (NSString *string , NSRange range , NSInteger index))resultBlock
 {
     CTFramesetterRef framesetter = CTFramesetterCreateWithAttributedString((CFAttributedStringRef)self.attributedText);
     CGMutablePathRef Path = CGPathCreateMutable();
@@ -262,6 +269,7 @@
     CTFrameRef frame = CTFramesetterCreateFrame(framesetter, CFRangeMake(0, 0), Path, NULL);
     CFArrayRef lines = CTFrameGetLines(frame);
     CGFloat total_height =  [self textSizeWithAttributedString:self.attributedText width:self.bounds.size.width numberOfLines:0].height;
+    
     if (!lines) {
         CFRelease(frame);
         CFRelease(framesetter);
@@ -273,6 +281,7 @@
     CGPoint origins[count];
     CTFrameGetLineOrigins(frame, CFRangeMake(0, 0), origins);
     CGAffineTransform transform = [self transformForCoreText];
+    
     for (CFIndex i = 0; i < count; i++) {
         CGPoint linePoint = origins[i];
         CTLineRef line = CFArrayGetValueAtIndex(lines, i);
@@ -280,6 +289,7 @@
         CGRect rect = CGRectApplyAffineTransform(flippedRect, transform);
         CGFloat lineOutSpace = (self.bounds.size.height - total_height) / 2;
         rect.origin.y = lineOutSpace + [self getLineOrign:line];
+        
         if (self.enlargeClickArea) {
             rect.origin.y -= 5;
             rect.size.height += 10;
@@ -296,7 +306,9 @@
             
             NSInteger link_count = self.attributeStrings.count;
             for (int j = 0; j < link_count; j++) {
+                
                 UILabelClickModel *model = self.attributeStrings[j];
+                
                 NSRange link_range = model.range;
                 if (NSLocationInRange(index, link_range)) {
                     if (resultBlock) {
@@ -328,6 +340,7 @@
     CGFloat leading = 0.0f;
     CGFloat width = (CGFloat)CTLineGetTypographicBounds(line, &ascent, &descent, &leading);
     CGFloat height = 0.0f;
+    
     CFRange range = CTLineGetStringRange(line);
     NSAttributedString * attributedString = [self.attributedText attributedSubstringFromRange:NSMakeRange(range.location, range.length)];
     if ([attributedString.string hasSuffix:@"\n"] && attributedString.string.length > 1) {
@@ -342,8 +355,8 @@
     CFRange range = CTLineGetStringRange(line);
     if (range.location == 0) {
         return 0.;
-    } else {
-        NSAttributedString *attributedString = [self.attributedText attributedSubstringFromRange:NSMakeRange(0, range.location)];
+    }else {
+        NSAttributedString * attributedString = [self.attributedText attributedSubstringFromRange:NSMakeRange(0, range.location)];
         if ([attributedString.string hasSuffix:@"\n"] && attributedString.string.length > 1) {
             attributedString = [attributedString attributedSubstringFromRange:NSMakeRange(0, attributedString.length - 1)];
         }
@@ -368,16 +381,13 @@
 {
     if (self.isTapEffect) {
         NSMutableAttributedString *attStr = [[NSMutableAttributedString alloc] initWithAttributedString:self.attributedText];
-        
         NSMutableAttributedString *subAtt = [[NSMutableAttributedString alloc] initWithAttributedString:[[self.effectDic allValues] firstObject]];
-        
         NSRange range = NSRangeFromString([[self.effectDic allKeys] firstObject]);
         
         if (status) {
-            [subAtt addAttribute:NSBackgroundColorAttributeName value:self.highlightedColor range:NSMakeRange(0, subAtt.string.length)];
+            [subAtt addAttribute:NSBackgroundColorAttributeName value:self.highlightTextColor range:NSMakeRange(0, subAtt.string.length)];
             [attStr replaceCharactersInRange:range withAttributedString:subAtt];
-        }else {
-            
+        } else {
             [attStr replaceCharactersInRange:range withAttributedString:subAtt];
         }
         self.attributedText = attStr;
@@ -393,7 +403,7 @@
 
 #pragma mark - getRange
 
-- (void)getRangesWithStrings:(NSArray <NSString *>  *)strings
+- (void)getRangesWithStrings:(NSArray <NSString *> *)strings
 {
     if (self.attributedText == nil) {
         self.isTapAction = NO;
@@ -409,6 +419,7 @@
         NSRange range = [totalStr rangeOfString:obj];
         if (range.length != 0) {
             totalStr = [totalStr stringByReplacingCharactersInRange:range withString:[weakSelf yb_getStringWithRange:range]];
+            
             UILabelClickModel *model = [UILabelClickModel new];
             model.range = range;
             model.str = obj;
@@ -433,7 +444,8 @@
     [ranges enumerateObjectsUsingBlock:^(NSString * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
         NSRange range = NSRangeFromString(obj);
         NSAssert(totalStr.length >= range.location + range.length, @"NSRange(%ld,%ld) is out of bounds",range.location,range.length);
-        NSString *string = [totalStr substringWithRange:range];
+        NSString * string = [totalStr substringWithRange:range];
+        
         UILabelClickModel *model = [UILabelClickModel new];
         model.range = range;
         model.str = string;

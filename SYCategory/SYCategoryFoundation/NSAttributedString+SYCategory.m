@@ -177,17 +177,20 @@
     return attributed;
 }
 
-- (NSAttributedString *)ADSROW
+/// 设置行间距
+- (NSAttributedString *)attributedTextWithLineSpace:(CGFloat)lineSpace
 {
-    // 设置行间距
-    NSMutableParagraphStyle *paragraphStyle2 = [[NSMutableParagraphStyle alloc] init];
-    [paragraphStyle2 setLineSpacing:3.0f];
-    [paragraphStyle2 setLineBreakMode:NSLineBreakByTruncatingTail];
-    [paragraphStyle2 setAlignment:NSTextAlignmentLeft];
-    [paragraphStyle2 setLineBreakMode:NSLineBreakByCharWrapping];
-    NSMutableAttributedString *totalStr2 = [[NSMutableAttributedString alloc] initWithAttributedString:attributedText2];
-    [totalStr2 addAttribute:NSParagraphStyleAttributeName value:paragraphStyle2 range:NSMakeRange(0, [totalStr2 length])];
-    attributedText2 = (NSAttributedString *)totalStr2;
+    NSMutableAttributedString *attributed = [[NSMutableAttributedString alloc] initWithAttributedString:self];
+    if (lineSpace > 0.0) {
+        NSMutableParagraphStyle *paragraphStyle = [[NSMutableParagraphStyle alloc] init];
+        [paragraphStyle setLineSpacing:lineSpace];
+        [paragraphStyle setLineBreakMode:NSLineBreakByTruncatingTail];
+        [paragraphStyle setAlignment:NSTextAlignmentLeft];
+        [paragraphStyle setLineBreakMode:NSLineBreakByCharWrapping];
+        //
+        [attributed addAttribute:NSParagraphStyleAttributeName value:paragraphStyle range:NSMakeRange(0, self.length)];
+    }
+    return attributed;
 }
 
 /// html源码转NSAttributedString

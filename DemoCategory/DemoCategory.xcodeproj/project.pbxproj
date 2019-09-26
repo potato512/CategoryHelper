@@ -7,6 +7,14 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		802A58B8233CBD77007648AA /* UIView+SYWaterAnimation.m in Sources */ = {isa = PBXBuildFile; fileRef = 802A58B4233CBD77007648AA /* UIView+SYWaterAnimation.m */; };
+		802A58B9233CBD77007648AA /* UIView+SYCoinAnimation.m in Sources */ = {isa = PBXBuildFile; fileRef = 802A58B6233CBD77007648AA /* UIView+SYCoinAnimation.m */; };
+		802A58BC233CC0DF007648AA /* UIViewVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 802A58BB233CC0DF007648AA /* UIViewVC.m */; };
+		802A58C2233CC20D007648AA /* fire@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 802A58BD233CC20D007648AA /* fire@2x.png */; };
+		802A58C3233CC20D007648AA /* profile.png in Resources */ = {isa = PBXBuildFile; fileRef = 802A58BE233CC20D007648AA /* profile.png */; };
+		802A58C4233CC20D007648AA /* to.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 802A58BF233CC20D007648AA /* to.jpg */; };
+		802A58C5233CC20D007648AA /* from.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 802A58C0233CC20D007648AA /* from.jpg */; };
+		802A58C6233CC20D007648AA /* second.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 802A58C1233CC20D007648AA /* second.jpg */; };
 		8079D66F231CAB84009D8841 /* UIView+SYAnimation.m in Sources */ = {isa = PBXBuildFile; fileRef = 8079D66E231CAB84009D8841 /* UIView+SYAnimation.m */; };
 		8079D672231CAB9A009D8841 /* UILabel+SYClick.m in Sources */ = {isa = PBXBuildFile; fileRef = 8079D671231CAB9A009D8841 /* UILabel+SYClick.m */; };
 		A7029C082237514600C94BD7 /* UIDevice+SYCategory.m in Sources */ = {isa = PBXBuildFile; fileRef = A7029C072237514600C94BD7 /* UIDevice+SYCategory.m */; };
@@ -138,6 +146,17 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		802A58B4233CBD77007648AA /* UIView+SYWaterAnimation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+SYWaterAnimation.m"; sourceTree = "<group>"; };
+		802A58B5233CBD77007648AA /* UIView+SYWaterAnimation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+SYWaterAnimation.h"; sourceTree = "<group>"; };
+		802A58B6233CBD77007648AA /* UIView+SYCoinAnimation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+SYCoinAnimation.m"; sourceTree = "<group>"; };
+		802A58B7233CBD77007648AA /* UIView+SYCoinAnimation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+SYCoinAnimation.h"; sourceTree = "<group>"; };
+		802A58BA233CC0DE007648AA /* UIViewVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UIViewVC.h; sourceTree = "<group>"; };
+		802A58BB233CC0DF007648AA /* UIViewVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UIViewVC.m; sourceTree = "<group>"; };
+		802A58BD233CC20D007648AA /* fire@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "fire@2x.png"; sourceTree = "<group>"; };
+		802A58BE233CC20D007648AA /* profile.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = profile.png; sourceTree = "<group>"; };
+		802A58BF233CC20D007648AA /* to.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = to.jpg; sourceTree = "<group>"; };
+		802A58C0233CC20D007648AA /* from.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = from.jpg; sourceTree = "<group>"; };
+		802A58C1233CC20D007648AA /* second.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = second.jpg; sourceTree = "<group>"; };
 		8079D66D231CAB83009D8841 /* UIView+SYAnimation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+SYAnimation.h"; sourceTree = "<group>"; };
 		8079D66E231CAB84009D8841 /* UIView+SYAnimation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+SYAnimation.m"; sourceTree = "<group>"; };
 		8079D670231CAB9A009D8841 /* UILabel+SYClick.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UILabel+SYClick.h"; sourceTree = "<group>"; };
@@ -444,6 +463,8 @@
 				A7419C501F0F70C000C4D04F /* LabelViewController.m */,
 				A7419C511F0F70C000C4D04F /* TextFieldViewController.h */,
 				A7419C521F0F70C000C4D04F /* TextFieldViewController.m */,
+				802A58BA233CC0DE007648AA /* UIViewVC.h */,
+				802A58BB233CC0DF007648AA /* UIViewVC.m */,
 			);
 			path = UIKitControllers;
 			sourceTree = "<group>";
@@ -451,6 +472,11 @@
 		A7419C531F0F70C000C4D04F /* images */ = {
 			isa = PBXGroup;
 			children = (
+				802A58BD233CC20D007648AA /* fire@2x.png */,
+				802A58C0233CC20D007648AA /* from.jpg */,
+				802A58BE233CC20D007648AA /* profile.png */,
+				802A58C1233CC20D007648AA /* second.jpg */,
+				802A58BF233CC20D007648AA /* to.jpg */,
 				A7419C731F0F76ED00C4D04F /* highlight.png */,
 				A7419C741F0F76ED00C4D04F /* normal.png */,
 				A7419C751F0F76ED00C4D04F /* highlight_info.png */,
@@ -565,6 +591,10 @@
 				A7DC9CC81FF244AB003F938A /* UIView+Status.m */,
 				8079D66D231CAB83009D8841 /* UIView+SYAnimation.h */,
 				8079D66E231CAB84009D8841 /* UIView+SYAnimation.m */,
+				802A58B7233CBD77007648AA /* UIView+SYCoinAnimation.h */,
+				802A58B6233CBD77007648AA /* UIView+SYCoinAnimation.m */,
+				802A58B5233CBD77007648AA /* UIView+SYWaterAnimation.h */,
+				802A58B4233CBD77007648AA /* UIView+SYWaterAnimation.m */,
 				A785E69A2248CF8E00DD2B06 /* UIFont+SYCategory.h */,
 				A785E69B2248CF8E00DD2B06 /* UIFont+SYCategory.m */,
 				A7029C062237514600C94BD7 /* UIDevice+SYCategory.h */,
@@ -786,7 +816,8 @@
 				TargetAttributes = {
 					DFA204E51D1E131C00929257 = {
 						CreatedOnToolsVersion = 7.2.1;
-						DevelopmentTeam = 5JH8ZFBFJD;
+						DevelopmentTeam = 9YWJ3PZHZG;
+						ProvisioningStyle = Manual;
 					};
 					DFA204FE1D1E131C00929257 = {
 						CreatedOnToolsVersion = 7.2.1;
@@ -828,18 +859,23 @@
 			files = (
 				A7419C771F0F76ED00C4D04F /* highlight.png in Resources */,
 				A7419C781F0F76ED00C4D04F /* normal.png in Resources */,
+				802A58C4233CC20D007648AA /* to.jpg in Resources */,
 				A7419C721F0F70C000C4D04F /* image2.png in Resources */,
 				DFA204F91D1E131C00929257 /* LaunchScreen.storyboard in Resources */,
 				DFA204F61D1E131C00929257 /* Assets.xcassets in Resources */,
 				A7419C701F0F70C000C4D04F /* header_girl.png in Resources */,
+				802A58C5233CC20D007648AA /* from.jpg in Resources */,
 				DF2CF9DB1EE98F24004253B5 /* SYNavigationBackImage@3x.png in Resources */,
+				802A58C6233CC20D007648AA /* second.jpg in Resources */,
 				A7419C7A1F0F76ED00C4D04F /* normal_info.png in Resources */,
 				A7419C6F1F0F70C000C4D04F /* header_boy.png in Resources */,
 				A7419C791F0F76ED00C4D04F /* highlight_info.png in Resources */,
+				802A58C3233CC20D007648AA /* profile.png in Resources */,
 				A7419C6E1F0F70C000C4D04F /* girl.png in Resources */,
 				DFA204F41D1E131C00929257 /* Main.storyboard in Resources */,
 				DF2CF9DA1EE98F24004253B5 /* SYNavigationBackImage@2x.png in Resources */,
 				DF2CF9D91EE98F24004253B5 /* SYNavigationBackImage.png in Resources */,
+				802A58C2233CC20D007648AA /* fire@2x.png in Resources */,
 				A7419C711F0F70C000C4D04F /* image.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -894,6 +930,7 @@
 				DF2CF9C91EE98F24004253B5 /* UIImage+SYFilter.m in Sources */,
 				DF2CF9D01EE98F24004253B5 /* UISlider+SYCategory.m in Sources */,
 				DF2CF9CB1EE98F24004253B5 /* UIImageView+SYCategory.m in Sources */,
+				802A58B8233CBD77007648AA /* UIView+SYWaterAnimation.m in Sources */,
 				A7029C11223781F300C94BD7 /* UIScreen+SYCategory.m in Sources */,
 				A7419C6A1F0F70C000C4D04F /* ImagePickerViewController.m in Sources */,
 				A7E53AA7202AD7BC006DA746 /* SAMKeychainQuery.m in Sources */,
@@ -927,6 +964,7 @@
 				A7E53A9D202AD0DA006DA746 /* NSString+SYHtml.m in Sources */,
 				DF2CF9B91EE98F24004253B5 /* NSString+SYJSON.m in Sources */,
 				DFA204EE1D1E131C00929257 /* AppDelegate.m in Sources */,
+				802A58B9233CBD77007648AA /* UIView+SYCoinAnimation.m in Sources */,
 				DF2CF9D41EE98F24004253B5 /* UITableViewCell+SYCategory.m in Sources */,
 				DFB51A051F073DDA00F7DE63 /* NSFileHandle+SYCategory.m in Sources */,
 				DF2CF9B81EE98F24004253B5 /* NSString+SYCategory.m in Sources */,
@@ -937,6 +975,7 @@
 				DF2CF9D51EE98F24004253B5 /* UITextField+SYCategory.m in Sources */,
 				A7684CC81F0E1A3700C7249D /* NSMutableArray+SYCategory.m in Sources */,
 				A7419C661F0F70C000C4D04F /* AlertSheetViewController.m in Sources */,
+				802A58BC233CC0DF007648AA /* UIViewVC.m in Sources */,
 				DF2CF9C81EE98F24004253B5 /* UIImage+SYCategory.m in Sources */,
 				DFA204EB1D1E131C00929257 /* main.m in Sources */,
 				DF2ED9B41F094B8F00829C5F /* UIDocument+SYCategory.m in Sources */,
@@ -1097,13 +1136,16 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_STYLE = Manual;
+				DEVELOPMENT_TEAM = 9YWJ3PZHZG;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "$(PROJECT_DIR)/DemoCategory/PrefixHeader.pch";
 				INFOPLIST_FILE = DemoCategory/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.zhangshaoyu.DemoCategory;
+				PRODUCT_BUNDLE_IDENTIFIER = com.byd.DemoCategory;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = DevelopmentProfileWildcard;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
@@ -1113,13 +1155,16 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_STYLE = Manual;
+				DEVELOPMENT_TEAM = 9YWJ3PZHZG;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "$(PROJECT_DIR)/DemoCategory/PrefixHeader.pch";
 				INFOPLIST_FILE = DemoCategory/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.zhangshaoyu.DemoCategory;
+				PRODUCT_BUNDLE_IDENTIFIER = com.byd.DemoCategory;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = DevelopmentProfileWildcard;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;

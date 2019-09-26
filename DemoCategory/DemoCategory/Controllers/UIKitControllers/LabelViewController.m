@@ -44,8 +44,23 @@
     UIScrollView *scrollview = [[UIScrollView alloc] initWithFrame:self.view.bounds];
     [self.view addSubview:scrollview];
     scrollview.autoresizingMask = UIViewAutoresizingFlexibleHeight;
+    //
     
-    UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(10.0, 10.0, 100.0, 100.0)];
+    //
+    UILabel *labelClick = [[UILabel alloc] initWithFrame:CGRectMake(10, 10, scrollview.width - 20, 40)];
+    [scrollview addSubview:labelClick];
+    labelClick.backgroundColor = UIColor.lightGrayColor;
+    NSAttributedString *attributedClick = [[NSAttributedString alloc] initWithString:@"深圳市坪山新区比亚迪"];
+    attributedClick = [attributedClick attributedText:@"比亚迪" font:UIFontBoldSize(20) color:UIColor.redColor];
+    labelClick.attributedText = attributedClick;
+    [labelClick labelClickAddWithStrings:@[@"比亚迪"] clicked:^(UILabel * _Nonnull label, NSString * _Nonnull string, NSRange range, NSInteger index) {
+        [[[UIAlertView alloc] initWithTitle:string message:nil delegate:nil cancelButtonTitle:nil otherButtonTitles:@"知道了", nil] show];
+    }];
+    
+    UIView *currentView = labelClick;
+    
+    
+    UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(10.0, currentView.bottom + 10, 100.0, 100.0)];
     [scrollview addSubview:label];
     label.backgroundColor = [UIColor greenColor];
     label.text = @"圆角边框";
@@ -53,7 +68,7 @@
     label.viewDragEnable(YES);
 //    [label setDrapEnable:YES];
     
-    UIView *currentView = label;
+    currentView = label;
     
     UILabel *label2 = [[UILabel alloc] initWithFrame:CGRectMake(10.0, (currentView.bottom + 10.0), (scrollview.width - 10.0 * 2), 100.0)];
     [scrollview addSubview:label2];
@@ -113,12 +128,34 @@
     attributed = [attributed attributedText:@"devZhang" font:[UIFont systemFontOfSize:18.0] color:[UIColor redColor]];
     label3.attributedText = attributed;
 
-    
     currentView = label3;
+    
+    UILabel *labelLineSpace = [[UILabel alloc] initWithFrame:CGRectMake(10.0, (currentView.bottom + 10.0), (scrollview.width - 10.0 * 2), 60)];
+    [scrollview addSubview:labelLineSpace];
+    labelLineSpace.backgroundColor = [UIColor colorWithWhite:0.5 alpha:0.3];
+    labelLineSpace.font = [UIFont systemFontOfSize:12.0];
+    labelLineSpace.numberOfLines = 0;
+    NSAttributedString *attributedLineSpace = [[NSAttributedString alloc] initWithString:@"修改标签栏信息：devZhang。广东省深圳市坪山新区马峦街道办江岭路与比亚迪路红绿灯路口交汇处"];
+    attributedLineSpace = [attributedLineSpace attributedText:@"devZhang" font:[UIFont systemFontOfSize:18.0] color:[UIColor redColor]];
+    labelLineSpace.attributedText = attributedLineSpace;
+    
+    currentView = labelLineSpace;
+    
+    UILabel *labelLineSpace2 = [[UILabel alloc] initWithFrame:CGRectMake(10.0, (currentView.bottom + 10.0), (scrollview.width - 10.0 * 2), 60)];
+    [scrollview addSubview:labelLineSpace2];
+    labelLineSpace2.backgroundColor = [UIColor colorWithWhite:0.5 alpha:0.3];
+    labelLineSpace2.font = [UIFont systemFontOfSize:12.0];
+    labelLineSpace2.numberOfLines = 0;
+    NSAttributedString *attributedLineSpace2 = [[NSAttributedString alloc] initWithString:@"修改标签栏信息：devZhang。广东省深圳市坪山新区马峦街道办江岭路与比亚迪路红绿灯路口交汇处"];
+    attributedLineSpace2 = [attributedLineSpace2 attributedText:@"devZhang" font:[UIFont systemFontOfSize:18.0] color:[UIColor redColor]];
+    labelLineSpace2.attributedText = attributedLineSpace2;
+    [labelLineSpace2 attributedTextLineSpace:6.0];
+    
+    currentView = labelLineSpace2;
     
     kSelfWeak;
     
-    UILabel *tapSinglelabel = [[UILabel alloc] initWithFrame:CGRectMake(10.0, (currentView.bottom + 10.0), 80.0, 40.0)];
+    UILabel *tapSinglelabel = [[UILabel alloc] initWithFrame:CGRectMake(10.0, (currentView.bottom + 10.0), (scrollview.width - 10.0 * 2), 40)];
     [scrollview addSubview:tapSinglelabel];
     tapSinglelabel.backgroundColor = [UIColor brownColor];
     tapSinglelabel.text = @"单击响应";
@@ -134,7 +171,7 @@
     }];
     currentView = tapSinglelabel;
     
-    UILabel *tapDoubleLabel = [[UILabel alloc] initWithFrame:CGRectMake((currentView.right + 10.0), currentView.top, 80.0, 40.0)];
+    UILabel *tapDoubleLabel = [[UILabel alloc] initWithFrame:CGRectMake(10.0, (currentView.bottom + 10.0), (scrollview.width - 10.0 * 2), 40)];
     [scrollview addSubview:tapDoubleLabel];
     tapDoubleLabel.backgroundColor = [UIColor brownColor];
     tapDoubleLabel.text = @"双击响应";
@@ -150,7 +187,7 @@
     }];
     currentView = tapDoubleLabel;
     
-    UILabel *longpressLabel = [[UILabel alloc] initWithFrame:CGRectMake((currentView.right + 10.0), currentView.top, 80.0, 40.0)];
+    UILabel *longpressLabel = [[UILabel alloc] initWithFrame:CGRectMake(10.0, (currentView.bottom + 10.0), (scrollview.width - 10.0 * 2), 40)];
     [scrollview addSubview:longpressLabel];
     longpressLabel.backgroundColor = [UIColor brownColor];
     longpressLabel.text = @"长按响应";
@@ -166,7 +203,7 @@
     }];
     currentView = longpressLabel;
     
-    UILabel *panLabel = [[UILabel alloc] initWithFrame:CGRectMake((currentView.right + 10.0), currentView.top, 80.0, 40.0)];
+    UILabel *panLabel = [[UILabel alloc] initWithFrame:CGRectMake(10.0, (currentView.bottom + 10.0), (scrollview.width - 10.0 * 2), 40)];
     [scrollview addSubview:panLabel];
     panLabel.backgroundColor = [UIColor brownColor];
     panLabel.text = @"划动响应";
@@ -197,17 +234,6 @@
 
     currentView = label6;
     
-    
-    // 链式编程
-    UILabel *labelChain = [UILabel newUILabel:^(UILabel *label) {
-        label.labelFont([UIFont systemFontOfSize:12.0]).labelColor([UIColor blackColor]).labelAlignment(NSTextAlignmentCenter).labelText(@"链式编程实例化");
-    }];
-    labelChain.labelAttributedText(@"链式编程", [UIColor redColor], [UIColor colorRandom], [UIFont systemFontOfSize:20.0], 5.0, 0.0);
-    labelChain.labelAttributedTextDeleteline(@"链式", [UIColor greenColor], NSUnderlineStyleSingle);
-    labelChain.labelAttributedTextUnderline(@"编程", [UIColor brownColor], NSUnderlineStyleSingle);
-    labelChain.labelAttributedTextObliqueness(@"实例化", [UIColor blueColor], [UIFont systemFontOfSize:8.0], 1.2);
-    labelChain.viewSuperView(self.view).viewFrame(CGRectMake(10.0, currentView.bottom + 10.0, 120.0, 30.0)).viewWidth(200.0).viewColorAlpha([UIColor greenColor], 0.3);
-    labelChain.viewRadius(3.0).viewBorder(2.0, [UIColor colorRandom]);
     
     scrollview.contentSize = CGSizeMake(scrollview.width, (currentView.bottom + 10.0));
     

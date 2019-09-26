@@ -10,6 +10,7 @@
 
 #import "SYCategory.h"
 
+#import "UIViewVC.h"
 #import "LabelViewController.h"
 #import "ButtonViewController.h"
 #import "ImageViewController.h"
@@ -88,8 +89,8 @@
 
 - (void)setUI
 {
-    self.mainArray = @[@[@"UILabel", @"UIButton/UISlider/UISwitch/UISegmentControl", @"UIImage", @"UIColor", @"UIGestureRecognizer", @"UIAlertView/UIActionSheet", @"UITextField/UITextView", @"UIImagePickerViewController"], @[@"NSString", @"NSAttributedStringVC", @"NSObject", @"NSData", @"NSFileManager", @"NSFileHandle", @"NSNumber", @"NSArray", @"NSDictionary", @"NSTimer", @"NSURLConnection", @"NSDate", @"NSNotificationCenter", @"NSUserDefaults", @"NSPredicate"]];
-    self.controllers = @[@[[LabelViewController class], [ButtonViewController class], [ImageViewController class], [ColorViewController class], [GestureViewController class], [AlertSheetViewController class], [TextFieldViewController class], [ImagePickerViewController class]], @[[NSStringViewController class], [NSAttributedStringVC class], [NSObjectViewController class], [NSDataViewController class], [NSFileManagerViewController class], [NSFileHandleViewController class], [NSNumberViewController class], [NSArrayViewController class], [NSDictionaryViewController class], [NSTimerViewController class], [NSURLConnectionViewController class], [NSDateViewController class], [NSNotificationViewController class], [NSUserDefaultViewController class], [NSPredicateViewController class]]];
+    self.mainArray = @[@[@"UIView", @"UILabel", @"UIButton/UISlider/UISwitch/UISegmentControl", @"UIImage", @"UIColor", @"UIGestureRecognizer", @"UIAlertView/UIActionSheet", @"UITextField/UITextView", @"UIImagePickerViewController"], @[@"NSString", @"NSAttributedStringVC", @"NSObject", @"NSData", @"NSFileManager", @"NSFileHandle", @"NSNumber", @"NSArray", @"NSDictionary", @"NSTimer", @"NSURLConnection", @"NSDate", @"NSNotificationCenter", @"NSUserDefaults", @"NSPredicate"]];
+    self.controllers = @[@[[UIViewVC class], [LabelViewController class], [ButtonViewController class], [ImageViewController class], [ColorViewController class], [GestureViewController class], [AlertSheetViewController class], [TextFieldViewController class], [ImagePickerViewController class]], @[[NSStringViewController class], [NSAttributedStringVC class], [NSObjectViewController class], [NSDataViewController class], [NSFileManagerViewController class], [NSFileHandleViewController class], [NSNumberViewController class], [NSArrayViewController class], [NSDictionaryViewController class], [NSTimerViewController class], [NSURLConnectionViewController class], [NSDateViewController class], [NSNotificationViewController class], [NSUserDefaultViewController class], [NSPredicateViewController class]]];
     
     self.mainTableView = [[UITableView alloc] initWithFrame:self.view.bounds style:UITableViewStylePlain];
     [self.view addSubview:self.mainTableView];
@@ -372,8 +373,15 @@
 
     NSArray *array = self.controllers[indexPath.section];
     Class class = array[indexPath.row];
-    UIViewController *nextVC = [[class alloc] init];    
-    [self.navigationController pushViewController:nextVC animated:YES];
+    UIViewController *nextVC = [[class alloc] init];
+//    [self.navigationController pushViewController:nextVC animated:YES];
+    /*
+     动画效果，如 立体翻转@"cube" @"moveIn" @"reveal" @"fade" @"pageCurl" @"pageUnCurl" 抽纸@"suckEffect" 滴水@"rippleEffect" 翻转@"oglFlip" @"rotate" @"push" 相机开@"cameraIrisHollowOpen" 相机关@"cameraIrisHollowClose" @"kCATransitionFade" @"kCATransitionMoveIn" @"kCATransitionPush" @"kCATransitionReveal"
+     动画方向，如 kCATransitionFromRight,kCATransitionFromLeft,kCATransitionFromTop,kCATransitionFromBottom
+     */
+    NSArray *types = @[@"cube",@"moveIn",@"reveal",@"fade",@"pageCurl",@"pageUnCurl",@"suckEffect",@"rippleEffect",@"oglFlip", @"rotate",@"push",@"cameraIrisHollowOpen",@"cameraIrisHollowClose",@"kCATransitionFade",@"kCATransitionMoveIn",@"kCATransitionPush",@"kCATransitionReveal"];
+    CATransitionType type = types[arc4random() % types.count];
+    [self.navigationController pushViewController:nextVC animated:YES type:type subType:nil function:nil];
 }
 
 @end

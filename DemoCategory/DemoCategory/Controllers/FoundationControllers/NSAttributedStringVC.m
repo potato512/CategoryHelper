@@ -49,21 +49,30 @@
     
     UILabel *label = [UILabel new];
     label.labelNumberOfLines(0).labelColor([UIColor brownColor]).viewSuperView(self.view).viewFrame(CGRectMake(10.0, button.bottom + 10.0, self.view.width - 10.0 * 2, 80.0)).viewTag(1000);
+    //
+    UILabel *label2 = [UILabel new];
+    label2.labelNumberOfLines(0).labelColor([UIColor blackColor]).viewSuperView(self.view).viewFrame(CGRectMake(10.0, label.bottom + 10.0, label.width, label.height)).viewTag(1100);
 }
 
 - (void)buttonClick:(UIButton *)button
 {
     NSString *text = @"NSAttributedString控制字符的属性变化";
+    text = @"NSAttributedString控制字符的属性变化，NSAttributedString控制字符的属性变化。";
     NSAttributedString *attributed = [[NSAttributedString alloc] initWithString:text];
     attributed = [attributed attributedText:@"Attributed" color:[UIColor brownColor] font:[UIFont systemFontOfSize:10.0] Obliqueness:0.2];
     attributed = [attributed attributedText:@"String" color:[UIColor redColor] font:[UIFont systemFontOfSize:12.0] space:2.0 rowSpace:0.0 bgColor:[UIColor yellowColor]];
     attributed = [attributed attributedText:@"字符" deleteLineColor:[UIColor blueColor] deleteLineType:NSUnderlineStyleSingle];
     attributed = [attributed attributedText:@"属性变化" underLineColor:[UIColor purpleColor] underLineType:NSUnderlineStyleSingle];
     
-//    NSAttributedString *attributed = [NSAttributedString]
-    
     UILabel *label = (UILabel *)[self.view viewWithTag:1000];
     label.attributedText = attributed;
+    //
+    text = @"NSAttributedString控制字符的属性变化，NSAttributedString控制字符的属性变化。";
+    attributed = [[NSAttributedString alloc] initWithString:text];
+    attributed = [attributed attributedTextWithLineSpace:5.0];
+    
+    UILabel *label2 = (UILabel *)[self.view viewWithTag:1100];
+    label2.attributedText = attributed;
 }
 
 @end
