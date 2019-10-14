@@ -35,8 +35,14 @@
 //    UIImageView *secondImageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"second.jpg"]];
 //
 //    UIView *coinView = [[UIView alloc] init];
-//    [coinView initializeCornView:CGRectMake(50.0, 50.0, 120.0, 120.0) view:self.view primaryView:firstImageView secondaryView:secondImageView];
 //    coinView.backgroundColor = [UIColor colorWithWhite:0.5 alpha:0.3];
+//    // 方法1
+////    [coinView reloadCornView:CGRectMake(50.0, 50.0, 120.0, 120.0) view:self.view duration:1.2 primaryView:firstImageView secondaryView:secondImageView];
+//    // 方法2
+//    coinView.primaryView = firstImageView;
+//    coinView.secondaryView = secondImageView;
+//    coinView.durationTime = 0.3;
+//    [coinView reloadCornView];
 }
 
 - (void)viewAnimation

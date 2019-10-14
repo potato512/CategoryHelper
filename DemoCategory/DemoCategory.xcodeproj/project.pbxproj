@@ -7,8 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		802A58B8233CBD77007648AA /* UIView+SYWaterAnimation.m in Sources */ = {isa = PBXBuildFile; fileRef = 802A58B4233CBD77007648AA /* UIView+SYWaterAnimation.m */; };
-		802A58B9233CBD77007648AA /* UIView+SYCoinAnimation.m in Sources */ = {isa = PBXBuildFile; fileRef = 802A58B6233CBD77007648AA /* UIView+SYCoinAnimation.m */; };
 		802A58BC233CC0DF007648AA /* UIViewVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 802A58BB233CC0DF007648AA /* UIViewVC.m */; };
 		802A58C2233CC20D007648AA /* fire@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 802A58BD233CC20D007648AA /* fire@2x.png */; };
 		802A58C3233CC20D007648AA /* profile.png in Resources */ = {isa = PBXBuildFile; fileRef = 802A58BE233CC20D007648AA /* profile.png */; };
@@ -146,10 +144,6 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		802A58B4233CBD77007648AA /* UIView+SYWaterAnimation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+SYWaterAnimation.m"; sourceTree = "<group>"; };
-		802A58B5233CBD77007648AA /* UIView+SYWaterAnimation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+SYWaterAnimation.h"; sourceTree = "<group>"; };
-		802A58B6233CBD77007648AA /* UIView+SYCoinAnimation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+SYCoinAnimation.m"; sourceTree = "<group>"; };
-		802A58B7233CBD77007648AA /* UIView+SYCoinAnimation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+SYCoinAnimation.h"; sourceTree = "<group>"; };
 		802A58BA233CC0DE007648AA /* UIViewVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UIViewVC.h; sourceTree = "<group>"; };
 		802A58BB233CC0DF007648AA /* UIViewVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UIViewVC.m; sourceTree = "<group>"; };
 		802A58BD233CC20D007648AA /* fire@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "fire@2x.png"; sourceTree = "<group>"; };
@@ -591,10 +585,6 @@
 				A7DC9CC81FF244AB003F938A /* UIView+Status.m */,
 				8079D66D231CAB83009D8841 /* UIView+SYAnimation.h */,
 				8079D66E231CAB84009D8841 /* UIView+SYAnimation.m */,
-				802A58B7233CBD77007648AA /* UIView+SYCoinAnimation.h */,
-				802A58B6233CBD77007648AA /* UIView+SYCoinAnimation.m */,
-				802A58B5233CBD77007648AA /* UIView+SYWaterAnimation.h */,
-				802A58B4233CBD77007648AA /* UIView+SYWaterAnimation.m */,
 				A785E69A2248CF8E00DD2B06 /* UIFont+SYCategory.h */,
 				A785E69B2248CF8E00DD2B06 /* UIFont+SYCategory.m */,
 				A7029C062237514600C94BD7 /* UIDevice+SYCategory.h */,
@@ -930,7 +920,6 @@
 				DF2CF9C91EE98F24004253B5 /* UIImage+SYFilter.m in Sources */,
 				DF2CF9D01EE98F24004253B5 /* UISlider+SYCategory.m in Sources */,
 				DF2CF9CB1EE98F24004253B5 /* UIImageView+SYCategory.m in Sources */,
-				802A58B8233CBD77007648AA /* UIView+SYWaterAnimation.m in Sources */,
 				A7029C11223781F300C94BD7 /* UIScreen+SYCategory.m in Sources */,
 				A7419C6A1F0F70C000C4D04F /* ImagePickerViewController.m in Sources */,
 				A7E53AA7202AD7BC006DA746 /* SAMKeychainQuery.m in Sources */,
@@ -964,7 +953,6 @@
 				A7E53A9D202AD0DA006DA746 /* NSString+SYHtml.m in Sources */,
 				DF2CF9B91EE98F24004253B5 /* NSString+SYJSON.m in Sources */,
 				DFA204EE1D1E131C00929257 /* AppDelegate.m in Sources */,
-				802A58B9233CBD77007648AA /* UIView+SYCoinAnimation.m in Sources */,
 				DF2CF9D41EE98F24004253B5 /* UITableViewCell+SYCategory.m in Sources */,
 				DFB51A051F073DDA00F7DE63 /* NSFileHandle+SYCategory.m in Sources */,
 				DF2CF9B81EE98F24004253B5 /* NSString+SYCategory.m in Sources */,
@@ -1147,6 +1135,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = DevelopmentProfileWildcard;
 				TARGETED_DEVICE_FAMILY = "1,2";
+				VALID_ARCHS = "arm64 arm64e armv7s armv7";
 			};
 			name = Debug;
 		};
@@ -1166,6 +1155,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = DevelopmentProfileWildcard;
 				TARGETED_DEVICE_FAMILY = "1,2";
+				VALID_ARCHS = "arm64 arm64e armv7s armv7";
 			};
 			name = Release;
 		};
