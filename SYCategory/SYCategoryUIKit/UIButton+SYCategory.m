@@ -411,27 +411,6 @@ static NSTimeInterval const timeSize = 1.0;
 // 开始
 - (void)startCoundown
 {
-    if (self.timer == nil) {
-        __weak UIButton *weakSelf = self;
-        self.timer = [NSTimer timerWithTimeInterval:timeSize userInfo:nil repeats:YES handle:^(NSTimer *timer){
-            [weakSelf timerFunction];
-        }];
-        [self.timer timerStart];
-    }
-}
-
-// 结束
-- (void)stopCountdown
-{
-    if (self.timer && [self.timer respondsToSelector:@selector(timerKill)]) {
-        [self.timer timerKill];
-    }
-    
-    [self setTitle:self.titleNormal forState:UIControlStateNormal];
-}
-
-- (void)timerFunction
-{
     NSTimeInterval time = self.countdownTime.doubleValue;
     
     if (0.0 > time) {
@@ -443,6 +422,25 @@ static NSTimeInterval const timeSize = 1.0;
     [self setTitle:title forState:UIControlStateDisabled];
     time -= timeSize;
     self.countdownTime = [NSNumber numberWithDouble:time];
+    
+    if (self.timer == nil) {
+        __weak UIButton *weakButton = self;
+        self.timer = [NSTimer timerWithTimeInterval:timeSize userInfo:nil repeats:YES handle:^(NSTimer *timer){
+            [weakButton startCoundown];
+        }];
+        [self.timer timerStart];
+    }
 }
+
+// 结束
+- (void)stopCountdown
+{
+    if (self.timer) {
+        [self.timer timerKill];
+    }
+    
+    [self setTitle:self.titleNormal forState:UIControlStateNormal];
+}
+
 
 @end

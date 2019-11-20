@@ -11,13 +11,12 @@
 @interface NSNotificationCenter (SYCategory)
 
 /**
- 发送通知
- 
- @param name 通知名称
- @param object 通知协带参数
- @param dict 通知协带参数
+ *  发送通知
+ *
+ *  @param name 通知名称
+ *  @param dict 通知协带参数
  */
-void NSNotificationCenterPost(NSString *name, id object, NSDictionary *dict);
+void NSNotificationCenterPost(NSString *name, NSDictionary *dict);
 
 /**
  *  接收通知

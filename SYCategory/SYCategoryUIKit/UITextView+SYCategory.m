@@ -12,8 +12,6 @@
 #import <objc/runtime.h>
 #import "UILabel+SYCategory.h"
 
-#import "NSNotificationCenter+SYCategory.h"
-
 @interface UITextView ()
 
 @property (nonatomic, strong) UILabel *placeholderLabel;
@@ -22,7 +20,7 @@
 
 @implementation UITextView (SYCategory)
 
-//屏蔽dealloc方法（避免iOS8.x版本闪退），仅支持9.0及以上版本
+//屏蔽dealloc方法（避免iOS8.x版本闪退）
 //- (void)dealloc
 //{
 //    [[NSNotificationCenter defaultCenter] removeObserver:self];
@@ -36,7 +34,8 @@
 {
     NSString *text = self.text;
     NSInteger length = [text textLength:NO];
-    if (length > maxLength) {
+    if (length > maxLength)
+    {
         self.text = [text substringToIndex:maxLength];
     }
 }
@@ -88,8 +87,7 @@
     objc_setAssociatedObject(self, @selector(placeHolderText), placeHolderText, OBJC_ASSOCIATION_RETAIN);
     
     [self performSelector:@selector(refreshPlaceholderText) withObject:nil];
-//    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(placeholderLabelEditChanged:) name:UITextViewTextDidChangeNotification object:nil];
-    NSNotificationCenterReceive(UITextViewTextDidChangeNotification, self, @selector(placeholderLabelEditChanged:));
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(placeholderLabelEditChanged:) name:UITextViewTextDidChangeNotification object:nil];
 }
 
 - (NSString *)placeHolderText
@@ -174,9 +172,7 @@
     {
         objc_setAssociatedObject(self, @selector(limitMaxLength), @(limitMaxLength), OBJC_ASSOCIATION_RETAIN);
         
-//        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(textViewLengthEditChanged:) name:UITextViewTextDidChangeNotification object:nil];
-        NSNotificationCenterReceive(UITextViewTextDidChangeNotification, self, @selector(textViewLengthEditChanged:));
-        
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(textViewLengthEditChanged:) name:UITextViewTextDidChangeNotification object:nil];
     }
 }
 
@@ -203,8 +199,7 @@
     {
         objc_setAssociatedObject(self, @selector(limitText), limitText, OBJC_ASSOCIATION_RETAIN);
         
-//        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(limitTextChanged:) name:UITextViewTextDidChangeNotification object:nil];
-        NSNotificationCenterReceive(UITextViewTextDidChangeNotification, self, @selector(limitTextChanged:));
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(limitTextChanged:) name:UITextViewTextDidChangeNotification object:nil];
     }
 }
 
@@ -220,8 +215,7 @@
     {
         objc_setAssociatedObject(self, @selector(allowedText), allowedText, OBJC_ASSOCIATION_RETAIN);
         
-//        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(allowedTextChanged:) name:UITextViewTextDidChangeNotification object:nil];
-        NSNotificationCenterReceive(UITextViewTextDidChangeNotification, self, @selector(allowedTextChanged:));
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(allowedTextChanged:) name:UITextViewTextDidChangeNotification object:nil];
     }
 }
 

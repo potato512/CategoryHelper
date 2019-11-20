@@ -19,15 +19,14 @@
 @implementation NSNotificationCenter (SYCategory)
 
 /**
- 发送通知
-
- @param name 通知名称
- @param object 通知协带参数
- @param dict 通知协带参数
+ *  发送通知
+ *
+ *  @param name 通知名称
+ *  @param dict 通知协带参数
  */
-void NSNotificationCenterPost(NSString *name, id object, NSDictionary *dict)
+void NSNotificationCenterPost(NSString *name, NSDictionary *dict)
 {
-    [[NSNotificationCenter defaultCenter] postNotificationName:name object:object userInfo:dict];
+    [[NSNotificationCenter defaultCenter] postNotificationName:name object:nil userInfo:dict];
 }
 
 /**
@@ -106,7 +105,8 @@ void NSNotificationCenterRemove(NSString *name, id target)
 
 - (void)notificationMethord:(NSNotification *)notification
 {
-    if (self.NotificationBlock) {
+    if (self.NotificationBlock)
+    {
         self.NotificationBlock(notification);
     }
 }

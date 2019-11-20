@@ -10,12 +10,6 @@
 #import "NSURL+SYCategory.h"
 #import "NSString+SYCategory.h"
 
-#import <UIKit/UIKit.h>
-#import <AVFoundation/AVFoundation.h>
-#import <AssetsLibrary/AssetsLibrary.h>
-#import <Photos/Photos.h>
-#import <CoreLocation/CoreLocation.h>
-
 @implementation UIDevice (SYCategory)
 
 /// 打开浏览器
@@ -152,100 +146,5 @@ void PhoneCallWithNumber(NSString *number, BOOL isCanBack)
     }
     return NO;
 }
-
-#pragma mark - 设备隐私权限
-
-/// 摄像头是否可用
-+ (BOOL)isValidCamera
-{
-    /// 先判断摄像头硬件是否好用
-    if ([UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera]) {
-        // #import <AVFoundation/AVFoundation.h>
-        // 用户是否允许摄像头使用
-        AVAuthorizationStatus authorizationStatus = [AVCaptureDevice authorizationStatusForMediaType:AVMediaTypeVideo];
-        // 不允许弹出提示框
-        if (authorizationStatus == AVAuthorizationStatusRestricted || authorizationStatus == AVAuthorizationStatusDenied) {
-            return NO;
-        } else {
-            return YES;
-        }
-    } else {
-        // 硬件问题提示
-        return NO;
-    }
-}
-
-/// 相册是否可用
-+ (BOOL)isValidPhoto
-{
-    if ([UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypePhotoLibrary]) {
-        if (UIDevice.currentDevice.systemVersion.doubleValue < 8.0) {
-            // #import <AssetsLibrary/AssetsLibrary.h>
-            ALAuthorizationStatus authStatus = [ALAssetsLibrary authorizationStatus];
-            if (authStatus == ALAuthorizationStatusDenied || authStatus == ALAuthorizationStatusRestricted) {
-                return NO;
-            }
-        } else {
-            // #import <Photos/Photos.h>
-            PHAuthorizationStatus authStatus = [PHPhotoLibrary authorizationStatus];
-            if (authStatus == PHAuthorizationStatusRestricted || authStatus == PHAuthorizationStatusDenied) {
-                return NO;
-            }
-        }
-        
-    }
-    
-    return YES;
-}
-
-/// 定位是否可用
-+ (BOOL)isValidLocation
-{
-    // #import <CoreLocation/CoreLocation.h>
-    if (CLLocationManager.authorizationStatus == kCLAuthorizationStatusDenied || CLLocationManager.authorizationStatus == kCLAuthorizationStatusRestricted) {
-        return NO;
-    }
-    return YES;
-}
-
-/// 录音是否可用
-+ (BOOL)isValidRecorder
-{
-//    if (UIDevice.currentDevice.systemVersion.doubleValue >= 7.0) {
-//        AVAuthorizationStatus videoAuthStatus = [AVCaptureDevice authorizationStatusForMediaType:AVMediaTypeAudio];
-//        if (videoAuthStatus == AVAuthorizationStatusNotDetermined) {
-//            // 未询问用户是否授权
-//            AVAudioSession *audioSession = [AVAudioSession sharedInstance];
-//            if ([audioSession respondsToSelector:@selector(requestRecordPermission:)]) {
-//                [audioSession requestRecordPermission:^(BOOL granted) {
-//                    if (complete) {
-//                        complete(granted);
-//                    }
-//                }];
-//            }
-//        } else if(videoAuthStatus == AVAuthorizationStatusRestricted || videoAuthStatus == AVAuthorizationStatusDenied) {
-//            // 未授权
-//            if (complete) {
-//                complete(NO);
-//            }
-//        } else {
-//            // 已授权
-//            if (complete) {
-//                complete(YES);
-//            }
-//        }
-//    } else {
-//
-//    }
-    
-    // #import <AVFoundation/AVFoundation.h>
-    AVAudioSessionRecordPermission status = [[AVAudioSession sharedInstance] recordPermission];
-    if (status == AVAudioSessionRecordPermissionGranted) {
-        return YES;
-    }
-    return NO;
-}
-
-
 
 @end

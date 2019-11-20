@@ -30,14 +30,6 @@ typedef NS_ENUM(NSInteger, SYLabelAutoSizeType)
 - (void)attributedText:(NSString *)string color:(UIColor *)textColor font:(UIFont *)textFont;
 
 /**
- 修改标签的行间距
- 
- @param string 字符
- @param lineSpace 行间距
- */
-- (void)attributedTextLineSpace:(CGFloat)lineSpace;
-
-/**
  *  修改标签信息（字符间距，行间距，文字大小颜色）
  *
  *  @param string         要修改的文字

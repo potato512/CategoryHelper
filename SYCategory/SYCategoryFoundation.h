@@ -21,6 +21,7 @@
 #import "NSNumber+SYCategory.h"
 #import "NSObject+SYCategory.h"
 #import "NSObject+SYKVO.h"
+#import "NSObject+SYGCD.h"
 #import "NSArray+SYCategory.h"
 #import "NSMutableArray+SYCategory.h"
 #import "NSDictionary+SYCategory.h"

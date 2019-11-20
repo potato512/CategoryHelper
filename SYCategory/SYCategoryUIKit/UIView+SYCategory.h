@@ -24,7 +24,6 @@ typedef NS_ENUM(NSInteger, ViewFlipType)
 
 /// 坐标
 @property (nonatomic, assign) CGPoint origin;
-
 /// 大小
 @property (nonatomic, assign) CGSize size;
 
@@ -60,7 +59,18 @@ typedef NS_ENUM(NSInteger, ViewFlipType)
 
 /// 变换大小（宽高改变）
 - (void)scaleToSize:(CGFloat)scale;
-
+/// 距离父视图右边间距
+-(void)layoutAlignRightInSuperView:(UIView *)superView marginRight:(float)margin;
+/// 距离父视图左边间距
+-(void)layoutAlignLeftInSuperView:(UIView *)superView marginLeft:(float)margin;
+/// 距离父视图底边间距
+-(void)layoutBottomOfSuperView:(UIView *)superView marginBottm:(CGFloat)margin;
+/// 在父视图居中
+-(void)layoutCenterInSuperView:(UIView *)superView;
+/// 在父视图水平居中
+-(void)layoutCenterVerticalInSuperView:(UIView *)superView;
+/// 在父视图竖直居中
+-(void)layoutCenterHorizontalInSuperView:(UIView *)superView;
 
 /// 随意拖动（默认NO）
 @property (nonatomic, assign) BOOL drapEnable;
@@ -116,6 +126,16 @@ typedef NS_ENUM(NSInteger, ViewFlipType)
 
 /// 水平，或垂直翻转
 - (void)viewFlipType:(ViewFlipType)type;
+
+#pragma mark - 线条样式
+
+/// 绘制虚线（线宽、间距、颜色）
+- (void)drawDashLine:(int)lineWidth space:(int)lineSpacing color:(UIColor *)lineColor;
+
+#pragma mark - 阴影效果
+
+/// 阴影效果（阴影颜色，透明度，偏移量，是否周边阴影）
+- (void)drawShadow:(UIColor *)shadowColor alpha:(CGFloat)alpha offset:(CGSize)size full:(BOOL)isFull;
 
 #pragma mark - 链式属性
 

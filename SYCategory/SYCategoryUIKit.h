@@ -9,11 +9,7 @@
 #import "UIView+SYCategory.h"
 #import "UIView+Status.h"
 #import "UIView+SYRecognizer.h"
-#import "UIView+SYAnimation.h"
-//#import "UIView+SYCoinAnimation.h"
-//#import "UIView+SYWaterAnimation.h"
 #import "UILabel+SYCategory.h"
-#import "UILabel+SYClick.h"
 #import "UIButton+SYCategory.h"
 #import "UIBarButtonItem+SYCategory.h"
 #import "UISlider+SYCategory.h"
@@ -44,7 +40,6 @@
 #import "UIDocument+SYCategory.h"
 #import "UIDevice+SYCategory.h"
 #import "UIScreen+SYCategory.h"
-#import "UIFont+SYCategory.h"
 
 #ifndef SYCategoryUIKit_h
 #define SYCategoryUIKit_h

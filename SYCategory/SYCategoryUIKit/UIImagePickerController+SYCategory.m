@@ -8,6 +8,7 @@
 
 #import "UIImagePickerController+SYCategory.h"
 #import <AVFoundation/AVFoundation.h>
+#import <AssetsLibrary/AssetsLibrary.h>
 
 typedef void (^CompleteBlock)(UIImage *image);
 typedef void (^StartBlock)(void);
@@ -63,14 +64,21 @@ static UIViewController __weak *targetController;
 + (BOOL)isCameraServiceValid
 {
     AVAuthorizationStatus authStatus = [AVCaptureDevice authorizationStatusForMediaType:AVMediaTypeVideo];
-    if (authStatus == AVAuthorizationStatusDenied)
-    {
+    if (authStatus == AVAuthorizationStatusDenied) {
         return NO;
-    }
-    else
-    {
+    } else {
         return YES;
     }
+}
+
+// 相册权限启用判断
++ (BOOL)isPhotoAlbumServiceValid
+{
+    ALAuthorizationStatus author = [ALAssetsLibrary authorizationStatus];
+    if (author == AVAuthorizationStatusRestricted || author == AVAuthorizationStatusDenied) {
+        return NO;
+    }
+    return YES;
 }
 
 #pragma mark - 代码块回调

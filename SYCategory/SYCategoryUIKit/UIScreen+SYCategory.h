@@ -27,19 +27,19 @@ NS_ASSUME_NONNULL_BEGIN
 /// 全屏高度（不含导航栏高度，状态栏高度）
 + (float)screenHeightWithoutStatusBarNavigation;
 
-/// tabbar切换视图控制器高度
+/// tabbar切换视图控制器高度 49
 + (float)tabBarHeight;
-/// 搜索视图高度
+/// 搜索视图高度 45
 + (float)searchBarHeight;
-/// 状态栏高度
+/// 状态栏高度 20/44
 + (float)statusBarHeight;
-/// 导航栏高度
+/// 导航栏高度 44
 + (float)navigationHeight;
 
-/// 状态栏顶端安全区域高度（刘海安全区）
+/// 状态栏顶端安全区域高度（刘海安全区 44）
 + (float)topSafeHeight;
-/// 底端安全区域高度（iPhoneX）
-+ (float)bottomSafeHeight;;
+/// 底端安全区域高度（iPhoneX 34）
++ (float)bottomSafeHeight;
 
 @end
 

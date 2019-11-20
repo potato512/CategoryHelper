@@ -51,23 +51,8 @@
 /// 设置字体的下划线 NSUnderlineStyleSingle
 - (NSAttributedString *)attributedText:(NSString *)text underLineColor:(UIColor *)color underLineType:(NSUnderlineStyle)type;
 
-/// 设置行间距
-- (NSAttributedString *)attributedTextWithLineSpace:(CGFloat)lineSpace;
-
 /// html源码转NSAttributedString
 - (NSAttributedString *)attributedHtml:(NSString *)html;
-
-/**
- *  修改NSAttributedString信息（字符间距，行间距，文字大小颜色、字体背景颜色）
- *
- *  @param text           要修改的文字
- *  @param textColor      要修改的文字颜色
- *  @param textFont       要修改的文字大小
- *  @param characterSpace 字体间距
- *  @param rowSpace       行间距
- *  @param bgColor        字体背景颜色
- */
-+ (NSAttributedString *)attributedWithString:(NSString *)string attributedText:(NSString *)text color:(UIColor *)textColor font:(UIFont *)textFont space:(CGFloat)characterSpace rowSpace:(CGFloat)rowSpace bgColor:(UIColor *)bgColor;
 
 @end
 

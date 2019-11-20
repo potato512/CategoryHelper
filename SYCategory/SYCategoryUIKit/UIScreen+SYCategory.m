@@ -43,32 +43,34 @@
     return UIScreen.screenHeightWithoutStausBar - UIScreen.navigationHeight;
 }
 
-/// tabbar切换视图控制器高度
+/// tabbar切换视图控制器高度 49
 + (float)tabBarHeight
 {
-    return 49.0;
+    UITabBarController *tab = [UITabBarController new];
+    return tab.tabBar.frame.size.height;
 }
-/// 搜索视图高度
+/// 搜索视图高度 45
 + (float)searchBarHeight
 {
     return 45.0;
 }
-/// 状态栏高度
+/// 状态栏高度 20/44
 + (float)statusBarHeight
 {
     return UIScreen.mainScreen.applicationFrame.origin.y;
 }
-/// 导航栏高度
+/// 导航栏高度 44
 + (float)navigationHeight
 {
-    return 44.0;
+    UINavigationController *control = [UINavigationController new];
+    return control.navigationBar.frame.size.height;
 }
-/// 状态栏顶端安全区域高度（刘海安全区）
+/// 状态栏顶端安全区域高度（刘海安全区 44）
 + (float)topSafeHeight
 {
-    return 24.0;
+    return UIScreen.statusBarHeight;
 }
-/// 底端安全区域高度（iPhoneX）
+/// 底端安全区域高度（iPhoneX 34）
 + (float)bottomSafeHeight
 {
     return 34.0;

@@ -20,6 +20,12 @@ typedef NS_ENUM(NSInteger, SavePhotoStatus)
 
 @interface UIImagePickerController (SYCategory) <UIImagePickerControllerDelegate, UINavigationControllerDelegate>
 
+/// 相机设备启用判断
++ (BOOL)isCameraServiceValid;
+
+/// 相册权限启用判断
++ (BOOL)isPhotoAlbumServiceValid;
+
 /**
  *  获取相册图片，或拍照（无样式设置）
  *

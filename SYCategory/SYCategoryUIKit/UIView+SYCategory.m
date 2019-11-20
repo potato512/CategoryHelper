@@ -158,6 +158,58 @@
     self.frame = newframe;
 }
 
+-(void)layoutAlignRightInSuperView:(UIView *)superView marginRight:(float)margin{
+    CGRect viewBounds = self.bounds;
+    CGRect superBounds = superView.bounds;
+    float orignX = CGRectGetMaxX(superBounds) - CGRectGetMaxX(viewBounds)-margin;
+    CGRect viewFrame = CGRectMake(orignX, self.frame.origin.y, CGRectGetMaxX(viewBounds), CGRectGetMaxY(viewBounds));
+    self.frame = viewFrame;
+    
+}
+-(void)layoutAlignLeftInSuperView:(UIView *)superView marginLeft:(float)margin{
+    CGRect viewBounds = self.bounds;
+    float orignX = margin;
+    CGRect viewFrame = CGRectMake(orignX, self.frame.origin.y, CGRectGetMaxX(viewBounds), CGRectGetMaxY(viewBounds));
+    self.frame = viewFrame;
+}
+
+-(void)layoutCenterInSuperView:(UIView *)superView{
+    CGRect viewFrame = self.frame;
+    CGRect superFrame = superView.frame;
+    CGFloat viewXPosition = (CGRectGetWidth(superFrame) - CGRectGetWidth(viewFrame)) * 0.5;
+    CGFloat viewYPosition = (CGRectGetHeight(superFrame) - CGRectGetHeight(viewFrame))*0.5;
+    viewFrame.origin.x = viewXPosition;
+    viewFrame.origin.y = viewYPosition;
+    self.frame = viewFrame;
+}
+
+-(void)layoutCenterVerticalInSuperView:(UIView *)superView{
+    CGRect viewFrame = self.frame;
+    CGRect superFrame = superView.frame;
+    CGFloat viewYPosition = (CGRectGetHeight(superFrame) - CGRectGetHeight(viewFrame))*0.5;
+    viewFrame.origin.y = viewYPosition;
+    self.frame = viewFrame;
+}
+
+-(void)layoutCenterHorizontalInSuperView:(UIView *)superView{
+    CGRect viewFrame = self.frame;
+    CGRect superFrame = superView.frame;
+    CGFloat viewXPosition = (CGRectGetWidth(superFrame) - CGRectGetWidth(viewFrame)) * 0.5;
+    viewFrame.origin.x = viewXPosition;
+    self.frame = viewFrame;
+}
+
+-(void)layoutBottomOfSuperView:(UIView *)superView marginBottm:(CGFloat)margin{
+    CGRect viewFrame = self.frame;
+    CGRect superFrame = superView.frame;
+    CGFloat superHeight = CGRectGetHeight(superFrame);
+    CGFloat viewHeight = CGRectGetHeight(viewFrame);
+    CGFloat viewYPosition = superHeight - viewHeight - margin;
+    viewFrame.origin.y = viewYPosition;
+    self.frame = viewFrame;
+}
+
+
 #pragma mark - drapEnable
 
 /************************************************/
@@ -515,6 +567,48 @@
     else if (ViewFlipTypeVertical == type)
     {
         self.transform = CGAffineTransformScale(self.transform, 1.0, -1.0);
+    }
+}
+
+#pragma mark - 线条样式
+
+/// 绘制虚线（线宽、间距、颜色）
+- (void)drawDashLine:(int)lineWidth space:(int)lineSpacing color:(UIColor *)lineColor
+{
+    CAShapeLayer *lineLayer = [CAShapeLayer layer];
+    lineLayer.bounds = self.bounds;
+    lineLayer.position = CGPointMake(CGRectGetWidth(self.frame) / 2, CGRectGetHeight(self.frame));
+    lineLayer.fillColor = UIColor.clearColor.CGColor;
+    lineLayer.strokeColor = lineColor.CGColor;
+    lineLayer.lineWidth = CGRectGetHeight(self.frame);
+    lineLayer.lineJoin = kCALineJoinRound;
+    lineLayer.lineDashPattern = @[[NSNumber numberWithInt:lineWidth], [NSNumber numberWithInt:lineSpacing]];
+    // 设置路径
+    CGMutablePathRef linePath = CGPathCreateMutable();
+    CGPathMoveToPoint(linePath, NULL, 0, 0);
+    CGPathAddLineToPoint(linePath, NULL, CGRectGetWidth(self.frame), 0);
+    lineLayer.path = linePath;
+    CGPathRelease(linePath);
+    // 把绘制好的虚线添加上来
+    [self.layer addSublayer:lineLayer];
+}
+
+#pragma mark - 阴影效果
+
+/// 阴影效果（阴影颜色，透明度，偏移量，是否周边阴影）
+- (void)drawShadow:(UIColor *)shadowColor alpha:(CGFloat)alpha offset:(CGSize)size full:(BOOL)isFull
+{
+    // 阴影颜色
+    self.layer.shadowColor = shadowColor.CGColor;
+    // 阴影偏移量 默认为(0,3)
+    self.layer.shadowOffset = size;
+    // 阴影透明度
+    self.layer.shadowOpacity = alpha;
+    // 周边
+    if (isFull) {
+        self.layer.shadowOffset = CGSizeMake(0, 0);
+        UIBezierPath *shadowPath = [UIBezierPath bezierPathWithRect:CGRectMake(-4, -4, 100 + 8, 50 + 8)];
+        self.layer.shadowPath = shadowPath.CGPath;
     }
 }
 

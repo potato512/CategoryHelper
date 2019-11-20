@@ -230,7 +230,8 @@ static CGFloat const sizeItem = 70.0;
 
 - (void)setUI
 {
-    if (self.isInitlized) {
+    if (self.isInitlized)
+    {
         // 已经初始化，则不再进行初始化
         return;
     }
@@ -259,7 +260,8 @@ static CGFloat const sizeItem = 70.0;
 
 - (void)setUIStatusView
 {
-    if (self.backView == nil) {
+    if (self.backView == nil)
+    {
         self.backView = [[UIView alloc] init];
         self.backView.backgroundColor = self.backgroundColor;
         
@@ -269,7 +271,8 @@ static CGFloat const sizeItem = 70.0;
 
 - (void)setUIActiveView
 {
-    if (self.activityView == nil) {
+    if (self.activityView == nil)
+    {
         self.activityView = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
         self.activityView.backgroundColor = [UIColor clearColor];
         self.activityView.color = [UIColor redColor];
@@ -278,7 +281,8 @@ static CGFloat const sizeItem = 70.0;
 
 - (void)setUIImageView
 {
-    if (self.imageView == nil) {
+    if (self.imageView == nil)
+    {
         self.imageView = [[UIImageView alloc] init];
         self.imageView.backgroundColor = [UIColor clearColor];
         self.imageView.contentMode = UIViewContentModeScaleAspectFit;
@@ -289,7 +293,8 @@ static CGFloat const sizeItem = 70.0;
 
 - (void)setUIMessageLabel
 {
-    if (self.messageLabel == nil) {
+    if (self.messageLabel == nil)
+    {
         self.messageLabel = [[UILabel alloc] init];
         self.messageLabel.backgroundColor = [UIColor clearColor];
         self.messageLabel.textColor = [UIColor colorWithWhite:0.0 alpha:0.6];
@@ -301,7 +306,8 @@ static CGFloat const sizeItem = 70.0;
 
 - (void)setUIButton
 {
-    if (self.clickButton == nil) {
+    if (self.clickButton == nil)
+    {
         self.clickButton = [UIButton buttonWithType:UIButtonTypeCustom];
         self.clickButton.backgroundColor = [UIColor clearColor];
         self.clickButton.layer.cornerRadius = 5.0;
@@ -326,7 +332,8 @@ static CGFloat const sizeItem = 70.0;
     [self setUI];
     
     // 复原UIScrollView的scrollEnabled
-    if ([self isKindOfClass:[UIScrollView class]]) {
+    if ([self isKindOfClass:[UIScrollView class]])
+    {
         UIScrollView *scrollView = (UIScrollView *)self;
         scrollView.scrollEnabled = self.statusScrollEnable;
     }
@@ -342,17 +349,22 @@ static CGFloat const sizeItem = 70.0;
     [self resetUI];
     
     // 图标
-    if (images && 0 < images.count) {
+    if (images && 0 < images.count)
+    {
         self.imageView.hidden = NO;
         
-        if (1 == images.count) {
+        if (1 == images.count)
+        {
             self.imageView.image = images.firstObject;
             
-            if ([self.imageView isAnimating]) {
+            if ([self.imageView isAnimating])
+            {
                 [self.imageView stopAnimating];
                 self.imageView.animationImages = nil;
             }
-        } else if (1 < images.count) {
+        }
+        else if (1 < images.count)
+        {
             self.imageView.animationDuration = self.statusAnimationTime;
             self.imageView.animationImages = images;
             [self.imageView startAnimating];
@@ -362,7 +374,8 @@ static CGFloat const sizeItem = 70.0;
     }
     
     // 提示语
-    if (message && 0 < message.length) {
+    if (message && 0 < message.length)
+    {
         self.messageLabel.hidden = NO;
         
         self.messageLabel.text = message;
@@ -372,7 +385,8 @@ static CGFloat const sizeItem = 70.0;
 - (void)reloadUIFrame
 {
     // 如果是UIScrollView及其子类，占位图展示期间禁止scroll
-    if ([self isKindOfClass:[UIScrollView class]]) {
+    if ([self isKindOfClass:[UIScrollView class]])
+    {
         UIScrollView *scrollView = (UIScrollView *)self;
         // 先记录原本的scrollEnabled
         self.statusScrollEnable = scrollView.scrollEnabled;
@@ -380,31 +394,39 @@ static CGFloat const sizeItem = 70.0;
         scrollView.scrollEnabled = NO;
     }
     
-    if (self.activityView.hidden) {
+    if (self.activityView.hidden)
+    {
         CGFloat heightTotal = 0.0;
-        if (!self.imageView.hidden) {
+        if (!self.imageView.hidden)
+        {
             CGRect rectImage = self.imageView.frame;
             rectImage.origin.x = (self.backView.frame.size.width - self.imageView.frame.size.width) / 2;
             self.imageView.frame = rectImage;
             
             heightTotal += self.imageView.frame.size.height;
         }
-        if (!self.messageLabel.hidden) {
+        if (!self.messageLabel.hidden)
+        {
             heightTotal += (self.messageLabel.frame.size.height + originItem);
         }
-        if (!self.clickButton.hidden && !self.statusButtonFullScreen) {
+        if (!self.clickButton.hidden && !self.statusButtonFullScreen)
+        {
             heightTotal += (self.clickButton.frame.size.height + originItem);
         }
         
         CGFloat originYTotal = (self.backView.frame.size.height - heightTotal) / 2;
-        if (self.statusViewAlignment == StatusViewAlignmentTop) {
+        if (self.statusViewAlignment == StatusViewAlignmentTop)
+        {
             originYTotal = originTopButtom;
-        } else if (self.statusViewAlignment == StatusViewAlignmentBottom) {
+        }
+        else if (self.statusViewAlignment == StatusViewAlignmentBottom)
+        {
              originYTotal = (self.backView.frame.size.height - heightTotal - originTopButtom);
         }
         
         UIView *currentView = nil;
-        if (!self.imageView.hidden) {
+        if (!self.imageView.hidden)
+        {
             CGRect rectImage = self.imageView.frame;
             rectImage.origin.x = (self.backView.frame.size.width - self.imageView.frame.size.width) / 2;
             rectImage.origin.y = originYTotal;
@@ -412,35 +434,44 @@ static CGFloat const sizeItem = 70.0;
             
             currentView = self.imageView;
         }
-        if (!self.messageLabel.hidden) {
+        if (!self.messageLabel.hidden)
+        {
             CGRect rectLabel = self.messageLabel.frame;
             rectLabel.origin.x = (self.backView.frame.size.width - self.messageLabel.frame.size.width) / 2;
-            if (self.messageLabel.frame.size.width > (self.backView.frame.size.width - originItem * 2)) {
+            if (self.messageLabel.frame.size.width > (self.backView.frame.size.width - originItem * 2))
+            {
                 rectLabel.origin.x = originItem;
                 rectLabel.size.width = (self.backView.frame.size.width - originItem * 2);
             }
             rectLabel.origin.y = originYTotal;
-            if (!self.imageView.hidden) {
+            if (!self.imageView.hidden)
+            {
                 rectLabel.origin.y = (currentView.frame.origin.y + currentView.frame.size.height + originItem);
             }
             self.messageLabel.frame = rectLabel;
             
             currentView = self.messageLabel;
         }
-        if (!self.clickButton.hidden) {
+        if (!self.clickButton.hidden)
+        {
             CGRect rectButton = self.clickButton.frame;
-            if (self.statusButtonFullScreen) {
+            if (self.statusButtonFullScreen)
+            {
                 rectButton = self.bounds;
                 
                 self.clickButton.layer.cornerRadius = 0.0;
                 self.clickButton.layer.borderColor = [UIColor clearColor].CGColor;
                 self.clickButton.layer.borderWidth = 0.0;
                 [self.clickButton setTitle:@"" forState:UIControlStateNormal];
-            } else {
+            }
+            else
+            {
                 rectButton.origin.y = originYTotal;
-                if (!self.imageView.hidden || !self.messageLabel.hidden) {
+                if (!self.imageView.hidden || !self.messageLabel.hidden)
+                {
                     rectButton.origin.x = (self.backView.frame.size.width - self.clickButton.frame.size.width) / 2;
-                    if (self.clickButton.frame.size.width > (self.backView.frame.size.width - originItem * 2)) {
+                    if (self.clickButton.frame.size.width > (self.backView.frame.size.width - originItem * 2))
+                    {
                         rectButton.origin.x = originItem;
                         rectButton.size.width = (self.backView.frame.size.width - originItem * 2);
                     }
@@ -449,11 +480,16 @@ static CGFloat const sizeItem = 70.0;
             }
             self.clickButton.frame = rectButton;
         }
-    } else {
+    }
+    else
+    {
         CGPoint center = CGPointMake(self.backView.frame.size.width / 2, self.backView.frame.size.height / 2);
-        if (self.statusViewAlignment == StatusViewAlignmentTop) {
+        if (self.statusViewAlignment == StatusViewAlignmentTop)
+        {
             center = CGPointMake(self.backView.frame.size.width / 2, self.backView.frame.size.height / 4);
-        } else if (self.statusViewAlignment == StatusViewAlignmentBottom) {
+        }
+        else if (self.statusViewAlignment == StatusViewAlignmentBottom)
+        {
             center = CGPointMake(self.backView.frame.size.width / 2, self.backView.frame.size.height / 4 * 3);
         }
         
@@ -467,33 +503,39 @@ static CGFloat const sizeItem = 70.0;
     self.isInitlized = NO;
     
     // 移除视图
-    if (self.activityView) {
+    if (self.activityView)
+    {
         [self.activityView removeFromSuperview];
         self.activityView = nil;
     }
     
-    if (self.imageView) {
+    if (self.imageView)
+    {
         [self.imageView removeFromSuperview];
         self.imageView = nil;
     }
     
-    if (self.messageLabel) {
+    if (self.messageLabel)
+    {
         [self.messageLabel removeFromSuperview];
         self.messageLabel = nil;
     }
     
-    if (self.clickButton) {
+    if (self.clickButton)
+    {
         [self.clickButton removeFromSuperview];
         self.clickButton = nil;
     }
     
-    if (self.backView) {
+    if (self.backView)
+    {
         [self.backView removeFromSuperview];
         self.backView = nil;
     }
     
     // 复原UIScrollView的scrollEnabled
-    if ([self isKindOfClass:[UIScrollView class]]) {
+    if ([self isKindOfClass:[UIScrollView class]])
+    {
         UIScrollView *scrollView = (UIScrollView *)self;
         scrollView.scrollEnabled = self.statusScrollEnable;
     }
@@ -532,12 +574,17 @@ static CGFloat const sizeItem = 70.0;
 // 结束，加载成功
 - (void)statusViewLoadSuccess
 {
-    if (self.isActivity) {
-        if ([self.activityView isAnimating]) {
+    if (self.isActivity)
+    {
+        if ([self.activityView isAnimating])
+        {
             [self.activityView stopAnimating];
         }
-    } else {
-        if ([self.imageView isAnimating]) {
+    }
+    else
+    {
+        if ([self.imageView isAnimating])
+        {
             [self.imageView stopAnimating];
         }
     }
@@ -588,13 +635,17 @@ static CGFloat const sizeItem = 70.0;
 
 - (void)buttonClick:(UIButton *)button
 {
-    if (self.isActivity) {
+    if (self.isActivity)
+    {
         [self statusViewLoadStart];
-    } else {
+    }
+    else
+    {
         [self statusViewLoadStart:self.message image:self.images];
     }
     
-    if (self.statusReload) {
+    if (self.statusReload)
+    {
         self.statusReload();
     }
 }
