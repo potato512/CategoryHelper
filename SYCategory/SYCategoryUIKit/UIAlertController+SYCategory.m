@@ -28,42 +28,31 @@ static CancelBlock cancelblock;
                 onDismiss:(void (^)(int buttonIndex, NSString *buttonTitle))dismisse
                  onCancel:(void (^)(void))cancel
 {
-    if (AlertControllerTypeAlert == type)
-    {
-        if (isIOS8System && controller)
-        {
+    if (AlertControllerTypeAlert == type) {
+        if (isIOS8System && controller) {
             [[self class] alertWithStyle:UIAlertControllerStyleAlert title:title message:message cancelButtonTitle:cancelButtonTitle otherButtonTitles:otherButtonTitles controller:controller onDismiss:dismisse onCancel:cancel];
-        }
-        else
-        {
+        } else {
             dismissblock = [dismisse copy];
             cancelblock = [cancel copy];
             
             UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:title message:message delegate:[self class] cancelButtonTitle:cancelButtonTitle otherButtonTitles:nil];
             
-            for (NSString *buttonTitle in otherButtonTitles)
-            {
+            for (NSString *buttonTitle in otherButtonTitles) {
                 [alertView addButtonWithTitle:buttonTitle];
             }
             
             [alertView show];
         }
-    }
-    else if (AlertControllerTypeActionSheet == type)
-    {
-        if (isIOS8System && controller)
-        {
+    } else if (AlertControllerTypeActionSheet == type) {
+        if (isIOS8System && controller) {
             [[self class] alertWithStyle:UIAlertControllerStyleActionSheet title:title message:message cancelButtonTitle:cancelButtonTitle otherButtonTitles:otherButtonTitles controller:controller onDismiss:dismisse onCancel:cancel];
-        }
-        else
-        {
+        } else {
             dismissblock = [dismisse copy];
             cancelblock = [cancel copy];
             
             UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle:title delegate:(id<UIActionSheetDelegate>)self cancelButtonTitle:cancelButtonTitle destructiveButtonTitle:nil otherButtonTitles:nil];
             
-            for (NSString *buttonTitle in otherButtonTitles)
-            {
+            for (NSString *buttonTitle in otherButtonTitles) {
                 [actionSheet addButtonWithTitle:buttonTitle];
             }
             
@@ -85,18 +74,18 @@ static CancelBlock cancelblock;
                                                                              message:message
                                                                       preferredStyle:style];
     
-    UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:cancelButtonTitle style:UIAlertActionStyleCancel handler:^(UIAlertAction * _Nonnull action) {
-        if (cancel)
-        {
-            cancel();
-        }
-    }];
-    [alertController addAction:cancelAction];
+    if (cancelButtonTitle && [cancelButtonTitle isKindOfClass:NSString.class] && cancelButtonTitle.length > 0) {
+        UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:cancelButtonTitle style:UIAlertActionStyleCancel handler:^(UIAlertAction * _Nonnull action) {
+            if (cancel) {
+                cancel();
+            }
+        }];
+        [alertController addAction:cancelAction];
+    }
     
     [otherButtonTitles enumerateObjectsUsingBlock:^(NSString * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
         UIAlertAction *okAction = [UIAlertAction actionWithTitle:obj style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
-            if (dismisse)
-            {
+            if (dismisse) {
                 NSString *buttonTitle = obj;
                 dismisse(((int)idx), buttonTitle);
             }
@@ -104,25 +93,21 @@ static CancelBlock cancelblock;
         [alertController addAction:okAction];
     }];
     
-    [controller presentViewController:alertController animated:YES completion:nil];
+    if (controller && [controller isKindOfClass:UIViewController.class]) {
+        [controller presentViewController:alertController animated:YES completion:nil];
+    }
 }
-
 
 #pragma mark - UIAlertViewDelegate
 
 + (void)alertView:(UIAlertView *)alertView didDismissWithButtonIndex:(NSInteger)buttonIndex
 {
-    if (buttonIndex == alertView.cancelButtonIndex)
-    {
-        if (cancelblock)
-        {
+    if (buttonIndex == alertView.cancelButtonIndex) {
+        if (cancelblock) {
             cancelblock();
         }
-    }
-    else
-    {
-        if (dismissblock)
-        {
+    } else {
+        if (dismissblock) {
             NSString *title = [alertView buttonTitleAtIndex:buttonIndex];
             dismissblock(buttonIndex, title);
         }
@@ -133,17 +118,12 @@ static CancelBlock cancelblock;
 
 + (void)actionSheet:(UIActionSheet *)actionSheet didDismissWithButtonIndex:(NSInteger)buttonIndex
 {
-    if (buttonIndex == [actionSheet cancelButtonIndex])
-    {
-        if (cancelblock)
-        {
+    if (buttonIndex == [actionSheet cancelButtonIndex]) {
+        if (cancelblock) {
             cancelblock();
         }
-    }
-    else
-    {
-        if (dismissblock)
-        {
+    } else {
+        if (dismissblock) {
             NSString *title = [actionSheet buttonTitleAtIndex:buttonIndex];
             dismissblock(buttonIndex, title);
         }

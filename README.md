@@ -48,6 +48,12 @@
 
 
 #### 修改完善
+* 20200219
+  * 版本号：
+  * 修改优化
+    * UIAlertController+SYCategory 异常修改
+    * UIActionSheet+SYCategory 异常修改
+
 * 20191120
   * 版本号：
   * 修改完善
