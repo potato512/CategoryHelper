@@ -7,6 +7,7 @@
 //  
 
 #import "NSPredicate+SYCategory.h"
+#import "NSObject+SYCategory.h"
 
 @implementation NSPredicate (SYCategory)
 
@@ -25,8 +26,12 @@
 
 + (BOOL)predicateNumber:(NSNumber *)number filter:(NSString *)filter
 {
-    if (!number || ![number isKindOfClass:[NSNumber class]] || !filter || filter.length <= 0)
-    {
+    if (number == nil || !number.isClassNSNumber) {
+        NSAssert(number, @"number must be not nil and number should be kind of NSNumber");
+        return NO;
+    }
+    if (filter == nil || (!filter.isClassNSString && filter.length <= 0)) {
+        NSAssert(filter, @"filter must be not nil and filter should be kind of NSString");
         return NO;
     }
     
@@ -166,13 +171,14 @@
 /// 使用MATCH过滤字符
 + (BOOL)predicateText:(NSString *)text filter:(NSString *)filter
 {
-    if (!text || text.length <= 0 || !filter || filter.length <= 0)
-    {
+    if (text == nil || (text.isClassNSString && text.length <= 0)) {
+        NSAssert(text, @"text must be not nil and text should be kind of NSString");
         return NO;
     }
-    
-    NSAssert(text != nil, @"text must be not nil");
-    NSAssert(filter != nil, @"filter must be not nil");
+    if (filter == nil || (filter.isClassNSString && filter.length <= 0)) {
+        NSAssert(filter, @"filter must be not nil and filter should be kind of NSString");
+        return NO;
+    }
     
     NSPredicate *predicate = [NSPredicate predicateWithFormat:filter];
     BOOL result = [predicate evaluateWithObject:text];
@@ -182,7 +188,10 @@
 /// 邮箱验证
 + (BOOL)predicateEmail:(NSString *)email
 {
-    NSAssert(email != nil, @"email must be not nil");
+    if (email == nil || (email.isClassNSString && email.length <= 0)) {
+        NSAssert(email, @"email must be not nil and email should be kind of NSString");
+        return NO;
+    }
     
     NSString *filter = @"SELF MATCHES '[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{1,5}'";
     BOOL result = [self predicateText:email filter:filter];
@@ -192,7 +201,10 @@
 /// 数字验证
 + (BOOL)predicateNumber:(NSString *)number
 {
-    NSAssert(number != nil, @"number must be not nil");
+    if (number == nil || (number.isClassNSString && number.length <= 0)) {
+        NSAssert(number, @"number must be not nil and number should be kind of NSString");
+        return NO;
+    }
     
     NSString *filter = @"SELF MATCHES '[0-9]'";
     BOOL result = [self predicateText:number filter:filter];
@@ -202,7 +214,10 @@
 /// 不区分大小写字母验证
 + (BOOL)predicateLetter:(NSString *)letter
 {
-    NSAssert(letter != nil, @"letter must be not nil");
+    if (letter == nil || (letter.isClassNSString && letter.length <= 0)) {
+        NSAssert(letter, @"letter must be not nil and letter should be kind of NSString");
+        return NO;
+    }
     
     NSString *filter = @"SELF MATCHES '[a-zA-Z]'";
     BOOL result = [self predicateText:letter filter:filter];
@@ -212,7 +227,10 @@
 /// 手机号码验证
 + (BOOL)predicatePhoneNum:(NSString *)phoneNum
 {
-    NSAssert(phoneNum != nil, @"phoneNum must be not nil");
+    if (phoneNum == nil || (phoneNum.isClassNSString && phoneNum.length <= 0)) {
+        NSAssert(phoneNum, @"phoneNum must be not nil and phoneNum should be kind of NSString");
+        return NO;
+    }
     
     /**
      * 手机号码
@@ -228,7 +246,10 @@
 /// 移动手机号码验证
 + (BOOL)predicatePhoneNumMobile:(NSString *)phoneNumMobile
 {
-    NSAssert(phoneNumMobile != nil, @"phoneNumMobile must be not nil");
+    if (phoneNumMobile == nil || (phoneNumMobile.isClassNSString && phoneNumMobile.length <= 0)) {
+        NSAssert(phoneNumMobile, @"phoneNumMobile must be not nil and phoneNumMobile should be kind of NSString");
+        return NO;
+    }
     
     /**
      * 手机号码
@@ -242,7 +263,10 @@
 /// 联通手机号码验证
 + (BOOL)predicatePhoneNumUnicom:(NSString *)phoneNumUnicom
 {
-    NSAssert(phoneNumUnicom != nil, @"phoneNumUnicom must be not nil");
+    if (phoneNumUnicom == nil || (phoneNumUnicom.isClassNSString && phoneNumUnicom.length <= 0)) {
+        NSAssert(phoneNumUnicom, @"phoneNumUnicom must be not nil and phoneNumUnicom should be kind of NSString");
+        return NO;
+    }
     
     /**
      * 手机号码
@@ -256,7 +280,10 @@
 /// 电信手机号码验证
 + (BOOL)predicatePhoneNumTelecom:(NSString *)phoneNumTelecom
 {
-    NSAssert(phoneNumTelecom != nil, @"phoneNumTelecom must be not nil");
+    if (phoneNumTelecom == nil || (phoneNumTelecom.isClassNSString && phoneNumTelecom.length <= 0)) {
+        NSAssert(phoneNumTelecom, @"phoneNumTelecom must be not nil and phoneNumTelecom should be kind of NSString");
+        return NO;
+    }
     
     /**
      * 手机号码
@@ -270,7 +297,10 @@
 /// 固定号码验证
 + (BOOL)predicateTelNum:(NSString *)telNum
 {
-    NSAssert(telNum != nil, @"telNum must be not nil");
+    if (telNum == nil || (telNum.isClassNSString && telNum.length <= 0)) {
+        NSAssert(telNum, @"telNum must be not nil and telNum should be kind of NSString");
+        return NO;
+    }
     
     /**
      * 大陆地区固话及小灵通
@@ -286,13 +316,14 @@
 
 + (NSArray *)predicateArray:(NSArray *)array filter:(NSString *)filter
 {
-    if (!array || 0 >= array.count || !filter || 0 >= filter.length)
-    {
+    if (array == nil || (array.isClassNSArray && array.count <= 0)) {
+        NSAssert(array, @"array must be not nil and array should be kind of NSArray");
         return @[];
     }
-    
-    NSAssert(array != nil, @"array must be not nil");
-    NSAssert(filter != nil, @"filter must be not nil");
+    if (filter == nil || (filter.isClassNSString && filter.length <= 0)) {
+        NSAssert(filter, @"filter must be not nil and filter should be kind of NSString");
+        return @[];
+    }
 
     NSPredicate *predicate = [NSPredicate predicateWithFormat:filter];
     NSArray *results = [array filteredArrayUsingPredicate:predicate];

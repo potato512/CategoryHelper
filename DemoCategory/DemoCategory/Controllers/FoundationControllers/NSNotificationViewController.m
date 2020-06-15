@@ -52,13 +52,10 @@
 //    NSNotificationCenterReceive(name, self, action);
     
     // 方法3
-    [[NSNotificationCenter defaultCenter] receiveNotificationWithName:name target:self selector:action];
-    
-    // 方法4
-//    kSelfWeak;
-//    [[NSNotificationCenter defaultCenter] receiveNotificationWithName:name handle:^(NSNotification *notification) {
-//        [weakSelf notificationAction:notification];
-//    }];
+    kSelfWeak;
+    [NSNotificationCenter.defaultCenter receiveNotification:name handle:^(NSNotification *notification) {
+        [weakSelf notificationAction:notification];
+    }];
 }
 
 - (void)buttonClick:(UIButton *)button

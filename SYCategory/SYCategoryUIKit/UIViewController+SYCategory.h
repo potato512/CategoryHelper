@@ -7,10 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "UIButton+SYCategory.h"
 
 @interface UIViewController (SYCategory)
-
 
 /**
  *  是否通过点击视图控制器隐藏键盘（默认NO）
@@ -24,9 +22,7 @@
 - (void)backPreviousController;
 
 /// 设置导航栏标题视图
-- (void)setNavigationTitleView:(UIView *)titleView;
-/// 设置导航栏标题
-- (void)setNavigationTitle:(NSString *)title;
+@property (nonatomic, strong) UIView *navigationItemTitleView;
 /// 导航栏标题
 @property (nonatomic, strong) NSString *navigationItemTitle;
 

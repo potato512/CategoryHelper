@@ -19,10 +19,9 @@
  *
  *  @return NSString
  */
-+ (NSString *)readFileStreamWithFilePath:(NSString *)filePath length:(NSInteger)length
++ (NSString *)fileStreamWithFilePath:(NSString *)filePath length:(NSInteger)length
 {
-    if ([NSFileManager isFileExists:filePath])
-    {
+    if ([NSFileManager isFileExists:filePath]) {
         // 通过流打开一个文件
         NSInputStream *inputStream = [[NSInputStream alloc] initWithFileAtPath:filePath];
         [inputStream open];
@@ -32,21 +31,15 @@
         
         // 是否已经到结尾标识
         BOOL isEnd = NO;
-        while (!isEnd)
-        {
+        while (!isEnd) {
             NSInteger bytesRead = [inputStream read:bufferRead maxLength:bufferLength];
-            if (bytesRead == 0)
-            {
+            if (bytesRead == 0) {
                 // 文件读取到最后
                 isEnd = YES;
-            }
-            else if (bytesRead == -1)
-            {
+            } else if (bytesRead == -1) {
                 // 文件读取错误
                 isEnd = YES;
-            }
-            else
-            {
+            } else {
                 NSString *text = [[NSString alloc] initWithBytesNoCopy:bufferRead length:bytesRead encoding:NSUTF8StringEncoding freeWhenDone: NO];
                 return text;
             }

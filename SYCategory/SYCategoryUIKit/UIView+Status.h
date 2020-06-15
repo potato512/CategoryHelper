@@ -9,17 +9,13 @@
 #import <UIKit/UIKit.h>
 
 /// 对齐方式（顶端对齐、居中对齐-默认、底端对齐）
-typedef NS_ENUM(NSInteger, StatusViewAlignment)
-{
+typedef NS_ENUM(NSInteger, StatusViewAlignment) {
     /// 对齐方式-居中对齐-默认
     StatusViewAlignmentDefault = 0,
-    
     /// 对齐方式-顶端对齐
     StatusViewAlignmentTop = 1,
-    
     /// 对齐方式-居中对齐-默认
     StatusViewAlignmentCenter = StatusViewAlignmentDefault,
-    
     /// 对齐方式-底端对齐
     StatusViewAlignmentBottom = 2
 };

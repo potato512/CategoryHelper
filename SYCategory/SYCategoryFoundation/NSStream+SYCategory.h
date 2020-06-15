@@ -18,6 +18,6 @@
  *
  *  @return NSString
  */
-+ (NSString *)readFileStreamWithFilePath:(NSString *)filePath length:(NSInteger)length;
++ (NSString *)fileStreamWithFilePath:(NSString *)filePath length:(NSInteger)length;
 
 @end

@@ -17,7 +17,7 @@
 /// GCD子线程执行（同步或异步）
 void GCDGlobalAsync(BOOL isAsynchronous, CompleteHandleVoid complete)
 {
-    // 后台执行
+    // 子线程执行
     dispatch_queue_t queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
     if (isAsynchronous) {
         // 异步

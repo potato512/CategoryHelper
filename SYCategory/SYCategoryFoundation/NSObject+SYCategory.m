@@ -14,13 +14,57 @@
 
 @implementation NSObject (SYCategory)
 
+#pragma mark - 类型判断
+
+BOOL NSObjectClass(id obj, Class class)
+{
+    return [obj isKindOfClass:class];
+}
+
+/// NSString类型
+- (BOOL)isClassNSString
+{
+    return NSObjectClass(self, NSString.class);
+}
+/// NSNumber类型
+- (BOOL)isClassNSNumber
+{
+    return NSObjectClass(self, NSNumber.class);
+}
+/// NSArray类型
+- (BOOL)isClassNSArray
+{
+    return NSObjectClass(self, NSArray.class);
+}
+/// NSDictionary类型
+- (BOOL)isClassNSDictionary
+{
+    return NSObjectClass(self, NSDictionary.class);
+}
+/// NSData类型
+- (BOOL)isClassNSData
+{
+    return NSObjectClass(self, NSData.class);
+}
+/// UIView类型
+- (BOOL)isClassUIView
+{
+    return NSObjectClass(self, UIView.class);
+}
+/// UIViewController类型
+- (BOOL)isClassUIViewController
+{
+    return NSObjectClass(self, UIViewController.class);
+}
+
+
+#pragma mark -
+
 - (CGSize)sizeWithText:(NSString *)text font:(UIFont *)font constrainedSize:(CGSize)size
 {
     CGSize sizeTmp = CGSizeZero;
-    if ([NSString isValidNSString:text] && font)
-    {
-        if (7.0 <= [UIDevice currentDevice].systemVersion.floatValue)
-        {
+    if ([NSString isValidNSString:text] && font) {
+        if (7.0 <= [UIDevice currentDevice].systemVersion.floatValue) {
             NSMutableParagraphStyle *paragraphStyle = [[NSMutableParagraphStyle alloc] init];
             paragraphStyle.lineBreakMode = NSLineBreakByWordWrapping;
             NSDictionary *dict = @{NSFontAttributeName:font, NSParagraphStyleAttributeName:paragraphStyle.copy};

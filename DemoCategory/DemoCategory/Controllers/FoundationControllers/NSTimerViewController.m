@@ -80,7 +80,7 @@
 //        self.label.text = [NSString stringWithFormat:@"%@", @(number)];
         
         time--;
-        NSDictionary *dict = [NSDate getTimeDistanceWithTimeInterval:time];
+        NSDictionary *dict = [NSDate timeDistanceWithTimeInterval:time];
         NSInteger year = ((NSNumber *)dict[keyYear]).integerValue;
         NSInteger month = ((NSNumber *)dict[keyMonth]).integerValue;
         NSInteger day = ((NSNumber *)dict[keyDay]).integerValue;

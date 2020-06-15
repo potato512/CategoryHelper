@@ -23,6 +23,8 @@
 - (BOOL)isArray;
 
 /// 非空数组判断
+- (BOOL)isValidArray;
+/// 非空数组判断
 + (BOOL)isValidArray:(NSArray *)array;
 
 #pragma mark - 数组比较排序

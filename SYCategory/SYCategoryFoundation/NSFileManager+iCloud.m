@@ -28,7 +28,7 @@
         
         // 这里的 identifier 应该设置为 entitlements 的第一个元素；当你使用这段代码的时候需要把 identifier 设置为你自己的真实 identifier
         NSString *fileIdentifier = identifier;
-        NSString *fileNamge = [NSFileManager getFileNameWithFilePath:filePath];
+        NSString *fileNamge = [NSFileManager fileNameWithFilePath:filePath];
         
         NSURL *ubiquitousContainerURL = [FileManager URLForUbiquityContainerIdentifier:fileIdentifier];
         NSURL *ubiquitousFileURL = [ubiquitousContainerURL URLByAppendingPathComponent:fileNamge];
@@ -38,8 +38,7 @@
                                          itemAtURL:fileURL
                                     destinationURL:ubiquitousFileURL
                                              error:&error];
-        if (complete)
-        {
+        if (complete) {
             complete(isResult);
         }
     });

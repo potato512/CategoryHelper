@@ -242,6 +242,16 @@ static NSString *const keyDecimalPoint = @".";
 
 #pragma mark - 字符异常判断方法
 
+/// 是否是字符串
+- (BOOL)isNSString
+{
+    return [self isKindOfClass:NSString.class];
+}
+/// 有效字符（非空，且非空格）
+- (BOOL)isValidNSString
+{
+    return [NSString isValidNSString:self];
+}
 /// 有效字符（非空，且非空格）
 + (BOOL)isValidNSString:(NSString *)string;
 {
@@ -249,6 +259,11 @@ static NSString *const keyDecimalPoint = @".";
     return !isResult;
 }
 
+/// 字符非空判断（可以是空格字符串）
+- (BOOL)isNullNSString
+{
+    return [NSString isNullNSString:self];
+}
 /// 字符非空判断（可以是空格字符串）
 + (BOOL)isNullNSString:(NSString *)string;
 {
@@ -259,6 +274,11 @@ static NSString *const keyDecimalPoint = @".";
     return NO;
 }
 
+/// 字符非空判断（不能是空格字符串）
+- (BOOL)isNullBlankNSString
+{
+    return [NSString isNullBlankNSString:self];
+}
 /// 字符非空判断（不能是空格字符串）
 + (BOOL)isNullBlankNSString:(NSString *)string;
 {

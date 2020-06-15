@@ -53,9 +53,9 @@
     NSAttributedString *attributedClick = [[NSAttributedString alloc] initWithString:@"深圳市坪山新区比亚迪"];
     attributedClick = [attributedClick attributedText:@"比亚迪" font:UIFontBoldSize(20) color:UIColor.redColor];
     labelClick.attributedText = attributedClick;
-    [labelClick labelClickAddWithStrings:@[@"比亚迪"] clicked:^(UILabel * _Nonnull label, NSString * _Nonnull string, NSRange range, NSInteger index) {
-        [[[UIAlertView alloc] initWithTitle:string message:nil delegate:nil cancelButtonTitle:nil otherButtonTitles:@"知道了", nil] show];
-    }];
+//    [labelClick labelClickAddWithStrings:@[@"比亚迪"] clicked:^(UILabel * _Nonnull label, NSString * _Nonnull string, NSRange range, NSInteger index) {
+//        [[[UIAlertView alloc] initWithTitle:string message:nil delegate:nil cancelButtonTitle:nil otherButtonTitles:@"知道了", nil] show];
+//    }];
     
     UIView *currentView = labelClick;
     
@@ -149,7 +149,7 @@
     NSAttributedString *attributedLineSpace2 = [[NSAttributedString alloc] initWithString:@"修改标签栏信息：devZhang。广东省深圳市坪山新区马峦街道办江岭路与比亚迪路红绿灯路口交汇处"];
     attributedLineSpace2 = [attributedLineSpace2 attributedText:@"devZhang" font:[UIFont systemFontOfSize:18.0] color:[UIColor redColor]];
     labelLineSpace2.attributedText = attributedLineSpace2;
-    [labelLineSpace2 attributedTextLineSpace:6.0];
+//    [labelLineSpace2 attributedTextLineSpace:6.0];
     
     currentView = labelLineSpace2;
     

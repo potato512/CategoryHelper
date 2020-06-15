@@ -18,6 +18,9 @@ void OpenUrlWithExplorer(NSString *urlStr);
 /// 拨打电话（拨打完成后是否返回应用）
 void PhoneCallWithNumber(NSString *number, BOOL isCanBack);
 
+/// 设备内部编号
++ (NSString *)deviceMachineNumber;
+
 /// 设备序列号
 + (NSString *)deviceUUID;
 
@@ -48,6 +51,9 @@ void PhoneCallWithNumber(NSString *number, BOOL isCanBack);
 /// 设备型号（如：iPhone, iPod touch）
 + (NSString *)deviceMode;
 
+/// 设备机型（如：iPhone4S,iPhoneX等）
++ (NSString *)deviceType;
+
 /// 设备地方型号（国际化区域名称）
 + (NSString *)deviceLocalizedModel;
 
@@ -66,7 +72,7 @@ void PhoneCallWithNumber(NSString *number, BOOL isCanBack);
 + (BOOL)iPhone;
 /// iPad设备
 + (BOOL)iPad;
-/// 刘海设备（如：iPhoneX/iPhoneXR/iPhoneXS/iPhoneXSMax）
+/// 刘海设备（如：iPhoneX/iPhoneXR/iPhoneXS/iPhoneXSMax/iPhone11/iPhone11Pro/iPhone11ProMax）
 + (BOOL)iPhoneWithSaveArea;
 
 @end

@@ -24,7 +24,7 @@
  *
  *  @return NSString
  */
-+ (NSString *)getHomeDirectoryPath
++ (NSString *)homePath
 {
     return NSHomeDirectory();
 }
@@ -34,7 +34,7 @@
  *
  *  @return NSString
  */
-+ (NSString *)getDocumentDirectoryPath
++ (NSString *)documentPath
 {
     NSArray *Paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
     NSString *path = [Paths objectAtIndex:0];
@@ -46,7 +46,7 @@
  *
  *  @return NSString
  */
-+ (NSString *)getCacheDirectoryPath
++ (NSString *)cachePath
 {
     NSArray *Paths = NSSearchPathForDirectoriesInDomains(NSCachesDirectory, NSUserDomainMask, YES);
     NSString *path = [Paths objectAtIndex:0];
@@ -58,7 +58,7 @@
  *
  *  @return NSString
  */
-+ (NSString *)getLibraryDirectoryPath
++ (NSString *)libraryPath
 {
     NSArray *Paths = NSSearchPathForDirectoriesInDomains(NSLibraryDirectory, NSUserDomainMask, YES);
     NSString *path = [Paths objectAtIndex:0];
@@ -70,7 +70,7 @@
  *
  *  @return NSString
  */
-+ (NSString *)getTmpDirectoryPath
++ (NSString *)tmpPath
 {
     return NSTemporaryDirectory();
 }
@@ -135,10 +135,8 @@
 + (NSString *)createFileWithFilePath:(NSString *)filePath fileName:(NSString *)fileName
 {
     NSString *path = [filePath stringByAppendingPathComponent:fileName];
-    if (![self isFileExists:path])
-    {
-        if (![FileManager createFileAtPath:path contents:nil attributes:nil])
-        {
+    if (![self isFileExists:path]) {
+        if (![FileManager createFileAtPath:path contents:nil attributes:nil]) {
             return nil;
         }
     }
@@ -154,7 +152,7 @@
  */
 + (NSString *)createFileDocumentWithFileName:(NSString *)fileName
 {
-    return [self createFileWithFilePath:[self getDocumentDirectoryPath] fileName:fileName];
+    return [self createFileWithFilePath:self.documentPath fileName:fileName];
 }
 
 /**
@@ -166,7 +164,7 @@
  */
 + (NSString *)createFileCacheWithFileName:(NSString *)fileName
 {
-    return [self createFileWithFilePath:[self getCacheDirectoryPath] fileName:fileName];
+    return [self createFileWithFilePath:self.cachePath fileName:fileName];
 }
 
 /**
@@ -180,11 +178,9 @@
 + (NSString *)createDirectoryWithFilePath:(NSString *)filePath fileName:(NSString *)fileName
 {
     NSString *path = [filePath stringByAppendingPathComponent:fileName];
-    if (![self isFileExists:path])
-    {
+    if (![self isFileExists:path]) {
         NSError *error;
-        if (![FileManager createDirectoryAtPath:path withIntermediateDirectories:YES attributes:nil error:&error])
-        {
+        if (![FileManager createDirectoryAtPath:path withIntermediateDirectories:YES attributes:nil error:&error]) {
             NSLog(@"create dir error: %@", error.debugDescription);
             return nil;
         }
@@ -201,7 +197,7 @@
  */
 + (NSString *)createDirectoryDocumentWithFileName:(NSString *)fileName
 {
-    return [self createDirectoryWithFilePath:[self getDocumentDirectoryPath] fileName:fileName];
+    return [self createDirectoryWithFilePath:self.documentPath fileName:fileName];
 }
 
 /**
@@ -213,7 +209,7 @@
  */
 + (NSString *)createDirectoryCacheWithFileName:(NSString *)fileName
 {
-    return [self createDirectoryWithFilePath:[self getCacheDirectoryPath] fileName:fileName];
+    return [self createDirectoryWithFilePath:self.cachePath fileName:fileName];
 }
 
 /**
@@ -225,8 +221,7 @@
  */
 + (BOOL)deleteFileWithFilePath:(NSString *)filePath
 {
-    if ([self isFileExists:filePath])
-    {
+    if ([self isFileExists:filePath]) {
         return [FileManager removeItemAtPath:filePath error:nil];
     }
     return NO;
@@ -242,8 +237,7 @@
  */
 + (BOOL)copyFileWithFilePath:(NSString *)fromPath toPath:(NSString *)toPath
 {
-    if ([self isFileExists:fromPath])
-    {
+    if ([self isFileExists:fromPath]) {
         return [FileManager copyItemAtPath:fromPath toPath:toPath error:nil];
     }
     return NO;
@@ -260,8 +254,7 @@
 
 + (BOOL)moveFileWithFilePath:(NSString *)fromPath toPath:(NSString *)toPath
 {
-    if ([self isFileExists:fromPath])
-    {
+    if ([self isFileExists:fromPath]) {
         return [FileManager moveItemAtPath:fromPath toPath:toPath error:nil];
     }
     return NO;
@@ -294,13 +287,11 @@
  */
 + (BOOL)writeFileWithFilePath:(NSString *)filePath data:(id)data
 {
-    if (![self isFileExists:filePath])
-    {
+    if (![self isFileExists:filePath]) {
         filePath = [self createFileWithFilePath:filePath fileName:nil];
     }
     
-    if ([data isKindOfClass:[NSArray class]] | [data isKindOfClass:[NSDictionary class]] | [data isKindOfClass:[NSString class]] | [data isKindOfClass:[NSData class]])
-    {
+    if ([data isKindOfClass:[NSArray class]] | [data isKindOfClass:[NSDictionary class]] | [data isKindOfClass:[NSString class]] | [data isKindOfClass:[NSData class]]) {
         return [data writeToFile:filePath atomically:YES];
     }
     
@@ -314,10 +305,9 @@
  *
  *  @return NSData
  */
-+ (NSData *)readFileWithFilePath:(NSString *)filePath
++ (NSData *)fileDataWithFilePath:(NSString *)filePath
 {
-    if ([self isFileExists:filePath])
-    {
+    if ([self isFileExists:filePath]) {
         return [FileManager contentsAtPath:filePath];
     }
     return nil;
@@ -332,10 +322,9 @@
  *
  *  @return NSDictionary
  */
-+ (NSDictionary *)getFileAttributesWithFilePath:(NSString *)filePath
++ (NSDictionary *)fileAttributesWithFilePath:(NSString *)filePath
 {
-    if ([self isFileExists:filePath])
-    {
+    if ([self isFileExists:filePath]) {
         return [FileManager attributesOfItemAtPath:filePath error:nil];
     }
     return nil;
@@ -350,14 +339,12 @@
  *
  *  @return NSString
  */
-+ (NSString *)getFileNameWithFilePath:(NSString *)filePath
++ (NSString *)fileNameWithFilePath:(NSString *)filePath
 {
-    if ([self isFileExists:filePath])
-    {
+    if ([self isFileExists:filePath]) {
         // 方法1
         NSRange range = [filePath rangeOfString:@"/" options:NSBackwardsSearch];
-        if (range.location != NSNotFound)
-        {
+        if (range.location != NSNotFound) {
             NSString *text = [filePath substringFromIndex:(range.location + range.length)];
             return text;
         }
@@ -381,13 +368,11 @@
  *
  *  @return NSString
  */
-+ (NSString *)getFileTypeWithFilePath:(NSString *)filePath
++ (NSString *)fileTypeWithFilePath:(NSString *)filePath
 {
-    if ([self isFileExists:filePath])
-    {
+    if ([self isFileExists:filePath]) {
         NSRange range = [filePath rangeOfString:@"." options:NSBackwardsSearch];
-        if (range.location != NSNotFound)
-        {
+        if (range.location != NSNotFound) {
             NSString *text = [filePath substringFromIndex:(range.location)];
             return text;
         }
@@ -405,10 +390,9 @@
  *
  *  @return NSString
  */
-+ (NSString *)getFileTypeExtensionWithFilePath:(NSString *)filePath
++ (NSString *)fileTypeExtensionWithFilePath:(NSString *)filePath
 {
-    if ([self isFileExists:filePath])
-    {
+    if ([self isFileExists:filePath]) {
         NSString *text = filePath.pathExtension;
         return text;
     }
@@ -453,8 +437,7 @@
  */
 + (NSArray *)getDirectorysWithFilePath:(NSString *)filePath
 {
-    if ([self isFileExists:filePath])
-    {
+    if ([self isFileExists:filePath]) {
         // NSURL *urlDirectory = [[NSBundle mainBundle] bundleURL];
         NSURL *urlDirectory = [NSURL fileURLWithPath:filePath];
         NSArray *array = [FileManager contentsOfDirectoryAtURL:urlDirectory
@@ -463,8 +446,7 @@
                                                             error:nil];
         
         NSMutableArray *results = [NSMutableArray arrayWithCapacity:array.count];
-        for (NSURL *fileUrl in array)
-        {
+        for (NSURL *fileUrl in array) {
             [results addObject:fileUrl.path];
         }
         return results;
@@ -481,16 +463,14 @@
  */
 + (NSArray *)getFilesWithFilePath:(NSString *)filePath
 {
-    if ([self isFileExists:filePath])
-    {
+    if ([self isFileExists:filePath]) {
         // NSURL *urlFile = [[NSBundle mainBundle] bundleURL];
         NSURL *urlFile = [NSURL fileURLWithPath:filePath];
         NSDirectoryEnumerator *enumerator = [FileManager enumeratorAtURL:urlFile
                                               includingPropertiesForKeys:@[NSURLNameKey, NSURLIsDirectoryKey]
                                                                  options:NSDirectoryEnumerationSkipsHiddenFiles
                                                             errorHandler:^BOOL(NSURL *url, NSError *error){
-                                                                if (error)
-                                                                {
+                                                                if (error) {
                                                                     return NO;
                                                                 }
                                                                 
@@ -498,8 +478,7 @@
                                                             }];
         
         NSMutableArray *array = [NSMutableArray array];
-        for (NSURL *fileURL in enumerator)
-        {
+        for (NSURL *fileURL in enumerator) {
             NSString *filename;
             [fileURL getResourceValue:&filename forKey:NSURLNameKey error:nil];
             
@@ -507,14 +486,12 @@
             [fileURL getResourceValue:&isDirectory forKey:NSURLIsDirectoryKey error:nil];
             
             // Skip directories with '_' prefix, for example
-            if ([filename hasPrefix:@"_"] && [isDirectory boolValue])
-            {
+            if ([filename hasPrefix:@"_"] && [isDirectory boolValue]) {
                 [enumerator skipDescendants];
                 continue;
             }
             
-            if (!isDirectory.boolValue)
-            {
+            if (!isDirectory.boolValue) {
                 // 转成文件路径
                 [array addObject:fileURL.path];
             }
@@ -539,29 +516,22 @@
     
     // 默认所有层级目录下的文件，及文件夹
     NSArray *files = [self getSubFilesAllWithFilePath:filePath];
-    if (!isAll)
-    {
+    if (!isAll) {
         // 当前层级目录下的文件，及文件夹
         files = [self getSubFilesSomeWithFilePath:filePath];
     }
     
-    for (id object in files)
-    {
+    for (id object in files) {
         NSString *objectPath = [filePath stringByAppendingPathComponent:object];
         BOOL isDir = [self isDirectory:objectPath];
-        if (isDirectory)
-        {
+        if (isDirectory) {
             // 文件夹
-            if (isDir)
-            {
+            if (isDir) {
                 [directions addObject:object];
             }
-        }
-        else
-        {
+        } else {
             // 文件
-            if (!isDir)
-            {
+            if (!isDir) {
                 [directions addObject:object];
             }
         }
@@ -587,21 +557,15 @@
     
     // 1MB = 1024KB 1KB = 1024B
     CGFloat size = fileSize;
-    if (size > (1024 * 1024))
-    {
+    if (size > (1024 * 1024)) {
         size = size / (1024 * 1024);
         message = [NSString stringWithFormat:@"%.2fM", size];
-    }
-    else if (size > 1024)
-    {
+    } else if (size > 1024) {
         size = size / 1024;
         message = [NSString stringWithFormat:@"%.2fKB", size];
-    }
-    else if (size > 0.0)
-    {
+    } else if (size > 0.0) {
         message = [NSString stringWithFormat:@"%.2fB", size];
     }
-    
     return message;
 }
 
@@ -612,11 +576,10 @@
  *
  *  @return CGFloat
  */
-+ (CGFloat)getFileSizeWithFilePath:(NSString *)filePath
++ (CGFloat)fileSizeWithFilePath:(NSString *)filePath
 {
-    if ([self isFileExists:filePath])
-    {
-        return [[self getFileAttributesWithFilePath:filePath] fileSize];
+    if ([self isFileExists:filePath]) {
+        return [[self fileAttributesWithFilePath:filePath] fileSize];
     }
     return 0.0;
 }
@@ -628,10 +591,10 @@
  *
  *  @return NSString
  */
-+ (NSString *)getFileSizeTextWithFilePath:(NSString *)filePath
++ (NSString *)fileSizeTextWithFilePath:(NSString *)filePath
 {
     // 1MB = 1024KB 1KB = 1024B
-    CGFloat size = [self getFileSizeWithFilePath:filePath];
+    CGFloat size = [self fileSizeWithFilePath:filePath];
     return [self fileSizeConversion:size];
 }
 
@@ -642,11 +605,10 @@
  *
  *  @return CGFloat
  */
-+ (CGFloat)getFileSizeTotalWithDirectory:(NSString *)directory
++ (CGFloat)fileSizeTotalWithDirectory:(NSString *)directory
 {
     __block CGFloat size = 0.0;
-    if ([self isFileExists:directory])
-    {
+    if ([self isFileExists:directory]) {
         // 方法1
         NSArray *array = [self getSubFilesAllWithFilePath:directory];
         
@@ -661,11 +623,10 @@
         
         [array enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
             NSString *filePath = [directory stringByAppendingPathComponent:obj];
-            if ([self isDirectory:filePath])
-            {
-                [self getFileSizeTotalWithDirectory:filePath];
+            if ([self isDirectory:filePath]) {
+                [self fileSizeTotalWithDirectory:filePath];
             }
-            size += [self getFileSizeWithFilePath:filePath];
+            size += [self fileSizeWithFilePath:filePath];
         }];
         
         // 方法3
@@ -683,9 +644,9 @@
  *
  *  @return NSString
  */
-+ (NSString *)getFileSizeTotalTextWithDirectory:(NSString *)directory
++ (NSString *)fileSizeTotalTextWithDirectory:(NSString *)directory
 {
-    CGFloat size = [self getFileSizeTotalWithDirectory:directory];
+    CGFloat size = [self fileSizeTotalWithDirectory:directory];
     return [self fileSizeConversion:size];
 }
 
@@ -702,48 +663,39 @@
 {
     long long folderSize = 0;
     DIR *dir = opendir(folderPath);
-    if (dir == NULL)
-    {
+    if (dir == NULL) {
         return 0;
     }
     struct dirent *child;
-    while ((child = readdir(dir)) != NULL)
-    {
+    while ((child = readdir(dir)) != NULL) {
         if (child->d_type == DT_DIR && (
                                         (child->d_name[0] == '.' && child->d_name[1] == 0) || // 忽略目录 .
                                         (child->d_name[0] == '.' && child->d_name[1] == '.' && child->d_name[2] == 0) // 忽略目录 ..
-                                        ))
-        {
+                                        )) {
             continue;
         }
         
         int folderPathLength = (int)strlen(folderPath);
         char childPath[1024]; // 子文件的路径地址
         stpcpy(childPath, folderPath);
-        if (folderPath[folderPathLength-1] != '/')
-        {
+        if (folderPath[folderPathLength-1] != '/') {
             childPath[folderPathLength] = '/';
             folderPathLength++;
         }
         stpcpy(childPath+folderPathLength, child->d_name);
         childPath[folderPathLength + child->d_namlen] = 0;
-        if (child->d_type == DT_DIR)
-        {
+        if (child->d_type == DT_DIR) {
             // directory
             folderSize += [self folderSizeWithFolderPath:childPath]; // 递归调用子目录
             // 把目录本身所占的空间也加上
             struct stat st;
-            if (lstat(childPath, &st) == 0)
-            {
+            if (lstat(childPath, &st) == 0) {
                 folderSize += st.st_size;
             }
-        }
-        else if (child->d_type == DT_REG || child->d_type == DT_LNK)
-        {
+        } else if (child->d_type == DT_REG || child->d_type == DT_LNK) {
             // file or link
             struct stat st;
-            if (lstat(childPath, &st) == 0)
-            {
+            if (lstat(childPath, &st) == 0) {
                 folderSize += st.st_size;
             }
         }
@@ -758,17 +710,14 @@
  *
  *  @return CGFloat
  */
-+ (CGFloat)getSizeDiskSpace
++ (CGFloat)sizeDiskSpace
 {
     CGFloat size = 0.0;
     NSError *error;
     NSDictionary *dict = [FileManager attributesOfFileSystemForPath:NSHomeDirectory() error:&error];
-    if (error)
-    {
+    if (error) {
         size = 0.0;
-    }
-    else
-    {
+    } else {
         NSNumber *sizeNumber = [dict objectForKey:NSFileSystemSize];
         size = sizeNumber.floatValue;
     }
@@ -781,9 +730,9 @@
  *
  *  @return NSString
  */
-+ (NSString *)getSizeTextDiskSpace
++ (NSString *)sizeTextDiskSpace
 {
-    CGFloat size = [self getSizeDiskSpace];
+    CGFloat size = [self sizeDiskSpace];
     return [self fileSizeConversion:size];
 }
 
@@ -792,17 +741,14 @@
  *
  *  @return CGFloat
  */
-+ (CGFloat)getSizeFreeDiskSpace
++ (CGFloat)sizeFreeDiskSpace
 {
     CGFloat size = 0.0;
     NSError *error;
     NSDictionary *dict = [FileManager attributesOfFileSystemForPath:NSHomeDirectory() error:&error];
-    if (error)
-    {
+    if (error) {
         size = 0.0;
-    }
-    else
-    {
+    } else {
         NSNumber *sizeNumber = [dict objectForKey:NSFileSystemFreeSize];
         size = sizeNumber.floatValue;
     }
@@ -815,9 +761,9 @@
  *
  *  @return NSString
  */
-+ (NSString *)getSizeFreeTextDiskSpace
++ (NSString *)sizeFreeTextDiskSpace
 {
-    CGFloat size = [self getSizeFreeDiskSpace];
+    CGFloat size = [self sizeFreeDiskSpace];
     return [self fileSizeConversion:size];
 }
 
@@ -881,64 +827,13 @@
  */
 + (void)deleteCacheFile:(NSDictionary *)fileDict
 {
-    if (fileDict)
-    {
+    if (fileDict) {
         [fileDict enumerateKeysAndObjectsUsingBlock:^(id key, id obj, BOOL *stop) {
-            if([[NSFileManager defaultManager]fileExistsAtPath:obj])
-            {
+            if([[NSFileManager defaultManager] fileExistsAtPath:obj]) {
                 [[NSFileManager defaultManager] removeItemAtPath:obj error:nil];
             }
         }];
     }
-}
-
-
-#pragma mark - 链式属性
-
-/// 链式编程 home路径
-+ (NSString *(^)(void))homePath
-{
-    return ^(void) {
-        return NSHomeDirectory();
-    };
-}
-
-/// 链式编程 document路径
-+ (NSString *(^)(void))documentPath
-{
-    return ^(void) {
-        NSArray *Paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
-        NSString *path = [Paths objectAtIndex:0];
-        return path;
-    };
-}
-
-/// 链式编程 cache路径
-+ (NSString *(^)(void))cachePath
-{
-    return ^(void) {
-        NSArray *Paths = NSSearchPathForDirectoriesInDomains(NSCachesDirectory, NSUserDomainMask, YES);
-        NSString *path = [Paths objectAtIndex:0];
-        return path;
-    };
-}
-
-/// 链式编程 library路径
-+ (NSString *(^)(void))libraryPath
-{
-    return ^(void) {
-        NSArray *Paths = NSSearchPathForDirectoriesInDomains(NSLibraryDirectory, NSUserDomainMask, YES);
-        NSString *path = [Paths objectAtIndex:0];
-        return path;
-    };
-}
-
-/// 链式编程 tmp路径
-+ (NSString *(^)(void))tmpPath
-{
-    return ^(void) {
-        return NSTemporaryDirectory();
-    };
 }
 
 @end

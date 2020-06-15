@@ -16,6 +16,8 @@
 - (BOOL)isNSDictionary;
 
 /// 非空字典判断
+- (BOOL)isValidNSDictionary;
+/// 非空字典判断
 + (BOOL)isValidNSDictionary:(NSDictionary *)dictionary;
 
 @end

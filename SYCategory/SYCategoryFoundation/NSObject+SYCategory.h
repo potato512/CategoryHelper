@@ -12,8 +12,7 @@
 /**
  *  图片对象类型（图片名称、图片url地址、图片image）
  */
-typedef NS_ENUM(NSInteger, SYImageType)
-{
+typedef NS_ENUM(NSInteger, SYImageType) {
     /**
      *  图片对象类型-图片名称
      */
@@ -29,6 +28,26 @@ typedef NS_ENUM(NSInteger, SYImageType)
 };
 
 @interface NSObject (SYCategory)
+
+#pragma mark - 类型判断
+
+/// 类型判断
+BOOL NSObjectClass(id obj, Class class);
+
+/// NSString类型
+- (BOOL)isClassNSString;
+/// NSNumber类型
+- (BOOL)isClassNSNumber;
+/// NSArray类型
+- (BOOL)isClassNSArray;
+/// NSDictionary类型
+- (BOOL)isClassNSDictionary;
+/// NSData类型
+- (BOOL)isClassNSData;
+/// UIView类型
+- (BOOL)isClassUIView;
+/// UIViewController类型
+- (BOOL)isClassUIViewController;
 
 /**
  *  计算字符文本的宽高

@@ -18,35 +18,35 @@
  *
  *  @return NSString
  */
-+ (NSString *)getHomeDirectoryPath;
++ (NSString *)homePath;
 
 /**
  *  document目录路径
  *
  *  @return NSString
  */
-+ (NSString *)getDocumentDirectoryPath;
++ (NSString *)documentPath;
 
 /**
  *  Cache目录路径
  *
  *  @return NSString
  */
-+ (NSString *)getCacheDirectoryPath;
++ (NSString *)cachePath;
 
 /**
  *  Library目录路径
  *
  *  @return NSString
  */
-+ (NSString *)getLibraryDirectoryPath;
++ (NSString *)libraryPath;
 
 /**
  *  Tmp目录路径
  *
  *  @return NSString
  */
-+ (NSString *)getTmpDirectoryPath;
++ (NSString *)tmpPath;
 
 #pragma mark - 文件路径操作
 
@@ -193,7 +193,7 @@
  *
  *  @return NSData
  */
-+ (NSData *)readFileWithFilePath:(NSString *)filePath;
++ (NSData *)fileDataWithFilePath:(NSString *)filePath;
 
 #pragma mark - 文件信息
 
@@ -204,7 +204,7 @@
  *
  *  @return NSDictionary
  */
-+ (NSDictionary *)getFileAttributesWithFilePath:(NSString *)filePath;
++ (NSDictionary *)fileAttributesWithFilePath:(NSString *)filePath;
 
 #pragma mark 文件名称/文件类型
 
@@ -215,7 +215,7 @@
  *
  *  @return NSString
  */
-+ (NSString *)getFileNameWithFilePath:(NSString *)filePath;
++ (NSString *)fileNameWithFilePath:(NSString *)filePath;
 
 /**
  *  文件类型（如：.png）
@@ -224,7 +224,7 @@
  *
  *  @return NSString
  */
-+ (NSString *)getFileTypeWithFilePath:(NSString *)filePath;
++ (NSString *)fileTypeWithFilePath:(NSString *)filePath;
 
 /**
  *  文件类型（如：png）
@@ -233,7 +233,7 @@
  *
  *  @return NSString
  */
-+ (NSString *)getFileTypeExtensionWithFilePath:(NSString *)filePath;
++ (NSString *)fileTypeExtensionWithFilePath:(NSString *)filePath;
 
 #pragma mark 文件夹下的所有/部分文件/文件夹
 
@@ -304,7 +304,7 @@
  *
  *  @return CGFloat
  */
-+ (CGFloat)getFileSizeWithFilePath:(NSString *)filePath;
++ (CGFloat)fileSizeWithFilePath:(NSString *)filePath;
 
 /**
  *  单个文件的大小 NSString
@@ -313,7 +313,7 @@
  *
  *  @return NSString
  */
-+ (NSString *)getFileSizeTextWithFilePath:(NSString *)filePath;
++ (NSString *)fileSizeTextWithFilePath:(NSString *)filePath;
 
 /**
  *  文件夹的大小 CGFloat
@@ -322,7 +322,7 @@
  *
  *  @return CGFloat
  */
-+ (CGFloat)getFileSizeTotalWithDirectory:(NSString *)directory;
++ (CGFloat)fileSizeTotalWithDirectory:(NSString *)directory;
 
 /**
  *  文件夹的大小 NSString
@@ -331,7 +331,7 @@
  *
  *  @return NSString
  */
-+ (NSString *)getFileSizeTotalTextWithDirectory:(NSString *)directory;
++ (NSString *)fileSizeTotalTextWithDirectory:(NSString *)directory;
 
 #pragma mark - 磁盘信息
 
@@ -340,28 +340,28 @@
  *
  *  @return CGFloat
  */
-+ (CGFloat)getSizeDiskSpace;
++ (CGFloat)sizeDiskSpace;
 
 /**
  *  磁盘空间总大小 NSString
  *
  *  @return NSString
  */
-+ (NSString *)getSizeTextDiskSpace;
++ (NSString *)sizeTextDiskSpace;
 
 /**
  *  磁盘空间可用大小
  *
  *  @return CGFloat
  */
-+ (CGFloat)getSizeFreeDiskSpace;
++ (CGFloat)sizeFreeDiskSpace;
 
 /**
  *  磁盘空间可用大小 NSString
  *
  *  @return NSString
  */
-+ (NSString *)getSizeFreeTextDiskSpace;
++ (NSString *)sizeFreeTextDiskSpace;
 
 #pragma mark - 临时文件
 
@@ -399,22 +399,5 @@
  *  @param fileDict 文件字典集合（key-文件名称、value-文件路径）
  */
 + (void)deleteCacheFile:(NSDictionary *)fileDict;
-
-#pragma mark - 链式属性
-
-/// 链式编程 home路径
-+ (NSString *(^)(void))homePath;
-
-/// 链式编程 document路径
-+ (NSString *(^)(void))documentPath;
-
-/// 链式编程 cache路径
-+ (NSString *(^)(void))cachePath;
-
-/// 链式编程 library路径
-+ (NSString *(^)(void))libraryPath;
-
-/// 链式编程 tmp路径
-+ (NSString *(^)(void))tmpPath;
 
 @end

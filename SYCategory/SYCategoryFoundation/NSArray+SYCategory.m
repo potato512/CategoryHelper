@@ -8,6 +8,7 @@
 
 #import "NSArray+SYCategory.h"
 #import <UIKit/UIKit.h>
+#import "NSObject+SYCategory.h"
 #import "NSString+SYCategory.h"
 
 static NSNumber *Ascending; // 是否升序
@@ -21,15 +22,12 @@ static NSNumber *Ascending; // 是否升序
  */
 - (NSDictionary *)dictionaryOrderByCharacter
 {
-    if (0 == self.count)
-    {
+    if (0 == self.count) {
         return nil;
     }
     
-    for (id obj in self)
-    {
-        if (![obj isKindOfClass:[NSString class]])
-        {
+    for (id obj in self) {
+        if (NSObjectClass(obj, NSString.class)) {
             return nil;
         }
     }
@@ -37,16 +35,14 @@ static NSNumber *Ascending; // 是否升序
     UILocalizedIndexedCollation *indexedCollation = [UILocalizedIndexedCollation currentCollation];
     NSMutableArray *objects = [NSMutableArray arrayWithCapacity:indexedCollation.sectionIndexTitles.count];
     // 创建27个分组数组
-    for (int i = 0; i < indexedCollation.sectionIndexTitles.count; i++)
-    {
+    for (int i = 0; i < indexedCollation.sectionIndexTitles.count; i++) {
         NSMutableArray *obj = [NSMutableArray array];
         [objects addObject:obj];
     }
     
     // 按字母顺序进行分组
     NSInteger lastIndex = -1;
-    for (int i = 0; i < self.count; i++)
-    {
+    for (int i = 0; i < self.count; i++) {
         NSInteger index = [indexedCollation sectionForObject:self[i] collationStringSelector:@selector(uppercaseString)];
         [[objects objectAtIndex:index] addObject:self[i]];
         
@@ -54,19 +50,16 @@ static NSNumber *Ascending; // 是否升序
     }
     
     // 去掉空数组
-    for (int i = 0; i < objects.count; i++)
-    {
+    for (int i = 0; i < objects.count; i++) {
         NSMutableArray *obj = objects[i];
-        if (obj.count == 0)
-        {
+        if (obj.count == 0) {
             [objects removeObject:obj];
         }
     }
     
     // 获取索引字母
     NSMutableArray *keys = [NSMutableArray arrayWithCapacity:objects.count];
-    for (NSMutableArray *obj in objects)
-    {
+    for (NSMutableArray *obj in objects) {
         NSString *str = obj[0];
         NSString *key = [str firstCharacter];
         [keys addObject:key];
@@ -83,19 +76,18 @@ static NSNumber *Ascending; // 是否升序
 /// 是否是数组判断
 - (BOOL)isArray
 {
-    if ([self isKindOfClass:[NSArray class]])
-    {
-        return YES;
-    }
-    
-    return NO;
+    return NSObjectClass(self, NSArray.class);
 }
 
 /// 非空数组判断
+- (BOOL)isValidArray
+{
+    return [NSArray isValidArray:self];
+}
+/// 非空数组判断
 + (BOOL)isValidArray:(NSArray *)array
 {
-    if ([array isArray] && 0 < array.count && array != nil)
-    {
+    if ([array isArray] && 0 < array.count && array != nil) {
         return YES;
     }
     
@@ -109,42 +101,29 @@ NSComparator ComparatorNumberArraySelector = ^(id obj1, id obj2){
     
     BOOL isAscending = Ascending.boolValue;
     
-    if ([obj1 isKindOfClass:[NSString class]] && [obj2 isKindOfClass:[NSString class]])
-    {
+    if (NSObjectClass(obj1, NSString.class) && NSObjectClass(obj2, NSString.class)) {
         // 默认string类型
         NSString *value1 = (NSString *)obj1;
         NSString *value2 = (NSString *)obj2;
         
         NSComparisonResult compareResult = [value1 compare:value2];
         
-        if (NSOrderedDescending == compareResult)
-        {
+        if (NSOrderedDescending == compareResult) {
             return (isAscending ? (NSComparisonResult)NSOrderedAscending : (NSComparisonResult)NSOrderedDescending);
-        }
-        else if (NSOrderedAscending == compareResult)
-        {
+        } else if (NSOrderedAscending == compareResult) {
             return (isAscending ? (NSComparisonResult)NSOrderedDescending : (NSComparisonResult)NSOrderedAscending);
-        }
-        else
-        {
+        } else {
             return (NSComparisonResult)NSOrderedSame;
         }
-    }
-    else if ([obj1 isKindOfClass:[NSIndexPath class]] && [obj2 isKindOfClass:[NSIndexPath class]])
-    {
+    } else if (NSObjectClass(obj1, NSIndexPath.class) && NSObjectClass(obj2, NSIndexPath.class)) {
         NSInteger value1 = ((NSIndexPath *)obj1).section;
         NSInteger value2 = ((NSIndexPath *)obj2).section;
         
-        if (value1 > value2)
-        {
+        if (value1 > value2) {
             return (isAscending ? NSOrderedAscending : NSOrderedDescending);
-        }
-        else if (value1 < value2)
-        {
+        } else if (value1 < value2) {
             return (isAscending ? NSOrderedDescending : NSOrderedAscending);
-        }
-        else
-        {
+        } else {
             return NSOrderedSame;
         }
     }
@@ -153,16 +132,11 @@ NSComparator ComparatorNumberArraySelector = ^(id obj1, id obj2){
     NSInteger value1 = [obj1 integerValue];
     NSInteger value2 = [obj2 integerValue];
     
-    if (value1 > value2)
-    {
+    if (value1 > value2) {
         return (isAscending ? (NSComparisonResult)NSOrderedAscending : (NSComparisonResult)NSOrderedDescending);
-    }
-    else if (value1 < value2)
-    {
+    } else if (value1 < value2) {
         return (isAscending ? (NSComparisonResult)NSOrderedDescending : (NSComparisonResult)NSOrderedAscending);
-    }
-    else
-    {
+    } else {
         return (NSComparisonResult)NSOrderedSame;
     }
 };
@@ -180,42 +154,29 @@ NSComparator ComparatorNumberArraySelector = ^(id obj1, id obj2){
 {
     NSArray *array = [self sortedArrayUsingComparator:^NSComparisonResult(id obj1, id obj2){
         
-        if ([obj1 isKindOfClass:[NSString class]] && [obj2 isKindOfClass:[NSString class]])
-        {
+        if (NSObjectClass(obj1, NSString.class) && NSObjectClass(obj2, NSString.class)) {
             // 默认string类型
             NSString *value1 = (NSString *)obj1;
             NSString *value2 = (NSString *)obj2;
             
             NSComparisonResult compareResult = [value1 compare:value2];
             
-            if (NSOrderedDescending == compareResult)
-            {
+            if (NSOrderedDescending == compareResult) {
                 return (isAscending ? (NSComparisonResult)NSOrderedAscending : (NSComparisonResult)NSOrderedDescending);
-            }
-            else if (NSOrderedAscending == compareResult)
-            {
+            } else if (NSOrderedAscending == compareResult) {
                 return (isAscending ? (NSComparisonResult)NSOrderedDescending : (NSComparisonResult)NSOrderedAscending);
-            }
-            else
-            {
+            } else {
                 return (NSComparisonResult)NSOrderedSame;
             }
-        }
-        else if ([obj1 isKindOfClass:[NSIndexPath class]] && [obj2 isKindOfClass:[NSIndexPath class]])
-        {
+        } else if (NSObjectClass(obj1, NSIndexPath.class) && NSObjectClass(obj2, NSIndexPath.class)) {
             NSInteger value1 = ((NSIndexPath *)obj1).section;
             NSInteger value2 = ((NSIndexPath *)obj2).section;
             
-            if (value1 > value2)
-            {
+            if (value1 > value2) {
                 return (isAscending ? NSOrderedAscending : NSOrderedDescending);
-            }
-            else if (value1 < value2)
-            {
+            } else if (value1 < value2) {
                 return (isAscending ? NSOrderedDescending : NSOrderedAscending);
-            }
-            else
-            {
+            } else {
                 return NSOrderedSame;
             }
         }
@@ -224,16 +185,11 @@ NSComparator ComparatorNumberArraySelector = ^(id obj1, id obj2){
         NSInteger value1 = [obj1 integerValue];
         NSInteger value2 = [obj2 integerValue];
         
-        if (value1 > value2)
-        {
+        if (value1 > value2) {
             return (isAscending ? (NSComparisonResult)NSOrderedAscending : (NSComparisonResult)NSOrderedDescending);
-        }
-        else if (value1 < value2)
-        {
+        } else if (value1 < value2) {
             return (isAscending ? (NSComparisonResult)NSOrderedDescending : (NSComparisonResult)NSOrderedAscending);
-        }
-        else
-        {
+        } else {
             return (NSComparisonResult)NSOrderedSame;
         }
     }];
@@ -246,42 +202,29 @@ NSInteger comparatorNumberArrayFunction(id obj1, id obj2, void* context){
     
     BOOL isAscending = Ascending.boolValue;
     
-    if ([obj1 isKindOfClass:[NSString class]] && [obj2 isKindOfClass:[NSString class]])
-    {
+    if (NSObjectClass(obj1, NSString.class) && NSObjectClass(obj2, NSString.class)) {
         // 默认string类型
         NSString *value1 = (NSString *)obj1;
         NSString *value2 = (NSString *)obj2;
         
         NSComparisonResult compareResult = [value1 compare:value2];
         
-        if (NSOrderedDescending == compareResult)
-        {
+        if (NSOrderedDescending == compareResult) {
             return (isAscending ? (NSComparisonResult)NSOrderedAscending : (NSComparisonResult)NSOrderedDescending);
-        }
-        else if (NSOrderedAscending == compareResult)
-        {
+        } else if (NSOrderedAscending == compareResult) {
             return (isAscending ? (NSComparisonResult)NSOrderedDescending : (NSComparisonResult)NSOrderedAscending);
-        }
-        else
-        {
+        } else {
             return (NSComparisonResult)NSOrderedSame;
         }
-    }
-    else if ([obj1 isKindOfClass:[NSIndexPath class]] && [obj2 isKindOfClass:[NSIndexPath class]])
-    {
+    } else if (NSObjectClass(obj1, NSIndexPath.class) && NSObjectClass(obj2, NSIndexPath.class)) {
         NSInteger value1 = ((NSIndexPath *)obj1).section;
         NSInteger value2 = ((NSIndexPath *)obj2).section;
         
-        if (value1 > value2)
-        {
+        if (value1 > value2) {
             return (isAscending ? NSOrderedAscending : NSOrderedDescending);
-        }
-        else if (value1 < value2)
-        {
+        } else if (value1 < value2) {
             return (isAscending ? NSOrderedDescending : NSOrderedAscending);
-        }
-        else
-        {
+        } else {
             return NSOrderedSame;
         }
     }
@@ -290,16 +233,11 @@ NSInteger comparatorNumberArrayFunction(id obj1, id obj2, void* context){
     NSInteger value1 = [obj1 integerValue];
     NSInteger value2 = [obj2 integerValue];
     
-    if (value1 > value2)
-    {
+    if (value1 > value2) {
         return (isAscending ? (NSComparisonResult)NSOrderedAscending : (NSComparisonResult)NSOrderedDescending);
-    }
-    else if (value1 < value2)
-    {
+    } else if (value1 < value2) {
         return (isAscending ? (NSComparisonResult)NSOrderedDescending : (NSComparisonResult)NSOrderedAscending);
-    }
-    else
-    {
+    } else {
         return (NSComparisonResult)NSOrderedSame;
     }
 }
@@ -332,8 +270,7 @@ NSInteger comparatorNumberArrayFunction(id obj1, id obj2, void* context){
  */
 - (NSArray *)uppercaseArray
 {
-    if ([NSArray isValidArray:self])
-    {
+    if (self.isValidArray) {
         NSArray *result = [self valueForKeyPath:@"uppercaseString"];
         return result;
     }
@@ -348,8 +285,7 @@ NSInteger comparatorNumberArrayFunction(id obj1, id obj2, void* context){
  */
 - (NSArray *)lengthArray
 {
-    if ([NSArray isValidArray:self])
-    {
+    if (self.isValidArray) {
         NSArray *result = [self valueForKeyPath:@"length"];
         return result;
     }
@@ -364,8 +300,7 @@ NSInteger comparatorNumberArrayFunction(id obj1, id obj2, void* context){
  */
 - (NSNumber *)sumObjectInArray
 {
-    if ([NSArray isValidArray:self])
-    {
+    if (self.isValidArray) {
         // @"@sum.floatValue" @"@sum.self"
         NSNumber *result = [self valueForKeyPath:@"@sum.floatValue"];
         return result;
@@ -381,8 +316,7 @@ NSInteger comparatorNumberArrayFunction(id obj1, id obj2, void* context){
  */
 - (NSNumber *)averageObjectInArray
 {
-    if ([NSArray isValidArray:self])
-    {
+    if (self.isValidArray) {
         // @"@avg.floatValue" @"@avg.self"
         NSNumber *result = [self valueForKeyPath:@"@avg.floatValue"];
         return result;
@@ -398,8 +332,7 @@ NSInteger comparatorNumberArrayFunction(id obj1, id obj2, void* context){
  */
 - (NSNumber *)maxObjectInArray
 {
-    if ([NSArray isValidArray:self])
-    {
+    if (self.isValidArray) {
         // @"@max.floatValue" @"@max.self"
         NSNumber *result = [self valueForKeyPath:@"@max.floatValue"];
         return result;
@@ -415,8 +348,7 @@ NSInteger comparatorNumberArrayFunction(id obj1, id obj2, void* context){
  */
 - (NSNumber *)minObjectInArray
 {
-    if ([NSArray isValidArray:self])
-    {
+    if (self.isValidArray) {
         // @"@min.floatValue" @"@min.self"
         NSNumber *result = [self valueForKeyPath:@"@min.floatValue"];
         return result;
@@ -432,8 +364,7 @@ NSInteger comparatorNumberArrayFunction(id obj1, id obj2, void* context){
  */
 - (NSArray *)distinctArray
 {
-    if ([NSArray isValidArray:self])
-    {
+    if (self.isValidArray) {
         NSArray *result = [self valueForKeyPath:@"@distinctUnionOfObjects.self"];
         return result;
     }

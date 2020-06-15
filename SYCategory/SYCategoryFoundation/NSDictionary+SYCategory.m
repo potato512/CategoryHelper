@@ -15,8 +15,7 @@
 /// 是否是字典判断
 - (BOOL)isNSDictionary
 {
-    if ([self isKindOfClass:[NSDictionary class]])
-    {
+    if ([self isKindOfClass:[NSDictionary class]]) {
         return YES;
     }
     
@@ -24,13 +23,16 @@
 }
 
 /// 非空字典判断
+- (BOOL)isValidNSDictionary
+{
+    return [NSDictionary isValidNSDictionary:self];
+}
+/// 非空字典判断
 + (BOOL)isValidNSDictionary:(NSDictionary *)dictionary
 {
-    if ([dictionary isNSDictionary] && 0 < dictionary.count && dictionary != nil)
-    {
+    if ([dictionary isNSDictionary] && 0 < dictionary.count && dictionary != nil) {
         return YES;
     }
-    
     return NO;
 }
 

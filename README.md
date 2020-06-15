@@ -48,6 +48,21 @@
 
 
 #### 修改完善
+* 20200428
+  * 版本号：
+  * 修改优化
+    * UIFont+SYCategory
+    * NSObject+SYCategory
+    * NSPredicate+SYCategory
+    * NSArray+SYCategory
+    * NSAttributedString+SYCategory
+    * NSDate+SYCategory
+    * NSDictionary+SYCategory
+    * NSFileManager+SYCategory
+    * NSNotificationCenter+SYCategory
+
+
+
 * 20200219
   * 版本号：
   * 修改优化

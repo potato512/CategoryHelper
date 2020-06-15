@@ -381,7 +381,7 @@
      */
     NSArray *types = @[@"cube",@"moveIn",@"reveal",@"fade",@"pageCurl",@"pageUnCurl",@"suckEffect",@"rippleEffect",@"oglFlip", @"rotate",@"push",@"cameraIrisHollowOpen",@"cameraIrisHollowClose",@"kCATransitionFade",@"kCATransitionMoveIn",@"kCATransitionPush",@"kCATransitionReveal"];
     CATransitionType type = types[arc4random() % types.count];
-    [self.navigationController pushViewController:nextVC animated:YES type:type subType:nil function:nil];
+//    [self.navigationController pushViewController:nextVC animated:YES type:type subType:nil function:nil];
 }
 
 @end

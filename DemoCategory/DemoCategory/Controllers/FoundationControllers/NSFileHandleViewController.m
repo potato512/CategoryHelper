@@ -35,8 +35,8 @@
 
 - (void)setUI
 {
-    filePath = [NSFileManager createFileWithFilePath:[NSFileManager getCacheDirectoryPath] fileName:@"devZhang.txt"];
-    NSLog(@"cache path = %@", [NSFileManager getCacheDirectoryPath]);
+    filePath = [NSFileManager createFileWithFilePath:NSFileManager.cachePath fileName:@"devZhang.txt"];
+    NSLog(@"cache path = %@", NSFileManager.cachePath);
     
     self.array = @[@"写入数据到指定位置", @"写入数据到最后的位置", @"读取指定位置的数据", @"读取全文数据", @"复制数据"];
     
@@ -101,7 +101,7 @@
     else if (4 == indexPath.row)
     {
         // 复制数据
-        NSString *toPath = [NSFileManager createFileWithFilePath:[NSFileManager getCacheDirectoryPath] fileName:@"copy.txt"];
+        NSString *toPath = [NSFileManager createFileWithFilePath:NSFileManager.cachePath fileName:@"copy.txt"];
         [NSFileHandle copyFileWithFilePath:filePath toPath:toPath];
     }
 }

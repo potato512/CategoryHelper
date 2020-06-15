@@ -40,6 +40,7 @@
 #import "UIDocument+SYCategory.h"
 #import "UIDevice+SYCategory.h"
 #import "UIScreen+SYCategory.h"
+#import "UIFont+SYCategory.h"
 
 #ifndef SYCategoryUIKit_h
 #define SYCategoryUIKit_h

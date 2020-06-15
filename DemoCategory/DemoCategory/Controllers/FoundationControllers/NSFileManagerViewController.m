@@ -91,14 +91,14 @@
 //        NSLog(@"cacheDirectorys = %@", cacheDirectorys);
         
         
-        NSArray *directory = [NSFileManager getDirectorysWithFilePath:[NSFileManager getHomeDirectoryPath]];
+        NSArray *directory = [NSFileManager getDirectorysWithFilePath:NSFileManager.homePath];
         NSLog(@"directory = %@", directory);
         
-        NSArray *files = [NSFileManager getFilesWithFilePath:[NSFileManager getHomeDirectoryPath]];
+        NSArray *files = [NSFileManager getFilesWithFilePath:NSFileManager.homePath];
         NSLog(@"files = %@", files);
         
-        BOOL isDirectory = [NSFileManager isDirectory:[NSFileManager getHomeDirectoryPath]];
-        NSLog(@"%@ -- %d", [NSFileManager getHomeDirectoryPath], isDirectory);
+        BOOL isDirectory = [NSFileManager isDirectory:NSFileManager.homePath];
+        NSLog(@"%@ -- %d", NSFileManager.homePath, isDirectory);
         isDirectory = [NSFileManager isDirectory:txtFilePath];
         NSLog(@"%@ -- %d", txtFilePath, isDirectory);
         
@@ -109,7 +109,7 @@
         if (txtFilePath == nil)
         {
             txtFilePath = [NSFileManager newCacheFileNameWithType:@".txt"];
-            txtFilePath = [[NSFileManager getCacheDirectoryPath] stringByAppendingPathComponent:txtFilePath];
+            txtFilePath = [NSFileManager.cachePath stringByAppendingPathComponent:txtFilePath];
         }
         BOOL isExist = [NSFileManager isFileExists:txtFilePath];
         NSLog(@"file exist = %d", isExist);
@@ -120,7 +120,7 @@
         if (tmpTxtFilePath == nil)
         {
             tmpTxtFilePath = [NSFileManager newCacheFileNameWithType:@"tmpTxt"];
-            tmpTxtFilePath = [[NSFileManager getCacheDirectoryPath] stringByAppendingPathComponent:tmpTxtFilePath];
+            tmpTxtFilePath = [NSFileManager.cachePath stringByAppendingPathComponent:tmpTxtFilePath];
         }
         BOOL isExist = [NSFileManager isFileExists:tmpTxtFilePath];
         NSLog(@"directory exist = %d", isExist);
@@ -131,7 +131,7 @@
         if (txtFilePath == nil)
         {
             txtFilePath = [NSFileManager newCacheFileNameWithType:@".txt"];
-            txtFilePath = [[NSFileManager getCacheDirectoryPath] stringByAppendingPathComponent:txtFilePath];
+            txtFilePath = [NSFileManager.cachePath stringByAppendingPathComponent:txtFilePath];
         }
         txtFilePath = [NSFileManager createFileWithFilePath:txtFilePath fileName:nil];
         NSLog(@"filePath = %@", txtFilePath);
@@ -142,7 +142,7 @@
         if (tmpTxtFilePath == nil)
         {
             tmpTxtFilePath = [NSFileManager newCacheFileNameWithType:@"tmpTxt"];
-            tmpTxtFilePath = [[NSFileManager getCacheDirectoryPath] stringByAppendingPathComponent:tmpTxtFilePath];
+            tmpTxtFilePath = [NSFileManager.cachePath stringByAppendingPathComponent:tmpTxtFilePath];
         }
         tmpTxtFilePath = [NSFileManager createDirectoryWithFilePath:tmpTxtFilePath fileName:nil];
         NSLog(@"filePath = %@", tmpTxtFilePath);
@@ -151,9 +151,9 @@
     {
         // 移动文件
         NSString *filePath = @"moveTxt";
-        filePath = [[NSFileManager getCacheDirectoryPath] stringByAppendingPathComponent:filePath];
+        filePath = [NSFileManager.cachePath stringByAppendingPathComponent:filePath];
         [NSFileManager createDirectoryWithFilePath:filePath fileName:nil];
-        filePath = [filePath stringByAppendingPathComponent:[NSFileManager getFileNameWithFilePath:txtFilePath]];
+        filePath = [filePath stringByAppendingPathComponent:[NSFileManager fileNameWithFilePath:txtFilePath]];
         BOOL isMove = [NSFileManager moveFileWithFilePath:txtFilePath toPath:filePath];
         NSLog(@"file isMove = %d", isMove);
     }
@@ -161,9 +161,9 @@
     {
         // 移动文件夹
         NSString *filePath = @"moveTmpTxt";
-        filePath = [[NSFileManager getCacheDirectoryPath] stringByAppendingPathComponent:filePath];
+        filePath = [NSFileManager.cachePath stringByAppendingPathComponent:filePath];
         [NSFileManager createDirectoryWithFilePath:filePath fileName:nil];
-        filePath = [filePath stringByAppendingPathComponent:[NSFileManager getFileNameWithFilePath:tmpTxtFilePath]];
+        filePath = [filePath stringByAppendingPathComponent:[NSFileManager fileNameWithFilePath:tmpTxtFilePath]];
         BOOL isMove = [NSFileManager moveFileWithFilePath:tmpTxtFilePath toPath:filePath];
         NSLog(@"directory isMove = %d", isMove);
     }
@@ -171,7 +171,7 @@
     {
         // 复制文件
         NSString *filePath = [NSFileManager newCacheFileNameWithType:@"copyTxt"];
-        filePath = [[NSFileManager getCacheDirectoryPath] stringByAppendingPathComponent:filePath];
+        filePath = [NSFileManager.cachePath stringByAppendingPathComponent:filePath];
         BOOL isCopy = [NSFileManager copyFileWithFilePath:txtFilePath toPath:filePath];
         NSLog(@"file isCopy = %d", isCopy);
     }
@@ -179,7 +179,7 @@
     {
         // 复制文件夹
         NSString *filePath = [NSFileManager newCacheFileNameWithType:@"copyTmpTxt"];
-        filePath = [[NSFileManager getCacheDirectoryPath] stringByAppendingPathComponent:filePath];
+        filePath = [NSFileManager.cachePath stringByAppendingPathComponent:filePath];
         BOOL isCopy = [NSFileManager copyFileWithFilePath:tmpTxtFilePath toPath:filePath];
         NSLog(@"directory isCopy = %d", isCopy);
     }
@@ -212,32 +212,32 @@
     else if (13 == indexPath.row)
     {
         // 查看文件大小
-        CGFloat size = [NSFileManager getFileSizeWithFilePath:txtFilePath];
+        CGFloat size = [NSFileManager fileSizeWithFilePath:txtFilePath];
         NSLog(@"file size = %f", size);
     }
     else if (14 == indexPath.row)
     {
         // 查看文件夹大小
-        CGFloat size = [NSFileManager getFileSizeTotalWithDirectory:tmpTxtFilePath];
+        CGFloat size = [NSFileManager fileSizeTotalWithDirectory:tmpTxtFilePath];
         NSLog(@"directory size = %f", size);
     }
     else if (15 == indexPath.row)
     {
         // 查看文件大小Text
-        NSString *size = [NSFileManager getFileSizeTextWithFilePath:txtFilePath];
+        NSString *size = [NSFileManager fileSizeTextWithFilePath:txtFilePath];
         NSLog(@"file size = %@", size);
     }
     else if (16 == indexPath.row)
     {
         // 查看文件夹大小Text
-        NSString *size = [NSFileManager getFileSizeTotalTextWithDirectory:tmpTxtFilePath];
+        NSString *size = [NSFileManager fileSizeTotalTextWithDirectory:tmpTxtFilePath];
         NSLog(@"directory size = %@", size);
     }
     else if (17 == indexPath.row)
     {
         // 查看磁盘空间/可用
-        NSString *sizeDisk = [NSFileManager getSizeTextDiskSpace];
-        NSString *sizeFreeDist = [NSFileManager getSizeFreeTextDiskSpace];
+        NSString *sizeDisk = [NSFileManager sizeTextDiskSpace];
+        NSString *sizeFreeDist = [NSFileManager sizeFreeTextDiskSpace];
         NSLog(@"sizeDisk = %@, sizeFreeDist = %@", sizeDisk, sizeFreeDist);
     }
     else if (18 == indexPath.row)
@@ -246,7 +246,7 @@
         if (imageFilePath == nil)
         {
             imageFilePath = [NSFileManager newCacheFileNameWithType:@".png"];
-            imageFilePath = [NSFileManager createFileWithFilePath:[NSFileManager getCacheDirectoryPath] fileName:imageFilePath];
+            imageFilePath = [NSFileManager createFileWithFilePath:NSFileManager.cachePath fileName:imageFilePath];
         }
         BOOL isWrite = [NSFileManager saveCacheFileImage:[UIImage imageNamed:@"girl"] filePath:imageFilePath];
         NSLog(@"image isWrite = %d", isWrite);
@@ -261,7 +261,7 @@
     {
         // 文件写入NSString
         NSString *filePath = [NSFileManager newCacheFileNameWithType:@".stringTxt"];
-        filePath = [NSFileManager createFileWithFilePath:[NSFileManager getCacheDirectoryPath] fileName:filePath];
+        filePath = [NSFileManager createFileWithFilePath:NSFileManager.cachePath fileName:filePath];
         [fileDict setObject:filePath forKey:@"stringTxt"];
         NSString *string = @"devZhang";
         BOOL isWrite = [NSFileManager writeFileWithFilePath:filePath data:string];
@@ -271,14 +271,14 @@
     {
         // 文件读取NSString
         NSString *filePath = [fileDict objectForKey:@"stringTxt"];
-        NSData *data = [NSFileManager readFileWithFilePath:filePath];
+        NSData *data = [NSFileManager fileDataWithFilePath:filePath];
         NSLog(@"NSString = %@", data);
     }
     else if (22 == indexPath.row)
     {
         // 文件写入NSArray
         NSString *filePath = [NSFileManager newCacheFileNameWithType:@".arrayTxt"];
-        filePath = [NSFileManager createFileWithFilePath:[NSFileManager getCacheDirectoryPath] fileName:filePath];
+        filePath = [NSFileManager createFileWithFilePath:NSFileManager.cachePath fileName:filePath];
         [fileDict setObject:filePath forKey:@"arrayTxt"];
         NSArray *array = @[@"name", @"devZhang"];
         BOOL isWrite = [NSFileManager writeFileWithFilePath:filePath data:array];
@@ -288,14 +288,14 @@
     {
         // 文件读取NSArray
         NSString *filePath = [fileDict objectForKey:@"arrayTxt"];
-        NSData *data = [NSFileManager readFileWithFilePath:filePath];
+        NSData *data = [NSFileManager fileDataWithFilePath:filePath];
         NSLog(@"NSArray = %@", data);
     }
     else if (24 == indexPath.row)
     {
         // 文件写入NSDictionary
         NSString *filePath = [NSFileManager newCacheFileNameWithType:@".dictTxt"];
-        filePath = [NSFileManager createFileWithFilePath:[NSFileManager getCacheDirectoryPath] fileName:filePath];
+        filePath = [NSFileManager createFileWithFilePath:NSFileManager.cachePath fileName:filePath];
         [fileDict setObject:filePath forKey:@"dictTxt"];
         NSDictionary *dict = @{@"name":@"devZhang", @"job":@"iOSDev"};
         BOOL isWrite = [NSFileManager writeFileWithFilePath:filePath data:dict];
@@ -305,14 +305,14 @@
     {
         // 文件读取NSDictionary
         NSString *filePath = [fileDict objectForKey:@"dictTxt"];
-        NSData *data = [NSFileManager readFileWithFilePath:filePath];
+        NSData *data = [NSFileManager fileDataWithFilePath:filePath];
         NSLog(@"NSDictionary = %@", data);
     }
     else if (26 == indexPath.row)
     {
         // 文件写入NSData
         NSString *filePath = [NSFileManager newCacheFileNameWithType:@".dataTxt"];
-        filePath = [NSFileManager createFileWithFilePath:[NSFileManager getCacheDirectoryPath] fileName:filePath];
+        filePath = [NSFileManager createFileWithFilePath:NSFileManager.cachePath fileName:filePath];
         [fileDict setObject:filePath forKey:@"dataTxt"];
         NSData *data = [filePath dataUsingEncoding:NSUTF8StringEncoding];
         NSLog(@"1 NSData = %@", data);
@@ -323,7 +323,7 @@
     {
         // 文件读取NSData
         NSString *filePath = [fileDict objectForKey:@"dataTxt"];
-        NSData *data = [NSFileManager readFileWithFilePath:filePath];
+        NSData *data = [NSFileManager fileDataWithFilePath:filePath];
         NSLog(@"2 NSData = %@", data);
     }
     else if (28 == indexPath.row)

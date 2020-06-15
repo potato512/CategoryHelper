@@ -69,7 +69,7 @@
     //
     text = @"NSAttributedString控制字符的属性变化，NSAttributedString控制字符的属性变化。";
     attributed = [[NSAttributedString alloc] initWithString:text];
-    attributed = [attributed attributedTextWithLineSpace:5.0];
+//    attributed = [attributed attributedTextWithLineSpace:5.0];
     
     UILabel *label2 = (UILabel *)[self.view viewWithTag:1100];
     label2.attributedText = attributed;

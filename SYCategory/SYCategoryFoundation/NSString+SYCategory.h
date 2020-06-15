@@ -62,12 +62,21 @@ BOOL NSStringEqualString(NSString *string1, NSString *string2);
 
 #pragma mark - 字符异常判断方法
 
+/// 是否是字符串
+- (BOOL)isNSString;
+
+/// 有效字符（非空，且非空格）
+- (BOOL)isValidNSString;
 /// 有效字符（非空，且非空格）
 + (BOOL)isValidNSString:(NSString *)string;
 
 /// 字符非空判断（可以是空格字符串）
+- (BOOL)isNullNSString;
+/// 字符非空判断（可以是空格字符串）
 + (BOOL)isNullNSString:(NSString *)string;
 
+/// 字符非空判断（不能是空格字符串）
+- (BOOL)isNullBlankNSString;
 /// 字符非空判断（不能是空格字符串）
 + (BOOL)isNullBlankNSString:(NSString *)string;
 

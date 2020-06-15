@@ -8,6 +8,7 @@
 
 #import "NSNotificationCenter+SYCategory.h"
 #import <objc/runtime.h>
+#import "NSString+SYCategory.h"
 
 @interface NSNotificationCenter ()
 
@@ -21,12 +22,13 @@
 /**
  *  发送通知
  *
- *  @param name 通知名称
- *  @param dict 通知协带参数
+ *  @param name     通知名称
+ *  @param object   通知协带参数
+ *  @param userInfo 通知协带参数
  */
-void NSNotificationCenterPost(NSString *name, NSDictionary *dict)
+void NSNotificationCenterPost(NSString *name, id object, NSDictionary *userInfo)
 {
-    [[NSNotificationCenter defaultCenter] postNotificationName:name object:nil userInfo:dict];
+    [[NSNotificationCenter defaultCenter] postNotificationName:name object:object userInfo:userInfo];
 }
 
 /**
@@ -50,7 +52,11 @@ void NSNotificationCenterReceive(NSString *name, id target, SEL action)
  */
 void NSNotificationCenterRemove(NSString *name, id target)
 {
-    [[NSNotificationCenter defaultCenter] removeObserver:target name:name object:nil];
+    if (name.isValidNSString) {
+        [[NSNotificationCenter defaultCenter] removeObserver:target name:name object:nil];
+    } else {
+        [NSNotificationCenter.defaultCenter removeObserver:target];
+    }
 }
 
 /************************************************************************************************************/
@@ -68,58 +74,22 @@ void NSNotificationCenterRemove(NSString *name, id target)
 }
 
 /**
- *  发送通知
- *  add by zhangshaoyu, 2017-04-20
- *  @param name 通知名称
- *  @param dict 通知携带参数
- */
-- (void)postNotificationWithName:(NSString *)name userInfo:(NSDictionary *)dict
-{
-    [[NSNotificationCenter defaultCenter] postNotificationName:name object:nil userInfo:dict];
-}
-
-/**
- *  接收通知
- *  add by zhangshaoyu, 2017-04-20
- *  @param name   通知名称
- *  @param target 响应对象
- *  @param action 响应方法
- */
-- (void)receiveNotificationWithName:(NSString *)name target:(id)target selector:(SEL)action
-{
-    [self removeNotificationWithName:name target:target];
-    [[NSNotificationCenter defaultCenter] addObserver:target selector:action name:name object:nil];
-}
-
-/**
  *  接收通知并执行回调
  *  add by zhangshaoyu, 2017-04-20
  *  @param name   通知名称
  *  @param handle 响应回调
  */
-- (void)receiveNotificationWithName:(NSString *)name handle:(void (^)(NSNotification *notification))handle
+- (void)receiveNotification:(NSString *)name handle:(void (^)(NSNotification *notification))handle
 {
     self.NotificationBlock = [handle copy];
-    [self receiveNotificationWithName:name target:self selector:@selector(notificationMethord:)];
+    NSNotificationCenterReceive(name, self, @selector(notificationMethord:));
 }
 
 - (void)notificationMethord:(NSNotification *)notification
 {
-    if (self.NotificationBlock)
-    {
+    if (self.NotificationBlock) {
         self.NotificationBlock(notification);
     }
-}
-
-/**
- *  移除通知
- *  add by zhangshaoyu, 2017-04-20
- *  @param name   通知名称
- *  @param target 响应对象
- */
-- (void)removeNotificationWithName:(NSString *)name target:(id)target
-{
-    [[NSNotificationCenter defaultCenter] removeObserver:target name:name object:nil];
 }
 
 @end
