@@ -28,6 +28,10 @@
 //
 #import <SystemConfiguration/SystemConfiguration.h>
 #import <SystemConfiguration/CaptiveNetwork.h>
+//
+#import <AssetsLibrary/AssetsLibrary.h>
+#import <AVFoundation/AVCaptureDevice.h>
+#import <AVFoundation/AVMediaFormat.h>
 
 @implementation UIDevice (SYCategory)
 
@@ -532,5 +536,99 @@ void PhoneCallWithNumber(NSString *number, BOOL isCanBack)
 
 #pragma mark - 权限
 
+/// 是否有权限访问相册
++ (BOOL)devicePhontEnable
+{
+    ALAuthorizationStatus author = [ALAssetsLibrary authorizationStatus];
+    if (author == kCLAuthorizationStatusRestricted || author == kCLAuthorizationStatusDenied) {
+        // 无权限
+        return NO;
+    }
+    return YES;
+    
+ 
+
+
+}
+
+/// 是否支持相机
+
+
+/// 是否有权限访问相机
++ (BOOL)deviceCameraEnable
+{
+    AVAuthorizationStatus authStatus = [AVCaptureDevice authorizationStatusForMediaType:AVMediaTypeVideo];
+    if (authStatus == AVAuthorizationStatusRestricted || authStatus == AVAuthorizationStatusDenied) {
+        // 无权限
+        return NO;
+    }
+    return YES;
+}
+
+/// 是否支持闪光灯
++ (BOOL)deviceFlashlightEnable
+{
+    return NO;
+}
+
+/// 是否开启定位权限
++ (BOOL)deviceLocation
+{
+    if([CLLocationManager locationServicesEnabled] && [CLLocationManager authorizationStatus] == kCLAuthorizationStatusDenied) {
+
+    NSLog(@"没打开");
+
+    }
+}
+
+/// 是否有权限使用定位
++ (BOOL)deviceLocationEnable
+{
+    CLAuthorizationStatus status = [CLLocationManager authorizationStatus];
+    if (kCLAuthorizationStatusDenied == status || kCLAuthorizationStatusRestricted == status) {
+        return NO;
+    }
+    return YES;
+}
+
+/// 网络
++ (BOOL)deviceNetworkEnable
+{
+    return NO;
+}
+
+/// 是否有权限使用推送
++ (BOOL)devicePushEnable
+{
+    if (UIDevice.iOS8) {
+        // iOS8以上包含iOS8
+        if (UIApplication.sharedApplication.currentUserNotificationSettings.types == UIUserNotificationTypeNone) {
+            return NO;
+        }
+    } else {
+        // ios7 一下
+        if (UIApplication.sharedApplication.enabledRemoteNotificationTypes == UIRemoteNotificationTypeNone) {
+            return NO;
+        }
+    }
+    return YES;
+}
+
+/// 麦克风
++ (BOOL)deviceRecordEnable
+{
+    AVAuthorizationStatus authStatus = [AVCaptureDevice authorizationStatusForMediaType:AVMediaTypeAudio];
+    if (authStatus == AVAuthorizationStatusRestricted || authStatus == AVAuthorizationStatusDenied) {
+        // 无权限
+        return NO;
+    }
+    return YES;
+}
+
+/// 蓝牙
++ (BOOL)deviceBLEEnable
+{
+    return NO;
+}
 
 @end
